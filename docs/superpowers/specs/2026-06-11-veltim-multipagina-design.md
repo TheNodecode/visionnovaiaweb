@@ -60,14 +60,7 @@ Se mantiene; las cards de servicio enlazan a chatbot-ia.html, agente-voz.html y 
 ### 6. casos-de-uso.html (NUEVA)
 - "Ideas para tu negocio": grid por industria (clínicas, restaurantes, inmobiliarias, e-commerce, despachos, talleres...) con qué automatizar en cada una y qué sistema aplica. Enlaces a las páginas de servicio. CTA + calendario.
 
-### 7. precios.html (NUEVA)
-- 3 planes (cifras propuestas, fáciles de editar):
-  - **Starter** — 1 canal (chatbot WhatsApp), setup 497€ + 197€/mes.
-  - **Crecimiento** — chatbot + agente de voz + CRM, setup 997€ + 397€/mes. (Destacado "Más popular")
-  - **Cliente Infinito** — todo el ecosistema + web + prospección, setup 1.997€ + 697€/mes.
-- Tabla comparativa de características, garantía 30 días, FAQ de precios (5-6 preguntas), CTA + calendario.
-
-### 8. quienes-somos.html (NUEVA)
+### 7. quienes-somos.html (NUEVA)
 - Perfil del fundador: **Stiven González — Fundador**, "Experto en IA aplicada a negocios".
 - Bio profesional (sin exagerar): +5 años de experiencia ayudando a negocios a vender más y atender mejor con IA.
 - 6 badges de credenciales: Chatbots y agentes de voz IA, Programación y desarrollo, Diseño web, Marketing digital, Creación de aplicaciones, Negocios automatizados con resultados medibles.
@@ -77,16 +70,16 @@ Se mantiene; las cards de servicio enlazan a chatbot-ia.html, agente-voz.html y 
 ## Elementos globales (todas las páginas)
 
 - **Barra de anuncio** sobre el header: "🚀 Prueba una demo gratuita — Agenda tu llamada ahora" (enlace a Calendly).
-- **Header**: misma píldora de cristal flotante; enlaces: Casos de Uso, Ecosistema (dropdown: Chatbot, Agente de Voz, Diseño Web), Precios, Quiénes Somos + botón "Reservar Plaza". Menú hamburguesa en móvil con panel deslizante.
+- **Header**: misma píldora de cristal flotante; enlaces: Casos de Uso, Ecosistema (dropdown: Chatbot, Agente de Voz, Diseño Web), Quiénes Somos + botón "Reservar Plaza". Menú hamburguesa en móvil con panel deslizante.
 - **Botón flotante WhatsApp**: burbuja fija inferior derecha → https://wa.me/34610859703 con mensaje precargado.
 - **Sección calendario** al final de cada página: embed/enlace de Calendly existente (https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov).
 - **Footer ampliado**: columnas Empresa / Servicios / Legal con enlaces a todas las páginas.
 
 ## SEO
 
-- Title y meta description únicos por página, en español, orientados a keywords (agentes de IA, chatbot WhatsApp para negocios, agente de voz IA, automatización, precios agencia IA...).
+- Title y meta description únicos por página, en español, orientados a keywords (agentes de IA, chatbot WhatsApp para negocios, agente de voz IA, automatización...).
 - Open Graph + Twitter cards por página.
-- JSON-LD schema.org: Organization en index, Service en páginas de servicio, FAQPage en precios, Person en quienes-somos.
+- JSON-LD schema.org: Organization en index, Service en páginas de servicio, Person en quienes-somos.
 - Canonical, lang="es", jerarquía h1→h2 correcta, alt en imágenes.
 - sitemap.xml y robots.txt.
 
@@ -96,11 +89,12 @@ Se mantiene; las cards de servicio enlazan a chatbot-ia.html, agente-voz.html y 
 - Nombre: Stiven González
 - Email: ss.companyes@gmail.com
 - Calendly: enlace existente en la web actual.
-- Pendientes del usuario: foto del fundador, audios de demo, ajuste de cifras de precios.
+- Pendientes del usuario: foto del fundador, audios de demo.
 
 ## Fuera de alcance
 
 - Backend de llamadas IA en vivo (formulario solo agenda).
 - Copiar diseño visual, fotos o textos literales de Veltim.
 - Sistema de login / "Iniciar sesión".
+- Página de precios (descartada por el usuario: precios solo en llamada).
 - Blog.
