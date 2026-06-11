@@ -60,14 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Formularios → Calendly
-  const CALENDLY = 'https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov';
-  ['apply-form', 'voice-demo-form'].forEach(id => {
-    const form = document.getElementById(id);
-    if (form) form.addEventListener('submit', e => {
-      e.preventDefault();
-      window.open(CALENDLY, '_blank');
-    });
+  // Animación dinámica por sección en cada scroll (entra y se re-anima al volver)
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.add('reveal');
+    revealObs.observe(s);
   });
 
   // Marquee: duplicar contenido para loop continuo
@@ -110,12 +109,12 @@ function initROI() {
 /* ============ Simulador de chat por industria ============ */
 const chatScenarios = {
   restaurante: [
-    { from: 'user', text: 'Hola, quiero reservar una mesa para 4 personas' },
-    { from: 'ai',   text: '¡Hola! 👋 Claro, con gusto te ayudo. ¿Para qué día y hora te gustaría la reserva?' },
-    { from: 'user', text: 'Este sábado a las 9pm' },
-    { from: 'ai',   text: 'Perfecto, tenemos disponibilidad el sábado a las 21:00. ¿A nombre de quién hago la reserva?' },
-    { from: 'user', text: 'Carlos Rodríguez' },
-    { from: 'ai',   text: '✅ ¡Listo Carlos! Tu reserva está confirmada: 📅 Sábado · 21:00 · 4 personas' }
+    { from: 'user', text: '¡Hola! ¿Tenéis mesa para 4 el sábado por la noche?' },
+    { from: 'ai',   text: '¡Hola! 👋 Sí, nos queda disponibilidad. ¿Os va mejor a las 20:30 o a las 22:00?' },
+    { from: 'user', text: 'A las 22:00 mejor' },
+    { from: 'ai',   text: 'Perfecto. ¿A nombre de quién pongo la reserva?' },
+    { from: 'user', text: 'Marcos Peña' },
+    { from: 'ai',   text: '✅ ¡Hecho, Marcos! Mesa para 4 · sábado · 22:00. Te llega la confirmación por WhatsApp 📲' }
   ],
   clinica: [
     { from: 'user', text: 'Quiero una cita para limpieza dental' },

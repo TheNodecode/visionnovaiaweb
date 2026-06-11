@@ -124,7 +124,7 @@
     </div>
     <h1 class="font-display-lg-mobile md:text-[80px] md:leading-[1.05] italic text-gradient stagger-item">Una Recepcionista que Nunca Duerme</h1>
     <p class="font-body-lg text-body-lg text-on-surface-variant max-w-[600px] mx-auto stagger-item">
-      Descubre cómo nuestros agentes de voz con IA transforman las conversaciones con clientes.
+      Tu negocio atendido por una voz natural que agenda, responde y vende — incluso a las 3 de la mañana.
     </p>
   </div>
 </section>
@@ -138,21 +138,25 @@
         <h2 class="font-headline-sm text-3xl text-primary">Escucha a tu futura recepcionista en una demo en vivo</h2>
         <p class="text-on-surface-variant text-sm">Déjanos tus datos y agenda una demo personalizada con nuestro equipo. Sin compromiso.</p>
       </div>
-      <form class="space-y-6" id="voice-demo-form">
+      <form class="space-y-6" id="voice-demo-form" action="https://formsubmit.co/stiveng.visionnova@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nueva solicitud de demo de voz — Visión Nova"/>
+        <input type="hidden" name="_template" value="table"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_next" value="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov"/>
         <div class="space-y-2">
           <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Nombre</label>
-          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="Tu nombre" required type="text"/>
+          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="Tu nombre" required type="text" name="nombre"/>
         </div>
         <div class="space-y-2">
           <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Teléfono</label>
           <div class="flex gap-3">
             <span class="px-5 py-4 input-glass flex items-center text-on-surface-variant">+34</span>
-            <input class="flex-1 px-6 py-4 input-glass font-body-md" placeholder="612 345 678" required type="tel"/>
+            <input class="flex-1 px-6 py-4 input-glass font-body-md" placeholder="612 345 678" required type="tel" name="telefono"/>
           </div>
         </div>
         <div class="space-y-2">
           <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Correo Electrónico</label>
-          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="tu@email.com" required type="email"/>
+          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="tu@email.com" required type="email" name="email"/>
         </div>
         <button class="w-full py-5 rounded-full bg-primary text-on-primary font-label-sm uppercase tracking-[0.3em] shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all" type="submit">
           Agendar mi Demo en Vivo
@@ -201,7 +205,7 @@
     <div class="liquid-glass rounded-xl overflow-hidden" style="transform:none">
       <div class="px-6 py-4 border-b border-white/10 flex items-center gap-2">
         <span class="material-symbols-outlined text-primary text-xl">headphones</span>
-        <p class="text-primary text-sm font-semibold">Escucha Demos Reales</p>
+        <p class="text-primary text-sm font-semibold">Demos de Llamadas Reales</p>
       </div>
       <div class="divide-y divide-white/5">
         <div class="demo-item cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-white/[0.03] transition-colors"
@@ -209,33 +213,33 @@
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-lg">call</span></div>
             <div>
-              <p class="text-sm text-primary">Demo Restaurante</p>
-              <p class="text-[11px] text-on-surface-variant/60">Llamada entrante · <span class="text-green-400">Exitosa</span></p>
+              <p class="text-sm text-primary">Restaurante — Reserva de mesa</p>
+              <p class="text-[11px] text-on-surface-variant/60">Entrante · <span class="text-green-400">Resuelta</span></p>
             </div>
           </div>
-          <span class="text-xs text-on-surface-variant/50">2:45</span>
+          <span class="text-xs text-on-surface-variant/50">3:05</span>
         </div>
         <div class="demo-item cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-white/[0.03] transition-colors"
              data-src="assets/audio/demo-inmobiliaria.mp3" data-title="Demo Inmobiliaria">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-lg">call</span></div>
             <div>
-              <p class="text-sm text-primary">Demo Inmobiliaria</p>
-              <p class="text-[11px] text-on-surface-variant/60">Llamada entrante · <span class="text-green-400">Exitosa</span></p>
+              <p class="text-sm text-primary">Inmobiliaria — Visita a piso</p>
+              <p class="text-[11px] text-on-surface-variant/60">Entrante · <span class="text-green-400">Resuelta</span></p>
             </div>
           </div>
-          <span class="text-xs text-on-surface-variant/50">3:12</span>
+          <span class="text-xs text-on-surface-variant/50">2:21</span>
         </div>
         <div class="demo-item cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-white/[0.03] transition-colors"
              data-src="assets/audio/demo-clinica.mp3" data-title="Demo Clínica Estética">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-lg">call</span></div>
             <div>
-              <p class="text-sm text-primary">Demo Clínica Estética</p>
-              <p class="text-[11px] text-on-surface-variant/60">Llamada entrante · <span class="text-green-400">Exitosa</span></p>
+              <p class="text-sm text-primary">Clínica — Cita de valoración</p>
+              <p class="text-[11px] text-on-surface-variant/60">Entrante · <span class="text-green-400">Resuelta</span></p>
             </div>
           </div>
-          <span class="text-xs text-on-surface-variant/50">2:58</span>
+          <span class="text-xs text-on-surface-variant/50">2:47</span>
         </div>
       </div>
       <div class="px-6 py-4 border-t border-white/10 space-y-2">
@@ -244,8 +248,8 @@
       </div>
     </div>
     <div class="text-center lg:text-left space-y-6">
-      <h2 class="font-headline-md text-headline-md italic text-gradient">¿Quieres oírla?</h2>
-      <p class="text-on-surface-variant">Dale play y escucha cómo suena tu próxima recepcionista.</p>
+      <h2 class="font-headline-md text-headline-md italic text-gradient">¿Quieres escucharla?</h2>
+      <p class="text-on-surface-variant">Pulsa play: así sonará tu negocio cuando tú no puedas contestar.</p>
     </div>
   </div>
 </section>
@@ -274,8 +278,8 @@
 <!-- CTA calendario -->
 <section class="py-32 px-6 text-center" id="agenda">
   <div class="max-w-[700px] mx-auto space-y-8">
-    <h2 class="font-headline-md text-headline-md italic text-gradient">¿Listo para transformar tu negocio?</h2>
-    <p class="text-on-surface-variant">Agenda una consulta gratuita y descubre cómo la IA puede revolucionar tu operación.</p>
+    <h2 class="font-headline-md text-headline-md italic text-gradient">¿Hacemos que no pierdas ni un cliente más?</h2>
+    <p class="text-on-surface-variant">Agenda 20 minutos con nosotros y te mostramos exactamente cómo funcionaría en tu negocio. Si no tiene sentido, te lo decimos antes que tú.</p>
     <a class="inline-block liquid-glass-strong text-primary px-12 py-5 rounded-full font-body-lg hover:bg-white/20 transition-all duration-500 hover:scale-105 active:scale-95"
        href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
       Reservar Llamada Gratuita →
