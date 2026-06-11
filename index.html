@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visión Nova | Escala al Infinito</title>
+<meta name="description" content="Tu negocio nunca más pierde un cliente por no contestar. Instalamos agentes autónomos que responden, agendan y venden por ti 24/7."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-secondary-fixed": "#1b1b1b",
+          "on-secondary-container": "#b5b5b5",
+          "tertiary": "#ffffff",
+          "tertiary-fixed": "#e2e2e2",
+          "surface-container-lowest": "#0e0e0e",
+          "surface-container-low": "#1c1b1b",
+          "secondary-fixed-dim": "#c6c6c6",
+          "on-tertiary-container": "#636565",
+          "on-secondary-fixed-variant": "#474747",
+          "on-surface": "#e5e2e1",
+          "surface-container-high": "#2a2a2a",
+          "inverse-surface": "#e5e2e1",
+          "secondary-container": "#474747",
+          "primary-fixed-dim": "#c6c6c7",
+          "primary-fixed": "#e2e2e2",
+          "primary": "#ffffff",
+          "tertiary-container": "#e2e2e2",
+          "surface-variant": "#353434",
+          "outline": "#8e9192",
+          "inverse-primary": "#5d5f5f",
+          "surface-bright": "#3a3939",
+          "on-secondary": "#303030",
+          "on-tertiary": "#2f3131",
+          "background": "#141313",
+          "on-surface-variant": "#c4c7c8",
+          "on-background": "#e5e2e1",
+          "surface-tint": "#c6c6c7",
+          "primary-container": "#e2e2e2",
+          "outline-variant": "#444748",
+          "inverse-on-surface": "#313030",
+          "on-tertiary-fixed": "#1a1c1c",
+          "error": "#ffb4ab",
+          "secondary-fixed": "#e2e2e2",
+          "on-primary-fixed-variant": "#454747",
+          "surface-container-highest": "#353434",
+          "on-primary-fixed": "#1a1c1c",
+          "on-error": "#690005",
+          "error-container": "#93000a",
+          "tertiary-fixed-dim": "#c6c6c7",
+          "surface-dim": "#141313",
+          "on-tertiary-fixed-variant": "#454747",
+          "surface-container": "#201f1f",
+          "secondary": "#c6c6c6",
+          "surface": "#141313",
+          "on-primary": "#2f3131",
+          "on-error-container": "#ffdad6",
+          "on-primary-container": "#636565"
+        },
+        "borderRadius": {
+          "DEFAULT": "1rem",
+          "lg": "2rem",
+          "xl": "3rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "unit": "8px",
+          "margin-mobile": "20px",
+          "margin-desktop": "80px",
+          "gutter": "24px",
+          "container-max": "1440px"
+        },
+        "fontFamily": {
+          "label-sm": ["Barlow"],
+          "headline-sm": ["Instrument Serif"],
+          "body-lg": ["Barlow"],
+          "headline-md": ["Instrument Serif"],
+          "display-lg-mobile": ["Instrument Serif"],
+          "display-lg": ["Instrument Serif"],
+          "body-md": ["Barlow"]
+        },
+        "fontSize": {
+          "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+          "headline-sm": ["32px", {"lineHeight": "38px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+          "headline-md": ["42px", {"lineHeight": "48px", "fontWeight": "400"}],
+          "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+          "display-lg": ["84px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  body {
+    background-color: #0e0e0e;
+    color: #e5e2e1;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  .liquid-glass {
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05), 0 10px 40px rgba(0,0,0,0.4);
+    transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .liquid-glass:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+  }
+  .liquid-glass-strong {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(48px) saturate(210%);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg,#ffffff 0%,rgba(255,255,255,0.4) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .nebula-glow {
+    position: absolute;
+    background: radial-gradient(circle,rgba(255,255,255,0.03) 0%,rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(80px);
+  }
+  .hero-video-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    overflow: hidden;
+  }
+  .hero-video-container video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+  }
+  .input-glass {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.75rem;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .input-glass:focus {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.3);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
+  }
+  .stagger-item { opacity: 0; transform: translateY(20px); }
+</style>
+</head>
+<body class="font-body-md text-body-md antialiased selection:bg-white/20">
+
+<!-- Navigation -->
+<header class="fixed top-6 left-1/2 -translate-x-1/2 w-[94%] max-w-[1200px] rounded-full backdrop-blur-3xl border border-white/10 bg-black/20 flex justify-between items-center px-6 py-3 z-50 transition-all duration-500 shadow-2xl" id="main-nav">
+  <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary scale-110" data-icon="auto_awesome">auto_awesome</span>
+    <span class="font-headline-sm text-[24px] italic lowercase tracking-tight text-primary">Visión Nova</span>
+  </div>
+  <div class="hidden md:flex gap-8 items-center text-on-surface-variant font-label-sm uppercase tracking-widest text-[11px]">
+    <a class="hover:text-primary transition-all duration-300" href="servicios.html">Ecosistema</a>
+    <a class="hover:text-primary transition-all duration-300" href="#contact">Contacto</a>
+    <a class="hover:text-primary transition-all duration-300" href="#results">Garantía</a>
+  </div>
+  <button class="bg-primary text-on-primary font-label-sm uppercase tracking-widest px-5 py-2.5 rounded-full scale-95 hover:scale-100 active:scale-90 transition-all shadow-[0_4px_12px_rgba(255,255,255,0.1)]"
+    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    Reservar Plaza
+  </button>
+</header>
+
+<!-- Hero Section -->
+<section class="relative min-h-[100svh] flex flex-col items-center justify-center pt-24 pb-12 px-6 overflow-hidden" id="hero">
+  <div class="hero-video-container">
+    <video autoplay class="fading-video" loop muted playsinline>
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4" type="video/mp4"/>
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background"></div>
+  </div>
+  <div class="max-w-[1000px] text-center space-y-8 z-10">
+    <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-2 stagger-item">
+      <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+      <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary/80">Inteligencia Artificial de Élite</span>
+    </div>
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-[96px] italic text-gradient leading-[1.05] tracking-tight stagger-item">
+      Escala tu Negocio al Infinito con IA de Élite
+    </h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-[600px] mx-auto leading-relaxed stagger-item">
+      Tu negocio nunca más pierde un cliente por no contestar. Instalamos agentes autónomos que responden, agendan y venden por ti 24/7.
+    </p>
+    <div class="flex flex-col items-center gap-6 pt-6 stagger-item">
+      <button class="liquid-glass-strong text-primary px-12 py-5 rounded-full font-body-lg text-body-lg hover:bg-white/20 transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl"
+        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Escalar mi Negocio
+      </button>
+      <a class="flex items-center gap-3 text-primary/60 font-label-sm uppercase tracking-[0.2em] hover:text-primary transition-all" href="servicios.html">
+        <span class="material-symbols-outlined text-2xl" data-icon="smart_toy">smart_toy</span>
+        Ver el Ecosistema
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About / Vision -->
+<section class="py-24 px-6 relative" id="about-us">
+  <div class="max-w-[800px] mx-auto text-center space-y-8">
+    <h2 class="font-headline-md text-headline-md italic text-gradient">Nuestra Visión</h2>
+    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+      Transformando la comunicación empresarial mediante sistemas de IA autónomos de última generación. No somos solo una agencia; somos el motor de crecimiento de tu negocio.
+    </p>
+  </div>
+</section>
+
+<!-- Capabilities / Services -->
+<section class="py-32 px-6 max-w-[1440px] mx-auto relative" id="capabilities">
+  <div class="mb-20 flex flex-col items-center text-center max-w-[700px] mx-auto">
+    <p class="font-label-sm text-label-sm text-primary uppercase tracking-[0.5em] mb-4 opacity-50">// El Ecosistema</p>
+    <h2 class="font-headline-md text-headline-md italic text-gradient mb-6 leading-tight">Sistemas Cliente Infinito</h2>
+    <p class="text-on-surface-variant font-body-md max-w-md">En 30 días instalamos un sistema completo de IA que automatiza tu crecimiento sin que muevas un dedo.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Web con IA -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="language">language</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Web con IA Integrada</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Landing de alta conversión con chatbot que responde dudas y agenda citas directamente. Sin formularios muertos.</p>
+      </div>
+      <img alt="Web interface" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3BF_72ydTuX3788Bs09r-18iK__s5IRPdTWaQuycc2ACt1AcOALX-uSVIWmmRssOiLr9OYuqwEfz5mUuzrcyRSEu72T1eZ0NPhu9zzdf1fT70ThGGSsAjvgKOvQX_hEHsaHP8n5uqIkbLRS6RmmRN4uI63oR8E7RHW6GNxeTzMKomnUtM3zIdy90hWrbiXr22_-7-I2H499bW4TFXJcKxZZ959e7ioxcuAdd0m-YHDqctT7urekYT8maj3rTGskOZbZ9EFSSo3bGH"/>
+    </div>
+
+    <!-- WhatsApp Agent -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="forum">forum</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Agente WhatsApp 24/7</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Responde en menos de 60 segundos. Agenda citas, manda recordatorios y recupera clientes automáticamente.</p>
+      </div>
+      <img alt="Communication" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FyjRIAwoN7OFhs1815qpXoHzlcJ6vK-FyfZ8ypbCWroUTeT-ZO5aFyJqN-H0H021zXNV_cRDEEi74sw4gCLREPvMpAe4lC-IzszkA0id9Q8zyznGufRzlKTTaz6zPkS-ldRho2YxQtWxNefAROHouzgUO1G_VGaJfevwDIbIU1_kI23DH89ExUTE1ZGgf6Y6EJ0WlBV2ml4cjieC1Cmeyk8H32KUE4fhJCxou3Gt1Sj-q9mObes8AilItJHQ2HxQfQlLJAdDysH_"/>
+    </div>
+
+    <!-- Agente de Voz -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="settings_voice">settings_voice</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Agente de Voz IA</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Contesta llamadas con voz humana natural. Recoge info y agenda directamente aunque estés fuera de horario.</p>
+      </div>
+      <img alt="Voice interface" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7MXXz6oVhEGiuAls_z1HrDkfBFBkM73Dtr4Ji4GDsVQ1ln8OjWs8TCMnIuqs3ajPC8VNs7QintNezbmEWFLPn-ZwmiNcgv9n67uTVR7SD2dqTsNRh6dfqDHu0Ddpz_cC0-s8uMNXv3ahvKyV5XMmiqeLK1mTzDylCaV-p_emeB1fHU1oyyzQpmu-U5M1e1Tk99sV1EuB1UzpL1ZSxkhMwsVkKlpO0ITofFydXEBhnebAShAdZlo2XYAtKdMSmIpo3zX4tlKubMqCG"/>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="query_stats">query_stats</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Dashboard Real-Time</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Visualiza cada métrica: citas agendadas, mensajes atendidos y dinero recuperado desde tu móvil en tiempo real.</p>
+      </div>
+      <img alt="Analytics" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB75ZhNkzOdNHXLbWmM_sqlITgSQYhNAtkNQRxJkC3wjx52bMzHQPtQBlBVIkcHL3_10R9fhBBiv57MNw4whX2utNfQycTTZFWWIaa5UCkoUChGuccFIbOBmxl4S7jFgxP9_xjWo9y-e2DlL5FS_vQp9CKBjhpcEAprandfw_1BQwuF9r1ZzAQOimIvSGDMDVGscOn3X5VTG93xlA3ZT2DLs2wiZNefeD6kYbCmMdKxVh-uQ2W7mfBiV1QZkU9B2NtRPm9b08Fi6uGu"/>
+    </div>
+
+    <!-- Seguimiento Infinito -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="cycle">cycle</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Seguimiento Infinito</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Secuencias inteligentes que resucitan leads antiguos y mantienen calientes a los prospectos sin supervisión.</p>
+      </div>
+      <img alt="Strategy" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA18GPJ5_Q26TFv1O2wvzSfyMPIAcIDdvPssfNPYtKr3HHjNIh_6GDh32Tsl35jutI8TaSX4IDwIOorObJADWKWKy9okEimmQ_BGU6PP4SGkU67iKRElv9oAVyxBqAG0YVU0-cG5pJZxuYe89C9xOmsguGtwwr6RhSUPF4RjBJa14DFwhp-tcsOGka-OhWhKDw9ocmnr3jDe2SA_ZFtuK08OR0tB8ioSZNqhlyChetwX38863ZuFT1chykv5WgKF4ggF3wwoXM2uHwD"/>
+    </div>
+
+    <!-- Integración CRM -->
+    <div class="liquid-glass p-8 rounded-xl space-y-6 flex flex-col justify-between group" onmousemove="handleTilt(event,this)" onmouseleave="resetTilt(this)">
+      <div class="space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl" data-icon="hub">hub</span>
+        </div>
+        <h3 class="font-headline-sm text-2xl text-primary">Integración CRM</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Conectamos todo tu ecosistema. Historial de conversaciones y citas en un solo lugar. Nada se pierde jamás.</p>
+      </div>
+      <img alt="Network" class="w-full h-40 object-cover rounded-lg opacity-40 group-hover:opacity-60 transition-opacity grayscale"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1p7f_r_RKueNeflG9IX_Z0KR2a4H6cIw66h6jn1jx8F_MtDOEgxAA7aiDrwUfCRNp23xTtct9MisWCJKqdJ-0sPgswYd9xUC4GB8hwQ0-QYteYUe2ugocrtf7QIGe17GtSfviaioN1661-BAANNcnXsHVyTF_6HplDei7IxDDuLpJgOHoJDZno6TdwoW0YPJs81UlB6N1bHa36k94a3QBriQ6z0Lui_3G4k8DRzbn0Nu16vsTnaQytg0mCm6cGKFUP1BtRYDSOif0"/>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact / Apply -->
+<section class="py-32 px-6 relative overflow-hidden bg-surface-container-lowest" id="contact">
+  <div class="nebula-glow top-0 right-0 w-[500px] h-[500px] opacity-10"></div>
+  <div class="max-w-[800px] mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-md text-headline-md italic text-gradient mb-4">Aplica para Escalar</h2>
+      <p class="text-on-surface-variant max-w-md mx-auto">Buscamos negocios de alto impacto. Completa el filtro para ver si el Sistema Cliente Infinito es para ti.</p>
+    </div>
+    <form class="liquid-glass p-10 md:p-12 rounded-[2rem] space-y-8" id="apply-form">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Nombre Completo</label>
+          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="Tu nombre" required type="text" id="field-name"/>
+        </div>
+        <div class="space-y-2">
+          <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Tipo de Negocio</label>
+          <input class="w-full px-6 py-4 input-glass font-body-md" placeholder="Ej: Clínica, Agencia, Taller" required type="text" id="field-business"/>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <label class="text-[10px] uppercase tracking-widest text-primary/60 ml-2">Facturación Mensual (Estimada)</label>
+        <select class="w-full px-6 py-4 input-glass font-body-md appearance-none" id="field-revenue">
+          <option value="0-10k">Menos de 10.000€ / mes</option>
+          <option value="10-50k">10.000€ – 50.000€ / mes</option>
+          <option value="50k+">Más de 50.000€ / mes</option>
+        </select>
+      </div>
+      <button class="w-full py-5 rounded-full bg-primary text-on-primary font-label-sm uppercase tracking-[0.3em] shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all" type="submit">
+        Enviar Aplicación
+      </button>
+      <div class="flex flex-col items-center gap-2 pt-4 opacity-50">
+        <p class="text-xs uppercase tracking-widest">O agenda directamente</p>
+        <a class="text-primary font-headline-sm text-2xl hover:opacity-80 transition-opacity"
+          href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov"
+          target="_blank" rel="noopener">
+          Reservar Llamada →
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Results & Guarantee -->
+<section class="py-32 px-6" id="results">
+  <div class="max-w-[1440px] mx-auto text-center space-y-16">
+    <div class="liquid-glass inline-block px-8 py-3 rounded-full border border-primary/20 bg-primary/5 text-primary font-label-sm uppercase tracking-[0.3em] mb-8">
+      Garantía de Resultados por Contrato
+    </div>
+    <h2 class="font-headline-md text-headline-md md:text-[64px] italic leading-tight text-gradient max-w-[900px] mx-auto">
+      Si en 30 días no hay resultados tangibles, el siguiente mes es gratis.
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 pt-12">
+      <div>
+        <p class="font-display-lg-mobile text-primary leading-none">98%</p>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Satisfacción</p>
+      </div>
+      <div class="hidden md:block w-[1px] h-20 bg-white/10 mx-auto"></div>
+      <div>
+        <p class="font-display-lg-mobile text-primary leading-none">5x</p>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-widest mt-2">ROI Promedio</p>
+      </div>
+      <div class="hidden md:block w-[1px] h-20 bg-white/10 mx-auto"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-40 px-6 relative overflow-hidden flex flex-col items-center justify-center">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]"></div>
+  <div class="nebula-glow bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] opacity-20"></div>
+  <div class="max-w-[800px] text-center space-y-12 relative z-10">
+    <div class="space-y-4">
+      <p class="font-label-sm text-primary/60 uppercase tracking-[0.6em]">Plazas Limitadas</p>
+      <h2 class="font-display-lg-mobile md:text-[110px] text-primary italic leading-none tracking-tighter drop-shadow-2xl">Reclama tu Plaza</h2>
+      <p class="font-headline-sm text-on-surface-variant text-xl">Solo aceptamos 5 clientes nuevos este mes.</p>
+    </div>
+    <div class="relative group">
+      <div class="absolute -inset-1 bg-gradient-to-r from-white/20 to-transparent rounded-full blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+      <button class="relative liquid-glass-strong text-primary w-full max-w-[500px] py-10 rounded-full font-headline-md text-3xl hover:bg-white/20 transition-all duration-700 flex flex-col items-center justify-center gap-2"
+        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <span class="text-[10px] uppercase tracking-[0.5em] opacity-50">SISTEMA CLIENTE INFINITO</span>
+        Comenzar Ahora
+        <p class="text-[11px] font-body-md text-on-surface-variant normal-case opacity-40 font-normal">Implementación en tiempo récord</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full py-20 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+    <div class="space-y-6">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary scale-110" data-icon="auto_awesome">auto_awesome</span>
+        <span class="font-headline-sm text-2xl text-primary italic lowercase tracking-tight">Visión Nova</span>
+      </div>
+      <p class="text-on-surface-variant/50 text-sm max-w-[280px] leading-relaxed">
+        Transformando la comunicación mediante sistemas de IA autónomos de última generación.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-8">
+      <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Empresa</p>
+        <a class="hover:text-primary transition-colors" href="#capabilities">Sistemas</a>
+        <a class="hover:text-primary transition-colors" href="#results">Garantía</a>
+        <a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
+      </nav>
+      <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Legal</p>
+        <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+        <a class="hover:text-primary transition-colors" href="#">Términos</a>
+      </nav>
+    </div>
+    <div class="flex flex-col items-end gap-6">
+      <div class="flex gap-4">
+        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-primary hover:bg-white/5 transition-all"
+          href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined text-lg" data-icon="calendar_month">calendar_month</span>
+        </a>
+        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-primary hover:bg-white/5 transition-all"
+          href="mailto:ss.companyes@gmail.com">
+          <span class="material-symbols-outlined text-lg" data-icon="alternate_email">alternate_email</span>
+        </a>
+      </div>
+      <p class="text-on-surface-variant/30 text-[10px] font-label-sm uppercase tracking-widest text-right">© 2026 Visión Nova. Elite AI Solutions.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 3D tilt on cards
+  function handleTilt(e, el) {
+    const r = el.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    const cx = r.width / 2, cy = r.height / 2;
+    const rx = (y - cy) / 15, ry = (cx - x) / 15;
+    el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
+  }
+  function resetTilt(el) {
+    el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stagger-item').forEach((item, i) => {
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
+          }, i * 100);
+        });
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+  // Nav glass on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('bg-black/60', 'py-2');
+      nav.classList.remove('bg-black/20', 'py-3');
+    } else {
+      nav.classList.remove('bg-black/60', 'py-2');
+      nav.classList.add('bg-black/20', 'py-3');
+    }
+  });
+
+  // Video fade loop
+  const video = document.querySelector('.fading-video');
+  if (video) {
+    video.style.transition = 'opacity 1s ease';
+    video.addEventListener('timeupdate', function () {
+      if (this.currentTime > this.duration - 0.5) this.style.opacity = '0';
+      else this.style.opacity = '0.6';
+    });
+  }
+
+  // Form → Calendly redirect
+  document.getElementById('apply-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    window.open(
+      'https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov',
+      '_blank'
+    );
+  });
+</script>
+</body>
+</html>
