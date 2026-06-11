@@ -4,6 +4,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sistemas de Ultra-Rendimiento - Visión Nova</title>
+<link rel="canonical" href="https://visionnova.vercel.app/servicios"/>
+<meta property="og:title" content="Sistemas de Ultra-Rendimiento - Visión Nova"/>
+<meta property="og:description" content="6 sistemas de IA autónomos para escalar tu negocio: web, WhatsApp, voz, dashboard, seguimiento y CRM."/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="description" content="6 sistemas de IA autónomos para escalar tu negocio: web, WhatsApp, voz, dashboard, seguimiento y CRM."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -99,61 +105,55 @@
     }
   }
 </script>
-<style>
-  body {
-    background-color: #0e0e0e;
-    color: #e5e2e1;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  .liquid-glass {
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(32px) saturate(200%);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05), 0 10px 40px rgba(0,0,0,0.4);
-    transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
-  }
-  .liquid-glass:hover {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.15);
-    transform: translateY(-4px);
-  }
-  .text-gradient {
-    background: linear-gradient(135deg,#ffffff 0%,rgba(255,255,255,0.4) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .nebula-glow {
-    position: absolute;
-    background: radial-gradient(circle,rgba(255,255,255,0.03) 0%,rgba(0,0,0,0) 70%);
-    pointer-events: none;
-    z-index: -1;
-    filter: blur(80px);
-  }
-  .stagger-item { opacity: 0; transform: translateY(20px); }
-  .visible .stagger-item { opacity: 1; transform: translateY(0); }
-</style>
+<link href="assets/css/main.css" rel="stylesheet"/>
 </head>
 <body class="antialiased min-h-screen relative font-body-md text-body-md selection:bg-white/20">
 
+<!-- Announce bar -->
+<div class="announce-bar w-full bg-white/5 border-b border-white/10 backdrop-blur-md text-center py-2 px-4 relative z-[51]">
+  <a href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener"
+     class="font-label-sm text-[11px] uppercase tracking-widest text-primary/80 hover:text-primary transition-colors">
+    🚀 Prueba una demo gratuita — Agenda tu llamada ahora →
+  </a>
+</div>
+
 <!-- Navigation -->
-<header class="bg-surface/40 fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] rounded-full backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] z-50 flex justify-between items-center px-6 py-3 transition-all duration-500" id="main-nav">
+<header class="fixed top-12 left-1/2 -translate-x-1/2 w-[94%] max-w-[1200px] rounded-full backdrop-blur-3xl border border-white/10 bg-black/20 flex justify-between items-center px-6 py-3 z-50 transition-all duration-500 shadow-2xl" id="main-nav">
   <a class="flex items-center gap-2" href="index.html">
     <span class="material-symbols-outlined text-primary scale-110" data-icon="auto_awesome">auto_awesome</span>
     <span class="font-headline-sm text-[24px] italic lowercase tracking-tight text-primary">Visión Nova</span>
   </a>
-  <div class="hidden md:flex gap-8 items-center text-on-surface-variant font-label-sm uppercase tracking-widest text-[11px]">
-    <a class="hover:text-primary transition-all duration-300" href="index.html">Inicio</a>
-    <a class="text-primary border-b border-primary/40 pb-0.5 transition-all duration-300" href="servicios.html">Servicios</a>
-    <a class="hover:text-primary transition-all duration-300" href="index.html#contact">Contacto</a>
+  <div class="hidden lg:flex gap-7 items-center text-on-surface-variant font-label-sm uppercase tracking-widest text-[11px]">
+    <a class="hover:text-primary transition-all duration-300" href="casos-de-uso.html">Casos de Uso</a>
+    <a class="text-primary" href="servicios.html">Ecosistema</a>
+    <a class="hover:text-primary transition-all duration-300" href="chatbot-ia.html">Chatbot IA</a>
+    <a class="hover:text-primary transition-all duration-300" href="agente-voz.html">Agente de Voz</a>
+    <a class="hover:text-primary transition-all duration-300" href="quienes-somos.html">Quiénes Somos</a>
   </div>
-  <a class="bg-primary/10 text-primary font-label-sm uppercase tracking-widest px-5 py-2.5 rounded-full scale-95 hover:scale-100 active:scale-90 transition-all border border-primary/20 hover:bg-primary/20"
-    href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov"
-    target="_blank" rel="noopener">
-    Reservar Plaza
-  </a>
+  <div class="flex items-center gap-3">
+    <a class="hidden lg:block bg-primary text-on-primary font-label-sm uppercase tracking-widest px-5 py-2.5 rounded-full scale-95 hover:scale-100 active:scale-90 transition-all shadow-[0_4px_12px_rgba(255,255,255,0.1)]"
+      href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+      Reservar Plaza
+    </a>
+    <button class="lg:hidden text-primary flex items-center" onclick="toggleMobileMenu()" aria-label="Menú">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="absolute top-8 right-8 text-primary" onclick="toggleMobileMenu()" aria-label="Cerrar menú">
+    <span class="material-symbols-outlined text-4xl">close</span>
+  </button>
+  <a class="font-headline-sm text-3xl italic text-primary" href="index.html">Inicio</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="casos-de-uso.html">Casos de Uso</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="servicios.html" onclick="toggleMobileMenu()">Ecosistema</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="chatbot-ia.html">Chatbot IA</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="agente-voz.html">Agente de Voz</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="diseno-web.html">Diseño Web IA</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="quienes-somos.html">Quiénes Somos</a>
+</div>
 
 <main class="pt-[160px] pb-[80px] px-[20px] md:px-[24px] max-w-[1440px] mx-auto relative z-10">
   <div class="nebula-glow top-[-200px] left-[-200px] w-[800px] h-[800px]"></div>
@@ -188,6 +188,7 @@
           <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
             Landing de alta conversión con chatbot que responde dudas y agenda citas directamente. Sin formularios muertos. Transformamos visitantes en leads calificados mediante interfaces adaptativas y conversacionales.
           </p>
+          <a class="inline-flex items-center gap-2 text-primary font-label-sm uppercase tracking-[0.2em] text-[11px] hover:opacity-80 transition-opacity" href="diseno-web.html">Ver en detalle <span class="material-symbols-outlined text-base">arrow_forward</span></a>
         </div>
       </div>
     </section>
@@ -206,6 +207,7 @@
           <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
             Responde en menos de 60 segundos. Agenda citas, manda recordatorios y recupera clientes automáticamente. Nunca pierdas un prospecto con respuestas en milisegundos.
           </p>
+          <a class="inline-flex items-center gap-2 text-primary font-label-sm uppercase tracking-[0.2em] text-[11px] hover:opacity-80 transition-opacity" href="chatbot-ia.html">Ver en detalle <span class="material-symbols-outlined text-base">arrow_forward</span></a>
         </div>
       </div>
     </section>
@@ -224,6 +226,7 @@
           <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
             Contesta llamadas con voz humana natural. Recoge info y agenda directamente aunque estés fuera de horario. Interacciones fluidas que suenan humanas, operando 24/365.
           </p>
+          <a class="inline-flex items-center gap-2 text-primary font-label-sm uppercase tracking-[0.2em] text-[11px] hover:opacity-80 transition-opacity" href="agente-voz.html">Ver en detalle <span class="material-symbols-outlined text-base">arrow_forward</span></a>
         </div>
       </div>
     </section>
@@ -296,56 +299,55 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-background w-full py-20 border-t border-white/5 relative z-10 mt-32">
-  <div class="flex flex-col md:flex-row justify-between items-center px-[24px] max-w-[1440px] mx-auto gap-8">
-    <a href="index.html" class="font-headline-sm text-headline-sm text-primary italic lowercase tracking-tight">Visión Nova</a>
-    <div class="flex gap-6">
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80" href="index.html">Inicio</a>
-      <a class="font-body-md text-body-md text-primary transition-colors" href="servicios.html">Servicios</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80" href="index.html#contact">Contacto</a>
+<footer class="w-full py-20 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+    <div class="space-y-6">
+      <a class="flex items-center gap-2" href="index.html">
+        <span class="material-symbols-outlined text-primary scale-110" data-icon="auto_awesome">auto_awesome</span>
+        <span class="font-headline-sm text-2xl text-primary italic lowercase tracking-tight">Visión Nova</span>
+      </a>
+      <p class="text-on-surface-variant/50 text-sm max-w-[280px] leading-relaxed">
+        Transformando la comunicación mediante sistemas de IA autónomos de última generación.
+      </p>
     </div>
-    <span class="font-body-md text-body-md text-on-surface-variant opacity-60 text-sm">© 2026 Visión Nova. All rights reserved.</span>
+    <div class="grid grid-cols-2 gap-8">
+      <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Servicios</p>
+        <a class="hover:text-primary transition-colors" href="chatbot-ia.html">Chatbot IA</a>
+        <a class="hover:text-primary transition-colors" href="agente-voz.html">Agente de Voz</a>
+        <a class="hover:text-primary transition-colors" href="diseno-web.html">Diseño Web IA</a>
+        <a class="hover:text-primary transition-colors" href="casos-de-uso.html">Casos de Uso</a>
+      </nav>
+      <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Empresa</p>
+        <a class="hover:text-primary transition-colors" href="servicios.html">Ecosistema</a>
+        <a class="hover:text-primary transition-colors" href="quienes-somos.html">Quiénes Somos</a>
+        <a class="hover:text-primary transition-colors" href="index.html#results">Garantía</a>
+        <a class="hover:text-primary transition-colors" href="index.html#contact">Contacto</a>
+      </nav>
+    </div>
+    <div class="flex flex-col items-end gap-6">
+      <div class="flex gap-4">
+        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-primary hover:bg-white/5 transition-all"
+          href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined text-lg" data-icon="calendar_month">calendar_month</span>
+        </a>
+        <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-primary hover:bg-white/5 transition-all"
+          href="mailto:ss.companyes@gmail.com">
+          <span class="material-symbols-outlined text-lg" data-icon="alternate_email">alternate_email</span>
+        </a>
+      </div>
+      <p class="text-on-surface-variant/30 text-[10px] font-label-sm uppercase tracking-widest text-right">© 2026 Visión Nova. Elite AI Solutions.</p>
+    </div>
   </div>
 </footer>
 
-<script>
-  function handleTilt(e, el) {
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    const cx = r.width / 2, cy = r.height / 2;
-    const rx = (y - cy) / 30, ry = (cx - x) / 30;
-    el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.01,1.01,1.01)`;
-  }
-  function resetTilt(el) {
-    el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
-  }
+<!-- WhatsApp flotante -->
+<a class="whatsapp-float" href="https://wa.me/34610859703?text=Hola%20Stiven%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20chatbot%20IA"
+   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.2 1.3 1.3-4.1-.3-.4C5.6 18.4 5 16.8 5 15 5 9 9.9 4 16 4s11 5 11 11-4.9 10-11 10zm6-7.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1.1-1 1.3c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.5 0-.7s-.7-1.8-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        entry.target.querySelectorAll('.stagger-item').forEach((item, i) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-            item.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
-          }, i * 100);
-        });
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('section').forEach(s => obs.observe(s));
-
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 50) {
-      nav.classList.add('bg-black/60', 'py-2');
-      nav.classList.remove('bg-black/20', 'py-3');
-    } else {
-      nav.classList.remove('bg-black/60', 'py-2');
-      nav.classList.add('bg-black/20', 'py-3');
-    }
-  });
-</script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>

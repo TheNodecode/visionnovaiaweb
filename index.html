@@ -5,6 +5,24 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Visión Nova | Escala al Infinito</title>
 <meta name="description" content="Tu negocio nunca más pierde un cliente por no contestar. Instalamos agentes autónomos que responden, agendan y venden por ti 24/7."/>
+<link rel="canonical" href="https://visionnova.vercel.app/"/>
+<meta property="og:title" content="Visión Nova | Escala al Infinito"/>
+<meta property="og:description" content="Agentes de IA que responden, agendan y venden por ti 24/7. Sistema Cliente Infinito."/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Visión Nova",
+  "url": "https://visionnova.vercel.app/",
+  "email": "ss.companyes@gmail.com",
+  "founder": { "@type": "Person", "name": "Stiven González" },
+  "sameAs": ["https://wa.me/34610859703"],
+  "description": "Agencia de inteligencia artificial: chatbots, agentes de voz y automatización para negocios."
+}
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -97,90 +115,55 @@
     },
   }
 </script>
-<style>
-  body {
-    background-color: #0e0e0e;
-    color: #e5e2e1;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  .liquid-glass {
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(32px) saturate(200%);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05), 0 10px 40px rgba(0,0,0,0.4);
-    transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
-  }
-  .liquid-glass:hover {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.15);
-    transform: translateY(-4px);
-  }
-  .liquid-glass-strong {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(48px) saturate(210%);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
-  }
-  .text-gradient {
-    background: linear-gradient(135deg,#ffffff 0%,rgba(255,255,255,0.4) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .nebula-glow {
-    position: absolute;
-    background: radial-gradient(circle,rgba(255,255,255,0.03) 0%,rgba(0,0,0,0) 70%);
-    pointer-events: none;
-    z-index: -1;
-    filter: blur(80px);
-  }
-  .hero-video-container {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -2;
-    overflow: hidden;
-  }
-  .hero-video-container video {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.6;
-  }
-  .input-glass {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 0.75rem;
-    color: white;
-    transition: all 0.3s ease;
-  }
-  .input-glass:focus {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.3);
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
-  }
-  .stagger-item { opacity: 0; transform: translateY(20px); }
-</style>
+<link href="assets/css/main.css" rel="stylesheet"/>
 </head>
 <body class="font-body-md text-body-md antialiased selection:bg-white/20">
 
+<!-- Announce bar -->
+<div class="announce-bar w-full bg-white/5 border-b border-white/10 backdrop-blur-md text-center py-2 px-4 relative z-[51]">
+  <a href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener"
+     class="font-label-sm text-[11px] uppercase tracking-widest text-primary/80 hover:text-primary transition-colors">
+    🚀 Prueba una demo gratuita — Agenda tu llamada ahora →
+  </a>
+</div>
+
 <!-- Navigation -->
-<header class="fixed top-6 left-1/2 -translate-x-1/2 w-[94%] max-w-[1200px] rounded-full backdrop-blur-3xl border border-white/10 bg-black/20 flex justify-between items-center px-6 py-3 z-50 transition-all duration-500 shadow-2xl" id="main-nav">
-  <div class="flex items-center gap-2">
+<header class="fixed top-12 left-1/2 -translate-x-1/2 w-[94%] max-w-[1200px] rounded-full backdrop-blur-3xl border border-white/10 bg-black/20 flex justify-between items-center px-6 py-3 z-50 transition-all duration-500 shadow-2xl" id="main-nav">
+  <a class="flex items-center gap-2" href="index.html">
     <span class="material-symbols-outlined text-primary scale-110" data-icon="auto_awesome">auto_awesome</span>
     <span class="font-headline-sm text-[24px] italic lowercase tracking-tight text-primary">Visión Nova</span>
-  </div>
-  <div class="hidden md:flex gap-8 items-center text-on-surface-variant font-label-sm uppercase tracking-widest text-[11px]">
+  </a>
+  <div class="hidden lg:flex gap-7 items-center text-on-surface-variant font-label-sm uppercase tracking-widest text-[11px]">
+    <a class="hover:text-primary transition-all duration-300" href="casos-de-uso.html">Casos de Uso</a>
     <a class="hover:text-primary transition-all duration-300" href="servicios.html">Ecosistema</a>
-    <a class="hover:text-primary transition-all duration-300" href="#contact">Contacto</a>
-    <a class="hover:text-primary transition-all duration-300" href="#results">Garantía</a>
+    <a class="hover:text-primary transition-all duration-300" href="chatbot-ia.html">Chatbot IA</a>
+    <a class="hover:text-primary transition-all duration-300" href="agente-voz.html">Agente de Voz</a>
+    <a class="hover:text-primary transition-all duration-300" href="quienes-somos.html">Quiénes Somos</a>
   </div>
-  <button class="bg-primary text-on-primary font-label-sm uppercase tracking-widest px-5 py-2.5 rounded-full scale-95 hover:scale-100 active:scale-90 transition-all shadow-[0_4px_12px_rgba(255,255,255,0.1)]"
-    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-    Reservar Plaza
-  </button>
+  <div class="flex items-center gap-3">
+    <button class="hidden lg:block bg-primary text-on-primary font-label-sm uppercase tracking-widest px-5 py-2.5 rounded-full scale-95 hover:scale-100 active:scale-90 transition-all shadow-[0_4px_12px_rgba(255,255,255,0.1)]"
+      onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Reservar Plaza
+    </button>
+    <button class="lg:hidden text-primary flex items-center" onclick="toggleMobileMenu()" aria-label="Menú">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="absolute top-8 right-8 text-primary" onclick="toggleMobileMenu()" aria-label="Cerrar menú">
+    <span class="material-symbols-outlined text-4xl">close</span>
+  </button>
+  <a class="font-headline-sm text-3xl italic text-primary" href="index.html" onclick="toggleMobileMenu()">Inicio</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="casos-de-uso.html">Casos de Uso</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="servicios.html">Ecosistema</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="chatbot-ia.html">Chatbot IA</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="agente-voz.html">Agente de Voz</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="diseno-web.html">Diseño Web IA</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="quienes-somos.html">Quiénes Somos</a>
+</div>
 
 <!-- Hero Section -->
 <section class="relative min-h-[100svh] flex flex-col items-center justify-center pt-24 pb-12 px-6 overflow-hidden" id="hero">
@@ -210,6 +193,109 @@
         <span class="material-symbols-outlined text-2xl" data-icon="smart_toy">smart_toy</span>
         Ver el Ecosistema
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Problema: convierte más leads -->
+<section class="py-32 px-6 relative" id="problema">
+  <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="space-y-8">
+      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md stagger-item">
+        <span class="material-symbols-outlined text-primary text-base">chat</span>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary/80">Más conversión, mismo presupuesto</span>
+      </div>
+      <h2 class="font-headline-md text-headline-md md:text-[52px] md:leading-[1.1] italic text-gradient stagger-item">
+        Convierte más leads en clientes sin aumentar tu inversión en publicidad
+      </h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed stagger-item">
+        Si inviertes en anuncios y recibes leads cada día pero muchos no terminan comprando, el problema no es la cantidad de leads: es cómo los gestionas.
+      </p>
+      <ul class="space-y-4 stagger-item">
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+          <span class="text-on-surface-variant">Responde a tus leads en segundos por WhatsApp y llamada</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+          <span class="text-on-surface-variant">Automatiza seguimiento y cualificación sin perder oportunidades</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+          <span class="text-on-surface-variant">Organiza todo tu proceso comercial en un sistema claro y medible</span>
+        </li>
+      </ul>
+      <button class="liquid-glass-strong text-primary px-10 py-4 rounded-full font-body-lg hover:bg-white/20 transition-all duration-500 hover:scale-105 active:scale-95 stagger-item"
+        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Quiero convertir más leads →
+      </button>
+    </div>
+    <div class="relative flex items-center justify-center stagger-item">
+      <div class="nebula-glow w-[400px] h-[400px] opacity-30"></div>
+      <div class="liquid-glass rounded-xl p-12 text-center space-y-4 w-full max-w-[380px]">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-3xl">phone_in_talk</span>
+        </div>
+        <p class="font-display-lg-mobile text-primary leading-none">&lt;20s</p>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-widest">Tiempo de respuesta</p>
+        <div class="border-t border-white/10 pt-4 flex justify-around text-center">
+          <div><p class="text-2xl text-primary font-semibold">24/7</p><p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 mt-1">Siempre activo</p></div>
+          <div><p class="text-2xl text-primary font-semibold">0</p><p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 mt-1">Leads perdidos</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Carrusel de logos -->
+<section class="py-16 border-y border-white/5 overflow-hidden">
+  <p class="text-center font-label-sm text-label-sm uppercase tracking-[0.4em] text-on-surface-variant/50 mb-10">Trabajamos con las mejores herramientas</p>
+  <div class="marquee">
+    <div class="marquee-track items-center">
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">WhatsApp</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">OpenAI</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Make</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">n8n</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">HubSpot</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Calendly</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Shopify</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Instagram</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Google Calendar</span>
+      <span class="text-2xl font-semibold text-white/40 hover:text-white/80 transition-colors whitespace-nowrap">Meta</span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 features -->
+<section class="py-32 px-6 max-w-[1200px] mx-auto" id="features">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="liquid-glass p-10 rounded-xl space-y-4 stagger-item">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+      </div>
+      <h3 class="font-headline-sm text-2xl text-primary">Disponibilidad 24/7</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Atiende llamadas y mensajes a cualquier hora. Nunca pierdas un cliente.</p>
+    </div>
+    <div class="liquid-glass p-10 rounded-xl space-y-4 stagger-item">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+      </div>
+      <h3 class="font-headline-sm text-2xl text-primary">Conversación Natural</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Respuestas fluidas e inteligentes que parecen humanas.</p>
+    </div>
+    <div class="liquid-glass p-10 rounded-xl space-y-4 stagger-item">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl">event_available</span>
+      </div>
+      <h3 class="font-headline-sm text-2xl text-primary">Reservas Automáticas</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Agenda citas y mesas directamente durante la conversación.</p>
+    </div>
+    <div class="liquid-glass p-10 rounded-xl space-y-4 stagger-item">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+        <span class="material-symbols-outlined text-primary text-3xl">translate</span>
+      </div>
+      <h3 class="font-headline-sm text-2xl text-primary">Multi-idioma</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Atiende a clientes en diferentes idiomas sin problemas.</p>
     </div>
   </div>
 </section>
@@ -315,6 +401,133 @@
   </div>
 </section>
 
+<!-- Prospección + Calculadora ROI -->
+<section class="py-32 px-6 relative" id="roi">
+  <div class="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+    <!-- Prospección -->
+    <div class="space-y-8">
+      <div>
+        <h2 class="font-headline-md text-headline-md italic text-gradient mb-4">Automatiza tu Prospección</h2>
+        <p class="text-on-surface-variant max-w-md">La IA contacta automáticamente con clientes inactivos para reactivarlos, hacer seguimiento o captar nuevos prospectos.</p>
+      </div>
+      <div class="liquid-glass rounded-xl overflow-hidden">
+        <div class="px-6 py-4 border-b border-white/10 flex items-center gap-3 bg-white/[0.03]">
+          <span class="material-symbols-outlined text-primary">phone_forwarded</span>
+          <div>
+            <p class="text-primary font-semibold text-sm">Reactiva tus Leads</p>
+            <p class="text-on-surface-variant text-xs">Prospección y seguimiento automático</p>
+          </div>
+        </div>
+        <div class="p-6 space-y-3">
+          <p class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant/50 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">schedule</span> Cola de llamadas
+          </p>
+          <div class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-primary text-sm font-semibold">M</div>
+              <div><p class="text-sm text-primary">María García</p><p class="text-xs text-on-surface-variant/60">Clínica dental</p></div>
+            </div>
+            <span class="text-xs text-on-surface-variant/50">Hace 6 meses</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-primary text-sm font-semibold">C</div>
+              <div><p class="text-sm text-primary">Carlos López</p><p class="text-xs text-on-surface-variant/60">Inmobiliaria</p></div>
+            </div>
+            <span class="text-xs text-on-surface-variant/50">Hace 3 meses</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-primary text-sm font-semibold">A</div>
+              <div><p class="text-sm text-primary">Ana Martínez</p><p class="text-xs text-on-surface-variant/60">Despacho abogados</p></div>
+            </div>
+            <span class="text-xs text-on-surface-variant/50">Hace 8 meses</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg border border-white/30 bg-white/[0.06] px-4 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-primary text-sm font-semibold">P</div>
+              <div><p class="text-sm text-primary">Pedro Sánchez</p><p class="text-xs text-on-surface-variant/60">Cliente inactivo</p></div>
+            </div>
+            <span class="flex items-center gap-2 text-xs text-green-400"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>Llamando…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculadora -->
+    <div class="space-y-8">
+      <div>
+        <h2 class="font-headline-md text-headline-md italic text-gradient mb-4">Calcula tu Ahorro</h2>
+        <p class="text-on-surface-variant max-w-md">Descubre cuánto puedes ahorrar con agentes de IA.</p>
+      </div>
+      <div class="liquid-glass p-8 rounded-xl space-y-6" style="transform:none">
+        <div>
+          <label class="flex justify-between text-sm text-on-surface-variant mb-2">Llamadas mensuales <span class="text-primary" id="roi-calls-val">2400</span></label>
+          <input class="roi-slider" id="roi-calls" max="10000" min="100" step="100" type="range" value="2400"/>
+        </div>
+        <div>
+          <label class="flex justify-between text-sm text-on-surface-variant mb-2">Coste mensual empleado (€) <span class="text-primary" id="roi-cost-val">1350</span></label>
+          <input class="roi-slider" id="roi-cost" max="5000" min="500" step="50" type="range" value="1350"/>
+        </div>
+        <div>
+          <label class="flex justify-between text-sm text-on-surface-variant mb-2">Valor promedio venta (€) <span class="text-primary" id="roi-sale-val">150</span></label>
+          <input class="roi-slider" id="roi-sale" max="2000" min="10" step="10" type="range" value="150"/>
+        </div>
+        <div class="border-t border-white/10 pt-6 space-y-3">
+          <div class="flex justify-between items-center"><span class="text-on-surface-variant">Ahorro mensual</span><span class="text-primary text-xl font-semibold" id="roi-savings">—</span></div>
+          <div class="flex justify-between items-center"><span class="text-on-surface-variant">Ingresos adicionales</span><span class="text-primary text-xl font-semibold" id="roi-extra">—</span></div>
+          <div class="liquid-glass-strong rounded-lg p-5 flex justify-between items-center">
+            <div>
+              <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">ROI Total Mensual</p>
+              <p class="text-xs text-on-surface-variant" id="roi-annual">—</p>
+            </div>
+            <p class="font-headline-md text-4xl text-primary" id="roi-total">—</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs border-t border-white/10 pt-5">
+          <div></div><div class="text-on-surface-variant/60 uppercase tracking-widest text-[10px]">Humanos</div><div class="text-primary uppercase tracking-widest text-[10px]">IA</div>
+          <div class="text-on-surface-variant/60 text-left">Coste/llamada</div><div class="text-on-surface-variant">1,69€</div><div class="text-primary">0,75€</div>
+          <div class="text-on-surface-variant/60 text-left">Conversión</div><div class="text-on-surface-variant">12%</div><div class="text-primary">18%</div>
+          <div class="text-on-surface-variant/60 text-left">Disponibilidad</div><div class="text-on-surface-variant">8h/día</div><div class="text-primary">24/7</div>
+        </div>
+        <button class="w-full py-4 rounded-full bg-primary text-on-primary font-label-sm uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-[0.98] transition-all"
+          onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Solicitar Demo Gratis
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser chatbot -->
+<section class="py-24 px-6 bg-surface-container-lowest border-y border-white/5">
+  <div class="max-w-[800px] mx-auto text-center space-y-6">
+    <h2 class="font-headline-md text-headline-md italic text-gradient">De Mensaje a Reserva en Segundos</h2>
+    <p class="text-on-surface-variant max-w-lg mx-auto">Tu IA trabaja 24/7 convirtiendo conversaciones de WhatsApp, Instagram y Messenger en ventas reales.</p>
+    <a class="inline-flex items-center gap-2 text-primary font-label-sm uppercase tracking-[0.2em] hover:opacity-80 transition-opacity" href="chatbot-ia.html">
+      Ver cómo funciona <span class="material-symbols-outlined text-lg">arrow_forward</span>
+    </a>
+  </div>
+</section>
+
+<!-- Teaser fundador -->
+<section class="py-24 px-6">
+  <div class="max-w-[800px] mx-auto liquid-glass rounded-xl p-10 flex flex-col md:flex-row items-center gap-8">
+    <div class="w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+      <span class="font-headline-md text-5xl text-primary italic">S</span>
+    </div>
+    <div class="space-y-3 text-center md:text-left">
+      <p class="font-label-sm text-[10px] uppercase tracking-widest text-primary/50">Fundador</p>
+      <h3 class="font-headline-sm text-3xl text-primary">Stiven González</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Especialista en IA aplicada a negocios, con más de 5 años ayudando a empresas a vender más y atender mejor con automatización inteligente.</p>
+      <a class="inline-flex items-center gap-2 text-primary font-label-sm uppercase tracking-[0.2em] hover:opacity-80 transition-opacity" href="quienes-somos.html">
+        Conóceme <span class="material-symbols-outlined text-lg">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Contact / Apply -->
 <section class="py-32 px-6 relative overflow-hidden bg-surface-container-lowest" id="contact">
   <div class="nebula-glow top-0 right-0 w-[500px] h-[500px] opacity-10"></div>
@@ -417,15 +630,18 @@
     </div>
     <div class="grid grid-cols-2 gap-8">
       <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
-        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Empresa</p>
-        <a class="hover:text-primary transition-colors" href="#capabilities">Sistemas</a>
-        <a class="hover:text-primary transition-colors" href="#results">Garantía</a>
-        <a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Servicios</p>
+        <a class="hover:text-primary transition-colors" href="chatbot-ia.html">Chatbot IA</a>
+        <a class="hover:text-primary transition-colors" href="agente-voz.html">Agente de Voz</a>
+        <a class="hover:text-primary transition-colors" href="diseno-web.html">Diseño Web IA</a>
+        <a class="hover:text-primary transition-colors" href="casos-de-uso.html">Casos de Uso</a>
       </nav>
       <nav class="flex flex-col gap-4 text-sm text-on-surface-variant/80">
-        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Legal</p>
-        <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
-        <a class="hover:text-primary transition-colors" href="#">Términos</a>
+        <p class="font-label-sm text-primary uppercase tracking-widest text-[10px] opacity-40 mb-2">Empresa</p>
+        <a class="hover:text-primary transition-colors" href="servicios.html">Ecosistema</a>
+        <a class="hover:text-primary transition-colors" href="quienes-somos.html">Quiénes Somos</a>
+        <a class="hover:text-primary transition-colors" href="index.html#results">Garantía</a>
+        <a class="hover:text-primary transition-colors" href="index.html#contact">Contacto</a>
       </nav>
     </div>
     <div class="flex flex-col items-end gap-6">
@@ -444,65 +660,12 @@
   </div>
 </footer>
 
-<script>
-  // 3D tilt on cards
-  function handleTilt(e, el) {
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    const cx = r.width / 2, cy = r.height / 2;
-    const rx = (y - cy) / 15, ry = (cx - x) / 15;
-    el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
-  }
-  function resetTilt(el) {
-    el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
-  }
+<!-- WhatsApp flotante -->
+<a class="whatsapp-float" href="https://wa.me/34610859703?text=Hola%20Stiven%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20agentes%20de%20IA"
+   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.2 1.3 1.3-4.1-.3-.4C5.6 18.4 5 16.8 5 15 5 9 9.9 4 16 4s11 5 11 11-4.9 10-11 10zm6-7.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1.1-1 1.3c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.5 0-.7s-.7-1.8-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
 
-  // Scroll reveal
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.stagger-item').forEach((item, i) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-            item.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
-          }, i * 100);
-        });
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('section').forEach(s => obs.observe(s));
-
-  // Nav glass on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 50) {
-      nav.classList.add('bg-black/60', 'py-2');
-      nav.classList.remove('bg-black/20', 'py-3');
-    } else {
-      nav.classList.remove('bg-black/60', 'py-2');
-      nav.classList.add('bg-black/20', 'py-3');
-    }
-  });
-
-  // Video fade loop
-  const video = document.querySelector('.fading-video');
-  if (video) {
-    video.style.transition = 'opacity 1s ease';
-    video.addEventListener('timeupdate', function () {
-      if (this.currentTime > this.duration - 0.5) this.style.opacity = '0';
-      else this.style.opacity = '0.6';
-    });
-  }
-
-  // Form → Calendly redirect
-  document.getElementById('apply-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    window.open(
-      'https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov',
-      '_blank'
-    );
-  });
-</script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
