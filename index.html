@@ -479,13 +479,24 @@
           <label class="flex justify-between text-sm text-on-surface-variant mb-2">Ticket medio de venta (€) <span class="text-primary" id="roi-sale-val">150</span></label>
           <input class="roi-slider" id="roi-sale" max="2000" min="10" step="10" type="range" value="150"/>
         </div>
-        <div class="border-t border-white/10 pt-6 space-y-3">
-          <div class="flex justify-between items-center"><span class="text-on-surface-variant">Ahorro mensual</span><span class="text-primary text-xl font-semibold" id="roi-savings">—</span></div>
-          <div class="flex justify-between items-center"><span class="text-on-surface-variant">Ingresos adicionales</span><span class="text-primary text-xl font-semibold" id="roi-extra">—</span></div>
-          <div class="liquid-glass-strong rounded-lg p-5 flex justify-between items-center">
-            <div>
-              <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">ROI Total Mensual</p>
+        <div class="border-t border-white/10 pt-6 space-y-2">
+          <div class="flex justify-between items-center py-1">
+            <span class="text-sm text-on-surface-variant">Personal que reemplazas</span>
+            <span class="text-green-400 font-semibold" id="roi-human-cost">—</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-sm text-on-surface-variant">Ingresos extra <span class="text-xs opacity-50">(+6% conversión)</span></span>
+            <span class="text-green-400 font-semibold" id="roi-extra">—</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-white/10 pb-4">
+            <span class="text-sm text-on-surface-variant">Coste IA <span class="text-xs opacity-50">(0,75€/llamada)</span></span>
+            <span class="text-red-400 font-semibold" id="roi-ai-cost">—</span>
+          </div>
+          <div class="liquid-glass-strong rounded-lg p-5 flex justify-between items-center mt-2">
+            <div class="space-y-1">
+              <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">Beneficio neto mensual</p>
               <p class="text-xs text-on-surface-variant" id="roi-annual">—</p>
+              <p class="text-xs text-green-400">ROI: <span class="font-semibold" id="roi-multiplier">—</span> por cada €1 invertido</p>
             </div>
             <p class="font-headline-md text-4xl text-primary" id="roi-total">—</p>
           </div>

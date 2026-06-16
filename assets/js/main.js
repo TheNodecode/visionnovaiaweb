@@ -89,18 +89,19 @@ function initROI() {
     document.getElementById('roi-calls-val').textContent = c.toLocaleString('es-ES');
     document.getElementById('roi-cost-val').textContent = e.toLocaleString('es-ES');
     document.getElementById('roi-sale-val').textContent = v.toLocaleString('es-ES');
-    // Humano: 1 empleado por cada 800 llamadas/mes, 12% conversión.
-    // IA: ~0,75€/llamada, 18% conversión.
+    // 1 empleado cada 800 llamadas/mes (humano 12% conversión, IA 18%)
     const employees = Math.max(1, Math.ceil(c / 800));
-    const humanCost = employees * e;
-    const aiCost = c * 0.75;
-    const savings = Math.max(0, Math.round(humanCost - aiCost));
-    const extra = Math.round(c * (0.18 - 0.12) * v);
-    const total = savings + extra;
-    document.getElementById('roi-savings').textContent = fmt(savings);
-    document.getElementById('roi-extra').textContent = fmt(extra);
-    document.getElementById('roi-total').textContent = fmt(total);
-    document.getElementById('roi-annual').textContent = fmt(total * 12) + ' anuales';
+    const humanCost = Math.round(employees * e);
+    const aiCost = Math.round(c * 0.75);
+    const extra = Math.round(c * 0.06 * v);
+    const net = humanCost + extra - aiCost;
+    const multiplier = aiCost > 0 ? (net / aiCost).toFixed(1) : '∞';
+    document.getElementById('roi-human-cost').textContent = '+' + fmt(humanCost);
+    document.getElementById('roi-extra').textContent = '+' + fmt(extra);
+    document.getElementById('roi-ai-cost').textContent = '-' + fmt(aiCost);
+    document.getElementById('roi-total').textContent = fmt(Math.max(0, net));
+    document.getElementById('roi-annual').textContent = fmt(Math.max(0, net) * 12) + '/año';
+    document.getElementById('roi-multiplier').textContent = multiplier + 'x';
   }
   [calls, cost, sale].forEach(s => s.addEventListener('input', calc));
   calc();
