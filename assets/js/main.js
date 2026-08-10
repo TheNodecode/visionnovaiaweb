@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     revealObs.observe(s);
   });
 
+  // Método R³: reveal individual por fase al hacer scroll
+  const phaseObs = new IntersectionObserver(entries => {
+    entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.phase-block').forEach(el => phaseObs.observe(el));
+
   // Marquee: duplicar contenido para loop continuo
   document.querySelectorAll('.marquee-track').forEach(t => { t.innerHTML += t.innerHTML; });
 
