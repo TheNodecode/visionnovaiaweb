@@ -193,6 +193,62 @@ function initAudioDemos() {
   });
 }
 
+/* ============ Modal de Booking (2 pasos) ============ */
+function openBookingModal() {
+  const modal = document.getElementById('booking-modal');
+  if (!modal) return;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  resetBookingModal();
+}
+function closeBookingModal() {
+  const modal = document.getElementById('booking-modal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function resetBookingModal() {
+  const step1 = document.getElementById('booking-step-1');
+  const step2 = document.getElementById('booking-step-2');
+  const bar = document.getElementById('booking-progress-bar');
+  const count = document.getElementById('booking-step-count');
+  const label = document.getElementById('booking-step-label');
+  const hint = document.getElementById('booking-step-hint');
+  if (!step1 || !step2) return;
+  step1.classList.remove('hidden');
+  step2.classList.add('hidden');
+  if (bar) bar.style.width = '50%';
+  if (count) count.textContent = 'Paso 1 de 2';
+  if (label) label.textContent = 'Elige tu día';
+  if (hint) hint.textContent = 'Elige un hueco y te lo dejamos reservado';
+}
+function goToBookingStep2() {
+  const step1 = document.getElementById('booking-step-1');
+  const step2 = document.getElementById('booking-step-2');
+  const bar = document.getElementById('booking-progress-bar');
+  const count = document.getElementById('booking-step-count');
+  const label = document.getElementById('booking-step-label');
+  const hint = document.getElementById('booking-step-hint');
+  if (!step1 || !step2) return;
+  step1.classList.add('hidden');
+  step2.classList.remove('hidden');
+  if (bar) bar.style.width = '100%';
+  if (count) count.textContent = 'Paso 2 de 2';
+  if (label) label.textContent = 'Espera, falta un paso';
+  if (hint) hint.textContent = 'Casi lo logras — confirma abajo para terminar';
+  const modal = document.getElementById('booking-modal');
+  if (modal) modal.scrollTop = 0;
+}
+// Avanza automáticamente al paso 2 cuando Calendly confirma la reserva
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.event && String(e.data.event).indexOf('calendly') === 0 && e.data.event === 'calendly.event_scheduled') {
+    goToBookingStep2();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeBookingModal();
+});
+
 /* ============ Selector de temas (agente de voz) ============ */
 function initTopicSelector() {
   const topics = document.querySelectorAll('.topic-card');
