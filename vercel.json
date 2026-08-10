@@ -1,4 +1,12 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "visionnovaia.com" }],
+      "destination": "https://www.visionnovaia.com/:path*",
+      "permanent": true
+    }
+  ]
 }
