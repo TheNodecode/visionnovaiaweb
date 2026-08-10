@@ -84,24 +84,30 @@ function initROI() {
   if (!calls) return;
   const cost = document.getElementById('roi-cost'), sale = document.getElementById('roi-sale');
   const fmt = n => n.toLocaleString('es-ES') + '€';
+  function setEl(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
   function calc() {
     const c = +calls.value, e = +cost.value, v = +sale.value;
-    document.getElementById('roi-calls-val').textContent = c.toLocaleString('es-ES');
-    document.getElementById('roi-cost-val').textContent = e.toLocaleString('es-ES');
-    document.getElementById('roi-sale-val').textContent = v.toLocaleString('es-ES');
-    // 1 empleado cada 800 llamadas/mes (humano 12% conversión, IA 18%)
+    setEl('roi-calls-val', c.toLocaleString('es-ES'));
+    setEl('roi-cost-val', e.toLocaleString('es-ES'));
+    setEl('roi-sale-val', v.toLocaleString('es-ES'));
     const employees = Math.max(1, Math.ceil(c / 800));
     const humanCost = Math.round(employees * e);
     const aiCost = Math.round(c * 0.75);
     const extra = Math.round(c * 0.06 * v);
-    const net = humanCost + extra - aiCost;
-    const multiplier = aiCost > 0 ? (net / aiCost).toFixed(1) : '∞';
-    document.getElementById('roi-human-cost').textContent = '+' + fmt(humanCost);
-    document.getElementById('roi-extra').textContent = '+' + fmt(extra);
-    document.getElementById('roi-ai-cost').textContent = '-' + fmt(aiCost);
-    document.getElementById('roi-total').textContent = fmt(Math.max(0, net));
-    document.getElementById('roi-annual').textContent = fmt(Math.max(0, net) * 12) + '/año';
-    document.getElementById('roi-multiplier').textContent = multiplier + 'x';
+    const net = Math.max(0, humanCost + extra - aiCost);
+    const raw = aiCost > 0 ? (net / aiCost) : 0;
+    const multiplier = raw > 0 ? raw.toFixed(1) + 'x' : '—';
+    setEl('roi-human-cost', '+' + fmt(humanCost));
+    setEl('roi-extra', '+' + fmt(extra));
+    setEl('roi-ai-cost', fmt(aiCost));
+    setEl('roi-total', fmt(net));
+    setEl('roi-annual', fmt(net * 12) + ' al año');
+    setEl('roi-multiplier', multiplier);
+    // Barra visual: qué porcentaje del valor total (ahorro+extra) termina siendo ganancia neta
+    const total = humanCost + extra;
+    const pct = total > 0 ? Math.min(95, Math.max(4, (net / total) * 100)) : 4;
+    const bar = document.getElementById('roi-bar');
+    if (bar) bar.style.width = pct + '%';
   }
   [calls, cost, sale].forEach(s => s.addEventListener('input', calc));
   calc();

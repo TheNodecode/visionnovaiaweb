@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Agentes de IA en Barcelona: Responden, Agendan y Venden 24/7 | Visión Nova</title>
 <meta name="description" content="Agencia de IA en Barcelona: chatbots de WhatsApp, agentes de voz y automatización que responden, agendan y venden por tu negocio 24/7. Demo gratuita."/>
-<meta name="keywords" content="agentes de IA Barcelona, chatbot WhatsApp para negocios, agente de voz IA, automatización con inteligencia artificial, recepcionista virtual IA, agencia IA Barcelona"/>
+<meta name="keywords" content="agentes de IA Barcelona, agencia de IA Málaga, chatbot WhatsApp para negocios, agente de voz IA, automatización con inteligencia artificial, recepcionista virtual IA, agencia IA Barcelona, agencia visibilidad IA, consultores visión artificial, GEO optimización motores IA"/>
 <link rel="canonical" href="https://www.visionnovaia.com/"/>
 <meta property="og:title" content="Agentes de IA en Barcelona: Responden, Agendan y Venden 24/7 | Visión Nova"/>
 <meta property="og:description" content="Agentes de IA que responden, agendan y venden por ti 24/7. Sistema Cliente Infinito."/>
@@ -23,9 +23,32 @@
   "founder": { "@type": "Person", "name": "Stiven González" },
   "sameAs": ["https://wa.me/34610859703"],
   "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressRegion": "Cataluña", "addressCountry": "ES" },
-  "areaServed": [{ "@type": "City", "name": "Barcelona" }, { "@type": "Country", "name": "España" }],
+  "areaServed": [{ "@type": "City", "name": "Barcelona" }, { "@type": "City", "name": "Málaga" }, { "@type": "Country", "name": "España" }],
   "priceRange": "€€",
-  "description": "Agencia de inteligencia artificial en Barcelona: chatbots de WhatsApp, agentes de voz y automatización para negocios que quieren vender más 24/7."
+  "description": "Agencia de inteligencia artificial en Barcelona y Málaga: chatbots de WhatsApp, agentes de voz y automatización para negocios que quieren vender más 24/7."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es Visión Nova?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Visión Nova es una agencia de inteligencia artificial con sede en Barcelona y actividad en Málaga, especializada en chatbots de WhatsApp, agentes de voz y automatización de ventas para negocios locales." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Visión Nova trabaja en Málaga además de Barcelona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Visión Nova implementa agentes de voz y chatbots con IA para negocios tanto en Barcelona como en Málaga, de forma 100% remota gracias a que todo el sistema se integra online." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia a Visión Nova de otras agencias de IA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Visión Nova no vende software genérico: diseña agentes de voz y chatbots a medida por sector, con demos reales grabadas que el cliente puede escuchar antes de contratar, y sin permanencia obligatoria." }
+    }
+  ]
 }
 </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -143,6 +166,7 @@
     <a class="hover:text-primary transition-all duration-300" href="servicios.html">Ecosistema</a>
     <a class="hover:text-primary transition-all duration-300" href="chatbot-ia.html">Chatbot IA</a>
     <a class="hover:text-primary transition-all duration-300" href="agente-voz.html">Agente de Voz</a>
+    <a class="hover:text-primary transition-all duration-300" href="#precios">Precios</a>
     <a class="hover:text-primary transition-all duration-300" href="quienes-somos.html">Quiénes Somos</a>
     <a class="hover:text-primary transition-all duration-300" href="blog.html">Blog</a>
   </div>
@@ -168,6 +192,7 @@
   <a class="font-headline-sm text-3xl italic text-primary" href="chatbot-ia.html">Chatbot IA</a>
   <a class="font-headline-sm text-3xl italic text-primary" href="agente-voz.html">Agente de Voz</a>
   <a class="font-headline-sm text-3xl italic text-primary" href="diseno-web.html">Diseño Web IA</a>
+  <a class="font-headline-sm text-3xl italic text-primary" href="#precios" onclick="toggleMobileMenu()">Precios</a>
   <a class="font-headline-sm text-3xl italic text-primary" href="quienes-somos.html">Quiénes Somos</a>
   <a class="font-headline-sm text-3xl italic text-primary" href="blog.html" onclick="toggleMobileMenu()">Blog</a>
 </div>
@@ -686,33 +711,49 @@
           <label class="flex justify-between text-sm text-on-surface-variant mb-2">Ticket medio de venta (€) <span class="text-primary" id="roi-sale-val">150</span></label>
           <input class="roi-slider" id="roi-sale" max="2000" min="10" step="10" type="range" value="150"/>
         </div>
-        <div class="border-t border-white/10 pt-6 space-y-2">
-          <div class="flex justify-between items-center py-1">
-            <span class="text-sm text-on-surface-variant">Personal que reemplazas</span>
-            <span class="text-green-400 font-semibold" id="roi-human-cost">—</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-sm text-on-surface-variant">Ingresos extra <span class="text-xs opacity-50">(+6% conversión)</span></span>
-            <span class="text-green-400 font-semibold" id="roi-extra">—</span>
-          </div>
-          <div class="flex justify-between items-center py-1 border-b border-white/10 pb-4">
-            <span class="text-sm text-on-surface-variant">Coste IA <span class="text-xs opacity-50">(0,75€/llamada)</span></span>
-            <span class="text-red-400 font-semibold" id="roi-ai-cost">—</span>
-          </div>
-          <div class="liquid-glass-strong rounded-lg p-5 flex justify-between items-center mt-2">
-            <div class="space-y-1">
-              <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">Beneficio neto mensual</p>
-              <p class="text-xs text-on-surface-variant" id="roi-annual">—</p>
-              <p class="text-xs text-green-400">ROI: <span class="font-semibold" id="roi-multiplier">—</span> por cada €1 invertido</p>
+        <!-- Resultados claros -->
+        <div class="border-t border-white/10 pt-6 space-y-3">
+          <!-- Ahorro en personal -->
+          <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.18)">
+            <div>
+              <p class="text-sm text-primary font-medium">Ahorro en personal</p>
+              <p class="text-xs text-on-surface-variant/60">Lo que dejas de pagar en salarios</p>
             </div>
-            <p class="font-headline-md text-4xl text-primary" id="roi-total">—</p>
+            <span class="text-green-400 font-bold text-xl" id="roi-human-cost">—</span>
           </div>
-        </div>
-        <div class="grid grid-cols-3 gap-2 text-center text-xs border-t border-white/10 pt-5">
-          <div></div><div class="text-on-surface-variant/60 uppercase tracking-widest text-[10px]">Humanos</div><div class="text-primary uppercase tracking-widest text-[10px]">IA</div>
-          <div class="text-on-surface-variant/60 text-left">Coste/llamada</div><div class="text-on-surface-variant">1,69€</div><div class="text-primary">0,75€</div>
-          <div class="text-on-surface-variant/60 text-left">Conversión</div><div class="text-on-surface-variant">12%</div><div class="text-primary">18%</div>
-          <div class="text-on-surface-variant/60 text-left">Disponibilidad</div><div class="text-on-surface-variant">8h/día</div><div class="text-primary">24/7</div>
+          <!-- Ventas adicionales -->
+          <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.18)">
+            <div>
+              <p class="text-sm text-primary font-medium">Ventas adicionales</p>
+              <p class="text-xs text-on-surface-variant/60">+6% más conversiones con IA</p>
+            </div>
+            <span class="text-green-400 font-bold text-xl" id="roi-extra">—</span>
+          </div>
+          <!-- Coste IA -->
+          <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(239,68,68,0.05);border-color:rgba(239,68,68,0.18)">
+            <div>
+              <p class="text-sm text-primary font-medium">Lo que pagas a la IA</p>
+              <p class="text-xs text-on-surface-variant/60">0,75€ por llamada gestionada</p>
+            </div>
+            <span class="text-red-400 font-bold text-xl" id="roi-ai-cost">—</span>
+          </div>
+          <!-- Resultado final -->
+          <div class="liquid-glass-strong rounded-xl p-5 space-y-4">
+            <div class="flex justify-between items-center">
+              <div class="space-y-1">
+                <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">Tu ganancia neta mensual</p>
+                <p class="text-xs text-on-surface-variant/60" id="roi-annual">—</p>
+              </div>
+              <p class="font-headline-md text-4xl text-primary" id="roi-total">—</p>
+            </div>
+            <!-- Barra visual ROI -->
+            <div class="space-y-2">
+              <div class="h-2.5 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.08)">
+                <div class="h-full rounded-full bg-gradient-to-r from-green-500 to-green-400 transition-all duration-700" id="roi-bar" style="width:0%"></div>
+              </div>
+              <p class="text-center text-xs text-green-400">Por cada <span class="font-bold">€1</span> que inviertes → recuperas <span class="font-bold" id="roi-multiplier">—</span></p>
+            </div>
+          </div>
         </div>
         <button class="w-full py-4 rounded-full bg-primary text-on-primary font-label-sm uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-[0.98] transition-all"
           onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
@@ -881,6 +922,197 @@
         Conóceme <span class="material-symbols-outlined text-lg">arrow_forward</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- Precios -->
+<section class="py-32 px-6 relative overflow-hidden" id="precios">
+  <div class="nebula-glow top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] opacity-15"></div>
+  <div class="max-w-[1300px] mx-auto space-y-16 relative">
+
+    <!-- Encabezado -->
+    <div class="max-w-[700px] mx-auto text-center space-y-5">
+      <p class="font-label-sm text-[11px] uppercase tracking-[0.25em] text-primary/60">Planes Sistema Cita Infinita™</p>
+      <h2 class="font-headline-md text-headline-md md:text-[52px] italic text-gradient leading-tight">Tu clínica abierta 24h. Sin contratar a nadie.</h2>
+      <p class="text-on-surface-variant leading-relaxed">Elige el plan que necesitas hoy. Sin pago de instalación. Sin permanencia larga. Cancela después de los 3 primeros meses cuando quieras.</p>
+    </div>
+
+    <!-- Tarjetas -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+
+      <!-- Plan Starter -->
+      <div class="liquid-glass rounded-[1.5rem] p-8 flex flex-col space-y-6" style="transform:none">
+        <div class="space-y-2">
+          <p class="font-label-sm text-[11px] uppercase tracking-widest text-primary/60">Starter</p>
+          <p class="flex items-baseline gap-1">
+            <span class="font-headline-md text-5xl text-primary">349€</span>
+            <span class="text-on-surface-variant text-sm">/mes</span>
+          </p>
+          <p class="text-sm text-on-surface-variant leading-relaxed pt-2">Tu WhatsApp contesta solo. Cada mensaje, cada noche, cada festivo.</p>
+        </div>
+        <ul class="space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Chatbot WhatsApp 24/7 personalizado para tu clínica
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Agenda citas automáticamente desde WhatsApp
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Responde preguntas frecuentes de tus pacientes
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Recordatorios de cita 24h antes
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Dashboard básico de citas agendadas
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            Configuración completa en menos de 7 días
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface-variant/40">
+            <span class="material-symbols-outlined text-lg shrink-0">remove</span>
+            Agente de voz IA en llamadas
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface-variant/40">
+            <span class="material-symbols-outlined text-lg shrink-0">remove</span>
+            Sistema anti-no-show completo
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface-variant/40">
+            <span class="material-symbols-outlined text-lg shrink-0">remove</span>
+            Meta Ads y contenido
+          </li>
+        </ul>
+        <div class="space-y-3">
+          <a class="block text-center w-full py-4 rounded-full border border-white/20 text-primary font-label-sm uppercase tracking-[0.2em] hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98] transition-all"
+             href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+            Agendar demo gratuita
+          </a>
+          <p class="text-center text-[11px] text-on-surface-variant/50">Compromiso mínimo 3 meses. Sin pago de instalación.</p>
+        </div>
+      </div>
+
+      <!-- Plan Pro — destacado -->
+      <div class="relative rounded-[1.5rem] p-8 flex flex-col space-y-6 lg:-translate-y-4"
+           style="background:rgba(74,222,128,0.05);backdrop-filter:blur(48px) saturate(210%);border:1px solid rgba(74,222,128,0.35);box-shadow:0 25px 90px rgba(0,0,0,0.85),0 0 40px rgba(74,222,128,0.1);transition:all .6s cubic-bezier(.16,1,.3,1)"
+           onmouseenter="this.style.transform='translateY(-8px)'" onmouseleave="this.style.transform='translateY(0)'">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-green-400 shadow-[0_0_20px_rgba(74,222,128,0.5)]">
+          <span class="material-symbols-outlined text-black text-sm">star</span>
+          <span class="font-label-sm text-[10px] uppercase tracking-widest text-black font-bold">Más popular</span>
+        </div>
+        <div class="space-y-2 pt-2">
+          <p class="font-label-sm text-[11px] uppercase tracking-widest text-green-400">Pro</p>
+          <p class="flex items-baseline gap-1">
+            <span class="font-headline-md text-5xl text-primary">599€</span>
+            <span class="text-on-surface-variant text-sm">/mes</span>
+          </p>
+          <p class="text-sm text-on-surface-variant leading-relaxed pt-2">Ni una llamada perdida. Ni un no-show sin reagendar. El sistema completo.</p>
+        </div>
+        <ul class="space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-sm text-on-surface font-medium">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Todo lo del plan Starter
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Agente de voz IA 24/7 que contesta llamadas fuera de horario
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Sistema anti-no-show con recordatorio 48h + 2h antes
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Reagendado automático si el paciente cancela
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Dashboard completo con ROI en euros recuperados
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-green-400 text-lg shrink-0">check_circle</span>
+            Soporte prioritario
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface-variant/40">
+            <span class="material-symbols-outlined text-lg shrink-0">remove</span>
+            Meta Ads y contenido
+          </li>
+        </ul>
+        <div class="space-y-3">
+          <a class="block text-center w-full py-4 rounded-full bg-green-400 text-black font-label-sm uppercase tracking-[0.2em] shadow-[0_10px_30px_rgba(74,222,128,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+             href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+            Agendar demo gratuita
+          </a>
+          <p class="text-center text-[11px] text-on-surface-variant/50">Compromiso mínimo 3 meses. Sin pago de instalación.</p>
+        </div>
+      </div>
+
+      <!-- Plan Total -->
+      <div class="liquid-glass rounded-[1.5rem] p-8 flex flex-col space-y-6" style="transform:none;border-color:rgba(251,191,36,0.15)">
+        <div class="space-y-2">
+          <p class="font-label-sm text-[11px] uppercase tracking-widest text-amber-300/80">Total</p>
+          <p class="flex items-baseline gap-1">
+            <span class="font-headline-md text-5xl text-primary">999€</span>
+            <span class="text-on-surface-variant text-sm">/mes</span>
+          </p>
+          <p class="text-sm text-on-surface-variant leading-relaxed pt-2">No pierdas pacientes y atrae nuevos. IA + publicidad + contenido en un solo plan.</p>
+        </div>
+        <ul class="space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            Todo lo del plan Pro
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            Gestión completa de Meta Ads hasta 4 campañas
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            1 día de grabación al mes con 12 piezas de contenido
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            Estrategia de captación de pacientes nuevos
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            Informes mensuales de rendimiento
+          </li>
+          <li class="flex items-start gap-3 text-sm text-on-surface">
+            <span class="material-symbols-outlined text-amber-300/80 text-lg shrink-0">check_circle</span>
+            Soporte prioritario + reunión mensual de resultados
+          </li>
+        </ul>
+        <div class="space-y-3">
+          <a class="block text-center w-full py-4 rounded-full border border-amber-300/30 text-amber-300 font-label-sm uppercase tracking-[0.2em] hover:bg-amber-300/10 hover:scale-[1.02] active:scale-[0.98] transition-all"
+             href="https://calendly.com/stivengonzalezads/planifica-el-futuro-digital-de-tu-negocio-con-visionnov" target="_blank" rel="noopener">
+            Agendar demo gratuita
+          </a>
+          <p class="text-center text-[11px] text-on-surface-variant/50">Compromiso mínimo 3 meses. Presupuesto publicitario aparte.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Garantía -->
+    <div class="max-w-[800px] mx-auto liquid-glass-strong rounded-[1.5rem] p-10 text-center space-y-4">
+      <span class="material-symbols-outlined text-primary text-4xl">verified_user</span>
+      <h3 class="font-headline-sm text-2xl text-primary italic">Garantía de Activación Total</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed max-w-[560px] mx-auto">Si en los primeros 30 días el sistema no está funcionando al 100%, seguimos trabajando gratis hasta que funcione. Sin límite de tiempo. Sin coste adicional. El riesgo es nuestro, no tuyo.</p>
+    </div>
+
+    <!-- CTA WhatsApp -->
+    <p class="text-center text-sm text-on-surface-variant">
+      ¿Tienes preguntas?
+      <a class="text-primary hover:underline font-medium" href="https://wa.me/34610859703" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      o agenda una demo y te lo explicamos todo en 20 minutos.
+    </p>
+
   </div>
 </section>
 

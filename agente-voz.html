@@ -61,8 +61,8 @@
   "@type": "Service",
   "name": "Agente de Voz IA - Recepcionista Virtual 24/7",
   "provider": { "@type": "Organization", "name": "Visión Nova", "email": "stiveng.visionnova@gmail.com" },
-  "areaServed": "ES",
-  "description": "Agente de voz con inteligencia artificial que contesta llamadas con voz natural, agenda citas y atiende clientes 24/7."
+  "areaServed": [{ "@type": "City", "name": "Barcelona" }, { "@type": "City", "name": "Málaga" }, { "@type": "Country", "name": "España" }],
+  "description": "Agente de voz con inteligencia artificial que contesta llamadas con voz natural, agenda citas y atiende clientes 24/7 en Barcelona y Málaga."
 }
 </script>
 </head>
@@ -387,6 +387,90 @@
   </div>
 </section>
 
+<!-- Features de voz -->
+<section class="py-24 px-6 max-w-[1200px] mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="liquid-glass p-8 rounded-xl space-y-4">
+      <span class="material-symbols-outlined text-primary text-3xl">record_voice_over</span>
+      <h3 class="font-headline-sm text-xl text-primary">Voz humana natural</h3>
+      <p class="text-on-surface-variant text-sm">Conversaciones fluidas que tus clientes no distinguen de una persona real.</p>
+    </div>
+    <div class="liquid-glass p-8 rounded-xl space-y-4">
+      <span class="material-symbols-outlined text-primary text-3xl">calendar_month</span>
+      <h3 class="font-headline-sm text-xl text-primary">Agenda directamente</h3>
+      <p class="text-on-surface-variant text-sm">Recoge la información y agenda la cita en tu calendario durante la llamada.</p>
+    </div>
+    <div class="liquid-glass p-8 rounded-xl space-y-4">
+      <span class="material-symbols-outlined text-primary text-3xl">swap_calls</span>
+      <h3 class="font-headline-sm text-xl text-primary">Transferencia inteligente</h3>
+      <p class="text-on-surface-variant text-sm">Cuando la situación lo requiere, pasa la llamada a un humano sin fricción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Calculadora ROI -->
+<section class="py-24 px-6" id="roi">
+  <div class="max-w-[700px] mx-auto space-y-8">
+    <div class="text-center">
+      <h2 class="font-headline-md text-headline-md italic text-gradient mb-4">¿Cuánto Dinero Estás Dejando Escapar?</h2>
+      <p class="text-on-surface-variant">Ajusta los valores a tu negocio y mira el impacto real en tu facturación.</p>
+    </div>
+    <div class="liquid-glass p-8 rounded-xl space-y-6">
+      <div>
+        <label class="flex justify-between text-sm text-on-surface-variant mb-2">Llamadas y mensajes al mes <span class="text-primary" id="roi-calls-val">2400</span></label>
+        <input class="roi-slider" id="roi-calls" max="10000" min="100" step="100" type="range" value="2400"/>
+      </div>
+      <div>
+        <label class="flex justify-between text-sm text-on-surface-variant mb-2">Coste mensual de un empleado (€) <span class="text-primary" id="roi-cost-val">1350</span></label>
+        <input class="roi-slider" id="roi-cost" max="5000" min="500" step="50" type="range" value="1350"/>
+      </div>
+      <div>
+        <label class="flex justify-between text-sm text-on-surface-variant mb-2">Ticket medio de venta (€) <span class="text-primary" id="roi-sale-val">150</span></label>
+        <input class="roi-slider" id="roi-sale" max="2000" min="10" step="10" type="range" value="150"/>
+      </div>
+      <!-- Resultados -->
+      <div class="border-t border-white/10 pt-6 space-y-3">
+        <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.18)">
+          <div>
+            <p class="text-sm text-primary font-medium">Ahorro en personal</p>
+            <p class="text-xs text-on-surface-variant/60">Lo que dejas de pagar en salarios</p>
+          </div>
+          <span class="text-green-400 font-bold text-xl" id="roi-human-cost">—</span>
+        </div>
+        <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.18)">
+          <div>
+            <p class="text-sm text-primary font-medium">Ventas adicionales</p>
+            <p class="text-xs text-on-surface-variant/60">+6% más conversiones con IA</p>
+          </div>
+          <span class="text-green-400 font-bold text-xl" id="roi-extra">—</span>
+        </div>
+        <div class="flex justify-between items-center rounded-xl px-4 py-3 border" style="background:rgba(239,68,68,0.05);border-color:rgba(239,68,68,0.18)">
+          <div>
+            <p class="text-sm text-primary font-medium">Lo que pagas a la IA</p>
+            <p class="text-xs text-on-surface-variant/60">0,75€ por llamada gestionada</p>
+          </div>
+          <span class="text-red-400 font-bold text-xl" id="roi-ai-cost">—</span>
+        </div>
+        <div class="liquid-glass-strong rounded-xl p-5 space-y-4">
+          <div class="flex justify-between items-center">
+            <div class="space-y-1">
+              <p class="font-label-sm uppercase tracking-widest text-xs text-primary/70">Tu ganancia neta mensual</p>
+              <p class="text-xs text-on-surface-variant/60" id="roi-annual">—</p>
+            </div>
+            <p class="font-headline-md text-4xl text-primary" id="roi-total">—</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-2.5 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.08)">
+              <div class="h-full rounded-full bg-gradient-to-r from-green-500 to-green-400 transition-all duration-700" id="roi-bar" style="width:0%"></div>
+            </div>
+            <p class="text-center text-xs text-green-400">Por cada <span class="font-bold">€1</span> que inviertes → recuperas <span class="font-bold" id="roi-multiplier">—</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Temas + Formulario -->
 <section class="py-24 px-6 max-w-[1300px] mx-auto">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -453,27 +537,6 @@
           <p class="text-sm text-primary">Cobranza</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Features de voz -->
-<section class="py-24 px-6 max-w-[1200px] mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="liquid-glass p-8 rounded-xl space-y-4">
-      <span class="material-symbols-outlined text-primary text-3xl">record_voice_over</span>
-      <h3 class="font-headline-sm text-xl text-primary">Voz humana natural</h3>
-      <p class="text-on-surface-variant text-sm">Conversaciones fluidas que tus clientes no distinguen de una persona real.</p>
-    </div>
-    <div class="liquid-glass p-8 rounded-xl space-y-4">
-      <span class="material-symbols-outlined text-primary text-3xl">calendar_month</span>
-      <h3 class="font-headline-sm text-xl text-primary">Agenda directamente</h3>
-      <p class="text-on-surface-variant text-sm">Recoge la información y agenda la cita en tu calendario durante la llamada.</p>
-    </div>
-    <div class="liquid-glass p-8 rounded-xl space-y-4">
-      <span class="material-symbols-outlined text-primary text-3xl">swap_calls</span>
-      <h3 class="font-headline-sm text-xl text-primary">Transferencia inteligente</h3>
-      <p class="text-on-surface-variant text-sm">Cuando la situación lo requiere, pasa la llamada a un humano sin fricción.</p>
     </div>
   </div>
 </section>
