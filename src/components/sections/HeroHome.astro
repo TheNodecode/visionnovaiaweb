@@ -10,7 +10,7 @@ const seals = [
 ];
 ---
 <section class="hero relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink" aria-labelledby="hero-title">
-  <video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60" autoplay muted loop playsinline preload="auto"
+  <video data-hero-video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60" autoplay muted loop playsinline preload="auto"
     poster="/video/hero-poster.jpg" src="/video/hero.mp4" aria-hidden="true" tabindex="-1"></video>
   <div class="starfield -z-10" aria-hidden="true"></div>
   <!-- velo para que el texto respire sobre la burbuja, y fundido a ink abajo -->
@@ -60,6 +60,17 @@ const seals = [
     <span class="hero-cue relative block h-10 w-px overflow-hidden bg-white/10"></span>
   </div>
 </section>
+
+<script>
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (v && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay');
+    v.loop = false;
+    v.preload = 'none';
+    v.pause();
+    v.load();
+  }
+</script>
 
 <style>
   .hero-ping { animation: hero-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }

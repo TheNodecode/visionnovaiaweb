@@ -1,9 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/form/LeadForm.astro';
+import HeroHome from '../components/sections/HeroHome.astro';
+import ScaleVideo from '../components/sections/ScaleVideo.astro';
+import ProblemFilter from '../components/sections/ProblemFilter.astro';
+import SystemActs from '../components/sections/SystemActs.astro';
+import ContentWall from '../components/sections/ContentWall.astro';
+import AIDemo from '../components/sections/AIDemo.astro';
+import CrmShowcase from '../components/sections/CrmShowcase.astro';
+import RoiCalculator from '../components/sections/RoiCalculator.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Guarantee from '../components/sections/Guarantee.astro';
+import ForWho from '../components/sections/ForWho.astro';
+import SoftwareNova from '../components/sections/SoftwareNova.astro';
+import Faq from '../components/sections/Faq.astro';
+import { HERO_BTS_VIDEO, HERO_BTS_POSTER, CONTENT_REELS, CRM_IMAGE, AUDIO_DEMOS } from '../data/media';
+import { HOME_FAQ } from '../data/faqs';
+import { SITE } from '../config/site';
+
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Visión Nova', url: SITE.url }];
 ---
-<BaseLayout title="Visión Nova" description="Agencia de contenido y captación con IA para negocios de ticket alto en toda España." path="/">
-  <h1 class="font-display italic text-6xl text-gold p-10">Visión Nova</h1>
-  <!-- Temporal (Task 5): el formulario se recoloca cuando se construya la home -->
-  <LeadForm id="formulario" />
+<BaseLayout
+  title="Agencia de contenido, Meta Ads y captación con IA | Visión Nova"
+  description="Grabamos tu negocio, lanzamos tus anuncios en Meta y nuestra IA filtra cada contacto para que solo hables con quien va a comprar. Toda España."
+  path="/"
+  schema={schema}
+>
+  <HeroHome />
+  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} caption="Así trabajamos: vamos a tu negocio y grabamos." />
+  <ProblemFilter />
+  <SystemActs />
+  <ContentWall items={CONTENT_REELS} />
+  <AIDemo scenario="general" audios={AUDIO_DEMOS.map(({ src, label }) => ({ src, label }))} />
+  <CrmShowcase image={CRM_IMAGE} />
+  <RoiCalculator />
+  <Benefits />
+  <Guarantee />
+  <ForWho />
+  <SoftwareNova />
+  <Faq items={HOME_FAQ} />
+  <LeadForm id="formulario" variant="full" heading="Mira si tu negocio encaja" lead="5 preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos." />
 </BaseLayout>

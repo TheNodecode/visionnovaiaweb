@@ -92,6 +92,6 @@ const nav = ['crm', 'chat', 'phone', 'calendar', 'chart'] as const;
   .crm-frame { width: 100%; max-width: 1080px; }
   @media (min-width: 768px) {
     /* que el panel quepa entero en la pantalla mientras está fijado */
-    .crm-frame { max-width: min(1080px, calc((100svh - 300px) * 2)); }
+    .crm-frame { max-width: min(1080px, max(calc((100svh - 300px) * 2), 560px)); }
   }
 </style>

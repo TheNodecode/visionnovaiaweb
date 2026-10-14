@@ -113,7 +113,7 @@ const uid = `ai-${scenario}`;
           </button>
           <div class="min-w-0 flex-1">
             <p class="truncate text-sm font-medium text-cream" data-audio-title>{audios[0]?.label}</p>
-            <input type="range" min="0" max="1000" value="0" step="1" class="audio-range mt-1 w-full" data-audio-seek aria-label="Progreso del audio" aria-valuetext="0:00" />
+            <input type="range" min="0" max="1000" value="0" step="1" class="audio-range -my-2 w-full" data-audio-seek aria-label="Progreso del audio" aria-valuetext="0:00" />
             <p class="flex justify-between text-[11px] tabular-nums text-muted"><span data-audio-cur>0:00</span><span data-audio-dur>--:--</span></p>
           </div>
         </div>
@@ -161,7 +161,7 @@ const uid = `ai-${scenario}`;
   [data-audio-player].is-playing .audio-track[aria-pressed='true'] .audio-bars i:nth-child(3) { animation-delay: -0.6s; }
   @keyframes eq { from { height: 25%; } to { height: 100%; } }
 
-  .audio-range { -webkit-appearance: none; appearance: none; height: 28px; background: transparent; cursor: pointer; --p: 0%; }
+  .audio-range { -webkit-appearance: none; appearance: none; height: 44px; background: transparent; cursor: pointer; --p: 0%; }
   .audio-range::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-gold-400) var(--p), rgb(255 255 255 / 0.12) var(--p)); }
   .audio-range::-moz-range-track { height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-gold-400) var(--p), rgb(255 255 255 / 0.12) var(--p)); }
   .audio-range::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4.5px; border-radius: 50%; background: var(--color-gold-200); border: 0; }
