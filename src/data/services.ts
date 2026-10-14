@@ -30,13 +30,13 @@ export const SERVICES: ServicePage[] = [
     keyword: 'agencia de creación de contenido para redes sociales',
     seoTitle: 'Agencia de creación de contenido para redes sociales',
     seoDescription:
-      'Vamos a tu negocio con guiones y filmmaker, grabamos en una jornada el contenido del mes y te entregamos reels, stories y anuncios editados. En toda España.',
+      'Agencia de creación de contenido para redes sociales: vamos a tu negocio con guiones y filmmaker y grabamos en una jornada los reels y anuncios del mes.',
     hero: {
       eyebrow: 'Agencia de creación de contenido',
       title: 'Contenido para redes sociales grabado',
       titleAccent: 'en tu propio negocio.',
       lead: 'Llegamos con los guiones escritos, el equipo de imagen y sonido y los formatos decididos. En una jornada de grabación al mes sacamos los reels, las stories y los creativos para anuncios de las semanas siguientes. Tú solo pones el negocio.',
-      bullets: ['Filmmaker y guionista en tu local', 'Una jornada de grabación cada mes', 'Rodamos en cualquier punto de España'],
+      bullets: ['Guiones escritos y filmmaker en tu local', 'Una jornada de grabación cada mes', 'Rodamos en cualquier punto de España'],
     },
     features: {
       title: 'Todo lo que pasa antes, durante y después de darle a grabar',
@@ -76,7 +76,7 @@ export const SERVICES: ServicePage[] = [
     keyword: 'agencia de redes sociales',
     seoTitle: 'Agencia de redes sociales para negocios | Visión Nova',
     seoDescription:
-      'Llevamos tus redes enteras: calendario, textos, diseño, publicación y respuesta a comentarios y mensajes, con una IA que detecta quién quiere comprar.',
+      'Agencia de redes sociales: calendario, textos, diseño, publicación y respuesta a comentarios y mensajes, con una IA que detecta quién quiere comprar.',
     hero: {
       eyebrow: 'Agencia de redes sociales',
       title: 'Tus redes al día y bien contestadas,',
@@ -199,7 +199,7 @@ export const SERVICES: ServicePage[] = [
       ],
     },
     faq: [
-      { q: '¿La IA puede inventarse precios o condiciones?', a: 'No. Solo usa la información que tú apruebas. Si le preguntan algo que no sabe, lo dice con naturalidad y avisa a tu equipo. En sectores sanitarios no da nunca indicaciones clínicas.' },
+      { q: '¿La IA puede inventarse precios o condiciones?', a: 'No. Solo usa la información que tú apruebas. Si le preguntan algo que no sabe, lo dice con naturalidad y avisa a tu equipo. En sectores sanitarios está configurada para no dar indicaciones clínicas y derivar esas preguntas a tu equipo.' },
       { q: '¿El agente de voz suena a robot?', a: 'Suena a una persona amable que conoce tu negocio. Puedes comprobarlo tú mismo con las grabaciones de demostración de esta página antes de decidir nada.' },
       { q: '¿Qué pasa con las llamadas fuera de horario?', a: 'Las atiende el agente de voz: resuelve dudas, toma los datos y deja propuesta la cita. Por la mañana tu equipo encuentra en CRM Nova un resumen de cada llamada.' },
       { q: '¿Se puede conectar con la agenda que ya uso?', a: 'Lo revisamos en la llamada: nos dices con qué herramienta gestionas hoy las citas y te explicamos cómo encaja con el sistema antes de empezar.' },
@@ -285,7 +285,7 @@ export const SERVICES: ServicePage[] = [
         { title: 'Qué tiene que conseguir', text: 'Definimos qué servicios empujar, qué dudas resolver antes de que te llamen y qué paso queremos que dé cada visitante.' },
         { title: 'Textos y estructura', text: 'Escribimos los textos con tus palabras y ordenamos las páginas antes de diseñar una sola pantalla.' },
         { title: 'Diseño y desarrollo', text: 'Diseñamos primero para el móvil y después para el ordenador, con tu contenido grabado y tu identidad visual.' },
-        { title: 'Conexión y publicación', text: 'Enlazamos formularios y WhatsApp con CRM Nova, activamos la medición y publicamos. Los cambios posteriores corren de nuestra parte.' },
+        { title: 'Conexión y publicación', text: 'Enlazamos formularios y WhatsApp con CRM Nova, activamos la medición y publicamos. Mientras trabajamos juntos, la web evoluciona con tus campañas.' },
       ],
     },
     faq: [
