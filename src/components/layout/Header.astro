@@ -50,7 +50,7 @@ const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px
   </div>
 </header>
 
-<div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] overflow-y-auto bg-ink/95 backdrop-blur-xl lg:hidden" aria-label="Menú" role="dialog" aria-modal="true" inert>
+<div id="mobile-menu" data-lenis-prevent class="mobile-menu fixed inset-0 z-[60] overflow-y-auto bg-ink/95 backdrop-blur-xl lg:hidden" aria-label="Menú" role="dialog" aria-modal="true" inert>
   <div class="flex min-h-[100svh] flex-col px-6" style="padding-top: calc(env(safe-area-inset-top) + 12px); padding-bottom: calc(env(safe-area-inset-bottom) + 20px)">
     <div class="flex items-center justify-between">
       <Logo />
@@ -134,6 +134,7 @@ const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.documentElement.style.overflow = open ? 'hidden' : '';
+    (window as any).__lenis?.[open ? 'stop' : 'start']();
     document.querySelectorAll('main, footer, #site-header').forEach((el) => { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
     if (open) closeBtn?.focus(); else if (document.activeElement && menu.contains(document.activeElement)) toggle.focus();
   }
