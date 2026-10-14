@@ -2,11 +2,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "visionnovaia.com" }],
-      "destination": "https://www.visionnovaia.com/:path*",
-      "permanent": true
-    }
+    { "source": "/:path*", "has": [{ "type": "host", "value": "visionnovaia.com" }], "destination": "https://www.visionnovaia.com/:path*", "permanent": true },
+    { "source": "/agente-voz", "destination": "/sistema-ia", "permanent": true },
+    { "source": "/chatbot-ia", "destination": "/sistema-ia", "permanent": true },
+    { "source": "/servicios", "destination": "/#sistema", "permanent": true },
+    { "source": "/casos-de-uso", "destination": "/trabajos", "permanent": true },
+    { "source": "/quienes-somos", "destination": "/nosotros", "permanent": true },
+    { "source": "/blog-:slug", "destination": "/blog/:slug", "permanent": true },
+    { "source": "/index", "destination": "/", "permanent": true }
   ]
 }

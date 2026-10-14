@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import Seo from '../components/seo/Seo.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { SITE } from '../config/site';
+interface Props { title: string; description: string; path: string; ogImage?: string; schema?: object[]; noindex?: boolean }
+const { schema = [], ...seo } = Astro.props;
+const org = {
+  '@context': 'https://schema.org', '@type': 'ProfessionalService', '@id': SITE.url + '/#org',
+  name: SITE.name, url: SITE.url, email: SITE.email, telephone: SITE.phoneE164,
+  logo: SITE.url + '/brand/logo-icon.webp', image: SITE.url + '/brand/og-default.jpg',
+  founder: { '@type': 'Person', name: SITE.founder },
+  address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, postalCode: SITE.address.postalCode, addressCountry: SITE.address.country },
+  areaServed: { '@type': 'Country', name: 'España' },
+  sameAs: [SITE.whatsapp],
+};
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Seo {...seo} />
+    <JsonLd data={[org, ...schema]} />
+  </head>
+  <body class="min-h-[100svh] antialiased">
+    <slot />
+  </body>
+</html>
