@@ -185,8 +185,9 @@ const uid = `ai-${scenario}`;
       const run = Symbol(); (chat as any).__run = run;
       chat.classList.add('is-playing');
       msgs.forEach((m) => { m.classList.add('is-pending'); m.classList.remove('is-typing'); });
-      for (const m of msgs) {
-        await wait(m.dataset.from === 'c' ? 900 : 350);
+      for (const [i, m] of msgs.entries()) {
+        // el primer mensaje del cliente aparece casi al instante para que el chat nunca se vea vacío
+        await wait(i === 0 ? 120 : m.dataset.from === 'c' ? 900 : 350);
         if ((chat as any).__run !== run) return;
         if (m.dataset.from === 'ia') {
           m.classList.remove('is-pending'); m.classList.add('is-typing'); status.textContent = 'escribiendo…';
@@ -203,7 +204,7 @@ const uid = `ai-${scenario}`;
     if (!reduce && 'IntersectionObserver' in window) {
       msgs.forEach((m) => m.classList.add('is-pending'));
       chat.classList.add('is-playing');
-      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.4 });
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.15 });
       io.observe(chat);
     }
 

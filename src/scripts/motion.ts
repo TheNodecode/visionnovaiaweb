@@ -72,7 +72,8 @@ function scrollLinked() {
     gsap.fromTo(el, v ? { scaleY: 0 } : { scaleX: 0 }, { ...(v ? { scaleY: 1 } : { scaleX: 1 }), ease: 'none', transformOrigin: v ? 'top' : 'left',
       scrollTrigger: { trigger: el.closest('section') ?? el, start: 'top 60%', end: 'bottom 60%', scrub: true } });
   });
-  mm.add('(min-width: 768px)', () => {
+  // sin pin en móviles en horizontal: con poca altura el fijado tapa la pantalla entera
+  mm.add('(min-width: 768px) and (min-height: 600px)', () => {
     gsap.utils.toArray<HTMLElement>('[data-scale-media]').forEach((sec) => {
       const target = sec.querySelector('[data-scale-target]');
       if (!target) return;
