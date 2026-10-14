@@ -1,0 +1,150 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/form/LeadForm.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import FeatureGrid from '../components/sections/FeatureGrid.astro';
+import ContentWall from '../components/sections/ContentWall.astro';
+import AIDemo from '../components/sections/AIDemo.astro';
+import RoiCalculator from '../components/sections/RoiCalculator.astro';
+import ProcessSteps from '../components/sections/ProcessSteps.astro';
+import SystemActs from '../components/sections/SystemActs.astro';
+import Guarantee from '../components/sections/Guarantee.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Faq from '../components/sections/Faq.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import { SERVICES, type ServicePage } from '../data/services';
+import { CITIES, type CityPage } from '../data/cities';
+import { GUARANTEE_FAQ } from '../data/faqs';
+import { CONTENT_REELS, AUDIO_DEMOS } from '../data/media';
+import { SERVICES_NAV, SECTORS_NAV } from '../data/nav';
+import { SITE } from '../config/site';
+
+type PageProps = { kind: 'service'; page: ServicePage } | { kind: 'city'; page: CityPage };
+
+export const getStaticPaths = (() => [
+  ...SERVICES.map((page) => ({ params: { slug: page.slug }, props: { kind: 'service' as const, page } })),
+  ...CITIES.map((page) => ({ params: { slug: page.slug }, props: { kind: 'city' as const, page } })),
+]) satisfies GetStaticPaths;
+
+const props = Astro.props as PageProps;
+const { page } = props;
+const path = `/${page.slug}`;
+const url = SITE.url + path;
+
+// Etiquetas legibles para el enlazado interno (servicios y sectores)
+const LABELS = new Map<string, string>([...SERVICES_NAV, ...SECTORS_NAV].map((l) => [l.href.slice(1), l.label]));
+const link = (slug: string) => ({ href: `/${slug}`, label: LABELS.get(slug) ?? slug, sector: slug.startsWith('sectores/') });
+
+const name = props.kind === 'service'
+  ? LABELS.get(page.slug) ?? page.hero.eyebrow
+  : `Agencia de marketing en ${props.page.city}`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    serviceType: props.kind === 'service' ? props.page.keyword : 'Agencia de marketing',
+    description: page.seoDescription,
+    url,
+    provider: { '@id': SITE.url + '/#org' },
+    areaServed: props.kind === 'service'
+      ? { '@type': 'Country', name: 'España' }
+      : { '@type': 'City', name: props.page.city },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name, item: url },
+    ],
+  },
+];
+
+// El sello de partner solo aparece cuando Meta apruebe la verificación (SITE.metaPartner)
+const heroEyebrow = page.slug === 'whatsapp-business-api' && SITE.metaPartner
+  ? 'Meta Tech Provider · WhatsApp Business API oficial'
+  : page.hero.eyebrow;
+
+const audios = AUDIO_DEMOS.map(({ src, label }) => ({ src, label }));
+const related = props.kind === 'service'
+  ? props.page.related.map(link)
+  : [...props.page.sectorsHighlight.map((s) => link(`sectores/${s}`)), ...SERVICES_NAV.map((s) => link(s.href.slice(1)))];
+---
+<BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
+  <PageHero eyebrow={heroEyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
+
+  {props.kind === 'service' && (
+    <>
+      <FeatureGrid eyebrow="Qué incluye" title={props.page.features.title} items={props.page.features.items} />
+      {props.page.showContentWall && <ContentWall items={CONTENT_REELS} />}
+      {props.page.showAIDemo && <AIDemo scenario="general" audios={audios} />}
+      {props.page.showRoi && <RoiCalculator />}
+      <ProcessSteps title={props.page.process.title} steps={props.page.process.steps} />
+      <SystemActs />
+      <Guarantee />
+      <Faq title="Preguntas sobre este servicio" items={[...props.page.faq, GUARANTEE_FAQ]} />
+    </>
+  )}
+
+  {props.kind === 'city' && (
+    <>
+      <section class="relative bg-ink py-24 md:py-32" aria-labelledby="local-title">
+        <div class="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-5">
+            <div data-reveal><Eyebrow>{`Marketing en ${props.page.city}`}</Eyebrow></div>
+            <h2 id="local-title" data-split class="mt-5 font-display text-[40px] italic leading-[1.04] text-cream text-balance md:text-[60px]">{props.page.localAngle.title}</h2>
+            <p class="mt-8 inline-flex items-center gap-3 rounded-full border border-gold-400/30 bg-gold-400/[0.07] px-4 py-2.5 text-sm text-gold-200" data-reveal>
+              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>
+              Grabamos en {props.page.city} y en toda España.
+            </p>
+          </div>
+          <div class="flex flex-col gap-6 lg:col-span-7 lg:pt-3" data-reveal-stagger>
+            {props.page.localAngle.paragraphs.map((p) => (
+              <p class="text-base leading-relaxed text-cream/80 text-pretty md:text-lg">{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+      <SystemActs />
+    </>
+  )}
+
+  <nav class="relative bg-ink py-20 md:py-28" aria-labelledby="related-title">
+    <div class="container-x">
+      <div data-reveal><Eyebrow>{props.kind === 'city' ? `Para negocios de ${props.page.city}` : 'Sigue explorando'}</Eyebrow></div>
+      <h2 id="related-title" class="mt-5 font-display text-[36px] italic leading-[1.05] text-cream text-balance md:text-[52px]" data-reveal>
+        {props.kind === 'city' ? 'Sectores donde más encaja y todos los servicios' : 'Servicios y sectores relacionados'}
+      </h2>
+      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:mt-14" data-reveal-stagger>
+        {related.map((r) => (
+          <li>
+            <a href={r.href} class="glass group flex min-h-16 items-center justify-between gap-4 rounded-2xl px-5 py-4 text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">
+              <span class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-muted">{r.sector ? 'Sector' : 'Servicio'}</span>
+                <span class="mt-1 text-[15px] font-medium">{r.label}</span>
+              </span>
+              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+
+  {props.kind === 'city' && (
+    <>
+      <Benefits />
+      <Faq title={`Dudas de negocios de ${props.page.city}`} items={props.page.faq} />
+    </>
+  )}
+
+  <LeadForm
+    id="formulario"
+    variant="compact"
+    heading={props.kind === 'city' ? `¿Tu negocio está en ${props.page.city}? Mira si encaja` : 'Mira si tu negocio encaja'}
+    lead="Unas preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos."
+  />
+</BaseLayout>
