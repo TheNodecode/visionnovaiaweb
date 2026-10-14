@@ -2,32 +2,32 @@
 import Logo from './Logo.astro';
 import { NAV, SERVICES_NAV, SECTORS_NAV, COMPANY_NAV } from '../../data/nav';
 
-const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-cream';
+const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px-2.5 text-[11px] uppercase tracking-[0.18em] xl:px-3.5 xl:tracking-[0.2em] text-muted transition-colors hover:text-cream';
 ---
 <header id="site-header" data-scrolled="false"
   class="site-header fixed left-1/2 z-50 w-[94%] max-w-[1200px] -translate-x-1/2 rounded-full glass"
   style="top: calc(env(safe-area-inset-top) + 44px)">
-  <div class="flex items-center justify-between gap-2 pl-4 pr-1.5 lg:pl-6 lg:pr-2">
-    <Logo />
+  <div class="hdr-inner flex items-center justify-between gap-2 py-1.5 pl-4 pr-1.5 lg:pl-5 lg:pr-2 xl:pl-6">
+    <Logo class="shrink-0" />
 
     <nav aria-label="Principal" class="hidden items-center lg:flex">
       <div class="dd relative" data-dd>
-        <button type="button" class={linkCls + ' gap-1.5'} aria-expanded="false" aria-haspopup="true" aria-controls="dd-servicios">
+        <button type="button" class={linkCls + ' gap-1.5'} aria-expanded="false" aria-controls="dd-servicios">
           Servicios
           <svg viewBox="0 0 10 6" class="h-1.5 w-2.5 transition-transform duration-300 [[aria-expanded=true]>&]:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m1 1 4 4 4-4" /></svg>
         </button>
-        <ul id="dd-servicios" class="dd-panel glass-strong absolute left-0 top-full mt-3 w-72 rounded-3xl p-2">
+        <ul id="dd-servicios" class="dd-panel absolute left-0 top-full mt-3 w-72 rounded-3xl border border-white/10 bg-[rgb(18_18_18/0.96)] p-2 shadow-[0_24px_60px_-12px_rgb(0_0_0/0.8)]">
           {SERVICES_NAV.map((l) => (
             <li><a href={l.href} class="block rounded-2xl px-4 py-3 text-sm text-cream/90 transition-colors hover:bg-white/10 hover:text-gold-200">{l.label}</a></li>
           ))}
         </ul>
       </div>
       <div class="dd relative" data-dd>
-        <button type="button" class={linkCls + ' gap-1.5'} aria-expanded="false" aria-haspopup="true" aria-controls="dd-sectores">
+        <button type="button" class={linkCls + ' gap-1.5'} aria-expanded="false" aria-controls="dd-sectores">
           Sectores
           <svg viewBox="0 0 10 6" class="h-1.5 w-2.5 transition-transform duration-300 [[aria-expanded=true]>&]:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m1 1 4 4 4-4" /></svg>
         </button>
-        <ul id="dd-sectores" class="dd-panel glass-strong absolute left-0 top-full mt-3 w-72 rounded-3xl p-2">
+        <ul id="dd-sectores" class="dd-panel absolute left-0 top-full mt-3 w-72 rounded-3xl border border-white/10 bg-[rgb(18_18_18/0.96)] p-2 shadow-[0_24px_60px_-12px_rgb(0_0_0/0.8)]">
           {SECTORS_NAV.map((l) => (
             <li><a href={l.href} class="block rounded-2xl px-4 py-3 text-sm text-cream/90 transition-colors hover:bg-white/10 hover:text-gold-200">{l.label}</a></li>
           ))}
@@ -36,9 +36,9 @@ const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase 
       {NAV.links.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
     </nav>
 
-    <div class="flex items-center gap-1">
+    <div class="flex shrink-0 items-center gap-1">
       <a href="/contacto#formulario" data-open-form
-        class="hidden min-h-11 items-center rounded-full bg-white px-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-gold-200 active:scale-[0.97] sm:inline-flex">
+        class="hidden min-h-11 items-center rounded-full bg-white whitespace-nowrap px-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black xl:px-6 transition duration-300 hover:bg-gold-200 active:scale-[0.97] sm:inline-flex">
         Reservar plaza
       </a>
       <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú"
@@ -89,8 +89,10 @@ const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase 
 
 <style>
   .site-header {
-    transition: top 0.4s var(--ease-out-expo), background-color 0.4s, box-shadow 0.4s, width 0.4s var(--ease-out-expo);
+    transition: top 0.4s var(--ease-out-expo), background-color 0.4s, box-shadow 0.4s;
   }
+  .hdr-inner { transition: padding 0.4s var(--ease-out-expo); }
+  .site-header[data-scrolled='true'] .hdr-inner { padding-top: 0; padding-bottom: 0; }
   .site-header[data-scrolled='true'] {
     top: calc(env(safe-area-inset-top) + 10px) !important;
     background: rgb(10 10 10 / 0.82);
@@ -101,13 +103,13 @@ const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase 
     transition: opacity 0.25s, transform 0.3s var(--ease-out-expo), visibility 0.25s;
   }
   .dd-panel[data-open='true'] { opacity: 1; visibility: visible; transform: none; }
-  .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+  .mobile-menu { opacity: 0; visibility: hidden; overscroll-behavior: contain; transition: opacity 0.3s, visibility 0.3s; }
   .mobile-menu[data-open='true'] { opacity: 1; visibility: visible; }
-  .m-item { opacity: 0; transform: translateY(14px); }
-  .mobile-menu[data-open='true'] .m-item {
-    opacity: 1; transform: none;
+  .m-item {
+    opacity: 0; transform: translateY(14px);
     transition: opacity 0.5s calc(var(--i) * 70ms + 80ms), transform 0.6s var(--ease-out-expo) calc(var(--i) * 70ms + 80ms);
   }
+  .mobile-menu[data-open='true'] .m-item { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     .m-item { opacity: 1; transform: none; }
   }
@@ -132,6 +134,7 @@ const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase 
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     document.documentElement.style.overflow = open ? 'hidden' : '';
+    document.querySelectorAll('main, footer, #site-header').forEach((el) => { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
     if (open) closeBtn?.focus(); else if (document.activeElement && menu.contains(document.activeElement)) toggle.focus();
   }
   toggle?.addEventListener('click', () => setMenu(menu?.dataset.open !== 'true'));
@@ -151,7 +154,8 @@ const linkCls = 'inline-flex min-h-11 items-center px-3.5 text-[11px] uppercase 
     const btn = dd.querySelector('button')!;
     let t: number;
     btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') !== 'true';
+      // Con ratón el hover ya lo abre: el clic nunca lo cierra. Táctil/teclado: alterna.
+      const open = hoverCapable.matches && dd.matches(':hover') ? true : btn.getAttribute('aria-expanded') !== 'true';
       closeAll(dd); setDd(dd, open);
     });
     dd.addEventListener('mouseenter', () => { if (hoverCapable.matches) { clearTimeout(t); closeAll(dd); setDd(dd, true); } });
