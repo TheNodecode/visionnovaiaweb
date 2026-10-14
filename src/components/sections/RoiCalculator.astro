@@ -1,0 +1,120 @@
+---
+import Button from '../ui/Button.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+import { lostRevenue } from '../../lib/roi';
+
+interface Props { defaultTicket?: number }
+const { defaultTicket } = Astro.props;
+const ticket = Math.min(10000, Math.max(50, defaultTicket ?? 600));
+const init = { contactos: 80, pctSinAtender: 30, ticket };
+const r = lostRevenue(init);
+const eur = (n: number) => n.toLocaleString('es-ES') + ' €';
+
+const sliders = [
+  { key: 'contactos', label: 'Contactos al mes', min: 10, max: 500, step: 10, value: init.contactos, unit: '' },
+  { key: 'pctSinAtender', label: 'Sin atender a tiempo', min: 0, max: 80, step: 1, value: init.pctSinAtender, unit: ' %' },
+  { key: 'ticket', label: 'Ticket medio', min: 50, max: 10000, step: 50, value: init.ticket, unit: ' €' },
+];
+const fmtVal = (v: number, unit: string) => v.toLocaleString('es-ES') + unit;
+---
+<section class="relative overflow-hidden bg-ink py-24 md:py-36" data-roi aria-labelledby="roi-title">
+  <div class="container-x">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <div data-reveal><Eyebrow>Calculadora</Eyebrow></div>
+        <h2 id="roi-title" data-split class="mt-5 font-display text-[44px] italic leading-[1.02] text-cream text-balance md:text-[68px]">¿Cuánto dinero se te escapa cada mes?</h2>
+        <p class="mt-6 max-w-md text-base leading-relaxed text-muted text-pretty" data-reveal>Mueve los tres valores con los datos de tu negocio. Sin registro y sin enviar nada: el cálculo se hace en tu pantalla.</p>
+
+        <div class="mt-10 flex flex-col gap-7" role="group" aria-label="Datos de tu negocio">
+          {sliders.map((s) => (
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <label for={`roi-${s.key}`} class="text-sm text-cream/80">{s.label}</label>
+                <output for={`roi-${s.key}`} class="font-display text-3xl italic tabular-nums text-cream" data-roi-out={s.key}>{fmtVal(s.value, s.unit)}</output>
+              </div>
+              <input id={`roi-${s.key}`} type="range" class="roi-range mt-1 w-full" min={s.min} max={s.max} step={s.step} value={s.value}
+                data-roi-in={s.key} data-unit={s.unit} aria-valuetext={fmtVal(s.value, s.unit)}
+                style={`--p:${((s.value - s.min) / (s.max - s.min)) * 100}%`} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="relative lg:col-span-7" data-reveal>
+        <div class="relative flex h-full flex-col justify-between overflow-hidden rounded-[36px] border border-gold-400/20 bg-surface p-7 sm:p-10 md:p-14">
+          <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(217_178_102/0.22),transparent)]" aria-hidden="true"></div>
+          <div class="relative" aria-live="polite">
+            <p class="text-[11px] uppercase tracking-[0.22em] text-muted">Estimación</p>
+            <p class="mt-6 font-display text-[clamp(56px,13vw,128px)] italic leading-[0.9] tabular-nums">
+              <span class="text-gold" data-roi-mes>{r.euroMes.toLocaleString('es-ES')}</span>
+            </p>
+            <p class="mt-3 text-lg text-cream/85 md:text-xl">€ que se te escapan al mes</p>
+
+            <div class="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
+              <div>
+                <p class="font-display text-[34px] italic leading-none text-cream tabular-nums md:text-5xl" data-roi-ano>{eur(r.euroAno)}</p>
+                <p class="mt-2 text-sm text-muted">al año</p>
+              </div>
+              <div>
+                <p class="font-display text-[34px] italic leading-none text-cream tabular-nums md:text-5xl" data-roi-perdidos>{r.perdidosMes}</p>
+                <p class="mt-2 text-sm text-muted">contactos sin atender a tiempo al mes</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative mt-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <p class="max-w-xs text-xs leading-relaxed text-muted">Calculado con una tasa de cierre conservadora del 20&nbsp;%</p>
+            <Button data-open-form data-magnetic size="lg" class="w-full md:w-auto">Quiero recuperar ese dinero</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roi-range { -webkit-appearance: none; appearance: none; height: 44px; background: transparent; cursor: pointer; touch-action: pan-y; --p: 0%; }
+  .roi-range:focus-visible { outline-offset: 0; }
+  .roi-range::-webkit-slider-runnable-track { height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--color-gold-400) var(--p), rgb(255 255 255 / 0.14) var(--p)); }
+  .roi-range::-moz-range-track { height: 2px; border-radius: 2px; background: rgb(255 255 255 / 0.14); }
+  .roi-range::-moz-range-progress { height: 2px; background: var(--color-gold-400); }
+  .roi-range::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 26px; height: 26px; margin-top: -12px; border-radius: 50%; border: 0;
+    background: radial-gradient(circle, #1a1408 0 3px, transparent 3.5px), linear-gradient(135deg, var(--color-gold-200), var(--color-gold-600));
+    box-shadow: 0 0 0 6px rgb(217 178 102 / 0.12), 0 6px 18px -4px rgb(217 178 102 / 0.6);
+    transition: transform 0.2s var(--ease-out-expo);
+  }
+  .roi-range:active::-webkit-slider-thumb { transform: scale(1.12); }
+  .roi-range::-moz-range-thumb {
+    width: 26px; height: 26px; border-radius: 50%; border: 0;
+    background: linear-gradient(135deg, var(--color-gold-200), var(--color-gold-600));
+    box-shadow: 0 0 0 6px rgb(217 178 102 / 0.12);
+  }
+</style>
+
+<script>
+  import { lostRevenue } from '../../lib/roi';
+  const eur = (n: number) => n.toLocaleString('es-ES') + ' €';
+  document.querySelectorAll<HTMLElement>('[data-roi]').forEach((root) => {
+    const inputs = [...root.querySelectorAll<HTMLInputElement>('[data-roi-in]')];
+    const get = (k: string) => Number(inputs.find((i) => i.dataset.roiIn === k)!.value);
+    const mes = root.querySelector<HTMLElement>('[data-roi-mes]')!;
+    const ano = root.querySelector<HTMLElement>('[data-roi-ano]')!;
+    const perd = root.querySelector<HTMLElement>('[data-roi-perdidos]')!;
+    const update = () => {
+      inputs.forEach((i) => {
+        const v = Number(i.value), min = Number(i.min), max = Number(i.max);
+        const txt = v.toLocaleString('es-ES') + (i.dataset.unit ?? '');
+        i.style.setProperty('--p', `${((v - min) / (max - min)) * 100}%`);
+        i.setAttribute('aria-valuetext', txt);
+        root.querySelector(`[data-roi-out="${i.dataset.roiIn}"]`)!.textContent = txt;
+      });
+      const r = lostRevenue({ contactos: get('contactos'), pctSinAtender: get('pctSinAtender'), ticket: get('ticket') });
+      mes.textContent = r.euroMes.toLocaleString('es-ES');
+      ano.textContent = eur(r.euroAno);
+      perd.textContent = String(r.perdidosMes);
+    };
+    inputs.forEach((i) => i.addEventListener('input', update));
+    update();
+  });
+</script>

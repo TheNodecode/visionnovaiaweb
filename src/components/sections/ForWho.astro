@@ -1,0 +1,47 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const yes = [
+  'Tu negocio ya funciona, con clientes reales y un equipo que atiende.',
+  'Vendes servicios de ticket alto, donde cada cliente nuevo se nota en caja.',
+  'Te escriben y te llaman más personas de las que tu equipo puede atender bien.',
+  'Quieres crecer sin contratar a más gente solo para contestar mensajes.',
+];
+const no = [
+  'Buscas likes y seguidores, no clientes.',
+  'Solo necesitas una web barata y nada más.',
+  'No quieres que tu negocio ni tu equipo salgan en cámara.',
+  'Esperas resultados sin que nadie atienda a los clientes que llegan.',
+];
+---
+<section class="relative bg-ink py-24 md:py-36" aria-labelledby="forwho-title">
+  <div class="container-x">
+    <div data-reveal>
+      <SectionHeading eyebrow="Antes de hablar" titleHtml='<span id="forwho-title">Preferimos decírtelo <span class="text-gold">claro.</span></span>' />
+    </div>
+    <div class="mt-14 grid gap-4 md:mt-20 md:grid-cols-2 md:gap-5">
+      <div class="relative overflow-hidden rounded-[32px] border border-gold-400/25 bg-[linear-gradient(160deg,rgb(217_178_102/0.09),transparent_60%)] p-7 md:p-10" data-reveal>
+        <h3 class="font-display text-[34px] italic leading-none text-cream md:text-[44px]">Es para ti si…</h3>
+        <ul class="mt-8 flex flex-col">
+          {yes.map((t) => (
+            <li class="flex gap-4 border-t border-white/[0.07] py-4 text-[15px] leading-snug text-cream/85">
+              <svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="relative overflow-hidden rounded-[32px] border border-white/[0.07] bg-surface/60 p-7 md:p-10" data-reveal data-reveal-delay="0.1">
+        <h3 class="font-display text-[34px] italic leading-none text-cream/60 md:text-[44px]">No es para ti si…</h3>
+        <ul class="mt-8 flex flex-col">
+          {no.map((t) => (
+            <li class="flex gap-4 border-t border-white/[0.06] py-4 text-[15px] leading-snug text-muted">
+              <svg viewBox="0 0 20 20" class="mt-0.5 h-5 w-5 shrink-0 text-white/30" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5.5 5.5 9 9M14.5 5.5l-9 9" /></svg>
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

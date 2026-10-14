@@ -1,0 +1,36 @@
+---
+import Button from '../ui/Button.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+
+interface Props { eyebrow: string; title: string; titleAccent?: string; lead: string; ctaLabel?: string; bullets?: string[] }
+const { eyebrow, title, titleAccent, lead, ctaLabel = 'Ver si mi negocio encaja', bullets = [] } = Astro.props;
+---
+<section class="relative isolate overflow-hidden bg-ink grain" aria-labelledby="page-title">
+  <div class="starfield -z-10 opacity-60" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -right-[20%] -top-[30%] -z-10 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgb(217_178_102/0.18),transparent)] md:-right-[5%] md:h-[820px] md:w-[820px]" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent to-ink" aria-hidden="true"></div>
+
+  <div class="container-x pb-16 pt-[calc(env(safe-area-inset-top)+150px)] md:pb-24 md:pt-48">
+    <div class="max-w-4xl">
+      <div data-reveal><Eyebrow>{eyebrow}</Eyebrow></div>
+      <h1 id="page-title" data-split class="mt-5 font-display text-[42px] italic leading-[1.03] text-cream text-balance md:mt-7 md:text-[76px]">
+        {title}{titleAccent && <> <span class="text-gold">{titleAccent}</span></>}
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted text-pretty md:mt-8 md:text-lg" data-reveal data-reveal-delay="0.3">{lead}</p>
+
+      <div class="mt-9 flex flex-col gap-8 md:mt-11 md:flex-row md:items-center md:gap-10" data-reveal data-reveal-delay="0.45">
+        <Button size="lg" data-open-form data-magnetic class="w-full md:w-auto">{ctaLabel}</Button>
+        {bullets.length > 0 && (
+          <ul class="flex flex-col gap-2.5 text-sm text-cream/80 md:gap-2">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-2.5">
+                <svg viewBox="0 0 16 16" class="mt-[3px] h-3.5 w-3.5 shrink-0 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.5 3 3 7-7" /></svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

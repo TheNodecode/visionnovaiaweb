@@ -1,0 +1,23 @@
+---
+interface Props { src?: string; poster: string; caption: string }
+const { src, poster, caption } = Astro.props;
+---
+<section data-scale-media class="relative bg-ink px-4 py-10 md:h-[100svh] md:p-0" aria-label="Detrás de cámaras">
+  <div data-scale-target class="relative h-[72svh] overflow-hidden rounded-[28px] md:absolute md:inset-0 md:h-auto md:rounded-none">
+    {src
+      ? <video data-inview-video class="absolute inset-0 h-full w-full object-cover" src={src} poster={poster} muted loop playsinline preload="none" aria-hidden="true"></video>
+      : <img class="absolute inset-0 h-full w-full object-cover" src={poster} alt="" loading="lazy" decoding="async" />}
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-ink/30" aria-hidden="true"></div>
+  </div>
+  <!-- El pie va fuera del marco recortado para que se lea durante todo el crecimiento -->
+  <div class="pointer-events-none absolute inset-x-4 bottom-10 md:inset-x-0 md:bottom-0 md:pb-12 lg:pb-16">
+    <div class="container-x py-6 md:py-0">
+      <p class="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.25em] text-gold-200/90">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true"></span>Detrás de cámaras
+      </p>
+      <p class="mt-3 max-w-xl font-display text-[28px] italic leading-[1.1] text-cream text-balance [text-shadow:0_2px_30px_rgb(0_0_0/0.6)] md:mt-4 md:text-5xl">{caption}</p>
+    </div>
+  </div>
+</section>
+
+<script>import '../../scripts/inview-video.ts';</script>

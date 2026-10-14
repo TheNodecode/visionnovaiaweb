@@ -1,0 +1,259 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+type Scenario = 'dental' | 'estetica' | 'inmobiliaria' | 'reformas' | 'general';
+interface Props { scenario: Scenario; audios: { src: string; label: string }[] }
+const { scenario, audios } = Astro.props;
+
+type Msg = { from: 'c' | 'ia'; text: string; time: string };
+// Guiones originales: la IA pregunta por necesidad, plazo e intención, y agenda.
+const SCRIPTS: Record<Scenario, { name: string; msgs: Msg[] }> = {
+  dental: { name: 'Clínica dental', msgs: [
+    { from: 'c', time: '22:14', text: 'Hola, ¿hacéis ortodoncia invisible? Me interesa.' },
+    { from: 'ia', time: '22:14', text: '¡Hola! Sí, trabajamos con alineadores invisibles. Para orientarte bien: ¿es para ti y has llevado ortodoncia antes?' },
+    { from: 'c', time: '22:15', text: 'Para mí. Nunca he llevado.' },
+    { from: 'ia', time: '22:15', text: 'Perfecto. ¿Cuándo te gustaría empezar? Así te propongo la primera visita de valoración.' },
+    { from: 'c', time: '22:16', text: 'Lo antes posible, este mes si puede ser.' },
+    { from: 'ia', time: '22:16', text: 'Tengo hueco el jueves a las 17:30 o el viernes a las 10:00. ¿Cuál te va mejor? Te la dejo confirmada.' },
+  ] },
+  estetica: { name: 'Medicina estética', msgs: [
+    { from: 'c', time: '21:32', text: 'Buenas, quería información sobre el tratamiento de manchas en la cara.' },
+    { from: 'ia', time: '21:32', text: 'Hola, gracias por escribir. Para recomendarte bien: ¿son manchas recientes o las tienes desde hace tiempo?' },
+    { from: 'c', time: '21:33', text: 'Desde hace años, y nunca me las he tratado.' },
+    { from: 'ia', time: '21:33', text: 'Entendido. El primer paso es una valoración con la doctora. ¿Te gustaría empezar antes del verano?' },
+    { from: 'c', time: '21:34', text: 'Sí, me gustaría llegar con la piel bien.' },
+    { from: 'ia', time: '21:34', text: 'Entonces vamos con tiempo. Tengo valoración el martes a las 12:00 o el miércoles a las 18:00. ¿Te reservo una?' },
+  ] },
+  inmobiliaria: { name: 'Inmobiliaria', msgs: [
+    { from: 'c', time: '20:05', text: 'Hola, he visto el piso de tres habitaciones del anuncio. ¿Sigue disponible?' },
+    { from: 'ia', time: '20:05', text: 'Hola, sí, sigue disponible. Para ayudarte mejor: ¿buscas para vivir o para invertir?' },
+    { from: 'c', time: '20:06', text: 'Para vivir. Tengo la hipoteca preaprobada.' },
+    { from: 'ia', time: '20:06', text: 'Genial. ¿En qué plazo te gustaría mudarte?' },
+    { from: 'c', time: '20:07', text: 'En dos o tres meses como mucho.' },
+    { from: 'ia', time: '20:07', text: 'Encaja muy bien. ¿Te va bien visitarlo el sábado a las 11:00 con nuestro agente? Te mando la ubicación al confirmar.' },
+  ] },
+  reformas: { name: 'Reformas', msgs: [
+    { from: 'c', time: '19:48', text: 'Hola, quiero reformar el baño entero. ¿Me podéis dar presupuesto?' },
+    { from: 'ia', time: '19:48', text: 'Hola, claro. Para que el presupuesto sea real: ¿cuántos metros tiene más o menos y qué quieres cambiar?' },
+    { from: 'c', time: '19:49', text: 'Unos 5 m². Plato de ducha, azulejos y muebles, todo nuevo.' },
+    { from: 'ia', time: '19:49', text: 'Perfecto. ¿Para cuándo te gustaría tenerlo terminado?' },
+    { from: 'c', time: '19:50', text: 'Antes de Navidad, si se puede.' },
+    { from: 'ia', time: '19:50', text: 'Hay margen. El siguiente paso es una visita técnica para medir: ¿lunes a las 9:00 o miércoles a las 16:00?' },
+  ] },
+  general: { name: 'Tu negocio', msgs: [
+    { from: 'c', time: '23:02', text: 'Hola, vi vuestro anuncio. ¿Me dais más información?' },
+    { from: 'ia', time: '23:02', text: '¡Hola! Encantados. Cuéntame un poco: ¿qué necesitas resolver, y es para ti o para tu empresa?' },
+    { from: 'c', time: '23:03', text: 'Para mi empresa. Nos interesa el servicio completo.' },
+    { from: 'ia', time: '23:03', text: 'Perfecto. ¿Tenéis una fecha en mente para arrancar?' },
+    { from: 'c', time: '23:04', text: 'El mes que viene.' },
+    { from: 'ia', time: '23:04', text: 'Entonces lo dejamos encaminado. ¿Una llamada con el equipo el martes a las 10:00 o el jueves a las 13:00?' },
+  ] },
+};
+const script = SCRIPTS[scenario];
+const uid = `ai-${scenario}`;
+---
+<section class="relative overflow-hidden bg-ink py-24 md:py-36" data-ai-demo aria-labelledby={`${uid}-title`}>
+  <div class="container-x">
+    <div data-reveal>
+      <SectionHeading eyebrow="La IA en acción" titleHtml={`<span id="${uid}-title">Contesta en segundos. <span class="text-gold">Filtra antes de que llames.</span></span>`}
+        lead="Así atiende a un contacto que llega de un anuncio fuera de horario, cuando tu equipo ya se ha ido a casa." />
+    </div>
+
+    <div class="mt-14 grid gap-6 md:mt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+      <!-- Chat de WhatsApp simulado -->
+      <div class="overflow-hidden rounded-[32px] border border-white/10 bg-[#0c1210] shadow-[0_50px_100px_-50px_rgb(0_0_0/1)]" data-reveal>
+        <div class="flex items-center gap-3 border-b border-white/5 bg-white/[0.03] px-5 py-4">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-[12px] font-semibold" aria-hidden="true">IA</span>
+          <div class="min-w-0 leading-tight">
+            <p class="truncate text-sm font-medium text-cream">{script.name}</p>
+            <p class="text-xs text-[#7fbf9f]" data-chat-status>en línea</p>
+          </div>
+          <span class="ml-auto rounded-full border border-white/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted">Simulación</span>
+        </div>
+
+        <ol class="flex flex-col gap-3 px-4 py-6 text-[14px] leading-snug sm:px-6" data-chat aria-label="Conversación de ejemplo">
+          {script.msgs.map((m) => (
+            <li class:list={['chat-msg relative flex', m.from === 'c' ? 'justify-start' : 'justify-end']} data-from={m.from}>
+              <span class="sr-only">{m.from === 'c' ? 'Cliente:' : 'IA:'}</span>
+              <p class:list={['chat-bubble max-w-[85%] rounded-2xl px-3.5 py-2.5', m.from === 'c' ? 'rounded-tl-md bg-white/[0.07] text-cream/90' : 'rounded-tr-md bg-[#1d3a30] text-cream/95']}>
+                {m.text}<span class:list={['ml-2 inline-block text-[10px]', m.from === 'c' ? 'text-muted' : 'text-[#9fcfb6]']}>{m.time}{m.from === 'ia' && ' ✓✓'}</span>
+              </p>
+              {m.from === 'ia' && (
+                <span class="chat-typing absolute right-0 top-0 flex gap-1 rounded-2xl rounded-tr-md bg-[#1d3a30] px-4 py-3.5" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
+              )}
+            </li>
+          ))}
+          <li class="chat-msg chat-final mt-2 flex justify-center" data-from="sys">
+            <p class="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/[0.07] px-3.5 py-1.5 text-[12px] text-gold-200">
+              <span class="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true"></span>
+              Contacto filtrado · cita propuesta · enviado a CRM Nova
+            </p>
+          </li>
+        </ol>
+
+        <div class="flex items-center justify-between border-t border-white/5 px-5 py-3">
+          <p class="text-xs text-muted">Necesidad · plazo · intención · cita</p>
+          <button type="button" class="inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-[13px] text-cream/80 transition-colors hover:bg-white/5 hover:text-gold-200" data-chat-replay>
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9M2.5 2.5v3h3" /></svg>
+            Repetir
+          </button>
+        </div>
+      </div>
+
+      <!-- Reproductor de audio -->
+      <div class="flex flex-col rounded-[32px] border border-white/10 bg-surface p-6 sm:p-8" data-reveal data-audio-player>
+        <h3 class="font-display text-[28px] italic leading-[1.1] text-cream text-balance md:text-[34px]">Escucha a la IA atendiendo una llamada real de prueba</h3>
+
+        <div class="mt-8 flex items-center gap-4 rounded-3xl bg-white/[0.03] p-4 ring-1 ring-white/5">
+          <button type="button" class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gold transition active:scale-95" data-audio-toggle aria-label="Reproducir">
+            <svg viewBox="0 0 16 16" class="ml-0.5 h-5 w-5" fill="currentColor" aria-hidden="true" data-icon-play><path d="M4 2.5v11l9-5.5z" /></svg>
+            <svg viewBox="0 0 16 16" class="hidden h-5 w-5" fill="currentColor" aria-hidden="true" data-icon-pause><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" /></svg>
+          </button>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium text-cream" data-audio-title>{audios[0]?.label}</p>
+            <input type="range" min="0" max="1000" value="0" step="1" class="audio-range mt-1 w-full" data-audio-seek aria-label="Progreso del audio" aria-valuetext="0:00" />
+            <p class="flex justify-between text-[11px] tabular-nums text-muted"><span data-audio-cur>0:00</span><span data-audio-dur>--:--</span></p>
+          </div>
+        </div>
+        <!-- el src se asigna al primer play: no se descarga audio hasta que el usuario lo pide -->
+        <audio preload="none" data-audio data-src={audios[0]?.src}></audio>
+
+        <ul class="mt-6 grid gap-1.5 sm:grid-cols-2" aria-label="Demos de audio">
+          {audios.map((a, i) => (
+            <li>
+              <button type="button" data-audio-track={a.src} data-label={a.label} aria-pressed={i === 0 ? 'true' : 'false'}
+                class="audio-track flex min-h-11 w-full items-center gap-3 rounded-2xl px-3.5 py-2 text-left text-[13.5px] text-cream/75 transition-colors hover:bg-white/5 hover:text-cream">
+                <span class="audio-bars flex h-3.5 items-end gap-[2px]" aria-hidden="true"><i></i><i></i><i></i></span>
+                {a.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted text-pretty md:mt-14 md:text-base" data-reveal>
+      La IA no improvisa: solo responde con la información que tú apruebas, y cuando algo requiere a una persona, te avisa al momento.
+    </p>
+  </div>
+</section>
+
+<style>
+  .chat-msg { transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo); }
+  .chat-typing { opacity: 0; transition: opacity 0.2s; }
+  .chat-typing i { width: 6px; height: 6px; border-radius: 9999px; background: rgb(236 232 225 / 0.7); animation: chat-dot 1s infinite ease-in-out; }
+  .chat-typing i:nth-child(2) { animation-delay: 0.15s; }
+  .chat-typing i:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes chat-dot { 0%, 80%, 100% { opacity: 0.3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+  [data-chat].is-playing .chat-msg.is-pending { opacity: 0; transform: translateY(10px); }
+  [data-chat].is-playing .chat-msg.is-typing { opacity: 1; transform: none; }
+  [data-chat].is-playing .chat-msg.is-typing .chat-bubble { opacity: 0; }
+  [data-chat].is-playing .chat-msg.is-typing .chat-typing { opacity: 1; }
+
+  .audio-track[aria-pressed='true'] { background: rgb(217 178 102 / 0.08); color: var(--color-gold-200); }
+  .audio-bars i { width: 2px; height: 40%; border-radius: 1px; background: currentColor; opacity: 0.5; }
+  .audio-bars i:nth-child(2) { height: 100%; }
+  .audio-bars i:nth-child(3) { height: 65%; }
+  [data-audio-player].is-playing .audio-track[aria-pressed='true'] .audio-bars i { animation: eq 0.9s ease-in-out infinite alternate; opacity: 1; }
+  [data-audio-player].is-playing .audio-track[aria-pressed='true'] .audio-bars i:nth-child(2) { animation-delay: -0.3s; }
+  [data-audio-player].is-playing .audio-track[aria-pressed='true'] .audio-bars i:nth-child(3) { animation-delay: -0.6s; }
+  @keyframes eq { from { height: 25%; } to { height: 100%; } }
+
+  .audio-range { -webkit-appearance: none; appearance: none; height: 28px; background: transparent; cursor: pointer; --p: 0%; }
+  .audio-range::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-gold-400) var(--p), rgb(255 255 255 / 0.12) var(--p)); }
+  .audio-range::-moz-range-track { height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-gold-400) var(--p), rgb(255 255 255 / 0.12) var(--p)); }
+  .audio-range::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4.5px; border-radius: 50%; background: var(--color-gold-200); border: 0; }
+  .audio-range::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--color-gold-200); border: 0; }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}` : '--:--');
+
+  document.querySelectorAll<HTMLElement>('[data-ai-demo]').forEach((root) => {
+    // --- Chat ---
+    const chat = root.querySelector<HTMLElement>('[data-chat]')!;
+    const status = root.querySelector<HTMLElement>('[data-chat-status]')!;
+    const msgs = [...chat.querySelectorAll<HTMLElement>('.chat-msg')];
+    let timers: number[] = [];
+    const wait = (ms: number) => new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
+
+    async function play() {
+      timers.forEach(clearTimeout); timers = [];
+      const run = Symbol(); (chat as any).__run = run;
+      chat.classList.add('is-playing');
+      msgs.forEach((m) => { m.classList.add('is-pending'); m.classList.remove('is-typing'); });
+      for (const m of msgs) {
+        await wait(m.dataset.from === 'c' ? 900 : 350);
+        if ((chat as any).__run !== run) return;
+        if (m.dataset.from === 'ia') {
+          m.classList.remove('is-pending'); m.classList.add('is-typing'); status.textContent = 'escribiendo…';
+          await wait(1300);
+          if ((chat as any).__run !== run) return;
+          m.classList.remove('is-typing'); status.textContent = 'en línea';
+        } else {
+          m.classList.remove('is-pending');
+        }
+      }
+    }
+
+    root.querySelector('[data-chat-replay]')!.addEventListener('click', () => { if (!reduce) play(); });
+    if (!reduce && 'IntersectionObserver' in window) {
+      msgs.forEach((m) => m.classList.add('is-pending'));
+      chat.classList.add('is-playing');
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.4 });
+      io.observe(chat);
+    }
+
+    // --- Audio ---
+    const player = root.querySelector<HTMLElement>('[data-audio-player]')!;
+    const audio = root.querySelector<HTMLAudioElement>('[data-audio]')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-audio-toggle]')!;
+    const seek = root.querySelector<HTMLInputElement>('[data-audio-seek]')!;
+    const cur = root.querySelector<HTMLElement>('[data-audio-cur]')!;
+    const dur = root.querySelector<HTMLElement>('[data-audio-dur]')!;
+    const title = root.querySelector<HTMLElement>('[data-audio-title]')!;
+    const tracks = [...root.querySelectorAll<HTMLButtonElement>('[data-audio-track]')];
+    let seeking = false;
+
+    const paint = () => {
+      const d = audio.duration, t = audio.currentTime;
+      const p = Number.isFinite(d) && d > 0 ? t / d : 0;
+      if (!seeking) seek.value = String(Math.round(p * 1000));
+      seek.style.setProperty('--p', `${p * 100}%`);
+      seek.setAttribute('aria-valuetext', `${fmt(t)} de ${fmt(d)}`);
+      cur.textContent = fmt(t);
+      dur.textContent = fmt(d);
+    };
+    const setPlaying = (on: boolean) => {
+      player.classList.toggle('is-playing', on);
+      toggle.setAttribute('aria-label', on ? 'Pausar' : 'Reproducir');
+      toggle.querySelector('[data-icon-play]')!.classList.toggle('hidden', on);
+      toggle.querySelector('[data-icon-pause]')!.classList.toggle('hidden', !on);
+    };
+
+    audio.addEventListener('loadedmetadata', paint);
+    audio.addEventListener('timeupdate', paint);
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => { setPlaying(false); audio.currentTime = 0; paint(); });
+    toggle.addEventListener('click', () => {
+      if (!audio.getAttribute('src') && audio.dataset.src) audio.src = audio.dataset.src;
+      if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+    });
+    seek.addEventListener('input', () => {
+      seeking = true;
+      if (Number.isFinite(audio.duration)) audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
+      seek.style.setProperty('--p', `${Number(seek.value) / 10}%`);
+    });
+    seek.addEventListener('change', () => { seeking = false; });
+    tracks.forEach((b) => b.addEventListener('click', () => {
+      tracks.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      title.textContent = b.dataset.label ?? '';
+      if (audio.getAttribute('src') !== b.dataset.audioTrack) { audio.src = b.dataset.audioTrack!; paint(); }
+      audio.play().catch(() => {});
+    }));
+  });
+</script>

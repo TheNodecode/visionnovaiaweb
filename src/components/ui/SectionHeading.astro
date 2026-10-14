@@ -7,7 +7,7 @@ const center = align === 'center';
 <div class:list={['flex max-w-3xl flex-col gap-4', center ? 'mx-auto items-center text-center' : 'items-start text-left', cls]}>
   {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
   {titleHtml
-    ? <h2 class="font-display text-[clamp(2.25rem,6vw,4rem)] leading-[1.05] text-cream text-balance" set:html={titleHtml} />
-    : <h2 class="font-display text-[clamp(2.25rem,6vw,4rem)] leading-[1.05] text-cream text-balance">{title}</h2>}
+    ? <h2 class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.05] text-cream text-balance" set:html={titleHtml} />
+    : <h2 class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.05] text-cream text-balance">{title}</h2>}
   {lead && <p class="max-w-2xl text-base leading-relaxed text-muted md:text-lg text-pretty">{lead}</p>}
 </div>

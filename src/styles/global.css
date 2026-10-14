@@ -41,3 +41,47 @@ input, select, textarea { font-size: 16px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* SplitText envuelve cada palabra en un div transformado: el degradado recortado al texto
+   se hereda palabra a palabra para que no desaparezca (Safari) durante la animación. */
+[data-split]:is(.text-gold, .text-silver) div,
+[data-split] :is(.text-gold, .text-silver) div {
+  background: inherit; -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Campo de estrellas: varias capas de puntos con un parpadeo lento (sin él con reduced-motion). */
+.starfield { position: absolute; inset: 0; pointer-events: none; }
+.starfield::before, .starfield::after { content: ''; position: absolute; inset: 0; }
+.starfield::before {
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / 0.8), transparent 60%),
+    radial-gradient(1px 1px at 68% 12%, rgb(255 255 255 / 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 84% 42%, rgb(241 217 160 / 0.7), transparent 60%),
+    radial-gradient(1px 1px at 32% 64%, rgb(255 255 255 / 0.5), transparent 60%),
+    radial-gradient(1px 1px at 52% 82%, rgb(255 255 255 / 0.55), transparent 60%);
+  background-size: 360px 360px;
+  animation: twinkle 7s ease-in-out infinite alternate;
+}
+.starfield::after {
+  background-image:
+    radial-gradient(1px 1px at 22% 38%, rgb(255 255 255 / 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 76% 72%, rgb(255 255 255 / 0.45), transparent 60%),
+    radial-gradient(1px 1px at 44% 8%, rgb(241 217 160 / 0.6), transparent 60%),
+    radial-gradient(1px 1px at 92% 90%, rgb(255 255 255 / 0.5), transparent 60%);
+  background-size: 520px 520px;
+  animation: twinkle 11s ease-in-out -4s infinite alternate;
+}
+@keyframes twinkle { from { opacity: 0.25; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .starfield::before, .starfield::after { animation: none; opacity: 0.7; } }
+
+/* Grano sutil para que los fondos oscuros no se vean planos. */
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Número gigante en contorno dorado. */
+.text-outline-gold { color: transparent; -webkit-text-stroke: 1px rgb(217 178 102 / 0.55); }
+
+/* Línea dorada fina, usada como separador o como barra de progreso. */
+.hairline-gold { background: linear-gradient(90deg, transparent, rgb(217 178 102 / 0.6), transparent); height: 1px; }

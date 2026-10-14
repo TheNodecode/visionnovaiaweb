@@ -1,0 +1,191 @@
+---
+import Button from '../ui/Button.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+
+interface Props { id?: string }
+const { id = 'sistema' } = Astro.props;
+
+const acts = [
+  {
+    n: '01', title: 'Grabamos',
+    lead: 'Vamos a tu negocio con guiones, equipo y formato preparados. Tú solo pones el negocio.',
+    bullets: [
+      'Guiones escritos para tu sector antes de llegar.',
+      'Rodaje en tu propio local, con equipo de imagen y sonido.',
+      'Vídeos editados en vertical, listos para redes y anuncios.',
+    ],
+  },
+  {
+    n: '02', title: 'Captamos',
+    lead: 'Contenido orgánico en tus redes y campañas de Meta Ads con esos mismos vídeos.',
+    bullets: [
+      'Publicamos en tus redes el contenido del mes.',
+      'Los anuncios usan tus vídeos: tu cara, tu local, tu forma de hablar.',
+      'Segmentación por zona y por el tipo de cliente que buscas.',
+    ],
+  },
+  {
+    n: '03', title: 'Filtramos',
+    lead: 'WhatsApp con IA, agente de voz y CRM Nova. Tu equipo solo habla con quien está listo para comprar.',
+    bullets: [
+      'WhatsApp con IA que responde en menos de 60 s.',
+      'Agente de voz que atiende llamadas 24/7.',
+      'CRM Nova: cada contacto filtrado, con su historial.',
+    ],
+  },
+];
+---
+<section id={id} data-pin-horizontal class="acts relative bg-ink" aria-labelledby={`${id}-title`}>
+  <div data-track class="acts-track">
+    <div class="act-intro">
+      <div data-reveal><Eyebrow>El sistema</Eyebrow></div>
+      <h2 id={`${id}-title`} data-split class="mt-5 font-display text-[44px] italic leading-[1.02] text-cream text-balance lg:text-[72px]">
+        Tres actos. <span class="text-gold">Un solo sistema.</span>
+      </h2>
+      <p class="mt-6 max-w-sm text-base leading-relaxed text-muted text-pretty" data-reveal>
+        De la grabación al cliente que entra por tu puerta, sin piezas sueltas ni proveedores que no se hablan entre sí.
+      </p>
+      <p class="acts-hint mt-10 items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-muted/80" aria-hidden="true">
+        Sigue bajando
+        <svg viewBox="0 0 24 8" class="h-2 w-6" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 4h22M18 1l4 3-4 3" /></svg>
+      </p>
+    </div>
+
+    {acts.map((a, i) => (
+      <article class="act" aria-labelledby={`${id}-act-${i}`}>
+        <div class="act-text">
+          <p class="text-outline-gold font-display text-[96px] italic leading-[0.8] lg:text-[180px]" aria-hidden="true">{a.n}</p>
+          <h3 id={`${id}-act-${i}`} class="mt-4 font-display text-[40px] italic leading-none text-cream lg:mt-6 lg:text-[64px]">
+            <span class="sr-only">{a.n}. </span>{a.title}
+          </h3>
+          <p class="mt-4 max-w-md text-[15px] leading-relaxed text-cream/75 text-pretty lg:text-base">{a.lead}</p>
+          <ul class="mt-6 flex flex-col gap-3 border-t border-white/10 pt-6">
+            {a.bullets.map((b) => (
+              <li class="flex gap-3 text-sm leading-snug text-muted">
+                <span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>{b}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="act-visual" aria-hidden="true">
+          {i === 0 && (
+            <div class="w-full max-w-[340px] rounded-[28px] border border-white/10 bg-surface-2 p-6 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]">
+              <svg viewBox="0 0 200 150" class="w-full text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                <g class="clap-top">
+                  <path d="M22 54 170 26l6 26L28 80z" fill="rgb(217 178 102 / 0.06)" />
+                  <path d="M48 49l14 24M78 43l14 24M108 38l14 24M138 32l14 24" opacity=".7" />
+                </g>
+                <rect x="28" y="80" width="150" height="62" rx="4" fill="rgb(217 178 102 / 0.04)" />
+                <path d="M28 98h150" opacity=".5" />
+                <path d="M40 112h50M40 126h32M110 112h54M110 126h40" stroke-width="1.2" opacity=".55" />
+                <circle cx="28" cy="80" r="3" fill="currentColor" />
+              </svg>
+              <ul class="mt-5 grid gap-2 text-[13px] text-cream/85">
+                {['Guion', 'Equipo', 'Formato 9:16'].map((t) => (
+                  <li class="flex items-center justify-between rounded-xl bg-white/[0.04] px-3.5 py-2.5">
+                    {t}
+                    <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 8.5 3 3 7-7" /></svg>
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-4 text-center text-[11px] uppercase tracking-[0.2em] text-gold-200/80">guiones, equipo y formato preparados</p>
+            </div>
+          )}
+
+          {i === 1 && (
+            <div class="w-full max-w-[300px] overflow-hidden rounded-[24px] border border-white/10 bg-surface-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]">
+              <div class="flex items-center gap-3 px-4 py-3">
+                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gold text-[11px] font-semibold">TN</span>
+                <div class="leading-tight">
+                  <p class="text-[13px] font-medium text-cream">Tu negocio</p>
+                  <p class="text-[11px] text-muted">Publicidad</p>
+                </div>
+                <span class="ml-auto text-muted">···</span>
+              </div>
+              <p class="px-4 pb-3 text-[12.5px] leading-snug text-cream/80">¿Te lo estás pensando? Ven a conocernos y te lo explicamos todo, sin prisas.</p>
+              <div class="relative aspect-[4/5] overflow-hidden">
+                <img src="/video/hero-poster.jpg" alt="" class="h-full w-full scale-125 object-cover object-[60%_70%]" loading="lazy" decoding="async" />
+                <span class="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 backdrop-blur">
+                  <svg viewBox="0 0 16 16" class="ml-0.5 h-4 w-4 text-cream" fill="currentColor"><path d="M4 2.5v11l9-5.5z" /></svg>
+                </span>
+                <span class="absolute bottom-3 left-3 rounded-full bg-black/50 px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-cream/80 backdrop-blur">Anuncio simulado</span>
+              </div>
+              <div class="flex items-center justify-between border-t border-white/10 px-4 py-3">
+                <span class="text-[12px] text-muted">Respuesta inmediata</span>
+                <span class="rounded-lg bg-white/10 px-3 py-1.5 text-[12px] font-medium text-cream">Enviar mensaje</span>
+              </div>
+            </div>
+          )}
+
+          {i === 2 && (
+            <div class="w-full max-w-[340px] rounded-[28px] border border-white/10 bg-[#0d1512] p-5 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]">
+              <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+                <span class="h-8 w-8 rounded-full bg-white/10"></span>
+                <div class="leading-tight">
+                  <p class="text-[13px] font-medium text-cream">Laura · nuevo contacto</p>
+                  <p class="text-[11px] text-[#7fbf9f]">en línea</p>
+                </div>
+              </div>
+              <div class="mt-4 flex flex-col gap-2.5 text-[13px] leading-snug">
+                <p class="max-w-[85%] self-start rounded-2xl rounded-tl-md bg-white/[0.07] px-3.5 py-2.5 text-cream/90">Hola, ¿tenéis hueco esta semana? <span class="ml-1 text-[10px] text-muted">21:47</span></p>
+                <p class="max-w-[88%] self-end rounded-2xl rounded-tr-md bg-[#1d3a30] px-3.5 py-2.5 text-cream/95">¡Hola, Laura! Sí: jueves a las 17:30 o viernes a las 10:00. ¿Cuál te reservo? <span class="ml-1 text-[10px] text-[#9fcfb6]">21:47 ✓✓</span></p>
+              </div>
+              <div class="mt-5 flex items-center justify-between rounded-2xl border border-gold-400/30 bg-gold-400/[0.06] px-4 py-3">
+                <span class="text-[12px] text-cream/80">Tiempo de respuesta</span>
+                <span class="font-display text-2xl italic text-gold-200">&lt;&nbsp;60&nbsp;s</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </article>
+    ))}
+
+    <div class="act-close">
+      <p class="text-[11px] uppercase tracking-[0.25em] text-gold-400">Y al final</p>
+      <p class="mt-5 font-display text-[52px] italic leading-[0.95] text-cream text-balance lg:text-[104px]">
+        Tu equipo <span class="text-gold">solo cierra.</span>
+      </p>
+      <p class="mt-6 max-w-sm text-base leading-relaxed text-muted text-pretty">Lo demás lo hace el sistema: grabar, captar, responder y filtrar.</p>
+      <div class="mt-9"><Button data-open-form data-magnetic size="lg" class="w-full sm:w-auto">Ver si mi negocio encaja</Button></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Móvil y tablet (o sin animación): actos apilados en tarjetas */
+  .acts { padding-block: 96px; }
+  .acts-track { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 20px; }
+  .act-intro { padding-bottom: 28px; }
+  .acts-hint { display: none; }
+  .act {
+    display: flex; flex-direction: column; gap: 32px; border-radius: 32px; padding: 28px 22px 32px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background: radial-gradient(120% 80% at 0% 0%, rgb(217 178 102 / 0.07), transparent 55%), var(--color-surface);
+  }
+  .act-visual { display: flex; justify-content: center; }
+  .act-close { padding: 56px 0 8px; }
+  @media (min-width: 768px) {
+    .acts-track { padding-inline: 32px; gap: 24px; }
+    .act { flex-direction: row; align-items: center; padding: 48px; gap: 48px; }
+    .act-text { flex: 1 1 55%; }
+    .act-visual { flex: 1 1 45%; }
+  }
+
+  /* Escritorio con movimiento: pista horizontal fijada (motion.ts la desplaza) */
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .acts { height: 100svh; padding: 0; overflow: hidden; display: flex; align-items: center; }
+    .acts-track {
+      flex-direction: row; align-items: stretch; gap: 3vw; width: max-content; max-width: none; margin: 0;
+      padding: 96px 8vw 0 max(32px, calc((100vw - 1240px) / 2 + 32px)); will-change: transform;
+    }
+    .act-intro { width: min(34vw, 460px); padding: 0; display: flex; flex-direction: column; justify-content: center; }
+    .acts-hint { display: flex; }
+    .act { width: 80vw; max-width: 1180px; height: min(calc(100svh - 150px), 640px); padding: 56px 64px; gap: 64px; }
+    .act-close { width: min(56vw, 760px); padding: 0; display: flex; flex-direction: column; justify-content: center; }
+  }
+  @media (min-width: 1024px) and (max-height: 820px) and (prefers-reduced-motion: no-preference) {
+    .act { padding-block: 40px; }
+    .act .text-outline-gold { font-size: 128px; }
+  }
+</style>

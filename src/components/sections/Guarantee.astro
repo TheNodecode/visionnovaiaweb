@@ -1,0 +1,27 @@
+---
+import Icon from '../ui/Icon.astro';
+---
+<section class="relative isolate overflow-hidden bg-ink py-24 md:py-36" aria-labelledby="guarantee-title">
+  <div class="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[700px] w-[700px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(217_178_102/0.13),transparent)]" aria-hidden="true"></div>
+  <div class="container-x">
+    <div class="relative mx-auto max-w-5xl rounded-[40px] border border-gold-400/20 bg-[linear-gradient(180deg,rgb(217_178_102/0.06),rgb(18_18_18/0.6))] px-6 py-14 text-center sm:px-12 md:px-20 md:py-24">
+      <span class="absolute inset-x-16 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/80 to-transparent" aria-hidden="true"></span>
+      <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold-400/40 bg-gold-400/10 text-gold-200 shadow-[0_0_60px_-10px_rgb(217_178_102/0.6)] md:h-20 md:w-20" data-reveal>
+        <Icon name="shield" size={34} />
+      </span>
+      <h2 id="guarantee-title" class="mt-6 text-[11px] font-medium uppercase tracking-[0.3em] text-gold-400" data-reveal>Nuestra garantía</h2>
+      <p class="mx-auto mt-6 max-w-4xl font-display text-[32px] italic leading-[1.12] text-cream text-balance md:text-[56px]" data-split>
+        Si en 30 días el sistema no te entrega al menos 15 clientes filtrados, <span class="text-gold">el segundo mes va por nuestra cuenta.</span>
+      </p>
+
+      <div class="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-5 border-t border-white/10 pt-10 md:mt-16 md:flex-row md:gap-8 md:text-left" data-reveal>
+        <p class="flex shrink-0 items-baseline gap-2">
+          <span class="font-display text-6xl italic leading-none text-gold-200" data-counter="3">3</span>
+          <span class="text-sm text-cream/80">plazas este mes</span>
+        </p>
+        <span class="hidden h-12 w-px bg-white/10 md:block" aria-hidden="true"></span>
+        <p class="text-[15px] leading-relaxed text-muted text-pretty">Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.</p>
+      </div>
+    </div>
+  </div>
+</section>

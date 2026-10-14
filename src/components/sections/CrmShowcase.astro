@@ -1,0 +1,97 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props { image?: string }
+const { image } = Astro.props;
+
+// Panel de ejemplo (nombres ficticios) mientras no haya captura real.
+const columns = [
+  { name: 'Nuevo', tone: 'bg-white/40', cards: [
+    { who: 'Marcos P.', what: 'Pregunta por precios', via: 'WhatsApp' },
+    { who: 'Elena G.', what: 'Ha llamado a las 21:40', via: 'Llamada' },
+  ] },
+  { name: 'Filtrado', tone: 'bg-gold-200', cards: [
+    { who: 'Lucía R.', what: 'Quiere empezar este mes', via: 'Ads' },
+    { who: 'Javier T.', what: 'Presupuesto aprobado', via: 'WhatsApp' },
+  ] },
+  { name: 'Cita', tone: 'bg-gold-400', cards: [
+    { who: 'Nuria S.', what: 'Jueves · 17:30', via: 'WhatsApp' },
+  ] },
+  { name: 'Cliente', tone: 'bg-gold-600', cards: [
+    { who: 'Pablo M.', what: 'Primera visita hecha', via: 'Llamada' },
+  ] },
+];
+const nav = ['crm', 'chat', 'phone', 'calendar', 'chart'] as const;
+---
+<section data-scale-media="zoom" class="crm relative flex flex-col justify-center overflow-hidden bg-ink py-24 md:min-h-[100svh] md:py-0" aria-labelledby="crm-title">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_35%_at_50%_70%,rgb(217_178_102/0.10),transparent)]" aria-hidden="true"></div>
+  <div class="container-x relative md:pt-16">
+    <div data-reveal>
+      <SectionHeading eyebrow="CRM Nova" titleHtml='<span id="crm-title">Lo ves todo en CRM Nova, <span class="text-gold">en tiempo real.</span></span>' />
+    </div>
+
+    <div data-scale-target class="crm-frame mx-auto mt-10 overflow-hidden rounded-[20px] border border-white/10 bg-surface shadow-[0_60px_120px_-40px_rgb(0_0_0/1)] md:mt-12">
+      <div class="flex items-center gap-2 border-b border-white/5 bg-white/[0.03] px-4 py-3" aria-hidden="true">
+        <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span><span class="h-2.5 w-2.5 rounded-full bg-white/15"></span><span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+        <span class="mx-auto rounded-md bg-white/[0.05] px-4 py-1 text-[11px] text-muted">app.visionnovaia.com</span>
+      </div>
+
+      {image ? (
+        <img src={image} alt="Panel de CRM Nova con el pipeline de contactos filtrados" class="block w-full" loading="lazy" decoding="async" />
+      ) : (
+        <div class="flex text-left">
+          <nav class="hidden w-14 shrink-0 flex-col items-center gap-5 border-r border-white/5 py-5 text-muted md:flex" aria-hidden="true">
+            {nav.map((n, i) => <span class:list={['flex h-8 w-8 items-center justify-center rounded-lg', i === 0 && 'bg-gold-400/10 text-gold-200']}><Icon name={n} size={18} /></span>)}
+          </nav>
+          <div class="min-w-0 flex-1 p-4 md:p-6">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.18em] text-muted">Clientes filtrados este mes</p>
+                <p class="mt-1 flex items-baseline gap-3">
+                  <span class="font-display text-5xl italic leading-none text-gold-200 md:text-6xl" data-counter="18">18</span>
+                  <span class="rounded-full border border-white/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.15em] text-muted">Datos de ejemplo</span>
+                </p>
+              </div>
+              <div class="hidden gap-6 text-right sm:flex">
+                <div><p class="text-[11px] uppercase tracking-[0.15em] text-muted">Respuesta</p><p class="mt-1 text-lg text-cream">&lt;&nbsp;60&nbsp;s</p></div>
+                <div><p class="text-[11px] uppercase tracking-[0.15em] text-muted">Canales</p><p class="mt-1 text-lg text-cream">WhatsApp · Voz</p></div>
+              </div>
+            </div>
+
+            <div class="mt-5 grid grid-cols-2 gap-3 md:mt-6 md:grid-cols-4">
+              {columns.map((c) => (
+                <div class="rounded-2xl bg-white/[0.025] p-2.5 ring-1 ring-white/5">
+                  <p class="flex items-center gap-2 px-1 pb-2.5 text-[11px] font-medium uppercase tracking-[0.15em] text-cream/70">
+                    <span class:list={['h-1.5 w-1.5 rounded-full', c.tone]} aria-hidden="true"></span>{c.name}
+                    <span class="ml-auto text-muted">{c.cards.length}</span>
+                  </p>
+                  <ul class="flex flex-col gap-2">
+                    {c.cards.map((k) => (
+                      <li class="rounded-xl border border-white/5 bg-surface-2 p-2.5">
+                        <p class="flex items-center justify-between gap-2 text-[12.5px] font-medium text-cream">
+                          <span class="truncate">{k.who}</span>
+                          <span class="hidden shrink-0 text-[9px] uppercase tracking-[0.12em] text-muted lg:inline">Ejemplo</span>
+                        </p>
+                        <p class="mt-1 text-[11.5px] leading-snug text-muted lg:truncate">{k.what}</p>
+                        <p class="mt-2 inline-block rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] text-cream/60">{k.via}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .crm-frame { width: 100%; max-width: 1080px; }
+  @media (min-width: 768px) {
+    /* que el panel quepa entero en la pantalla mientras está fijado */
+    .crm-frame { max-width: min(1080px, calc((100svh - 300px) * 2)); }
+  }
+</style>
