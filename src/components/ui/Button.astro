@@ -1,0 +1,20 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'gold' | 'glass' | 'ghost';
+  size?: 'md' | 'lg';
+  class?: string;
+  'data-open-form'?: boolean | string;
+  [key: string]: unknown;
+}
+const { href = '/contacto#formulario', variant = 'gold', size = 'md', class: cls = '', ...rest } = Astro.props;
+const variants = {
+  gold: 'bg-gold shadow-[0_8px_30px_-8px_rgb(217_178_102/0.55)] hover:brightness-110',
+  glass: 'glass text-cream hover:bg-white/10',
+  ghost: 'text-cream hover:text-gold-200 underline-offset-4 hover:underline',
+};
+const sizes = { md: 'min-h-11 px-6 text-[13px]', lg: 'min-h-14 px-8 text-sm' };
+---
+<a href={href} {...rest} class:list={['inline-flex items-center justify-center gap-2 rounded-full font-medium transition duration-300 ease-out-expo active:scale-[0.97]', variants[variant], sizes[size], cls]}>
+  <slot />
+</a>

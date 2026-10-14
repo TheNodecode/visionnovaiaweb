@@ -1,0 +1,49 @@
+---
+import { SITE } from '../../config/site';
+import { FOOTER_LINKS } from '../../data/nav';
+
+const cols = [
+  { title: 'Servicios', links: FOOTER_LINKS.services },
+  { title: 'Sectores', links: FOOTER_LINKS.sectors },
+  { title: 'Ciudades', links: FOOTER_LINKS.cities },
+  { title: 'Empresa', links: FOOTER_LINKS.company },
+];
+const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-cream';
+---
+<footer class="relative mt-24 overflow-hidden border-t border-white/10 bg-ink" style="padding-bottom: env(safe-area-inset-bottom)">
+  <div class="container-x pt-16">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
+      <div class="flex flex-col items-start gap-5">
+        <a href="/" aria-label="Visión Nova, inicio"><img src="/brand/logo-horizontal.webp" alt="Visión Nova" width="320" height="183" loading="lazy" decoding="async" class="h-auto w-[240px] max-w-full sm:w-[280px]" /></a>
+        <p class="font-display text-2xl italic text-cream">{SITE.tagline}</p>
+        <ul class="flex flex-col text-sm text-muted">
+          <li><a href={SITE.whatsapp} target="_blank" rel="noopener" class={linkCls}>WhatsApp {SITE.phoneDisplay}</a></li>
+          <li><a href={`mailto:${SITE.email}`} class={linkCls + ' break-all'}>{SITE.email}</a></li>
+          <li class="flex min-h-11 items-center">Girona · Grabamos en toda España</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+        {cols.map((c) => (
+          <nav aria-label={c.title}>
+            <h3 class="mb-2 text-[11px] uppercase tracking-[0.25em] text-gold-400">{c.title}</h3>
+            <ul class="flex flex-col">
+              {c.links.map((l) => <li><a href={l.href} class={linkCls}>{l.label}</a></li>)}
+            </ul>
+          </nav>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© 2026 Visión Nova</p>
+      <ul class="flex flex-wrap gap-x-5">
+        {FOOTER_LINKS.legal.map((l) => <li><a href={l.href} class="inline-flex min-h-11 items-center transition-colors hover:text-cream">{l.label}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div aria-hidden="true" class="pointer-events-none select-none overflow-hidden pb-2 text-center">
+    <span class="text-silver block whitespace-nowrap font-display italic leading-[0.9] opacity-[0.06]" style="font-size: clamp(4rem, 21vw, 22rem)">visión nova</span>
+  </div>
+</footer>
