@@ -14,7 +14,7 @@ import Guarantee from '../components/sections/Guarantee.astro';
 import ForWho from '../components/sections/ForWho.astro';
 import SoftwareNova from '../components/sections/SoftwareNova.astro';
 import Faq from '../components/sections/Faq.astro';
-import { HERO_BTS_VIDEO, HERO_BTS_POSTER, CONTENT_REELS, CRM_IMAGE, AUDIO_DEMOS } from '../data/media';
+import { HERO_BTS_VIDEO, HERO_BTS_POSTER, BTS_PHOTO, CONTENT_REELS, CRM_IMAGE, AUDIO_DEMOS } from '../data/media';
 import { HOME_FAQ } from '../data/faqs';
 import { SITE } from '../config/site';
 
@@ -27,7 +27,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'V
   schema={schema}
 >
   <HeroHome />
-  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} caption="Así trabajamos: vamos a tu negocio y grabamos." />
+  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} alt={BTS_PHOTO.alt} position="60% 44%" caption="Así trabajamos: vamos a tu negocio y grabamos." />
   <ProblemFilter />
   <SystemActs />
   <ContentWall items={CONTENT_REELS} />

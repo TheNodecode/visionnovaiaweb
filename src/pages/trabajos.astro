@@ -5,7 +5,7 @@ import ContentWall from '../components/sections/ContentWall.astro';
 import ScaleVideo from '../components/sections/ScaleVideo.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
 import Eyebrow from '../components/ui/Eyebrow.astro';
-import { CONTENT_REELS, HERO_BTS_VIDEO, HERO_BTS_POSTER } from '../data/media';
+import { CONTENT_REELS, HERO_BTS_VIDEO, HERO_BTS_POSTER, BTS_PHOTO } from '../data/media';
 import { SITE } from '../config/site';
 
 const path = '/trabajos';
@@ -33,7 +33,7 @@ const schema = [{
 
   <ContentWall items={CONTENT_REELS} />
 
-  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} caption="Guion, luz y equipo: llegamos con todo preparado." />
+  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} alt={BTS_PHOTO.alt} position="60% 44%" caption="Guion, luz y equipo: llegamos con todo preparado." />
 
   <section class="relative bg-ink py-24 md:py-32" aria-labelledby="cases-title">
     <div class="container-x">

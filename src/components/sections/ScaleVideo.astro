@@ -1,12 +1,19 @@
 ---
-interface Props { src?: string; poster: string; caption: string }
-const { src, poster, caption } = Astro.props;
+import { BTS_PHOTO } from '../../data/media';
+
+interface Props { src?: string; poster: string; caption: string; alt?: string; position?: string }
+const { src, poster, caption, alt = '', position = '50% 40%' } = Astro.props;
+// La foto real detrás de cámaras lleva respaldo JPEG para navegadores sin WebP.
+const fallback = poster === BTS_PHOTO.src ? BTS_PHOTO.fallback : undefined;
 ---
 <section data-scale-media class="relative bg-ink px-4 py-10 md:h-[100svh] md:p-0" aria-label="Detrás de cámaras">
   <div data-scale-target class="relative h-[72svh] overflow-hidden rounded-[28px] md:absolute md:inset-0 md:h-auto md:rounded-none">
     {src
       ? <video data-inview-video class="absolute inset-0 h-full w-full object-cover" src={src} poster={poster} muted loop playsinline preload="none" aria-hidden="true"></video>
-      : <img class="absolute inset-0 h-full w-full object-cover" src={poster} alt="" loading="lazy" decoding="async" />}
+      : <picture>
+          {fallback && <source srcset={poster} type="image/webp" />}
+          <img class="absolute inset-0 h-full w-full object-cover" style={`object-position: ${position}`} src={fallback ?? poster} alt={alt} loading="lazy" decoding="async" />
+        </picture>}
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-ink/30" aria-hidden="true"></div>
   </div>
   <!-- El pie va fuera del marco recortado para que se lea durante todo el crecimiento -->
