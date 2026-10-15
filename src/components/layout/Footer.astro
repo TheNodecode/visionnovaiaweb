@@ -12,7 +12,10 @@ const cols = [
 const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-cream';
 ---
 <footer class="relative mt-24 overflow-hidden border-t border-white/10 bg-ink" style="padding-bottom: env(safe-area-inset-bottom)">
-  <div class="container-x pt-16">
+  <!-- Marca de agua: la estrella real, muy tenue y cortada por el borde del pie (sin texto escrito) -->
+  <img src="/brand/logo-star.webp" alt="" aria-hidden="true" width="440" height="512" loading="lazy" decoding="async"
+    class="pointer-events-none absolute -bottom-[18%] -right-[8%] w-[clamp(300px,44vw,640px)] select-none opacity-[0.05]" />
+  <div class="container-x relative pb-6 pt-16">
     <div class="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
       <div class="flex flex-col items-start gap-5">
         <Logo variant="full" eager={false} class="-ml-1" />
@@ -43,7 +46,4 @@ const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition
     </div>
   </div>
 
-  <div aria-hidden="true" class="pointer-events-none select-none overflow-hidden pb-2 text-center">
-    <span class="text-silver block whitespace-nowrap font-display italic leading-[0.9] opacity-[0.06]" style="font-size: clamp(4rem, 21vw, 22rem)">visión nova</span>
-  </div>
 </footer>

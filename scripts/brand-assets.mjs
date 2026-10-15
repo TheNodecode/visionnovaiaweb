@@ -183,6 +183,25 @@ await emit(full, 'logo-horizontal', 300); // pie: con lema
 const noTag = await cutOut(H_FILE, H_REGION, { r: 12, solid: (x) => x < 1180 - H_REGION.left, mask: (x, y) => x > 1300 - H_REGION.left && y > 1205 - H_REGION.top });
 await emit(noTag, 'logo-horizontal-sin-lema', 168);
 
+// Variante tinta para secciones claras (crema): VISIÓN (blanco) pasa a tinta #0a0a0a y el oro
+// se lleva a gold-600 (#b8862f) conservando su sombreado. Todavía no se usa en la web.
+function inkVariant(c) {
+  const d = Buffer.from(c.data);
+  for (let i = 0; i < d.length; i += 4) {
+    if (!d[i + 3]) continue;
+    const r = d[i], g = d[i + 1], b = d[i + 2], mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+    // Solo las letras pasan a tinta; los brillos casi blancos de la estrella (a la izquierda
+    // del divisor, ~25 % del ancho) siguen siendo oro.
+    const inWordmark = (i / 4) % c.width > c.width * 0.25;
+    if (inWordmark && (mx === 0 || (mx - mn) / mx < 0.22)) { d[i] = d[i + 1] = d[i + 2] = 10; continue; }
+    const k = Math.min(1.12, Math.max(0.62, 0.45 + 0.7 * (mx / 255)));
+    d[i] = Math.min(255, Math.round(184 * k)); d[i + 1] = Math.min(255, Math.round(134 * k)); d[i + 2] = Math.min(255, Math.round(47 * k));
+  }
+  return { ...c, data: d };
+}
+await emit(inkVariant(full), 'logo-horizontal-ink', 300, { png: false });
+await emit(inkVariant(noTag), 'logo-horizontal-sin-lema-ink', 168, { png: false });
+
 // ── Estrella sola, del icono cuadrado (3840²), con más detalle ──
 const I_FILE = 'assets-src/marca/logo-icono-original.png';
 const star = await cutOut(I_FILE, { left: 860, top: 440, width: 2160, height: 2480 }, { f: 16, r: 12, lo: 24, solid: () => true, mask: (x, y) => x < 320 && y < 760 });

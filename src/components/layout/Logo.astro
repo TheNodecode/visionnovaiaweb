@@ -5,7 +5,7 @@
 interface Props { class?: string; variant?: 'header' | 'full'; imgClass?: string; eager?: boolean }
 const { class: cls = '', variant = 'header', imgClass, eager = true } = Astro.props;
 const img = variant === 'full'
-  ? { src: '/brand/logo-horizontal.webp', width: 887, height: 300, cls: 'h-auto w-[280px] max-w-full sm:w-[340px]' }
+  ? { src: '/brand/logo-horizontal.webp', width: 887, height: 300, cls: 'h-auto w-[320px] max-w-full sm:w-[380px] lg:w-[420px]' }
   : { src: '/brand/logo-horizontal-sin-lema.webp', width: 497, height: 168, cls: 'h-12 w-auto lg:h-14' };
 ---
 <a href="/" class:list={['inline-flex min-h-11 shrink-0 items-center', cls]} aria-label="Visión Nova, inicio">
