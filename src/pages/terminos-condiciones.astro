@@ -1,0 +1,68 @@
+---
+import LegalPage from '../components/legal/LegalPage.astro';
+import { SITE } from '../config/site';
+const { street, postalCode, city } = SITE.address;
+---
+<LegalPage
+  title="Términos y condiciones"
+  seoTitle="Términos y condiciones | Visión Nova"
+  description="Condiciones de uso de la web de Visión Nova: titular, objeto, propiedad intelectual, contratación de servicios, enlaces externos y legislación aplicable."
+  path="/terminos-condiciones"
+  updated="15 de octubre de 2026"
+>
+  <h2>1. Titular de la web</h2>
+  <p>
+    Esta web, visionnovaia.com, la gestiona <strong>{SITE.founder}</strong> (NIF: Z1211062W), autónomo que trabaja con el nombre
+    comercial {SITE.name}, con domicilio en {street}, {postalCode} {city} (España). Contacto:
+    <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+  </p>
+
+  <h2>2. Objeto</h2>
+  <p>
+    {SITE.name} ofrece producción de contenido audiovisual para negocios, gestión de redes sociales, publicidad en Meta Ads,
+    diseño web y un sistema propio de atención y filtrado de contactos con inteligencia artificial y CRM (Nova). Esta web sirve
+    para informar sobre esos servicios y para que puedas solicitar una llamada o ponerte en contacto con nosotros.
+  </p>
+
+  <h2>3. Condiciones de uso</h2>
+  <p>
+    El acceso a esta web es gratuito y está sujeto a estas condiciones. Al navegar por ella, las aceptas. Te comprometes a hacer
+    un uso lícito de la web y a no realizar ninguna acción que pueda dañarla, inutilizarla o sobrecargarla.
+  </p>
+
+  <h2>4. Propiedad intelectual</h2>
+  <p>
+    Todos los contenidos de la web (textos, diseño, logotipos, imágenes, vídeos y código) son propiedad de {SITE.name} o se usan
+    con la autorización correspondiente, y están protegidos por la normativa de propiedad intelectual. No se permite su
+    reproducción, total o parcial, sin autorización expresa.
+  </p>
+
+  <h2>5. Servicios y contratación</h2>
+  <p>
+    La información sobre servicios que aparece en esta web es orientativa y no constituye una oferta vinculante. Las condiciones
+    concretas de cada servicio (alcance, precio, plazos y, en su caso, garantías) se acuerdan por escrito con cada cliente antes
+    de empezar a trabajar. Los planes del software Nova se contratan directamente en
+    <a href={SITE.appUrl} rel="noopener">app.visionnovaia.com</a>, con sus propias condiciones.
+  </p>
+
+  <h2>6. Enlaces a terceros</h2>
+  <p>
+    Esta web puede incluir enlaces a servicios de terceros, como Calendly o WhatsApp. {SITE.name} no se hace responsable del
+    contenido ni de las políticas de privacidad de esos sitios externos.
+  </p>
+
+  <h2>7. Exclusión de responsabilidad</h2>
+  <p>
+    {SITE.name} no garantiza que la web esté disponible en todo momento ni se responsabiliza de los daños que pueda causar su
+    falta de disponibilidad o algún fallo en los contenidos, sin perjuicio de las medidas que tomamos para evitarlo.
+  </p>
+
+  <h2>8. Legislación aplicable</h2>
+  <p>
+    Estas condiciones se rigen por la legislación española. Para cualquier controversia derivada del uso de esta web, las partes
+    se someten a los juzgados y tribunales que correspondan según la normativa de protección de consumidores aplicable.
+  </p>
+
+  <h2>9. Contacto</h2>
+  <p>Para cualquier duda sobre estas condiciones, escríbenos a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+</LegalPage>

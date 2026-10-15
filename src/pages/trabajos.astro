@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import ContentWall from '../components/sections/ContentWall.astro';
+import ScaleVideo from '../components/sections/ScaleVideo.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import { CONTENT_REELS, HERO_BTS_VIDEO, HERO_BTS_POSTER } from '../data/media';
+import { SITE } from '../config/site';
+
+const path = '/trabajos';
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Trabajos', item: SITE.url + path },
+  ],
+}];
+---
+<BaseLayout
+  title="Trabajos y detrás de cámaras | Visión Nova"
+  description="Piezas de contenido y rodajes de Visión Nova: así grabamos en el negocio de cada cliente, con su equipo y su local, para anuncios y redes que parecen suyos."
+  path={path}
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Trabajos"
+    title="Trabajos y"
+    titleAccent="detrás de cámaras."
+    lead="Grabamos en el negocio de cada cliente, con su equipo y su forma de explicar las cosas. Aquí tienes una muestra de cómo trabajamos."
+  />
+
+  <ContentWall items={CONTENT_REELS} />
+
+  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} caption="Guion, luz y equipo: llegamos con todo preparado." />
+
+  <section class="relative bg-ink py-24 md:py-32" aria-labelledby="cases-title">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl rounded-[32px] border border-white/10 bg-surface/60 px-6 py-12 text-center sm:px-12 md:py-16" data-reveal>
+        <Eyebrow>Casos con resultados</Eyebrow>
+        <h2 id="cases-title" class="mt-5 font-display text-[34px] italic leading-[1.08] text-cream text-balance md:text-[48px]">
+          Los números, <span class="text-gold">cuando estén medidos.</span>
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">
+          Estamos documentando los resultados de nuestros clientes actuales. Mientras tanto, mira cómo trabajamos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="¿Grabamos en tu negocio?" lead="Cuéntanos qué haces y te enseñamos qué contenido y qué sistema montaríamos para ti." />
+</BaseLayout>
