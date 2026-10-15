@@ -1,0 +1,44 @@
+# Visión Nova
+
+> Agencia de marketing con sede en Girona que trabaja en toda España. Graba contenido en el propio negocio, gestiona redes sociales, lanza campañas de Meta Ads y monta un sistema propio de IA (Nova) que atiende a los contactos por WhatsApp y por teléfono y los organiza en un CRM.
+
+## Qué hace
+
+- Creación de contenido: grabamos en el local del cliente, en cualquier punto de España.
+- Gestión de redes sociales.
+- Publicidad en Meta Ads (Facebook e Instagram).
+- Nova, sistema propio de IA: IA para WhatsApp (WhatsApp Business API oficial), agente de voz y CRM.
+
+## Para quién
+
+Negocios locales de ticket alto: clínicas dentales, medicina estética, inmobiliarias y empresas de reformas.
+
+## Contacto
+
+- Web: https://www.visionnovaia.com
+- Email: stiveng.visionnova@gmail.com
+- WhatsApp: +34 610 85 97 03
+- Dirección: Carrer Puig Pedrós 8, 17520 Girona
+
+## Páginas principales
+
+- [Inicio](https://www.visionnovaia.com/): qué hacemos y cómo trabajamos.
+- [Creación de contenido](https://www.visionnovaia.com/creacion-de-contenido): grabación de vídeo y foto en el negocio.
+- [Gestión de redes sociales](https://www.visionnovaia.com/gestion-redes-sociales): planificación y publicación en redes.
+- [Publicidad en Meta Ads](https://www.visionnovaia.com/publicidad-meta-ads): campañas en Facebook e Instagram.
+- [Sistema IA](https://www.visionnovaia.com/sistema-ia): el sistema que atiende y filtra a los contactos.
+- [WhatsApp Business API](https://www.visionnovaia.com/whatsapp-business-api): IA conectada a la API oficial de WhatsApp Business.
+- [Diseño web](https://www.visionnovaia.com/diseno-web): webs pensadas para convertir visitas en contactos.
+- [Clínicas dentales](https://www.visionnovaia.com/sectores/clinicas-dentales): marketing para clínicas dentales.
+- [Medicina estética](https://www.visionnovaia.com/sectores/medicina-estetica): marketing para clínicas de medicina estética.
+- [Inmobiliarias](https://www.visionnovaia.com/sectores/inmobiliarias): marketing para inmobiliarias.
+- [Reformas](https://www.visionnovaia.com/sectores/reformas): marketing para empresas de reformas.
+- [Agencia de marketing en Madrid](https://www.visionnovaia.com/agencia-marketing-madrid): servicio en Madrid.
+- [Agencia de marketing en Barcelona](https://www.visionnovaia.com/agencia-marketing-barcelona): servicio en Barcelona.
+- [Agencia de marketing en Valencia](https://www.visionnovaia.com/agencia-marketing-valencia): servicio en Valencia.
+- [Agencia de marketing en Málaga](https://www.visionnovaia.com/agencia-marketing-malaga): servicio en Málaga.
+- [Software Nova](https://www.visionnovaia.com/software-nova): el software de IA y CRM de Visión Nova.
+- [Nosotros](https://www.visionnovaia.com/nosotros): quiénes somos.
+- [Trabajos](https://www.visionnovaia.com/trabajos): ejemplos de trabajo.
+- [Contacto](https://www.visionnovaia.com/contacto): reservar una llamada o escribirnos.
+- [Blog](https://www.visionnovaia.com/blog): artículos sobre IA, chatbots y marketing local.
