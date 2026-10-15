@@ -1,3 +1,5 @@
+import type { IconName } from '../components/ui/icon-names';
+
 export type SectorSlug = 'clinicas-dentales' | 'medicina-estetica' | 'inmobiliarias' | 'reformas';
 
 export type SectorPage = {
@@ -8,10 +10,11 @@ export type SectorPage = {
   seoDescription: string; // 140–160 caracteres, empieza por la keyword
   keyword: string;
   hero: { eyebrow: string; title: string; titleAccent?: string; lead: string; bullets: string[] };
-  pains: { title: string; text: string }[]; // 4 dolores concretos del sector
+  pains: { title: string; text: string; icon?: IconName }[]; // 4 dolores concretos del sector
   contentIdeas: string[]; // 4–5 ideas de vídeo que grabaríamos allí
   aiScenario: 'dental' | 'estetica' | 'inmobiliaria' | 'reformas';
   audioFilter: string[]; // sectores de AUDIO_DEMOS que se muestran
+  audioNote?: string; // aviso junto a los audios cuando no hay demo propia del sector
   defaultTicket: number; // ticket medio inicial de la calculadora
   complianceNote?: string; // solo sectores sanitarios
   faq: { q: string; a: string }[]; // 5, específicas
@@ -32,7 +35,7 @@ export const SECTORS: SectorPage[] = [
       eyebrow: 'Marketing para clínicas dentales',
       title: 'Pacientes que llegan a la primera visita',
       titleAccent: 'sabiendo ya quién les va a atender.',
-      lead: 'El miedo al dentista se suaviza cuando el paciente ya ha visto caras conocidas. Grabamos a tus doctores y a tu equipo en la propia clínica, convertimos esos vídeos en anuncios para tu zona y dejamos que la IA atienda WhatsApp y teléfono: pregunta qué tratamiento buscan, cuándo quieren empezar y propone una cita.',
+      lead: 'Elegir clínica es más fácil cuando ya has visto las caras de quien te va a atender. Grabamos a tus doctores y a tu equipo en la propia clínica, convertimos esos vídeos en anuncios para tu zona y dejamos que la IA atienda WhatsApp y teléfono: pregunta qué tratamiento buscan, cuándo quieren empezar y propone una cita.',
       bullets: [
         'Vídeos con tus doctores, grabados en tu clínica',
         'Consultas de WhatsApp contestadas en menos de 60 s',
@@ -41,18 +44,22 @@ export const SECTORS: SectorPage[] = [
     },
     pains: [
       {
+        icon: 'phone',
         title: 'Llamadas que caen en plena consulta',
         text: 'Recepción está cobrando, confirmando citas y atendiendo a quien sale del gabinete. El teléfono suena, nadie puede cogerlo y ese paciente prueba con la siguiente clínica de la lista.',
       },
       {
+        icon: 'crm',
         title: 'Presupuestos que se quedan en el cajón',
         text: 'Haces la valoración, explicas el plan de implantes u ortodoncia, entregas el presupuesto y el paciente dice que lo pensará. Sin un seguimiento ordenado, esas conversaciones se enfrían solas.',
       },
       {
+        icon: 'megaphone',
         title: 'Promociones que atraen a quien solo busca la oferta',
         text: 'Las campañas de revisión a precio de saldo llenan la agenda de gente que viene una vez y no vuelve. Para tratamientos de importe alto necesitas contactos con un motivo real para venir.',
       },
       {
+        icon: 'camera',
         title: 'Una clínica que en redes parece cualquier otra',
         text: 'Fotos de banco de imágenes, sonrisas genéricas y publicaciones sueltas. El paciente no sabe quién le va a tratar ni cómo es la clínica por dentro, así que elige por cercanía o por precio.',
       },
@@ -71,7 +78,7 @@ export const SECTORS: SectorPage[] = [
     faq: [
       {
         q: '¿Qué cuidado tenéis con la publicidad sanitaria?',
-        a: 'La publicidad de servicios sanitarios tiene normas propias, tanto en Meta como en España. Escribimos los anuncios sin prometer resultados clínicos ni usar comparativas que puedan confundir, y nada se publica sin que lo revise la clínica. Los requisitos concretos de tu comunidad autónoma los repasamos contigo en la llamada.',
+        a: 'La publicidad de servicios sanitarios tiene normas propias, tanto en Meta como en España. Escribimos los anuncios sin prometer resultados clínicos ni usar comparativas que puedan confundir, y nada se publica sin que lo revise la clínica. Tu clínica conoce los requisitos de su comunidad autónoma; en la llamada vemos cómo encajarlos en los anuncios.',
       },
       {
         q: '¿La IA da citas directamente?',
@@ -87,7 +94,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Sirve para una clínica con varios doctores o varias sedes?',
-        a: 'Sí. Antes de activar nada vemos cómo está organizado vuestro equipo y configuramos contigo cómo se reparten los contactos entre doctores o sedes, y a quién le llega cada aviso.',
+        a: 'Puede encajar, pero depende de cómo estéis organizados. Antes de activar nada lo vemos contigo en la llamada: cómo os llegan hoy los contactos, quién debe atender cada uno y a quién tiene que llegarle cada aviso.',
       },
     ],
     related: ['creacion-de-contenido', 'publicidad-meta-ads', 'sistema-ia', 'whatsapp-business-api'],
@@ -115,18 +122,22 @@ export const SECTORS: SectorPage[] = [
     },
     pains: [
       {
+        icon: 'chat',
         title: 'Mensajes de "¿cuánto cuesta?" que no piden cita',
-        text: 'Llegan decenas de consultas con una pregunta de precio y poco más. Recepción contesta una por una y casi nadie da el paso de reservar valoración.',
+        text: 'Llegan muchas consultas con una pregunta de precio y poco más. Recepción contesta una por una y casi nadie da el paso de reservar valoración.',
       },
       {
+        icon: 'chart',
         title: 'Competencia que vende a golpe de descuento',
         text: 'Cadenas y centros de bajo coste llenan Instagram de ofertas. Si tu comunicación también gira en torno al precio, entras en una carrera que no te conviene ganar.',
       },
       {
+        icon: 'bolt',
         title: 'Consultas de madrugada que se enfrían',
         text: 'Mucha gente se decide de noche, con el móvil en la mano y tras ver tres perfiles. Si a la mañana siguiente nadie le ha contestado, ya ha escrito a otro centro.',
       },
       {
+        icon: 'camera',
         title: 'Un perfil bonito que no explica nada',
         text: 'Imágenes cuidadas y frases inspiradoras, pero ni rastro de quién es la doctora, qué formación tiene el equipo o cómo es una primera valoración. Sin eso, la confianza no aparece.',
       },
@@ -179,7 +190,7 @@ export const SECTORS: SectorPage[] = [
     hero: {
       eyebrow: 'Marketing para inmobiliarias',
       title: 'Menos visitas de curiosos,',
-      titleAccent: 'más compradores con la financiación encaminada.',
+      titleAccent: 'más compradores que ya han hablado de cómo pagar.',
       lead: 'Cada piso publicado trae una avalancha de mensajes, y la mayoría no va a comprar. Grabamos tus inmuebles y a tus agentes, llevamos esos vídeos a campañas para compradores y propietarios de tu zona, y la IA hace las preguntas que tu equipo no tiene tiempo de hacer: para qué buscan, en qué plazo y cómo piensan pagarlo.',
       bullets: [
         'Recorridos en vídeo de tus mejores inmuebles',
@@ -189,18 +200,22 @@ export const SECTORS: SectorPage[] = [
     },
     pains: [
       {
+        icon: 'target',
         title: 'Agentes enseñando pisos a quien solo mira',
         text: 'Una tarde entera de visitas y ninguna con intención real. El problema no es el piso: nadie preguntó antes si esa persona podía o quería comprar.',
       },
       {
+        icon: 'globe',
         title: 'Pocas captaciones de propietarios',
         text: 'El cuello de botella no siempre está en vender, sino en conseguir producto. Si tu marca no suena en el barrio, el propietario firma con la agencia que ya conoce.',
       },
       {
+        icon: 'bolt',
         title: 'El mismo comprador escribe a cinco agencias',
         text: 'Quien busca un tipo de piso contacta con varias inmobiliarias a la vez. Se queda con la que responde primero y con criterio, no con la que devuelve la llamada al día siguiente.',
       },
       {
+        icon: 'camera',
         title: 'Un perfil que es un escaparate de fotos',
         text: 'Publicar cada inmueble con cuatro imágenes y el precio no crea confianza ni comunidad. Falta que se vea quién está detrás y cómo acompaña a sus clientes.',
       },
@@ -215,11 +230,12 @@ export const SECTORS: SectorPage[] = [
     aiScenario: 'inmobiliaria',
     // No hay audio demo de inmobiliaria: se muestran demos de otros sectores con su etiqueta real.
     audioFilter: ['reformas', 'juridico'],
+    audioNote: 'Aún no tenemos audio de inmobiliaria; así suena en otros sectores.',
     defaultTicket: 4000,
     faq: [
       {
         q: '¿La IA puede contestar sobre cualquier inmueble de mi cartera?',
-        a: 'Contesta con los datos que le cargamos y que tú validas: características, zona y disponibilidad. Si le preguntan algo que no tiene, no se lo inventa: lo anota y avisa al agente. Cómo mantenerla al día cuando entra o sale un inmueble lo vemos contigo en la llamada.',
+        a: 'Contesta con los datos que le cargamos y que tú validas: características, zona y disponibilidad. Si le preguntan algo que no tiene, está configurada para no responderlo por su cuenta: lo anota y avisa al agente. Cómo mantenerla al día cuando entra o sale un inmueble lo vemos contigo en la llamada.',
       },
       {
         q: '¿Sirve también para captar propietarios que quieren vender?',
@@ -254,27 +270,31 @@ export const SECTORS: SectorPage[] = [
       eyebrow: 'Marketing para reformas y construcción',
       title: 'Deja de ir a medir',
       titleAccent: 'obras que nunca se van a firmar.',
-      lead: 'Cada visita técnica le cuesta una mañana a alguien de tu equipo. Grabamos tus obras de principio a fin, las convertimos en anuncios para tu zona y la IA atiende cada petición de presupuesto: qué quieren reformar, cuántos metros, para cuándo y con qué presupuesto aproximado. Así decides a qué visitas merece la pena ir.',
+      lead: 'Cada visita técnica le cuesta una mañana a alguien de tu equipo. Grabamos tus obras en sus distintas fases, las convertimos en anuncios para tu zona y la IA atiende cada petición de presupuesto: qué quieren reformar, cuántos metros, para cuándo y con qué presupuesto aproximado. Así decides a qué visitas merece la pena ir.',
       bullets: [
-        'Obras grabadas del antes al después',
+        'Tus obras grabadas en distintas fases',
         'Peticiones de presupuesto filtradas por la IA',
         'Llamadas que entran mientras estás en obra, atendidas',
       ],
     },
     pains: [
       {
+        icon: 'chat',
         title: 'Presupuestos a ciegas',
         text: 'Te piden precio por WhatsApp con una foto borrosa y dos líneas. Para no perder el cliente te desplazas, mides y calculas, y después no vuelve a contestar.',
       },
       {
+        icon: 'phone',
         title: 'El teléfono suena cuando estás subido al andamio',
         text: 'Con la radial en la mano no se coge el móvil. Cada llamada sin respuesta puede ser una reforma integral que acaba firmando otra empresa.',
       },
       {
+        icon: 'chart',
         title: 'Clientes que solo comparan la cifra final',
         text: 'Si nadie ha visto cómo trabajas, la única forma de compararte es el total del presupuesto. Y en ese terreno siempre aparece alguien más barato.',
       },
       {
+        icon: 'film',
         title: 'Trabajo bien hecho que nadie ve',
         text: 'Terminas cocinas y baños de los que estar orgulloso y las fotos se quedan en el móvil del encargado. Ese material es justo lo que convence a quien duda.',
       },

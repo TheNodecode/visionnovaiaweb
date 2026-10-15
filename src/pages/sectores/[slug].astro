@@ -48,10 +48,9 @@ const schema = [
   },
 ];
 
-// Iconos de los dolores: el orden de los 4 dolores es el mismo en todos los sectores
-// (atención, seguimiento/filtro, competencia, imagen), así que se asignan por posición.
-const PAIN_ICONS: IconName[] = ['phone', 'target', 'users', 'camera'];
-const pains = page.pains.map((p, i) => ({ ...p, icon: PAIN_ICONS[i % PAIN_ICONS.length] }));
+// Cada dolor trae su icono en sectors.ts; si falta, se usa uno por posición.
+const FALLBACK_ICONS: IconName[] = ['phone', 'target', 'users', 'camera'];
+const pains = page.pains.map((p, i) => ({ ...p, icon: p.icon ?? FALLBACK_ICONS[i % FALLBACK_ICONS.length] }));
 
 const audios = AUDIO_DEMOS.filter((a) => page.audioFilter.includes(a.sector)).map(({ src, label }) => ({ src, label }));
 
@@ -84,7 +83,7 @@ const related = [
     </div>
   </section>
 
-  <AIDemo scenario={page.aiScenario} audios={audios} />
+  <AIDemo scenario={page.aiScenario} audios={audios} audioNote={page.audioNote} />
 
   {page.complianceNote && (
     <div class="bg-ink pb-8">

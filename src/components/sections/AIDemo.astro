@@ -2,8 +2,8 @@
 import SectionHeading from '../ui/SectionHeading.astro';
 
 type Scenario = 'dental' | 'estetica' | 'inmobiliaria' | 'reformas' | 'general';
-interface Props { scenario: Scenario; audios: { src: string; label: string }[] }
-const { scenario, audios } = Astro.props;
+interface Props { scenario: Scenario; audios: { src: string; label: string }[]; audioNote?: string }
+const { scenario, audios, audioNote } = Astro.props;
 
 type Msg = { from: 'c' | 'ia'; text: string; time: string };
 // Guiones originales: la IA pregunta por necesidad, plazo e intención, y agenda.
@@ -120,6 +120,7 @@ const uid = `ai-${scenario}`;
         <!-- el src se asigna al primer play: no se descarga audio hasta que el usuario lo pide -->
         <audio preload="none" data-audio data-src={audios[0]?.src}></audio>
 
+        {audioNote && <p class="mt-6 text-[13px] leading-relaxed text-muted text-pretty">{audioNote}</p>}
         <ul class="mt-6 grid gap-1.5 sm:grid-cols-2" aria-label="Demos de audio">
           {audios.map((a, i) => (
             <li>
