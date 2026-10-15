@@ -74,7 +74,7 @@ const acts = [
               </li>
             ))}
           </ul>
-          <ul class="mt-4 flex flex-wrap gap-x-5" aria-label={`Servicios de ${a.title.toLowerCase()}`}>
+          <ul class="mt-4 flex flex-wrap gap-x-5" aria-label={`Servicios del acto ${a.n}: ${a.title}`}>
             {a.links.map((l) => (
               <li><a href={l.href} class="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium text-gold-200 underline-offset-4 transition-colors hover:text-gold-400 hover:underline">{l.label}<span aria-hidden="true">→</span></a></li>
             ))}
@@ -161,7 +161,7 @@ const acts = [
       </p>
       <p class="mt-6 max-w-sm text-base leading-relaxed text-muted text-pretty">Lo demás lo hace el sistema: grabar, captar, responder y filtrar.</p>
       <p class="mt-4 max-w-md text-sm leading-relaxed text-muted text-pretty">
-        Y lo adaptamos a tu sector:
+        Y lo adaptamos a tu sector:{' '}
         {SECTORS.map((s, i) => (
           <>{i > 0 && (i === SECTORS.length - 1 ? ' y ' : ', ')}<a href={`/sectores/${s.slug}`} class="text-gold-200 underline underline-offset-4 decoration-gold-400/40 transition-colors hover:text-gold-400">{s.name}</a></>
         ))}.

@@ -12,10 +12,19 @@
   --color-gold-200: #f1d9a0;
   --color-gold-400: #d9b266;
   --color-gold-600: #b8862f;
-  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', 'Instrument Serif Fallback', ui-serif, Georgia, serif;
+  --font-sans: 'Geist Variable', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Fuentes de respaldo con las métricas ajustadas a Geist e Instrument Serif (medidas en el navegador):
+   mientras llega la fuente web el texto ocupa casi lo mismo y el cambio no desplaza la página (CLS). */
+@font-face { font-family: 'Geist Fallback'; src: local('Arial'), local('ArialMT');
+  size-adjust: 101.6%; ascent-override: 99.4%; descent-override: 29.5%; line-gap-override: 0%; }
+@font-face { font-family: 'Instrument Serif Fallback'; font-style: normal; src: local('Times New Roman'), local('TimesNewRomanPSMT'), local('Times');
+  size-adjust: 86.7%; ascent-override: 114.2%; descent-override: 35.8%; line-gap-override: 0%; }
+@font-face { font-family: 'Instrument Serif Fallback'; font-style: italic; src: local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT'), local('Times-Italic');
+  size-adjust: 86.7%; ascent-override: 114.2%; descent-override: 35.8%; line-gap-override: 0%; }
 
 html { background: var(--color-ink); color: var(--color-cream); -webkit-text-size-adjust: 100%; }
 body { font-family: var(--font-sans); background: var(--color-ink); overflow-x: clip; }

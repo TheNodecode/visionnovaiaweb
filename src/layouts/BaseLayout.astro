@@ -7,6 +7,9 @@ import AnnounceBar from '../components/layout/AnnounceBar.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
+// Fuentes críticas (latín): se precargan para que el cambio de fuente no desplace el contenido (CLS).
+import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import serifItalicLatin from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
 interface Props { title: string; description: string; path: string; ogImage?: string; schema?: object[]; noindex?: boolean }
 const { schema = [], ...seo } = Astro.props;
 const org = {
@@ -24,6 +27,8 @@ const org = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifItalicLatin} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <Seo {...seo} />

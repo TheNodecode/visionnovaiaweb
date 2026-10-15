@@ -7,5 +7,10 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   integrations: [sitemap({ filter: (p) => !p.includes('/gracias') })],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    // Las hojas de estilo pequeñas de componentes (formulario, FAQ) van en línea: una petición
+    // menos que bloquee el primer pintado. El resto de recursos sigue el límite por defecto (4 KB).
+    build: { assetsInlineLimit: (file, content) => (file.endsWith('.css') ? content.length < 8192 : undefined) },
+  },
 });

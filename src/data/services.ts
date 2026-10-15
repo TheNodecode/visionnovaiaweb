@@ -182,7 +182,7 @@ export const SERVICES: ServicePage[] = [
         { icon: 'chat', title: 'WhatsApp con IA', text: 'Resuelve dudas, pide los datos que necesitas y propone huecos de tu agenda. Escribe con el tono de tu negocio, no con frases de contestador.' },
         { icon: 'phone', title: 'Agente de voz 24/7', text: 'Atiende llamadas de noche, en fin de semana o cuando todo tu equipo está ocupado. Habla con naturalidad y deja la cita apuntada.' },
         { icon: 'bolt', title: 'Llamadas perdidas recuperadas', text: 'Si alguien llama y nadie lo coge, el sistema le escribe por WhatsApp en ese mismo momento para retomar la conversación antes de que pruebe con otro.' },
-        { icon: 'target', title: 'Necesidad, plazo e intención', text: 'Antes de pasarte a nadie, la IA le pregunta qué busca, para cuándo lo quiere y si está decidido. Tu equipo empieza cada llamada con contexto.' },
+        { icon: 'target', title: 'Necesidad, plazo e intención', text: 'Antes de pasarte a nadie, la IA pregunta al contacto qué busca, para cuándo lo quiere y si está decidido. Tu equipo empieza cada llamada con contexto.' },
         { icon: 'crm', title: 'CRM Nova', text: 'Cada contacto aparece con su origen, la conversación completa y su estado. Ves de un vistazo quién está listo para cerrar y quién necesita más tiempo.' },
         { icon: 'users', title: 'Aviso cuando hace falta una persona', text: 'Una queja, una duda delicada o alguien que pide hablar con el equipo: la IA se aparta y te avisa al instante para que tomes el mando.' },
       ],

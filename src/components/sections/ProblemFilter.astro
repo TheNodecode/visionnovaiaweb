@@ -74,8 +74,9 @@ const legend = [
     background: linear-gradient(135deg, var(--color-gold-200), var(--color-gold-400) 45%, var(--color-gold-600));
     box-shadow: 0 0 0 6px rgb(217 178 102 / 0.08), 0 12px 40px -8px rgb(217 178 102 / 0.55);
   }
-  .pf-legend { transition: opacity 0.8s var(--ease-out-expo) 0.6s; }
-  .pf:not(.is-on) .pf-legend { opacity: 0.35; }
+  .pf-legend span:first-child { transition: opacity 0.8s var(--ease-out-expo) 0.6s; }
+  /* antes de activarse solo se atenúa la cifra; la etiqueta conserva su contraste */
+  .pf:not(.is-on) .pf-legend span:first-child { opacity: 0.35; }
   .pf-legend[data-state='lost'] span:first-child { color: rgb(236 232 225 / 0.3); }
   .pf-legend[data-state='ask'] span:first-child { color: var(--color-muted); }
   .pf-legend[data-state='buy'] span:first-child { color: var(--color-gold-400); }

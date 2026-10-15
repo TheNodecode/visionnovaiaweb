@@ -39,7 +39,8 @@ function reveals() {
       scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
   });
   gsap.utils.toArray<HTMLElement>('[data-split]').forEach((el) => {
-    const split = SplitText.create(el, { type: 'words', mask: 'words' });
+    // aria-label solo es válido en titulares; en párrafos se deja el texto partido tal cual (se lee igual)
+    const split = SplitText.create(el, { type: 'words', mask: 'words', aria: /^H[1-6]$/.test(el.tagName) ? 'auto' : 'none' });
     gsap.from(split.words, { yPercent: 110, duration: 1, ease: 'expo.out', stagger: 0.06,
       scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
   });
