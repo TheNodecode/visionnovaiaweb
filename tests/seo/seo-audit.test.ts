@@ -7,7 +7,7 @@ const walk = (d: string): string[] => readdirSync(d).flatMap((f) => {
   const p = join(d, f);
   return statSync(p).isDirectory() ? walk(p) : p.endsWith('.html') ? [p] : [];
 });
-const pages = existsSync(DIST) ? walk(DIST).filter((p) => !p.includes('404') && !p.includes('gracias')) : [];
+const pages = existsSync(DIST) ? walk(DIST).filter((p) => !p.includes('404')) : [];
 const get = (html: string, re: RegExp) => html.match(re)?.[1] ?? '';
 
 describe.skipIf(!pages.length)('auditoría SEO de dist/', () => {

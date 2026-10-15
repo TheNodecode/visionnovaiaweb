@@ -81,3 +81,20 @@ describe('submitLead', () => {
     await expect(submitLead({}, { fetchImpl: f })).resolves.toEqual({ nova: false, email: false });
   });
 });
+
+describe('buildPayload: atribución', () => {
+  const ctx = { pagina: '/', search: '' };
+  it('la URL actual gana sobre lo guardado', () => {
+    const p = buildPayload(base, { ...ctx, search: '?utm_source=meta&gclid=abc', attribution: { utm_source: 'google', gclid: 'zzz', utm_term: 'dentista' } });
+    expect(p).toMatchObject({ utm_source: 'meta', gclid: 'abc', utm_term: 'dentista' });
+  });
+  it('usa lo guardado cuando la URL no trae parámetros', () => {
+    const p = buildPayload(base, { ...ctx, attribution: { utm_source: 'meta', utm_medium: 'cpc', utm_campaign: 'otono', utm_content: 'v1', fbclid: 'fb1' } });
+    expect(p).toMatchObject({ utm_source: 'meta', utm_medium: 'cpc', utm_campaign: 'otono', utm_content: 'v1', fbclid: 'fb1' });
+  });
+  it('queda vacío si no hay ni URL ni guardado', () => {
+    const p = buildPayload(base, ctx);
+    expect(p).toMatchObject({ utm_source: '', utm_medium: '', utm_campaign: '' });
+    for (const k of ['utm_content', 'utm_term', 'fbclid', 'gclid']) expect(p).not.toHaveProperty(k);
+  });
+});

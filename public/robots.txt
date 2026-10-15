@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /gracias
 
 Sitemap: https://www.visionnovaia.com/sitemap-index.xml

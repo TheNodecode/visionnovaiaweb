@@ -36,7 +36,7 @@ const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition
     </div>
 
     <div class="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-      <p>© 2026 Visión Nova</p>
+      <p>© {new Date().getFullYear()} Visión Nova</p>
       <ul class="flex flex-wrap gap-x-5">
         {FOOTER_LINKS.legal.map((l) => <li><a href={l.href} class="inline-flex min-h-11 items-center transition-colors hover:text-cream">{l.label}</a></li>)}
       </ul>

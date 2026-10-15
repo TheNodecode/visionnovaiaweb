@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://www.visionnovaia.com',
   trailingSlash: 'never',
   build: { format: 'file' },
-  integrations: [sitemap({ filter: (p) => !p.includes('/gracias') })],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
     // Las hojas de estilo pequeñas de componentes (formulario, FAQ) van en línea: una petición

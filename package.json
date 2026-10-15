@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "assets": "node scripts/prepare-assets.mjs",
-    "test": "vitest run",
+    "test": "astro build && vitest run",
     "test:e2e": "playwright test"
   },
   "dependencies": {

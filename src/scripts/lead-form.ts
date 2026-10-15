@@ -1,3 +1,4 @@
+import { readAttribution } from '../lib/attribution';
 import { buildPayload, isQualified, submitLead, validateContact, type LeadInput } from '../lib/lead';
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 'software';
@@ -183,6 +184,16 @@ function initForm(root: HTMLElement) {
     }).catch(() => { /* bloqueado: queda el enlace para abrirlo en otra pestaña */ });
   }
 
+  // Cita reservada: Calendly avisa por postMessage.
+  window.addEventListener('message', (e) => {
+    if (e.origin !== 'https://calendly.com' || e.data?.event !== 'calendly.event_scheduled') return;
+    const w = window as any;
+    try { w.fbq?.('track', 'Schedule'); } catch { /* sin píxel */ }
+    try { w.gtag?.('event', 'book_appointment'); } catch { /* sin GA4 */ }
+    const ok = root.querySelector<HTMLElement>('[data-lf-booked]');
+    if (ok) ok.hidden = false;
+  });
+
   // --- Mensajes en línea ---
   function setMsg(field: string, text: string) {
     const msg = root.querySelector<HTMLElement>(`[data-msg-for="${field}"]`);
@@ -300,11 +311,12 @@ function initForm(root: HTMLElement) {
     const isBot = String(fd.get('_gotcha') ?? '').trim() !== '';
     if (!isBot) {
       try {
-        await submitLead(buildPayload(lead, { pagina: location.pathname, search: location.search }));
+        await submitLead(buildPayload(lead, { pagina: location.pathname, search: location.search, attribution: readAttribution() }));
       } catch { /* el envío nunca bloquea al visitante */ }
       track();
     }
-    write(null);
+    // Marca sin datos personales: si recarga en el paso 6 vuelve a "Elige el hueco", no al paso 1.
+    write(qualified ? { step: 6, data: {} } : null);
     submitBtn.removeAttribute('aria-busy');
     submitBtn.disabled = false;
     sending = false;
@@ -322,7 +334,10 @@ function initForm(root: HTMLElement) {
 
   // --- Restaurar progreso ---
   const saved = read();
-  if (saved && [1, 2, 3, 4, 5].includes(saved.step as number)) {
+  if (saved && saved.step === 6) {
+    show(6);
+    mountCalendly();
+  } else if (saved && [1, 2, 3, 4, 5].includes(saved.step as number)) {
     data = { servicio: [], ...saved.data };
     for (const f of CONTACT_FIELDS) {
       const el = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${f}"]`);

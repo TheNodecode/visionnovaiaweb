@@ -13,6 +13,7 @@ import Guarantee from '../components/sections/Guarantee.astro';
 import Benefits from '../components/sections/Benefits.astro';
 import Faq from '../components/sections/Faq.astro';
 import Eyebrow from '../components/ui/Eyebrow.astro';
+import RelatedLinks from '../components/sections/RelatedLinks.astro';
 import { SERVICES, type ServicePage } from '../data/services';
 import { CITIES, type CityPage } from '../data/cities';
 import { GUARANTEE_FAQ } from '../data/faqs';
@@ -112,27 +113,11 @@ const related = props.kind === 'service'
     </>
   )}
 
-  <nav class="relative bg-ink py-20 md:py-28" aria-labelledby="related-title">
-    <div class="container-x">
-      <div data-reveal><Eyebrow>{props.kind === 'city' ? `Para negocios de ${props.page.city}` : 'Sigue explorando'}</Eyebrow></div>
-      <h2 id="related-title" class="mt-5 font-display text-[36px] italic leading-[1.05] text-cream text-balance md:text-[52px]" data-reveal>
-        {props.kind === 'city' ? 'Sectores donde más encaja y todos los servicios' : 'Servicios y sectores relacionados'}
-      </h2>
-      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:mt-14" data-reveal-stagger>
-        {related.map((r) => (
-          <li>
-            <a href={r.href} class="glass group flex min-h-16 items-center justify-between gap-4 rounded-2xl px-5 py-4 text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">
-              <span class="flex flex-col">
-                <span class="text-[10px] uppercase tracking-[0.2em] text-muted">{r.sector ? 'Sector' : 'Servicio'}</span>
-                <span class="mt-1 text-[15px] font-medium">{r.label}</span>
-              </span>
-              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
+  <RelatedLinks
+    eyebrow={props.kind === 'city' ? `Para negocios de ${props.page.city}` : 'Sigue explorando'}
+    title={props.kind === 'city' ? 'Sectores donde más encaja y todos los servicios' : 'Servicios y sectores relacionados'}
+    items={related.map((r) => ({ href: r.href, label: r.label, kind: r.sector ? 'Sector' : 'Servicio' }))}
+  />
 
   {props.kind === 'city' && (
     <>

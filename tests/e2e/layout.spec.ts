@@ -32,5 +32,5 @@ test('con reduced motion todo el texto es visible', async ({ browser }) => {
 test('las redirecciones antiguas están declaradas', async () => {
   const v = JSON.parse(readFileSync('vercel.json', 'utf8'));
   const src = v.redirects.map((r: { source: string }) => r.source);
-  for (const s of ['/agente-voz', '/chatbot-ia', '/servicios', '/casos-de-uso', '/quienes-somos', '/blog-:slug']) expect(src).toContain(s);
+  for (const s of ['/agente-voz', '/chatbot-ia', '/servicios', '/sectores', '/casos-de-uso', '/quienes-somos', '/blog-:slug']) expect(src).toContain(s);
 });

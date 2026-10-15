@@ -10,6 +10,7 @@ import SystemActs from '../../components/sections/SystemActs.astro';
 import Guarantee from '../../components/sections/Guarantee.astro';
 import Faq from '../../components/sections/Faq.astro';
 import Eyebrow from '../../components/ui/Eyebrow.astro';
+import RelatedLinks from '../../components/sections/RelatedLinks.astro';
 import type { IconName } from '../../components/ui/icon-names';
 import { SECTORS, type SectorPage } from '../../data/sectors';
 import { GUARANTEE_FAQ } from '../../data/faqs';
@@ -101,27 +102,7 @@ const related = [
   <Guarantee />
   <Faq title={`Dudas frecuentes de ${page.name}`} items={[...page.faq, GUARANTEE_FAQ]} />
 
-  <nav class="relative bg-ink py-20 md:py-28" aria-labelledby="related-title">
-    <div class="container-x">
-      <div data-reveal><Eyebrow>Sigue explorando</Eyebrow></div>
-      <h2 id="related-title" class="mt-5 font-display text-[36px] italic leading-[1.05] text-cream text-balance md:text-[52px]" data-reveal>
-        Servicios que usamos aquí y otros sectores
-      </h2>
-      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:mt-14" data-reveal-stagger>
-        {related.map((r) => (
-          <li>
-            <a href={r.href} class="glass group flex min-h-16 items-center justify-between gap-4 rounded-2xl px-5 py-4 text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">
-              <span class="flex flex-col">
-                <span class="text-[10px] uppercase tracking-[0.2em] text-muted">{r.kind}</span>
-                <span class="mt-1 text-[15px] font-medium">{r.label}</span>
-              </span>
-              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
+  <RelatedLinks title="Servicios que usamos aquí y otros sectores" items={related} />
 
   <LeadForm
     id="formulario"

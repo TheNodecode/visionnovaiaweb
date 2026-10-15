@@ -43,8 +43,13 @@ export function isQualified(i: Pick<LeadInput, 'ticket_medio' | 'publicidad_actu
   return !(i.ticket_medio === TICKETS[0] && i.publicidad_actual === ADS[3]);
 }
 
-export function buildPayload(i: LeadInput, ctx: { pagina: string; search: string }): Record<string, string | boolean> {
+export const ATTRIBUTION_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'] as const;
+
+export function buildPayload(i: LeadInput, ctx: { pagina: string; search: string; attribution?: Record<string, string> }): Record<string, string | boolean> {
   const q = new URLSearchParams(ctx.search);
+  const attr = (k: string) => q.get(k) || ctx.attribution?.[k] || '';
+  const extra: Record<string, string> = {};
+  for (const k of ['utm_content', 'utm_term', 'fbclid', 'gclid']) { const v = attr(k); if (v) extra[k] = v; }
   const sector = i.sector === 'Otro' && i.sector_otro?.trim() ? i.sector_otro.trim() : i.sector;
   const servicio = i.servicio.join(', ');
   const mensaje = i.mensaje?.trim() ||
@@ -53,7 +58,7 @@ export function buildPayload(i: LeadInput, ctx: { pagina: string; search: string
     nombre: i.nombre.trim(), email: i.email.trim(), telefono: normalizePhone(i.telefono) ?? i.telefono.trim(),
     mensaje, origen: 'Web', servicio, sector, ticket_medio: i.ticket_medio, publicidad_actual: i.publicidad_actual,
     empresa: i.empresa.trim(), web: i.web?.trim() ?? '', pagina: ctx.pagina,
-    utm_source: q.get('utm_source') ?? '', utm_medium: q.get('utm_medium') ?? '', utm_campaign: q.get('utm_campaign') ?? '',
+    utm_source: attr('utm_source'), utm_medium: attr('utm_medium'), utm_campaign: attr('utm_campaign'), ...extra,
     cualificado: isQualified(i),
   };
 }

@@ -160,7 +160,7 @@ const wa = `${SITE.whatsapp}?text=${encodeURIComponent('Hola, acabo de rellenar 
               <label for={`${id}-mensaje`}>¿Algo más que debamos saber? (opcional)</label>
             </div>
           </div>
-          <input name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <input name="_gotcha" tabindex="-1" autocomplete="off" class="pointer-events-none absolute -left-[9999px] h-px w-px opacity-0" aria-hidden="true" />
           <label class="mt-5 flex min-h-11 cursor-pointer items-start gap-3 text-sm leading-relaxed text-muted">
             <input type="checkbox" name="privacidad" class="lf-checkbox" aria-describedby={`${id}-privacidad-msg`} />
             <span>He leído y acepto la <a href="/politica-privacidad" target="_blank" rel="noopener" class="text-cream underline underline-offset-4 hover:text-gold-200">política de privacidad</a>.</span>
@@ -179,6 +179,7 @@ const wa = `${SITE.whatsapp}?text=${encodeURIComponent('Hola, acabo de rellenar 
           <h3 class="lf-title" tabindex="-1" data-lf-title>Elige el hueco que mejor te venga</h3>
           <p class="lf-sub">20 minutos · te enseñamos cómo quedaría tu sistema</p>
           <div class="lf-cal" data-lf-calendly></div>
+          <p class="mt-4 rounded-2xl border border-gold-400/30 bg-gold-400/10 px-5 py-3 text-sm text-cream" role="status" data-lf-booked hidden>¡Listo! Te hemos enviado la confirmación por email.</p>
           <div class="mt-5 flex flex-col gap-2 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
             <p>¿Prefieres WhatsApp? <a href={wa} target="_blank" rel="noopener" class="text-cream underline underline-offset-4 hover:text-gold-200">Escríbenos</a></p>
             <p><a href={calendlyFallback} target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-cream">Abrir el calendario en otra pestaña</a></p>
