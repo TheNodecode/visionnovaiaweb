@@ -1,7 +1,7 @@
 ---
 title: "Chatbot vs Agente de Voz IA: ¿Cuál Elegir para tu Negocio?"
 description: "Comparativa entre chatbot con IA y agente de voz con IA: diferencias, ventajas y cómo saber cuál necesita tu negocio en Barcelona."
-date: 2026-07-01
+date: 2026-06-22
 tags: ["Chatbot", "Agente de voz"]
 readTime: 5
 related: ["/whatsapp-business-api", "/sistema-ia"]

@@ -31,8 +31,8 @@ const schema = [
     dateModified: iso,
     inLanguage: 'es-ES',
     mainEntityOfPage: SITE.url + path,
-    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: { '@type': 'ImageObject', url: SITE.url + '/brand/logo-icon.webp' } },
+    author: { '@id': SITE.url + '/#org' },
+    publisher: { '@id': SITE.url + '/#org' },
     image: SITE.url + '/brand/og-default.jpg',
   },
   {
@@ -98,6 +98,15 @@ const schema = [
   <CtaBand title="¿Lo vemos aplicado a tu negocio?" lead="Una llamada de 20 minutos para revisar cómo te contactan tus clientes y qué tendría sentido automatizar." />
 </BaseLayout>
 
+<script>
+  // Las tablas con scroll horizontal deben poder enfocarse con teclado.
+  document.querySelectorAll('.post-body table').forEach((t) => {
+    t.setAttribute('tabindex', '0');
+    t.setAttribute('role', 'region');
+    t.setAttribute('aria-label', 'Tabla comparativa, desplazable');
+  });
+</script>
+
 <style>
   .post { max-width: 68ch; }
   .post-body { color: rgb(236 232 225 / 0.86); font-size: 18px; line-height: 1.7; overflow-wrap: break-word; }
@@ -118,6 +127,7 @@ const schema = [
     display: block; width: 100%; max-width: 100%; margin-top: 1.5rem; overflow-x: auto;
     border-collapse: collapse; font-size: 15px; line-height: 1.5;
   }
+  .post-body :global(table:focus-visible) { outline: 2px solid var(--color-gold-400); outline-offset: 2px; }
   .post-body :global(th), .post-body :global(td) {
     padding: 0.75rem 1rem; text-align: left; vertical-align: top; min-width: 9rem;
     border-bottom: 1px solid rgb(255 255 255 / 0.1);

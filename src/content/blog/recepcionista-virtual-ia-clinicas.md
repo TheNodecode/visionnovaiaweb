@@ -1,13 +1,13 @@
 ---
 title: "Recepcionista Virtual con IA para Clínicas en Barcelona y Málaga"
 description: "Cómo una recepcionista virtual con IA agenda, confirma y recuerda citas en clínicas dentales y estéticas de Barcelona y Málaga, sin ampliar personal."
-date: 2026-07-01
+date: 2026-07-22
 tags: ["Clínicas", "Recepcionista virtual"]
 readTime: 6
 related: ["/sistema-ia", "/whatsapp-business-api"]
 readNext: ["agente-voz-ia-malaga", "agente-voz-ia-como-funciona"]
 ---
-En una clínica dental o estética, el teléfono suena constantemente mientras el equipo está atendiendo a un paciente en el sillón. Cada llamada perdida es, con frecuencia, un paciente que llama a la clínica de al lado. Una **recepcionista virtual con inteligencia artificial** ayuda a evitarlo contestando cada llamada al instante, sin importar cuántas lleguen a la vez.
+En una clínica dental o estética, el teléfono suena constantemente mientras el equipo está atendiendo a un paciente en el sillón. Cada llamada perdida es, con frecuencia, un paciente que llama a la clínica de al lado. Una **recepcionista virtual con inteligencia artificial** ayuda a evitarlo atendiendo las llamadas al momento, también cuando entran varias a la vez.
 
 ## Qué hace exactamente en el día a día
 

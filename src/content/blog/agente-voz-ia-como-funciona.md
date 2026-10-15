@@ -1,7 +1,7 @@
 ---
 title: "Agente de Voz con IA: Cómo Funciona y Qué Necesitas Saber"
 description: "Cómo funciona un agente de voz con inteligencia artificial, qué llamadas puede resolver y qué necesitas para implementarlo en tu negocio en Barcelona."
-date: 2026-07-01
+date: 2026-06-22
 tags: ["Agente de voz", "Atención al cliente"]
 readTime: 7
 related: ["/sistema-ia", "/whatsapp-business-api"]
@@ -13,7 +13,7 @@ Cada vez más negocios en Barcelona reciben llamadas que nadie puede contestar a
 
 Un agente de voz con IA combina tres tecnologías trabajando en tiempo real durante la llamada:
 
-- **Reconocimiento de voz** — transcribe lo que dice la persona que llama, en español o catalán según el negocio.
+- **Reconocimiento de voz** — transcribe lo que dice la persona que llama, en el idioma que configuremos contigo.
 - **Comprensión del lenguaje natural** — interpreta la intención (agendar cita, preguntar precio, pedir información) más allá de palabras exactas.
 - **Síntesis de voz natural** — responde con una voz fluida, con pausas e inflexión, no como los antiguos sistemas robóticos de "pulse 1 para...".
 
