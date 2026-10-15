@@ -5,7 +5,7 @@ import { NAV, SERVICES_NAV, SECTORS_NAV, COMPANY_NAV } from '../../data/nav';
 const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px-2.5 text-[11px] uppercase tracking-[0.18em] xl:px-3.5 xl:tracking-[0.2em] text-muted transition-colors hover:text-cream';
 ---
 <header id="site-header" data-scrolled="false"
-  class="site-header fixed left-1/2 z-50 w-[94%] max-w-[1200px] -translate-x-1/2 rounded-full glass"
+  class="site-header fixed left-1/2 z-50 w-[94%] max-w-[1200px] -translate-x-1/2 rounded-full glass glass-blur"
   style="top: calc(env(safe-area-inset-top) + 56px)">
   <div class="hdr-inner flex items-center justify-between gap-2 py-1.5 pl-4 pr-1.5 lg:pl-5 lg:pr-2 xl:pl-6">
     <Logo class="shrink-0" />
@@ -50,7 +50,7 @@ const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px
   </div>
 </header>
 
-<div id="mobile-menu" data-lenis-prevent class="mobile-menu fixed inset-0 z-[60] overflow-y-auto bg-ink/95 backdrop-blur-xl lg:hidden" aria-label="Menú" role="dialog" aria-modal="true" inert>
+<div id="mobile-menu" data-lenis-prevent class="mobile-menu fixed inset-0 z-[60] overflow-y-auto bg-ink/[0.97] lg:hidden" aria-label="Menú" role="dialog" aria-modal="true" inert>
   <div class="flex min-h-[100svh] flex-col px-6" style="padding-top: calc(env(safe-area-inset-top) + 12px); padding-bottom: calc(env(safe-area-inset-bottom) + 20px)">
     <div class="flex items-center justify-between">
       <Logo />

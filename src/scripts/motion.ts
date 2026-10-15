@@ -4,15 +4,26 @@ import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+// la barra de direcciones del móvil cambia la altura al hacer scroll: no recalcular todo por eso
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.documentElement.classList.add(reduce ? 'motion-off' : 'motion-on');
 
+// Ritmo del movimiento: corto y ligero para que la página se sienta rápida.
+const EASE = 'power3.out';
+const REVEAL = { y: 18, duration: 0.6 };
+const STAGGER = 0.04;
+
 function initLenis() {
   if (reduce) return;
-  const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+  // lerp 0.15: sigue a la rueda casi al instante (≈0,3 s hasta parar), sin la sensación flotante de 0.1.
+  // autoRaf queda en false (por defecto): el único bucle es el ticker de GSAP.
+  const lenis = new Lenis({ lerp: 0.15, wheelMultiplier: 1, smoothWheel: true, autoRaf: false });
   lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  // prioritize: Lenis mueve el scroll y ScrollTrigger lo lee ANTES de que GSAP escriba estilos en ese
+  // fotograma; si no, cada lectura de scrollY fuerza un recálculo de estilos (layout thrashing).
+  gsap.ticker.add((t) => lenis.raf(t * 1000), false, true);
   gsap.ticker.lagSmoothing(0);
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -31,18 +42,22 @@ function initLenis() {
 
 function reveals() {
   gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
-    gsap.from(el, { y: 32, opacity: 0, duration: 0.9, ease: 'expo.out', delay: Number(el.dataset.revealDelay || 0),
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    gsap.from(el, { ...REVEAL, opacity: 0, ease: EASE, delay: Number(el.dataset.revealDelay || 0) * 0.7,
+      scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
   });
   gsap.utils.toArray<HTMLElement>('[data-reveal-stagger]').forEach((el) => {
-    gsap.from(el.children, { y: 28, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08,
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+    gsap.from(el.children, { ...REVEAL, y: 16, opacity: 0, ease: EASE, stagger: STAGGER,
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
   });
   gsap.utils.toArray<HTMLElement>('[data-split]').forEach((el) => {
-    // aria-label solo es válido en titulares; en párrafos se deja el texto partido tal cual (se lee igual)
-    const split = SplitText.create(el, { type: 'words', mask: 'words', aria: /^H[1-6]$/.test(el.tagName) ? 'auto' : 'none' });
-    gsap.from(split.words, { yPercent: 110, duration: 1, ease: 'expo.out', stagger: 0.06,
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+    // SplitText solo en titulares h1/h2; el resto (párrafos largos) entra con un revelado simple
+    if (!/^H[12]$/.test(el.tagName)) {
+      gsap.from(el, { ...REVEAL, opacity: 0, ease: EASE, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+      return;
+    }
+    const split = SplitText.create(el, { type: 'words', mask: 'words', aria: 'auto' });
+    gsap.from(split.words, { yPercent: 110, duration: 0.7, ease: 'expo.out', stagger: { amount: Math.min(0.35, split.words.length * 0.035) },
+      scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
   });
 }
 
@@ -52,7 +67,7 @@ function counters() {
     if (!Number.isFinite(end)) return;
     const pre = el.dataset.counterPrefix ?? '', suf = el.dataset.counterSuffix ?? '';
     const obj = { v: 0 };
-    gsap.to(obj, { v: end, duration: 1.6, ease: 'power2.out',
+    gsap.to(obj, { v: end, duration: 1.2, ease: 'power2.out',
       onUpdate: () => (el.textContent = pre + Math.round(obj.v).toLocaleString('es-ES') + suf),
       scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
   });
@@ -93,7 +108,9 @@ function scrollLinked() {
       if (!track) return;
       const dist = () => Math.max(0, track.scrollWidth - window.innerWidth + 80);
       gsap.to(track, { x: () => -dist(), ease: 'none',
-        scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), scrub: 1, pin: true, refreshPriority: 1, invalidateOnRefresh: true } });
+        scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), scrub: true, pin: true, refreshPriority: 1, invalidateOnRefresh: true,
+          // la capa compuesta solo mientras la pista se mueve
+          onToggle: (self) => { track.style.willChange = self.isActive ? 'transform' : ''; } } });
     });
   });
   mm.add('(hover: hover) and (pointer: fine)', () => {
