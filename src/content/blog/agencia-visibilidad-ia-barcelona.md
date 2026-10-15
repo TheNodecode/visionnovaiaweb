@@ -1,5 +1,5 @@
 ---
-title: "Agencia de Visibilidad IA en Barcelona: Cómo Elegir Bien"
+title: "Agencia de visibilidad IA en Barcelona: cómo elegir bien"
 description: "Qué hace una agencia de visibilidad IA, en qué se diferencia de una consultora de visión artificial y qué preguntar antes de contratar una en Barcelona."
 date: 2026-07-22
 tags: ["GEO", "Visibilidad IA"]
@@ -26,7 +26,7 @@ La **visibilidad IA** —también llamada GEO (Generative Engine Optimization)�
 
 Antes de firmar con cualquier agencia en Barcelona (o en cualquier ciudad), conviene preguntar: ¿el trabajo queda en mi propia web o depende de tu plataforma? ¿Puedo ver ejemplos de negocios que ya aparecen mejor posicionados gracias a vosotros? ¿Hay permanencia obligatoria si en dos meses no veo resultado?
 
-En Visión Nova, publicamos el contenido SEO/GEO en tu propio dominio siempre que sea posible, y no en una plataforma de terceros.
+Sea cual sea el proveedor, lo recomendable es que el contenido SEO/GEO se publique en tu propio dominio y no en una plataforma de terceros: así el trabajo sigue siendo tuyo aunque cambies de agencia.
 
 ## Preguntas frecuentes
 

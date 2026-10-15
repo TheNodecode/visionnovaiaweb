@@ -26,7 +26,7 @@ export const CITIES: CityPage[] = [
       eyebrow: 'Agencia de marketing en Madrid',
       title: 'Marketing en Madrid para destacar',
       titleAccent: 'donde todos compiten por la misma atención.',
-      lead: 'En Madrid casi cualquier servicio tiene a otro negocio parecido a pocas calles. Grabamos contenido que solo puede ser tuyo, lo convertimos en anuncios para tu zona y dejamos a la IA atendiendo cada mensaje antes de que el cliente pruebe suerte en otra parte.',
+      lead: 'En Madrid casi cualquier servicio tiene a otro negocio parecido a pocas calles. Grabamos contenido que solo puede ser tuyo, lo convertimos en anuncios para tu zona y dejamos a la IA atendiendo los mensajes antes de que el cliente pruebe suerte en otra parte.',
       bullets: ['Jornada de grabación pactada con tu agenda', 'Anuncios segmentados por barrio y zona', 'WhatsApp atendido en menos de 60 s'],
     },
     localAngle: {
@@ -55,7 +55,7 @@ export const CITIES: CityPage[] = [
       eyebrow: 'Agencia de marketing en Barcelona',
       title: 'Marketing en Barcelona con contenido',
       titleAccent: 'que tu clientela reconoce como suyo.',
-      lead: 'Barcelona mezcla vecinos de toda la vida, gente llegada de fuera y un público que decide mirando Instagram. Grabamos en tu negocio contenido pensado para esa mezcla, lo movemos con anuncios en Meta y la IA atiende a cada contacto al momento, de día o de noche.',
+      lead: 'Barcelona mezcla vecinos de toda la vida, gente llegada de fuera y un público que decide mirando Instagram. Grabamos en tu negocio contenido pensado para esa mezcla, lo movemos con anuncios en Meta y la IA atiende a tus contactos al momento, de día o de noche.',
       bullets: ['Rodaje con agenda flexible desde Girona', 'Vídeos con tu equipo y tu local reales', 'Filtro con IA antes de cada llamada'],
     },
     localAngle: {
@@ -79,12 +79,12 @@ export const CITIES: CityPage[] = [
     city: 'Valencia',
     seoTitle: 'Agencia de marketing en Valencia: vídeo, Ads e IA',
     seoDescription:
-      'Agencia de marketing en Valencia: grabamos el contenido en tu negocio, lanzamos tus campañas de Meta Ads y la IA responde a cada contacto en menos de 60 s.',
+      'Agencia de marketing en Valencia: grabamos el contenido en tu negocio, lanzamos tus campañas de Meta Ads y la IA responde a tus contactos en menos de 60 s.',
     hero: {
       eyebrow: 'Agencia de marketing en Valencia',
       title: 'Marketing en Valencia para negocios',
       titleAccent: 'que quieren crecer sin contratar más.',
-      lead: 'Valencia se ha convertido en una ciudad muy buscada para vivir, y eso trae clientes nuevos que todavía no conocen a nadie. Llegamos a tu negocio a grabar, ponemos tus vídeos delante de esa gente con anuncios en Meta y la IA atiende cada mensaje mientras tu equipo sigue con su trabajo.',
+      lead: 'Valencia se ha convertido en una ciudad muy buscada para vivir, y eso trae clientes nuevos que todavía no conocen a nadie. Llegamos a tu negocio a grabar, ponemos tus vídeos delante de esa gente con anuncios en Meta y la IA atiende los mensajes mientras tu equipo sigue con su trabajo.',
       bullets: ['Grabación en la ciudad o en l’Horta', 'Anuncios para quien acaba de llegar', 'Cada contacto filtrado en CRM Nova'],
     },
     localAngle: {
@@ -98,7 +98,7 @@ export const CITIES: CityPage[] = [
     sectorsHighlight: ['inmobiliarias', 'reformas', 'clinicas-dentales'],
     faq: [
       { q: '¿Grabáis en pueblos del área metropolitana de Valencia?', a: 'Sí. Tanto si estás en el centro como en un municipio de l’Horta, el rodaje se hace en tu local y los anuncios se ajustan a los barrios y pueblos de donde salen tus clientes.' },
-      { q: 'Tengo una inmobiliaria en Valencia. ¿Cómo filtra la IA a los compradores?', a: 'Pregunta lo que preguntaría tu agente: si buscan para vivir o invertir, en qué zona, en qué plazo y si tienen la financiación encaminada. A tu equipo solo le llegan las visitas que tienen sentido.' },
+      { q: 'Tengo una inmobiliaria en Valencia. ¿Cómo filtra la IA a los compradores?', a: 'Pregunta lo que preguntaría tu agente: si buscan para vivir o invertir, en qué zona, en qué plazo y si tienen la financiación encaminada. Así, a tu equipo le llegan las visitas que tienen sentido, con esos datos ya recogidos.' },
       { q: '¿Podéis atender también a clientes extranjeros?', a: 'Si una parte de tus contactos llega de fuera, nos lo cuentas al empezar y preparamos la IA y los guiones teniendo en cuenta a ese público. Nada se activa sin que lo hayas revisado tú.' },
       { q: '¿Cuánto tarda en estar todo funcionando?', a: 'Depende de lo que haya que montar en tu caso: cuentas, número de WhatsApp, primera grabación. En la llamada te damos un calendario realista con cada paso.' },
     ],
@@ -108,7 +108,7 @@ export const CITIES: CityPage[] = [
     city: 'Málaga',
     seoTitle: 'Agencia de marketing en Málaga y Costa del Sol',
     seoDescription:
-      'Agencia de marketing en Málaga y la Costa del Sol: contenido grabado en tu negocio, anuncios en Meta y una IA que atiende a cada contacto a cualquier hora.',
+      'Agencia de marketing en Málaga y la Costa del Sol: contenido grabado en tu negocio, anuncios en Meta y una IA que atiende a tus contactos a cualquier hora.',
     hero: {
       eyebrow: 'Agencia de marketing en Málaga',
       title: 'Marketing en Málaga para un cliente',

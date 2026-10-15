@@ -127,7 +127,7 @@ export const SERVICES: ServicePage[] = [
       eyebrow: 'Agencia de Meta Ads',
       title: 'Anuncios en Facebook e Instagram',
       titleAccent: 'que acaban en citas, no en curiosos.',
-      lead: 'Diseñamos la estrategia, montamos los anuncios con tus propios vídeos y los optimizamos cada semana. La diferencia está en lo que ocurre después del clic: cada contacto recibe respuesta en menos de 60 segundos y llega a tu equipo ya filtrado.',
+      lead: 'Diseñamos la estrategia, montamos los anuncios con tus propios vídeos y los optimizamos cada semana. La diferencia está en lo que ocurre después del clic: la IA responde al contacto en menos de 60 segundos y lo pasa a tu equipo ya filtrado.',
       bullets: ['La inversión la pagas tú directamente a Meta', 'Creativos con vídeos de tu negocio', 'Informe mensual de cada euro'],
     },
     features: {
@@ -146,7 +146,7 @@ export const SERVICES: ServicePage[] = [
       title: 'De la primera llamada a los primeros contactos',
       steps: [
         { title: 'Diagnóstico', text: 'Revisamos tu cuenta publicitaria si ya existe, qué se ha probado antes y cuánto vale para ti un cliente. Con eso fijamos la inversión de partida.' },
-        { title: 'Montaje técnico', text: 'Configuramos píxel, eventos, formularios y la conexión con WhatsApp y CRM Nova para que ningún contacto se pierda por el camino.' },
+        { title: 'Montaje técnico', text: 'Configuramos píxel, eventos, formularios y la conexión con WhatsApp y CRM Nova para que los contactos no se pierdan por el camino.' },
         { title: 'Lanzamiento con variantes', text: 'Salimos con varios creativos y públicos a la vez. Las primeras semanas sirven para ver qué combinación atrae a gente con intención real.' },
         { title: 'Optimización e informe', text: 'Ajustamos cada semana y a final de mes te enviamos un resumen claro: inversión, contactos, contactos filtrados y citas.' },
       ],
@@ -173,7 +173,7 @@ export const SERVICES: ServicePage[] = [
       eyebrow: 'Sistema IA + CRM Nova',
       title: 'Chatbot de WhatsApp con IA y agente de voz',
       titleAccent: 'que atienden mientras tú trabajas.',
-      lead: 'Nova contesta cada mensaje en menos de 60 segundos, coge el teléfono a cualquier hora y retoma las llamadas que no pudiste atender. Pregunta lo que preguntarías tú, propone la cita y te avisa al momento si el cliente necesita hablar con una persona.',
+      lead: 'Nova contesta los mensajes en menos de 60 segundos, coge el teléfono a cualquier hora y retoma las llamadas que no pudiste atender. Pregunta lo que preguntarías tú, propone la cita y te avisa al momento si el cliente necesita hablar con una persona.',
       bullets: ['Respuesta en WhatsApp en menos de 60 s', 'Agente de voz 24/7', 'CRM Nova con cada conversación'],
     },
     features: {
@@ -182,7 +182,7 @@ export const SERVICES: ServicePage[] = [
         { icon: 'chat', title: 'WhatsApp con IA', text: 'Resuelve dudas, pide los datos que necesitas y propone huecos de tu agenda. Escribe con el tono de tu negocio, no con frases de contestador.' },
         { icon: 'phone', title: 'Agente de voz 24/7', text: 'Atiende llamadas de noche, en fin de semana o cuando todo tu equipo está ocupado. Habla con naturalidad y deja la cita apuntada.' },
         { icon: 'bolt', title: 'Llamadas perdidas recuperadas', text: 'Si alguien llama y nadie lo coge, el sistema le escribe por WhatsApp en ese mismo momento para retomar la conversación antes de que pruebe con otro.' },
-        { icon: 'target', title: 'Necesidad, plazo e intención', text: 'Antes de pasarte a nadie, la IA sabe qué busca, para cuándo lo quiere y si está decidido. Tu equipo empieza cada llamada con contexto.' },
+        { icon: 'target', title: 'Necesidad, plazo e intención', text: 'Antes de pasarte a nadie, la IA le pregunta qué busca, para cuándo lo quiere y si está decidido. Tu equipo empieza cada llamada con contexto.' },
         { icon: 'crm', title: 'CRM Nova', text: 'Cada contacto aparece con su origen, la conversación completa y su estado. Ves de un vistazo quién está listo para cerrar y quién necesita más tiempo.' },
         { icon: 'users', title: 'Aviso cuando hace falta una persona', text: 'Una queja, una duda delicada o alguien que pide hablar con el equipo: la IA se aparta y te avisa al instante para que tomes el mando.' },
       ],
@@ -199,9 +199,9 @@ export const SERVICES: ServicePage[] = [
       ],
     },
     faq: [
-      { q: '¿La IA puede inventarse precios o condiciones?', a: 'No. Solo usa la información que tú apruebas. Si le preguntan algo que no sabe, lo dice con naturalidad y avisa a tu equipo. En sectores sanitarios está configurada para no dar indicaciones clínicas y derivar esas preguntas a tu equipo.' },
+      { q: '¿La IA puede inventarse precios o condiciones?', a: 'Está configurada para responder solo con la información que tú apruebas, y la probamos contigo antes de activarla. Si le preguntan algo que no tiene, lo dice con naturalidad y avisa a tu equipo. En sectores sanitarios está configurada para no dar indicaciones clínicas y derivar esas preguntas a tu equipo.' },
       { q: '¿El agente de voz suena a robot?', a: 'Suena a una persona amable que conoce tu negocio. Puedes comprobarlo tú mismo con las grabaciones de demostración de esta página antes de decidir nada.' },
-      { q: '¿Qué pasa con las llamadas fuera de horario?', a: 'Las atiende el agente de voz: resuelve dudas, toma los datos y deja propuesta la cita. Por la mañana tu equipo encuentra en CRM Nova un resumen de cada llamada.' },
+      { q: '¿Qué pasa con las llamadas fuera de horario?', a: 'Las atiende el agente de voz: resuelve dudas, toma los datos y deja propuesta la cita. Por la mañana tu equipo encuentra en CRM Nova el resumen de las llamadas de la noche.' },
       { q: '¿Se puede conectar con la agenda que ya uso?', a: 'Lo revisamos en la llamada: nos dices con qué herramienta gestionas hoy las citas y te explicamos cómo encaja con el sistema antes de empezar.' },
       { q: '¿Qué pasa con los datos de mis clientes?', a: 'Las conversaciones se guardan en tu CRM y solo acceden las personas que tú autorices. Antes de arrancar dejamos por escrito cómo se tratan esos datos, tal como exige el RGPD.' },
       { q: '¿Puedo contratar solo el software, sin la agencia?', a: 'Sí. Si ya tienes contenido y anuncios funcionando, puedes usar Nova por tu cuenta. Los planes del software están publicados en la app de Nova.' },

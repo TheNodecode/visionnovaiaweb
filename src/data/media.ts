@@ -18,7 +18,7 @@ export interface AudioDemo { src: string; label: string; sector: string }
 export const AUDIO_DEMOS: AudioDemo[] = [
   { src: '/audio/demo-dental.mp3', label: 'Clínica dental', sector: 'dental' },
   { src: '/audio/demo-dental-2.mp3', label: 'Clínica dental (2)', sector: 'dental' },
-  { src: '/audio/demo-dental-alameda.mp3', label: 'Clínica dental Alameda', sector: 'dental' },
+  { src: '/audio/demo-dental-alameda.mp3', label: 'Clínica dental (3)', sector: 'dental' },
   { src: '/audio/demo-estetica.mp3', label: 'Medicina estética', sector: 'estetica' },
   { src: '/audio/demo-fisio.mp3', label: 'Fisioterapia', sector: 'fisioterapia' },
   { src: '/audio/demo-constructora.mp3', label: 'Constructora', sector: 'reformas' },

@@ -20,15 +20,15 @@ export const HOME_FAQ: FaqItem[] = [
   },
   {
     q: '¿Mis clientes notarán que hablan con una IA?',
-    a: 'La IA se configura con el tono, las frases y la información real de tu negocio, así que la conversación suena a tu equipo y no a un contestador. Lo que nota el cliente es que le responden al momento y con información correcta, a cualquier hora.',
+    a: 'La IA se configura con el tono, las frases y la información real de tu negocio, así que la conversación suena a tu equipo y no a un contestador. Lo que nota el cliente es que le responden al momento, con la información de tu negocio y a cualquier hora.',
   },
   {
     q: '¿Qué pasa si la IA no sabe responder?',
-    a: 'No se inventa nada: solo responde con la información que tú has aprobado. Cuando una conversación necesita a una persona, te avisa al instante para que la tomes tú o alguien de tu equipo.',
+    a: 'Está configurada para responder solo con la información que tú apruebas. Si le preguntan algo que no tiene, no lo improvisa: lo deja anotado y te avisa al instante para que tomes tú la conversación o alguien de tu equipo.',
   },
   {
     q: '¿El número de WhatsApp sigue siendo mío?',
-    a: 'Sí. Trabajamos con la API oficial de WhatsApp Business y el número es tuyo de principio a fin. Si algún día dejamos de trabajar juntos, el número y las conversaciones siguen contigo.',
+    a: 'Sí. Trabajamos con la WhatsApp Business API oficial y el número es tuyo de principio a fin. Si algún día dejamos de trabajar juntos, el número y las conversaciones siguen contigo.',
   },
   {
     q: '¿Cuánto cuesta?',

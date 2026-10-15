@@ -27,7 +27,7 @@ Negocios locales de ticket alto: clínicas dentales, medicina estética, inmobil
 - [Gestión de redes sociales](https://www.visionnovaia.com/gestion-redes-sociales): planificación y publicación en redes.
 - [Publicidad en Meta Ads](https://www.visionnovaia.com/publicidad-meta-ads): campañas en Facebook e Instagram.
 - [Sistema IA](https://www.visionnovaia.com/sistema-ia): el sistema que atiende y filtra a los contactos.
-- [WhatsApp Business API](https://www.visionnovaia.com/whatsapp-business-api): IA conectada a la API oficial de WhatsApp Business.
+- [WhatsApp Business API](https://www.visionnovaia.com/whatsapp-business-api): IA conectada a la WhatsApp Business API oficial.
 - [Diseño web](https://www.visionnovaia.com/diseno-web): webs pensadas para convertir visitas en contactos.
 - [Clínicas dentales](https://www.visionnovaia.com/sectores/clinicas-dentales): marketing para clínicas dentales.
 - [Medicina estética](https://www.visionnovaia.com/sectores/medicina-estetica): marketing para clínicas de medicina estética.

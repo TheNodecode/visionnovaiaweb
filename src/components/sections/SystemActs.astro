@@ -1,9 +1,14 @@
 ---
 import Button from '../ui/Button.astro';
 import Eyebrow from '../ui/Eyebrow.astro';
+import { SERVICES_NAV } from '../../data/nav';
+import { SECTORS } from '../../data/sectors';
 
 interface Props { id?: string }
 const { id = 'sistema' } = Astro.props;
+
+// Enlazado interno: cada acto lleva a los servicios que lo forman.
+const svc = (...hrefs: string[]) => SERVICES_NAV.filter((s) => hrefs.includes(s.href));
 
 const acts = [
   {
@@ -14,6 +19,7 @@ const acts = [
       'Rodaje en tu propio local, con equipo de imagen y sonido.',
       'Vídeos editados en vertical, listos para redes y anuncios.',
     ],
+    links: svc('/creacion-de-contenido'),
   },
   {
     n: '02', title: 'Captamos',
@@ -23,6 +29,7 @@ const acts = [
       'Los anuncios usan tus vídeos: tu cara, tu local, tu forma de hablar.',
       'Segmentación por zona y por el tipo de cliente que buscas.',
     ],
+    links: svc('/gestion-redes-sociales', '/publicidad-meta-ads', '/diseno-web'),
   },
   {
     n: '03', title: 'Filtramos',
@@ -32,6 +39,7 @@ const acts = [
       'Agente de voz que atiende llamadas 24/7.',
       'CRM Nova: cada contacto filtrado, con su historial.',
     ],
+    links: svc('/sistema-ia', '/whatsapp-business-api'),
   },
 ];
 ---
@@ -64,6 +72,11 @@ const acts = [
               <li class="flex gap-3 text-sm leading-snug text-muted">
                 <span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>{b}
               </li>
+            ))}
+          </ul>
+          <ul class="mt-4 flex flex-wrap gap-x-5" aria-label={`Servicios de ${a.title.toLowerCase()}`}>
+            {a.links.map((l) => (
+              <li><a href={l.href} class="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium text-gold-200 underline-offset-4 transition-colors hover:text-gold-400 hover:underline">{l.label}<span aria-hidden="true">→</span></a></li>
             ))}
           </ul>
         </div>
@@ -147,6 +160,12 @@ const acts = [
         Tu equipo <span class="text-gold">solo cierra.</span>
       </p>
       <p class="mt-6 max-w-sm text-base leading-relaxed text-muted text-pretty">Lo demás lo hace el sistema: grabar, captar, responder y filtrar.</p>
+      <p class="mt-4 max-w-md text-sm leading-relaxed text-muted text-pretty">
+        Y lo adaptamos a tu sector:
+        {SECTORS.map((s, i) => (
+          <>{i > 0 && (i === SECTORS.length - 1 ? ' y ' : ', ')}<a href={`/sectores/${s.slug}`} class="text-gold-200 underline underline-offset-4 decoration-gold-400/40 transition-colors hover:text-gold-400">{s.name}</a></>
+        ))}.
+      </p>
       <div class="mt-9"><Button data-open-form data-magnetic size="lg" class="w-full sm:w-auto">Ver si mi negocio encaja</Button></div>
     </div>
   </div>

@@ -67,7 +67,7 @@ export const SECTORS: SectorPage[] = [
     contentIdeas: [
       'El doctor contando en 40 segundos qué ocurre en una primera visita, paso a paso.',
       'Un recorrido desde la puerta hasta el sillón, pensado para quien llega con miedo.',
-      'Respuestas cortas a lo que más os preguntan: cuánto dura, cada cuánto hay revisión, qué hay que traer.',
+      'Respuestas cortas a lo que más te preguntan los pacientes: cuánto dura, cada cuánto hay revisión, qué hay que traer.',
       'Presentación del equipo: quién es quién, desde recepción hasta higiene.',
       'Cómo se planifica un tratamiento con alineadores, explicado por quien lo diseña.',
     ],
@@ -82,11 +82,11 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿La IA da citas directamente?',
-        a: 'Propone huecos al paciente y deja la cita registrada en CRM Nova. Cómo encaja con el programa de gestión que ya usáis en la clínica lo vemos en la llamada, porque cada software funciona de una manera.',
+        a: 'Propone huecos al paciente y deja la cita registrada en CRM Nova. Cómo encaja con el programa de gestión que ya usa tu clínica lo vemos en la llamada, porque cada software funciona de una manera.',
       },
       {
         q: '¿Qué pasa si un paciente escribe por un dolor o una urgencia?',
-        a: 'La IA no valora síntomas. Recoge el mensaje, le dice al paciente que la clínica se pondrá en contacto y a vosotros os llega un aviso al momento para que alguien del equipo lo atienda.',
+        a: 'La IA no valora síntomas. Recoge el mensaje, le dice al paciente que la clínica se pondrá en contacto y a tu equipo le llega un aviso al momento para que alguien lo atienda.',
       },
       {
         q: '¿Mis doctores tienen que salir en los vídeos?',
@@ -94,7 +94,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Sirve para una clínica con varios doctores o varias sedes?',
-        a: 'Puede encajar, pero depende de cómo estéis organizados. Antes de activar nada lo vemos contigo en la llamada: cómo os llegan hoy los contactos, quién debe atender cada uno y a quién tiene que llegarle cada aviso.',
+        a: 'Puede encajar, pero depende de cómo esté organizada tu clínica. Antes de activar nada lo vemos contigo en la llamada: cómo te llegan hoy los contactos, quién debe atender cada uno y a quién tiene que llegarle cada aviso.',
       },
     ],
     related: ['creacion-de-contenido', 'publicidad-meta-ads', 'sistema-ia', 'whatsapp-business-api'],
@@ -113,7 +113,7 @@ export const SECTORS: SectorPage[] = [
       eyebrow: 'Marketing para medicina estética',
       title: 'Que te elijan por confianza,',
       titleAccent: 'no por el precio más bajo de Instagram.',
-      lead: 'En estética, el paciente compara durante semanas antes de pedir valoración. Grabamos a tu equipo médico explicando cómo trabajáis, convertimos esas piezas en campañas para tu zona y ponemos una IA a responder cada mensaje con la información que tú apruebas, para que a valoración lleguen personas que ya os conocen.',
+      lead: 'En estética, el paciente compara durante semanas antes de pedir valoración. Grabamos a tu equipo médico explicando cómo trabaja, convertimos esas piezas en campañas para tu zona y ponemos una IA a responder los mensajes con la información que tú apruebas, para que a valoración lleguen personas que ya te conocen.',
       bullets: [
         'Contenido grabado con tu propio equipo médico',
         'Respuesta por WhatsApp en menos de 60 s, también de noche',
@@ -164,7 +164,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Y si alguien escribe preocupado después de un tratamiento?',
-        a: 'La IA no entra en cuestiones médicas. Le explica a esa persona que el equipo la contactará y os avisa en ese mismo momento para que alguien de la clínica se haga cargo.',
+        a: 'La IA no entra en cuestiones médicas. Le explica a esa persona que el equipo la contactará y te avisa en ese mismo momento para que alguien de la clínica se haga cargo.',
       },
       {
         q: '¿Grabáis también en cabina, con pacientes?',
@@ -239,7 +239,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Sirve también para captar propietarios que quieren vender?',
-        a: 'Sí. Con vídeos de tus agentes contando cómo trabajáis una venta, lanzamos anuncios en tu zona pensados para propietarios. La IA les pregunta qué vivienda tienen y cuándo quieren vender antes de pasarte el contacto.',
+        a: 'Sí. Con vídeos de tus agentes contando cómo trabajan una venta, lanzamos anuncios en tu zona pensados para propietarios. La IA les pregunta qué vivienda tienen y cuándo quieren vender antes de pasarte el contacto.',
       },
       {
         q: '¿Grabáis cada piso que entra en cartera?',

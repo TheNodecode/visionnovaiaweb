@@ -1,5 +1,5 @@
 ---
-title: "Qué es GEO y Cómo Hacer que ChatGPT Recomiende tu Negocio"
+title: "Qué es GEO y cómo hacer que ChatGPT recomiende tu negocio"
 description: "GEO (Generative Engine Optimization): qué es, en qué se diferencia del SEO y qué pasos seguir para que ChatGPT, Gemini o Perplexity recomienden tu negocio."
 date: 2026-07-22
 tags: ["GEO", "SEO"]

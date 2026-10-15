@@ -1,5 +1,5 @@
 ---
-title: "Agente de Voz con IA: Cómo Funciona y Qué Necesitas Saber"
+title: "Agente de voz con IA: cómo funciona y qué necesitas saber"
 description: "Cómo funciona un agente de voz con inteligencia artificial, qué llamadas puede resolver y qué necesitas para implementarlo en tu negocio en Barcelona."
 date: 2026-06-22
 tags: ["Agente de voz", "Atención al cliente"]

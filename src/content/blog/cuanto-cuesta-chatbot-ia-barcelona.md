@@ -1,5 +1,5 @@
 ---
-title: "¿Cuánto Cuesta un Chatbot con IA en Barcelona?"
+title: "¿Cuánto cuesta un chatbot con IA en Barcelona?"
 description: "Descubre qué factores determinan el precio de un chatbot con IA en Barcelona, rangos generales de mercado y cómo elegir la opción adecuada para tu negocio."
 date: 2026-06-22
 tags: ["Chatbot", "Precios"]
@@ -21,7 +21,7 @@ Si tienes un negocio en Barcelona y estás valorando automatizar la atención al
 
 Estas referencias describen el mercado en general, no las tarifas de ningún proveedor concreto. Las soluciones más básicas (plantillas genéricas sin personalización ni integración real) pueden encontrarse por debajo de los 100 €/mes, pero suelen tener limitaciones serias: no entienden bien el contexto, no se conectan a tu CRM y dan una experiencia robótica que puede dañar la imagen de tu negocio.
 
-Los proyectos personalizados —con IA conversacional, integración a WhatsApp Business API oficial, conexión a tu sistema de reservas y optimización continua— suelen moverse en rangos de varios cientos de euros al mes, en función del volumen y la complejidad. Es una inversión comparable o inferior al coste de un empleado a tiempo parcial, pero que atiende a cualquier hora.
+Los proyectos personalizados —con IA conversacional, integración a WhatsApp Business API oficial, conexión a tu sistema de reservas y optimización continua— suelen moverse en rangos de varios cientos de euros al mes, en función del volumen y la complejidad. En muchos casos es una inversión comparable o inferior al coste de un empleado a tiempo parcial, con la diferencia de que atiende a cualquier hora.
 
 ## ¿Es más barato que contratar a una persona?
 
