@@ -1,0 +1,127 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/sections/CtaBand.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import { SITE } from '../../config/site';
+import { SERVICES_NAV } from '../../data/nav';
+import { blogSeoTitle, formatDate } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, all: posts } }));
+}
+
+const { post, all } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, related, readNext, readTime } = post.data;
+const path = `/blog/${post.id}`;
+const iso = date.toISOString().slice(0, 10);
+
+const services = SERVICES_NAV.filter((s) => related.includes(s.href));
+const next = readNext.map((id) => all.find((p) => p.id === id)).filter((p) => p !== undefined);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    datePublished: iso,
+    dateModified: iso,
+    inLanguage: 'es-ES',
+    mainEntityOfPage: SITE.url + path,
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: { '@type': 'ImageObject', url: SITE.url + '/brand/logo-icon.webp' } },
+    image: SITE.url + '/brand/og-default.jpg',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE.url + '/blog' },
+      { '@type': 'ListItem', position: 3, name: title, item: SITE.url + path },
+    ],
+  },
+];
+---
+<BaseLayout title={blogSeoTitle(title)} description={description} path={path} schema={schema}>
+  <article class="bg-ink pb-16 pt-[calc(env(safe-area-inset-top)+140px)] md:pb-24 md:pt-44">
+    <div class="container-x">
+      <div class="post mx-auto">
+        <a href="/blog" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-cream">
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" /></svg>
+          Volver al blog
+        </a>
+        <div class="mt-6"><Eyebrow>Blog</Eyebrow></div>
+        <h1 class="mt-5 font-display text-[40px] italic leading-[1.05] text-cream text-balance md:text-[60px]">{title}</h1>
+        <p class="mt-5 text-sm text-muted">
+          <time datetime={iso}>{formatDate(date)}</time>{readTime && <> · {readTime} min de lectura</>}
+        </p>
+        <div class="post-body mt-10 md:mt-14">
+          <Content />
+        </div>
+
+        {services.length > 0 && (
+          <aside class="mt-16 border-t border-white/10 pt-10" aria-labelledby="related-services">
+            <h2 id="related-services" class="font-display text-[26px] italic text-cream">Servicios relacionados</h2>
+            <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+              {services.map((s) => (
+                <li>
+                  <a href={s.href} class="glass group flex min-h-14 items-center justify-between gap-4 rounded-2xl px-5 py-4 text-[15px] font-medium text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">
+                    {s.label}
+                    <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
+        {next.length > 0 && (
+          <aside class="mt-12" aria-labelledby="read-next">
+            <h2 id="read-next" class="font-display text-[26px] italic text-cream">Sigue leyendo</h2>
+            <ul class="mt-4">
+              {next.map((p) => (
+                <li class="border-b border-white/10">
+                  <a href={`/blog/${p.id}`} class="flex min-h-12 items-center py-3 text-[15px] text-gold-200 transition-colors hover:text-cream">{p.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+      </div>
+    </div>
+  </article>
+
+  <CtaBand title="¿Lo vemos aplicado a tu negocio?" lead="Una llamada de 20 minutos para revisar cómo te contactan tus clientes y qué tendría sentido automatizar." />
+</BaseLayout>
+
+<style>
+  .post { max-width: 68ch; }
+  .post-body { color: rgb(236 232 225 / 0.86); font-size: 18px; line-height: 1.7; overflow-wrap: break-word; }
+  .post-body :global(h2) {
+    margin-top: 3rem; font-family: var(--font-display); font-style: italic;
+    font-size: clamp(1.75rem, 4.2vw, 2.25rem); line-height: 1.12; color: var(--color-cream); text-wrap: balance;
+  }
+  .post-body :global(h3) { margin-top: 2rem; font-size: 1.125rem; font-weight: 600; line-height: 1.35; color: var(--color-cream); }
+  .post-body :global(h2 + p), .post-body :global(h3 + p) { margin-top: 1rem; }
+  .post-body :global(p), .post-body :global(ul) { margin-top: 1.25rem; text-wrap: pretty; }
+  .post-body :global(h3 + p) { margin-top: 0.5rem; }
+  .post-body :global(ul) { padding-left: 1.25rem; list-style: disc; }
+  .post-body :global(li) { margin-top: 0.6rem; }
+  .post-body :global(li::marker) { color: var(--color-gold-400); }
+  .post-body :global(strong) { color: var(--color-cream); font-weight: 600; }
+  .post-body :global(a) { color: var(--color-gold-200); text-decoration: underline; text-underline-offset: 4px; }
+  .post-body :global(table) {
+    display: block; width: 100%; max-width: 100%; margin-top: 1.5rem; overflow-x: auto;
+    border-collapse: collapse; font-size: 15px; line-height: 1.5;
+  }
+  .post-body :global(th), .post-body :global(td) {
+    padding: 0.75rem 1rem; text-align: left; vertical-align: top; min-width: 9rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  }
+  .post-body :global(th) { color: var(--color-cream); font-weight: 600; white-space: nowrap; }
+  .post-body :global(pre) { margin-top: 1.5rem; overflow-x: auto; padding: 1rem; border-radius: 0.75rem; background: rgb(255 255 255 / 0.05); font-size: 14px; }
+</style>
