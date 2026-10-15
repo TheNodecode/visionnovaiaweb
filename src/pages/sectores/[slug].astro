@@ -1,0 +1,133 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LeadForm from '../../components/form/LeadForm.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import FeatureGrid from '../../components/sections/FeatureGrid.astro';
+import AIDemo from '../../components/sections/AIDemo.astro';
+import RoiCalculator from '../../components/sections/RoiCalculator.astro';
+import SystemActs from '../../components/sections/SystemActs.astro';
+import Guarantee from '../../components/sections/Guarantee.astro';
+import Faq from '../../components/sections/Faq.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import type { IconName } from '../../components/ui/icon-names';
+import { SECTORS, type SectorPage } from '../../data/sectors';
+import { GUARANTEE_FAQ } from '../../data/faqs';
+import { AUDIO_DEMOS } from '../../data/media';
+import { SERVICES_NAV, SECTORS_NAV } from '../../data/nav';
+import { SITE } from '../../config/site';
+
+export const getStaticPaths = (() =>
+  SECTORS.map((page) => ({ params: { slug: page.slug }, props: { page } }))) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: SectorPage };
+const path = `/sectores/${page.slug}`;
+const url = SITE.url + path;
+const label = SECTORS_NAV.find((s) => s.href === path)?.label ?? page.name;
+const name = page.hero.eyebrow;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    serviceType: page.keyword,
+    description: page.seoDescription,
+    url,
+    provider: { '@id': SITE.url + '/#org' },
+    areaServed: { '@type': 'Country', name: 'España' },
+    audience: { '@type': 'BusinessAudience', name: label },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name, item: url },
+    ],
+  },
+];
+
+// Iconos de los dolores: el orden de los 4 dolores es el mismo en todos los sectores
+// (atención, seguimiento/filtro, competencia, imagen), así que se asignan por posición.
+const PAIN_ICONS: IconName[] = ['phone', 'target', 'users', 'camera'];
+const pains = page.pains.map((p, i) => ({ ...p, icon: PAIN_ICONS[i % PAIN_ICONS.length] }));
+
+const audios = AUDIO_DEMOS.filter((a) => page.audioFilter.includes(a.sector)).map(({ src, label }) => ({ src, label }));
+
+const SERVICE_LABELS = new Map<string, string>(SERVICES_NAV.map((l) => [l.href.slice(1), l.label]));
+const related = [
+  ...page.related.map((slug) => ({ href: `/${slug}`, label: SERVICE_LABELS.get(slug) ?? slug, kind: 'Servicio' })),
+  ...SECTORS_NAV.filter((s) => s.href !== path).map((s) => ({ href: s.href, label: s.label, kind: 'Sector' })),
+];
+---
+<BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
+  <PageHero eyebrow={page.hero.eyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
+
+  <FeatureGrid eyebrow="El problema" title={`Lo que vemos en ${page.name}`} items={pains} />
+
+  <section class="relative bg-ink py-24 md:py-32" aria-labelledby="ideas-title">
+    <div class="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <div data-reveal><Eyebrow>Ideas de contenido</Eyebrow></div>
+        <h2 id="ideas-title" data-split class="mt-5 font-display text-[40px] italic leading-[1.04] text-cream text-balance md:text-[60px]">Lo que grabaríamos en tu {page.business}</h2>
+        <p class="mt-6 max-w-md text-base leading-relaxed text-muted text-pretty" data-reveal>Algunas piezas de partida. Los guiones definitivos los escribimos contigo antes de cada jornada de grabación.</p>
+      </div>
+      <ol class="flex flex-col gap-3 lg:col-span-7 lg:pt-3" data-reveal-stagger>
+        {page.contentIdeas.map((idea, i) => (
+          <li class="glass flex items-start gap-5 rounded-2xl px-5 py-5 md:px-6">
+            <span class="font-display text-2xl italic leading-none text-gold-200" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-[15px] leading-relaxed text-cream/85 text-pretty md:text-base">{idea}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <AIDemo scenario={page.aiScenario} audios={audios} />
+
+  {page.complianceNote && (
+    <div class="bg-ink pb-8">
+      <p class="container-x" data-reveal>
+        <span class="mx-auto flex max-w-2xl items-start gap-3 rounded-2xl border border-gold-400/30 bg-gold-400/[0.07] px-5 py-4 text-sm leading-relaxed text-gold-200 text-pretty">
+          <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>
+          {page.complianceNote}
+        </span>
+      </p>
+    </div>
+  )}
+
+  <RoiCalculator defaultTicket={page.defaultTicket} />
+  <SystemActs />
+  <Guarantee />
+  <Faq title={`Dudas frecuentes de ${page.name}`} items={[...page.faq, GUARANTEE_FAQ]} />
+
+  <nav class="relative bg-ink py-20 md:py-28" aria-labelledby="related-title">
+    <div class="container-x">
+      <div data-reveal><Eyebrow>Sigue explorando</Eyebrow></div>
+      <h2 id="related-title" class="mt-5 font-display text-[36px] italic leading-[1.05] text-cream text-balance md:text-[52px]" data-reveal>
+        Servicios que usamos aquí y otros sectores
+      </h2>
+      <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:mt-14" data-reveal-stagger>
+        {related.map((r) => (
+          <li>
+            <a href={r.href} class="glass group flex min-h-16 items-center justify-between gap-4 rounded-2xl px-5 py-4 text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">
+              <span class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-muted">{r.kind}</span>
+                <span class="mt-1 text-[15px] font-medium">{r.label}</span>
+              </span>
+              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+
+  <LeadForm
+    id="formulario"
+    variant="compact"
+    heading={`¿Tienes una ${page.business}? Mira si encaja`}
+    lead="Unas preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos."
+  />
+</BaseLayout>
