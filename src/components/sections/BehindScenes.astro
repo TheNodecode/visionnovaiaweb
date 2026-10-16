@@ -1,0 +1,81 @@
+---
+// «Así grabamos»: versión pequeña de la prueba real para los sectores sin cliente propio publicado.
+// La foto detrás de cámaras es real; las ideas son lo que grabaríamos en ese negocio (no trabajos hechos).
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+import { BTS_PHOTO } from '../../data/media';
+
+interface Props {
+  id?: string;
+  ideas: string[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  tone?: 'dark' | 'light';
+  cta?: string | false;
+}
+const { id = 'asi-grabamos', ideas, eyebrow = 'Así grabamos', titleHtml, lead, tone = 'light', cta = 'Quiero una jornada así' } = Astro.props;
+---
+<section id={id} class:list={['bs relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x bs-grid">
+    <figure class="bs-photo m-0" data-reveal>
+      <div class="bs-frame tone-dark">
+        <picture>
+          <source type="image/webp" srcset="/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w" sizes="(min-width: 1024px) 300px, 34vw" />
+          <img src={BTS_PHOTO.fallback} alt={BTS_PHOTO.alt} width="440" height="770" loading="lazy" decoding="async" />
+        </picture>
+        <span class="bs-tag" aria-hidden="true">Detrás de cámaras</span>
+      </div>
+    </figure>
+
+    <div class="bs-head flex flex-col gap-4" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.1rem,5.4vw,3.6rem)] italic leading-[1.03] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-[17px]">{lead}</p>
+    </div>
+
+    <div class="bs-body">
+      <ol class="flex flex-col gap-2.5" data-reveal-stagger>
+        {ideas.map((idea, i) => (
+          <li class="glass flex items-start gap-4 rounded-2xl px-4 py-4 md:px-5">
+            <span class="font-display text-[22px] italic leading-none text-gold-400" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-[15px] leading-relaxed text-cream/85 text-pretty">{idea}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal>
+        <p class="max-w-md text-[13px] leading-relaxed text-muted text-pretty">Son piezas de partida: los guiones definitivos los escribimos contigo antes de cada jornada de grabación.</p>
+        {cta && (
+          <Button data-open-form size="lg" class="w-full shrink-0 sm:w-auto">
+            {cta}
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          </Button>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bs-grid { display: grid; grid-template-columns: 34% minmax(0, 1fr); grid-template-areas: 'photo head' 'body body'; gap: 28px 18px; align-items: center; }
+  .bs-photo { grid-area: photo; }
+  .bs-head { grid-area: head; }
+  .bs-body { grid-area: body; min-width: 0; }
+  .bs-frame { position: relative; overflow: hidden; aspect-ratio: 9 / 16; border-radius: 22px; background: #121212;
+    box-shadow: 0 30px 60px -30px rgb(40 26 4 / 0.6), 0 0 0 1px rgb(10 10 10 / 0.06); }
+  .bs-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; }
+  .bs-tag { position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 5px 8px; border-radius: 999px; text-align: center; font-size: 10.5px; font-weight: 500;
+    color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  /* móvil estrecho: la cabecera ocupa todo el ancho y la foto acompaña a la lista */
+  @media (max-width: 559px) {
+    .bs-grid { grid-template-areas: 'head head' 'photo body'; align-items: start; }
+    .bs-body ol li { padding: 12px 14px; }
+  }
+  @media (max-width: 559px) { .bs-grid { grid-template-columns: 30% minmax(0, 1fr); } }
+  @media (min-width: 1024px) {
+    .bs-grid { grid-template-columns: 300px minmax(0, 1fr); grid-template-areas: 'photo head' 'photo body'; column-gap: 64px; row-gap: 28px; align-items: start; }
+    .bs-photo { position: sticky; top: 96px; }
+    .bs-frame { border-radius: 28px; }
+    .bs-tag { left: 12px; right: auto; bottom: 12px; padding: 6px 12px; font-size: 11.5px; }
+  }
+</style>

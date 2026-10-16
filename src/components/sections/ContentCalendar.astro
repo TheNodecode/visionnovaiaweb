@@ -1,0 +1,103 @@
+---
+// Un mes de publicaciones de ejemplo. Escritorio: rejilla de calendario (lunes a domingo, cuatro semanas).
+// Móvil: solo los días con publicación, en lista. Siempre rotulado como ejemplo.
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { CalendarPost, PostKind } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  posts: CalendarPost[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  note?: string;
+  /** Qué es cada tipo de pieza, en una frase. */
+  kinds: Partial<Record<PostKind, string>>;
+  tone?: 'dark' | 'light';
+}
+const { id = 'calendario', posts, eyebrow = 'Tu mes en redes', titleHtml, lead, note, kinds, tone = 'light' } = Astro.props;
+
+const WD = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+const WD_LONG = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
+const byDay = new Map(posts.map((p) => [p.day, p]));
+const days = Array.from({ length: 28 }, (_, i) => ({ n: i + 1, wd: i % 7, post: byDay.get(i + 1) }));
+const kindClass: Record<PostKind, string> = { Reel: 'k-reel', Carrusel: 'k-car', Historia: 'k-his', Directo: 'k-dir' };
+const legend = (Object.keys(kinds) as PostKind[]).map((k) => ({ k, text: kinds[k]!, count: posts.filter((p) => p.kind === k).length }));
+---
+<section id={id} class:list={['cc relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x">
+    <div class="grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-16" data-reveal>
+      <div class="flex flex-col gap-4">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      </div>
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:mt-12 xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-8">
+      <div class="glass rounded-[28px] p-3 md:p-5" data-reveal>
+        <div class="flex items-center justify-between px-2 pb-3 pt-1 md:px-1">
+          <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-gold-400">Un mes de ejemplo</p>
+          <span class="rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted">Ejemplo</span>
+        </div>
+        <div class="cc-wd" aria-hidden="true">{WD.map((d) => <span>{d}</span>)}</div>
+        <ol class="cc-grid" aria-label="Publicaciones de un mes de ejemplo">
+          {days.map((d) => d.post ? (
+            <li class="cc-day has-post">
+              <span class="cc-n"><span class="cc-wdm">{WD[d.wd]} </span>{d.n}<span class="sr-only">, {WD_LONG[d.wd]}</span></span>
+              <span class={`cc-kind ${kindClass[d.post.kind]}`}>{d.post.kind}</span>
+              <span class="cc-title">{d.post.title}</span>
+            </li>
+          ) : (
+            <li class="cc-day is-empty" aria-hidden="true"><span class="cc-n">{d.n}</span></li>
+          ))}
+        </ol>
+      </div>
+
+      <aside class="flex flex-col gap-3" aria-label="Qué se publica" data-reveal-stagger>
+        {legend.map((l) => (
+          <div class="glass rounded-2xl p-4">
+            <p class="flex items-center justify-between gap-3">
+              <span class={`cc-kind ${kindClass[l.k]}`}>{l.k}</span>
+              <span class="text-[12.5px] text-muted">{l.count} en este ejemplo</span>
+            </p>
+            <p class="mt-2 text-[14px] leading-relaxed text-muted text-pretty">{l.text}</p>
+          </div>
+        ))}
+      </aside>
+    </div>
+    {note && <p class="mt-5 max-w-3xl text-[13px] leading-relaxed text-muted text-pretty" data-reveal>{note}</p>}
+  </div>
+</section>
+
+<style>
+  .cc-wd { display: none; }
+  .cc-grid { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .cc-day.is-empty { display: none; }
+  .cc-day.has-post {
+    display: grid; grid-template-columns: 62px auto minmax(0, 1fr); align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 14px; background: rgb(255 255 255 / 0.03); border: 1px solid rgb(255 255 255 / 0.06);
+  }
+  .section-light .cc-day.has-post { background: #f8f3ea; border-color: rgb(10 10 10 / 0.06); }
+  .cc-n { font-family: var(--font-display, serif); font-style: italic; font-size: 18px; line-height: 1; color: var(--color-cream); }
+  .cc-wdm { font-family: var(--font-sans, sans-serif); font-style: normal; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted); }
+  .cc-title { font-size: 13.5px; line-height: 1.35; color: var(--color-cream); text-wrap: pretty; }
+  .cc-kind { display: inline-flex; width: fit-content; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+  .k-reel { color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  .k-car { color: var(--color-cream); border: 1px solid rgb(184 134 47 / 0.6); }
+  .k-his { color: var(--color-cream); background: rgb(217 178 102 / 0.16); }
+  .k-dir { color: #fff; background: #0a0a0a; border: 1px solid rgb(217 178 102 / 0.5); }
+  @media (min-width: 768px) {
+    .cc-wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; padding: 0 2px 8px; }
+    .cc-wd span { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-muted); text-align: left; padding-left: 10px; }
+    .cc-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+    .cc-day, .cc-day.is-empty, .cc-day.has-post {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-height: 112px; padding: 10px;
+      border-radius: 14px; border: 1px solid rgb(255 255 255 / 0.06);
+    }
+    .section-light .cc-day { border-color: rgb(10 10 10 / 0.06); }
+    .cc-day.is-empty .cc-n { color: var(--color-muted); opacity: 0.6; font-size: 16px; }
+    .cc-wdm { display: none; }
+    .cc-title { font-size: 12.5px; }
+  }
+</style>

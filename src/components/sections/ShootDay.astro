@@ -1,0 +1,78 @@
+---
+// Una jornada de grabación, franja a franja, junto a la foto real detrás de cámaras.
+// Escritorio: horario a la izquierda y foto fija a la derecha. Móvil: cabecera, foto y horario.
+import Eyebrow from '../ui/Eyebrow.astro';
+import { BTS_PHOTO } from '../../data/media';
+import type { ShootSlot } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  slots: ShootSlot[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  note?: string;
+  caption?: string;
+  tone?: 'dark' | 'light';
+}
+const { id = 'jornada', slots, eyebrow = 'Un día de rodaje', titleHtml, lead, note, caption = 'Detrás de cámaras de una jornada real de grabación.', tone = 'light' } = Astro.props;
+---
+<section id={id} class:list={['sd relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x sd-grid">
+    <div class="sd-head flex flex-col gap-4" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <figure class="sd-photo m-0" data-reveal>
+      <div class="sd-frame tone-dark">
+        <picture>
+          <source type="image/webp" srcset="/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w, /img/clientes/stiven-detras-de-camaras.webp 948w" sizes="(min-width: 1024px) 360px, 300px" />
+          <img src={BTS_PHOTO.fallback} alt={BTS_PHOTO.alt} width="440" height="770" loading="lazy" decoding="async" />
+        </picture>
+        <span class="sd-tag" aria-hidden="true">Así grabamos</span>
+      </div>
+      <figcaption class="mt-3 text-center text-[12.5px] leading-snug text-muted">{caption}</figcaption>
+    </figure>
+
+    <div class="sd-body">
+      <ol class="sd-list" data-reveal-stagger>
+        {slots.map((s) => (
+          <li class="sd-slot">
+            <span class="sd-time tabular-nums">{s.time}</span>
+            <div class="min-w-0">
+              <h3 class="text-[17px] font-medium leading-snug text-cream md:text-[18px]">{s.title}</h3>
+              <p class="mt-1.5 text-[14.5px] leading-relaxed text-muted text-pretty md:text-[15px]">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      {note && <p class="mt-6 text-[13px] leading-relaxed text-muted text-pretty" data-reveal>{note}</p>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sd-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'head' 'photo' 'body'; gap: 32px; }
+  .sd-head { grid-area: head; }
+  .sd-photo { grid-area: photo; width: min(100%, 300px); margin-inline: auto; }
+  .sd-body { grid-area: body; min-width: 0; }
+  .sd-frame { position: relative; overflow: hidden; aspect-ratio: 4 / 5; border-radius: 28px; background: #121212;
+    box-shadow: 0 34px 70px -34px rgb(40 26 4 / 0.6), 0 0 0 1px rgb(10 10 10 / 0.06); }
+  .sd-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 38%; }
+  .sd-tag { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 500;
+    color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  .sd-list { list-style: none; margin: 0; padding: 0; }
+  .sd-slot { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid rgb(255 255 255 / 0.1); }
+  .section-light .sd-slot { border-top-color: rgb(10 10 10 / 0.1); }
+  .sd-slot:first-child { border-top: 0; padding-top: 0; }
+  .sd-time { font-family: var(--font-display, serif); font-style: italic; font-size: 22px; line-height: 1.1; color: var(--color-gold-400); }
+  @media (min-width: 1024px) {
+    .sd-grid { grid-template-columns: minmax(0, 1fr) 360px; grid-template-areas: 'head photo' 'body photo'; column-gap: 72px; row-gap: 36px; }
+    .sd-photo { width: 100%; position: sticky; top: 96px; align-self: start; }
+    .sd-frame { aspect-ratio: 9 / 14; }
+    .sd-slot { grid-template-columns: 84px minmax(0, 1fr); gap: 24px; padding: 22px 0; }
+    .sd-time { font-size: 26px; }
+  }
+</style>

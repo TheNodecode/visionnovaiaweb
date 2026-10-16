@@ -58,30 +58,7 @@ test('hero: lo esencial queda sobre el pliegue', async ({ browser }) => {
 test('las secciones claras de la home cumplen contraste AA', async ({ page }) => {
   await page.goto('/');
   expect(await page.locator('.section-light').count()).toBeGreaterThanOrEqual(3);
-  const fails = await page.evaluate(() => {
-    const c = document.createElement('canvas').getContext('2d', { willReadFrequently: true })!;
-    const rgba = (col: string) => { c.clearRect(0, 0, 1, 1); c.fillStyle = col; c.fillRect(0, 0, 1, 1); return Array.from(c.getImageData(0, 0, 1, 1).data); };
-    const lum = ([r, g, b]: number[]) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
-      .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
-    const out: string[] = [];
-    document.querySelectorAll<HTMLElement>('.section-light').forEach((sec) => {
-      const bg = rgba(getComputedStyle(sec).backgroundColor);
-      sec.querySelectorAll<HTMLElement>('*').forEach((el) => {
-        if (el.closest('.tone-dark, [aria-hidden="true"], .text-gold, .bg-gold')) return;
-        const own = Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent!.trim());
-        if (!own || !el.offsetParent) return;
-        const s = getComputedStyle(el);
-        const [r, g, b, a] = rgba(s.color);
-        const fg = [r, g, b].map((v, i) => v * (a / 255) + bg[i] * (1 - a / 255));
-        const [l1, l2] = [lum(fg), lum(bg)].sort((x, y) => y - x);
-        const ratio = (l1 + 0.05) / (l2 + 0.05);
-        const large = parseFloat(s.fontSize) >= 24 || (parseFloat(s.fontSize) >= 18.66 && +s.fontWeight >= 700);
-        if (ratio < (large ? 3 : 4.5)) out.push(`${el.textContent!.trim().slice(0, 40)} → ${ratio.toFixed(2)}`);
-      });
-    });
-    return out;
-  });
-  expect(fails).toEqual([]);
+  expect(await lightContrastFails(page)).toEqual([]);
 });
 
 test('home: la oferta está completa y cada CTA lleva al formulario', async ({ browser }) => {
@@ -124,4 +101,76 @@ test('home escritorio: la ficha de la oferta se queda fija mientras bajas la lis
   expect(top).toBeGreaterThanOrEqual(90);
   expect(top).toBeLessThanOrEqual(100);
   await ctx.close();
+});
+
+const lightContrastFails = (page: import('@playwright/test').Page) => page.evaluate(() => {
+    const c = document.createElement('canvas').getContext('2d', { willReadFrequently: true })!;
+    const rgba = (col: string) => { c.clearRect(0, 0, 1, 1); c.fillStyle = col; c.fillRect(0, 0, 1, 1); return Array.from(c.getImageData(0, 0, 1, 1).data); };
+    const lum = ([r, g, b]: number[]) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
+      .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
+    const out: string[] = [];
+    document.querySelectorAll<HTMLElement>('.section-light').forEach((sec) => {
+      const bg = rgba(getComputedStyle(sec).backgroundColor);
+      sec.querySelectorAll<HTMLElement>('*').forEach((el) => {
+        if (el.closest('.tone-dark, [aria-hidden="true"], .text-gold, .bg-gold')) return;
+        const own = Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent!.trim());
+        if (!own || !el.offsetParent) return;
+        const s = getComputedStyle(el);
+        const [r, g, b, a] = rgba(s.color);
+        const fg = [r, g, b].map((v, i) => v * (a / 255) + bg[i] * (1 - a / 255));
+        const [l1, l2] = [lum(fg), lum(bg)].sort((x, y) => y - x);
+        const ratio = (l1 + 0.05) / (l2 + 0.05);
+        const large = parseFloat(s.fontSize) >= 24 || (parseFloat(s.fontSize) >= 18.66 && +s.fontWeight >= 700);
+        if (ratio < (large ? 3 : 4.5)) out.push(`${el.textContent!.trim().slice(0, 40)} → ${ratio.toFixed(2)}`);
+      });
+    });
+    return out;
+  });
+
+// Cada landing tiene su propia composición: bloques que solo ella lleva.
+const LANDING_BLOCKS: Record<string, string[]> = {
+  '/sectores/clinicas-dentales': ['#oferta', '#angulos', '#preguntas-ia', '#trabajo-real', '#primer-mes', '#objeciones'],
+  '/sectores/medicina-estetica': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/sectores/inmobiliarias': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/sectores/reformas': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/creacion-de-contenido': ['#jornada', '#trabajo-real', '#oferta'],
+  '/gestion-redes-sociales': ['#calendario', '#bandeja', '#oferta'],
+  '/publicidad-meta-ads': ['#anuncios-reales', '#embudo', '#oferta'],
+  '/sistema-ia': ['#preguntas-ia', '#aviso', '#oferta'],
+  '/whatsapp-business-api': ['#app-o-api', '#tu-numero', '#oferta'],
+  '/diseno-web': ['#anatomia', '#la-web-en-el-sistema', '#oferta'],
+  '/agencia-marketing-madrid': ['#oferta', '#primer-mes', '#trabajo-real'],
+};
+const GUARANTEE = 'Si en 30 días el sistema no te entrega al menos 15 clientes filtrados, el segundo mes va por nuestra cuenta.';
+
+test('cada landing lleva sus bloques propios, la garantía y «al reservar» antes del formulario', async ({ page }) => {
+  for (const [path, blocks] of Object.entries(LANDING_BLOCKS)) {
+    await page.goto(path);
+    for (const b of blocks) await expect(page.locator(b), `${path} ${b}`).toHaveCount(1);
+    await expect(page.locator('#oferta'), path).toContainText(GUARANTEE);
+    const ids = await page.locator('section[id]').evaluateAll((els) => els.map((e) => e.id));
+    expect(ids.indexOf('al-reservar'), path).toBe(ids.indexOf('formulario') - 1);
+  }
+  await page.goto('/sectores/reformas');
+  await expect(page.locator('#angulos li')).toHaveCount(3);
+  await expect(page.locator('#angulos')).toContainText('Ejemplo de enfoque');
+  await expect(page.locator('#trabajo-real')).toHaveCount(0);
+});
+
+test('la tabla de WhatsApp se desplaza dentro de su marco, sin desbordar la página', async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: 375, height: 800 } });
+  const page = await ctx.newPage();
+  await page.goto('/whatsapp-business-api');
+  const box = page.locator('#app-o-api [role="region"]');
+  await expect(box.locator('table caption')).toHaveCount(1);
+  expect(await box.evaluate((e) => e.scrollWidth > e.clientWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+  await ctx.close();
+});
+
+test('las secciones claras de las landings cumplen contraste AA', async ({ page }) => {
+  for (const path of ['/sectores/clinicas-dentales', '/sectores/reformas', '/gestion-redes-sociales', '/whatsapp-business-api', '/diseno-web', '/sistema-ia']) {
+    await page.goto(path);
+    expect(await lightContrastFails(page), path).toEqual([]);
+  }
 });

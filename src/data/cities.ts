@@ -13,6 +13,17 @@ export type CityPage = {
   localAngle: { title: string; paragraphs: string[] }; // 2–3 párrafos genuinamente locales
   sectorsHighlight: string[]; // slugs de sectores con peso en esa ciudad
   faq: { q: string; a: string }[]; // 4–5, específicas de la ciudad
+  /** La oferta y el primer mes vistos desde esa ciudad (el rodaje implica viajar desde Girona). */
+  sales: {
+    offerTitleHtml: string;
+    offerLead: string;
+    grabacion: string; // resultado de la jornada de grabación en esa ciudad
+    ads: string; // resultado de las campañas en esa ciudad
+    week2: { title: string; text: string };
+    note: string; // nota del primer mes con el viaje
+    proofTitleHtml: string;
+    proofLead: string;
+  };
 };
 
 export const CITIES: CityPage[] = [
@@ -37,6 +48,16 @@ export const CITIES: CityPage[] = [
         'En una ciudad donde cada minuto de tu equipo cuenta, el sistema está pensado para que nadie pierda la mañana con contactos que no van a comprar: la IA hace las preguntas incómodas y tu agenda se llena de citas con sentido.',
       ],
     },
+  sales: {
+    offerTitleHtml: 'NovaScale <span class="text-gold">en Madrid.</span>',
+    offerLead: 'Lo mismo que montamos en cualquier ciudad, ajustado a cómo se compite en Madrid: rodaje en tu negocio, anuncios por barrio y una IA que contesta antes de que el cliente pruebe con el de la calle de al lado.',
+    grabacion: 'Viajamos a tu negocio en Madrid una vez al mes y grabamos en un solo día, con los guiones escritos y el plan de rodaje cerrado contigo.',
+    ads: 'Campañas limitadas a los barrios y radios de donde de verdad salen tus clientes, en lugar de a toda la Comunidad.',
+    week2: { title: 'Viajamos a Madrid a grabar', text: 'Organizamos el viaje desde Girona con antelación y elegimos contigo el día de menos movimiento. Grabamos en tu local y dirigimos cada toma.' },
+    note: 'Plazos orientativos: dependen de la fecha que cerremos para viajar a Madrid y de la revisión de los anuncios por parte de Meta.',
+    proofTitleHtml: 'El mismo trabajo, <span class="text-gold">en tu negocio de Madrid.</span>',
+    proofLead: 'Son anuncios y vídeos reales de CEM Valderas, clínica dental y cliente actual. Es el tipo de material que grabaríamos en tu local madrileño.',
+  },
     sectorsHighlight: ['clinicas-dentales', 'medicina-estetica', 'inmobiliarias'],
     faq: [
       { q: '¿Tenéis oficina en Madrid?', a: 'No. Trabajamos desde Girona y viajamos a Madrid para rodar. Campañas, IA y CRM se gestionan en remoto, y el seguimiento contigo lo hacemos por videollamada.' },
@@ -66,6 +87,16 @@ export const CITIES: CityPage[] = [
         'Al estar en Girona, Barcelona nos queda a un paso. Si un mes tu negocio tiene una novedad, una apertura o un cambio de última hora, es más fácil encontrar hueco para grabarlo sin esperar al siguiente rodaje.',
       ],
     },
+  sales: {
+    offerTitleHtml: 'NovaScale <span class="text-gold">en Barcelona.</span>',
+    offerLead: 'Pensado para negocios de Barcelona y su área metropolitana: un rodaje con fecha flexible, porque desde Girona estamos a un paso, contenido pensado para la mezcla de público de la ciudad y la IA atendiendo desde el primer mensaje.',
+    grabacion: 'Una jornada al mes en tu negocio de Barcelona. Como venimos desde Girona, mover la fecha cuando te conviene es más sencillo.',
+    ads: 'Anuncios para Barcelona ciudad o para los municipios del área metropolitana de donde vienen tus clientes.',
+    week2: { title: 'Grabamos en Barcelona', text: 'Desde Girona nos plantamos en tu negocio el día acordado, con el equipo y los guiones. Si surge algo, cambiar la fecha es fácil.' },
+    note: 'Plazos orientativos: dependen del día de rodaje en Barcelona que encaje con tu agenda y de la revisión de los anuncios por parte de Meta.',
+    proofTitleHtml: 'Trabajo real, <span class="text-gold">no una maqueta.</span>',
+    proofLead: 'Anuncios y vídeos de CEM Valderas, clínica dental y cliente actual. Así trabajamos con un negocio de verdad, y así trabajaríamos con el tuyo en Barcelona.',
+  },
     sectorsHighlight: ['medicina-estetica', 'clinicas-dentales', 'reformas'],
     faq: [
       { q: '¿Podéis hacer contenido en catalán?', a: 'Lo hablamos en la llamada. Antes de grabar decidimos contigo en qué idioma habla cada pieza según tu clientela, y te decimos con claridad qué podemos preparar en catalán y qué en castellano.' },
@@ -95,6 +126,16 @@ export const CITIES: CityPage[] = [
         'En reformas y vivienda, el vídeo pesa más que en casi cualquier otro sector: enseñar una obra terminada, un piso por dentro o al equipo trabajando convence más que cualquier texto. Por eso, en Valencia, buena parte del contenido que grabamos está pensado para que el cliente vea el resultado antes de llamar.',
       ],
     },
+  sales: {
+    offerTitleHtml: 'NovaScale <span class="text-gold">en Valencia.</span>',
+    offerLead: 'Ajustado a una ciudad que no para de recibir gente nueva: contenido que enseña tu negocio a quien todavía no conoce a nadie, anuncios para la ciudad y l’Horta y un filtro que separa a quien tiene fecha y presupuesto.',
+    grabacion: 'Viajamos a Valencia una vez al mes y grabamos en tu local, ya sea en la ciudad o en cualquier municipio de l’Horta.',
+    ads: 'Anuncios para los barrios y pueblos de donde salen tus clientes, incluida la gente que acaba de mudarse y busca de cero.',
+    week2: { title: 'Viajamos a Valencia a grabar', text: 'Cerramos la fecha con antelación, preparamos el viaje y grabamos en tu negocio en una sola jornada, con guion y sin parar tu día.' },
+    note: 'Plazos orientativos: dependen de la fecha del viaje a Valencia y de la revisión de los anuncios por parte de Meta.',
+    proofTitleHtml: 'Así trabajamos <span class="text-gold">con un cliente de verdad.</span>',
+    proofLead: 'Son piezas reales de CEM Valderas, una clínica dental que es cliente actual. En Valencia, el rodaje y los anuncios serían los de tu negocio.',
+  },
     sectorsHighlight: ['inmobiliarias', 'reformas', 'clinicas-dentales'],
     faq: [
       { q: '¿Grabáis en pueblos del área metropolitana de Valencia?', a: 'Sí. Tanto si estás en el centro como en un municipio de l’Horta, el rodaje se hace en tu local y los anuncios se ajustan a los barrios y pueblos de donde salen tus clientes.' },
@@ -124,6 +165,16 @@ export const CITIES: CityPage[] = [
         'Además, aquí el calendario manda: hay meses de mucho movimiento y otros más tranquilos. Planificamos contigo qué contar y cuánto invertir en cada época, en lugar de repetir la misma campaña los doce meses.',
       ],
     },
+  sales: {
+    offerTitleHtml: 'NovaScale <span class="text-gold">en Málaga.</span>',
+    offerLead: 'Pensado para la Costa del Sol: un rodaje que puede ir de Málaga capital a cualquier punto de la costa, campañas que siguen la temporada y una IA que contesta a quien escribe desde otro país a medianoche.',
+    grabacion: 'Viajamos a Málaga o a la costa una vez al mes y grabamos en tu negocio, centrando el contenido en lo que toca contar cada temporada.',
+    ads: 'Campañas que se ajustan a los meses fuertes y a los tranquilos, para residentes y para quien te busca desde fuera.',
+    week2: { title: 'Viajamos a la Costa del Sol', text: 'Organizamos el viaje desde Girona con margen y grabamos en tu local, en la capital o en la costa, en un único día.' },
+    note: 'Plazos orientativos: dependen de la fecha del viaje a Málaga y de la revisión de Meta. En temporada alta conviene reservar el rodaje con más antelación.',
+    proofTitleHtml: 'Material real, <span class="text-gold">sin vídeos de stock.</span>',
+    proofLead: 'Anuncios y vídeos del doctor de CEM Valderas, clínica dental y cliente actual. Así se ve nuestro trabajo cuando sale publicado en Instagram.',
+  },
     sectorsHighlight: ['inmobiliarias', 'medicina-estetica', 'reformas'],
     faq: [
       { q: '¿Grabáis también en Marbella, Estepona o el resto de la costa?', a: 'Sí. Rodamos en Málaga capital y en cualquier municipio de la Costa del Sol, desde la Axarquía hasta Manilva.' },

@@ -4,15 +4,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LeadForm from '../../components/form/LeadForm.astro';
 import PageHero from '../../components/sections/PageHero.astro';
 import FeatureGrid from '../../components/sections/FeatureGrid.astro';
+import OfferStack from '../../components/sections/OfferStack.astro';
+import AdAngles from '../../components/sections/AdAngles.astro';
+import QualifyQuestions from '../../components/sections/QualifyQuestions.astro';
 import AIDemo from '../../components/sections/AIDemo.astro';
+import RealWork from '../../components/sections/RealWork.astro';
+import BehindScenes from '../../components/sections/BehindScenes.astro';
+import FirstMonth from '../../components/sections/FirstMonth.astro';
 import RoiCalculator from '../../components/sections/RoiCalculator.astro';
-import SystemActs from '../../components/sections/SystemActs.astro';
 import Guarantee from '../../components/sections/Guarantee.astro';
+import Objections from '../../components/sections/Objections.astro';
 import Faq from '../../components/sections/Faq.astro';
-import Eyebrow from '../../components/ui/Eyebrow.astro';
+import AfterBooking from '../../components/sections/AfterBooking.astro';
 import RelatedLinks from '../../components/sections/RelatedLinks.astro';
 import type { IconName } from '../../components/ui/icon-names';
 import { SECTORS, type SectorPage } from '../../data/sectors';
+import { SECTOR_SALES } from '../../data/sector-sales';
+import { OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, tailorOffer, tailorList } from '../../data/offer';
 import { GUARANTEE_FAQ } from '../../data/faqs';
 import { AUDIO_DEMOS } from '../../data/media';
 import { SERVICES_NAV, SECTORS_NAV } from '../../data/nav';
@@ -53,6 +61,12 @@ const schema = [
 const FALLBACK_ICONS: IconName[] = ['phone', 'target', 'users', 'camera'];
 const pains = page.pains.map((p, i) => ({ ...p, icon: p.icon ?? FALLBACK_ICONS[i % FALLBACK_ICONS.length] }));
 
+const sales = SECTOR_SALES[page.slug];
+const offerItems = tailorOffer(OFFER_ITEMS, { patch: sales.offer.patch });
+const weeks = tailorList(FIRST_MONTH, sales.firstMonth.weeks);
+// Cuatro objeciones del sector + las dos que valen para todos: la garantía y el precio.
+const objections = [...sales.objections, ...OBJECTIONS.slice(4)];
+
 const audios = AUDIO_DEMOS.filter((a) => page.audioFilter.includes(a.sector)).map(({ src, label }) => ({ src, label }));
 
 const SERVICE_LABELS = new Map<string, string>(SERVICES_NAV.map((l) => [l.href.slice(1), l.label]));
@@ -62,48 +76,34 @@ const related = [
 ];
 ---
 <BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
+  {/* Ritmo: hero y dolores (oscuro) → oferta (clara) → ganchos (oscuro) → filtro (clara) → IA (oscuro)
+       → prueba (clara) → primer mes, ROI y garantía (oscuro) → objeciones + FAQ (una hoja clara) → enlaces y formulario. */}
   <PageHero eyebrow={page.hero.eyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
 
-  <FeatureGrid eyebrow="El problema" title={`Lo que vemos en ${page.name}`} items={pains} />
+  <FeatureGrid id="problema" eyebrow="El problema" title={`Lo que vemos en ${page.name}`} items={pains} />
 
-  <section class="relative bg-ink py-16 md:py-24" aria-labelledby="ideas-title">
-    <div class="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
-      <div class="lg:col-span-5">
-        <div data-reveal><Eyebrow>Ideas de contenido</Eyebrow></div>
-        <h2 id="ideas-title" data-split class="mt-5 font-display text-[40px] italic leading-[1.04] text-cream text-balance md:text-[60px]">Lo que grabaríamos en tu {page.business}</h2>
-        <p class="mt-6 max-w-md text-base leading-relaxed text-muted text-pretty" data-reveal>Algunas piezas de partida. Los guiones definitivos los escribimos contigo antes de cada jornada de grabación.</p>
-      </div>
-      <ol class="flex flex-col gap-3 lg:col-span-7 lg:pt-3" data-reveal-stagger>
-        {page.contentIdeas.map((idea, i) => (
-          <li class="glass flex items-start gap-5 rounded-2xl px-5 py-5 md:px-6">
-            <span class="font-display text-2xl italic leading-none text-gold-200" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <p class="text-[15px] leading-relaxed text-cream/85 text-pretty md:text-base">{idea}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
+  <OfferStack eyebrow={`La oferta para ${page.name}`} titleHtml={sales.offer.titleHtml} lead={sales.offer.lead} items={offerItems} />
+
+  <AdAngles brand={sales.brand} lead={sales.angles.lead} note={sales.angles.note} items={sales.angles.items} />
+
+  <QualifyQuestions lead={sales.qualify.lead} questions={sales.qualify.questions} card={sales.qualify.card} note={sales.qualify.note ?? page.complianceNote} />
 
   <AIDemo scenario={page.aiScenario} audios={audios} audioNote={page.audioNote} />
 
-  {page.complianceNote && (
-    <div class="bg-ink pb-8">
-      <p class="container-x" data-reveal>
-        <span class="mx-auto flex max-w-2xl items-start gap-3 rounded-2xl border border-gold-400/30 bg-gold-400/[0.07] px-5 py-4 text-sm leading-relaxed text-gold-200 text-pretty">
-          <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>
-          {page.complianceNote}
-        </span>
-      </p>
-    </div>
-  )}
+  {sales.proof.kind === 'real'
+    ? <RealWork titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} steps={sales.proof.steps} />
+    : <BehindScenes titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} ideas={page.contentIdeas} />}
 
+  <FirstMonth weeks={weeks} lead={sales.firstMonth.lead} />
   <RoiCalculator defaultTicket={page.defaultTicket} />
-  <SystemActs />
   <Guarantee />
+
+  <Objections items={objections} eyebrow={`Dudas de ${page.name}`} lead={`Las que más oímos cuando hablamos con una ${page.business}, respondidas sin rodeos.`} />
   <Faq title={`Dudas frecuentes de ${page.name}`} items={[...page.faq, GUARANTEE_FAQ]} />
 
   <RelatedLinks title="Servicios que usamos aquí y otros sectores" items={related} />
 
+  <AfterBooking />
   <LeadForm
     id="formulario"
     variant="compact"

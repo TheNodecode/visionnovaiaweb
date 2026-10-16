@@ -15,10 +15,7 @@ export type ServicePage = {
   keyword: string;
   hero: { eyebrow: string; title: string; titleAccent?: string; lead: string; bullets: string[] };
   features: { title: string; items: { title: string; text: string; icon: IconName }[] };
-  process: { title: string; steps: { title: string; text: string }[] };
-  showContentWall?: boolean;
-  showAIDemo?: boolean;
-  showRoi?: boolean;
+  process?: { title: string; steps: { title: string; text: string }[] }; // contenido no lo usa: la jornada de rodaje lo cuenta
   faq: { q: string; a: string }[]; // 5–6, específicas del servicio
   related: string[]; // slugs de sectores (`sectores/...`) y de otros servicios
 };
@@ -47,16 +44,6 @@ export const SERVICES: ServicePage[] = [
         { icon: 'spark', title: 'Reels y stories editados', text: 'Montaje vertical, subtítulos que se leen sin sonido, un arranque pensado para los primeros segundos y portadas coherentes con tu marca.' },
         { icon: 'megaphone', title: 'Creativos para anuncios', text: 'De la misma jornada salen varias versiones de cada idea para probar en Meta Ads: ganchos distintos, otras duraciones y otra llamada a la acción.' },
         { icon: 'calendar', title: 'Un plan para cada mes', text: 'Decidimos contigo qué toca contar: temporada, servicios que quieres empujar, novedades del equipo. El siguiente rodaje ya llega con guion.' },
-      ],
-    },
-    showContentWall: true,
-    process: {
-      title: 'Así funciona una jornada de grabación',
-      steps: [
-        { title: 'Llamada de guion', text: 'Repasamos tus servicios estrella, las dudas que más te repiten y lo que prefieres que no salga. Con eso escribimos los guiones del mes.' },
-        { title: 'Plan de rodaje', text: 'Te enviamos la lista de vídeos, quién aparece en cada uno, qué rincones del local usamos y cuánto rato necesitamos de cada persona.' },
-        { title: 'Grabamos en tu negocio', text: 'Llegamos con todo preparado desde casa y grabamos por bloques cortos, para que tu equipo siga atendiendo entre toma y toma.' },
-        { title: 'Edición y entrega', text: 'Montamos, subtitulamos y te enseñamos cada pieza antes de publicarla. Lo orgánico se programa en tus redes; lo pensado para anuncios pasa a campañas.' },
       ],
     },
     faq: [
@@ -95,7 +82,6 @@ export const SERVICES: ServicePage[] = [
         { icon: 'chart', title: 'Un informe sin humo', text: 'Cada mes ves qué publicaciones han generado conversaciones y contactos, no solo cuántos me gusta han sumado.' },
       ],
     },
-    showContentWall: true,
     process: {
       title: 'Cómo cogemos tus redes desde el primer mes',
       steps: [
@@ -141,7 +127,6 @@ export const SERVICES: ServicePage[] = [
         { icon: 'shield', title: 'Tu cuenta, tu tarjeta', text: 'La cuenta publicitaria está a tu nombre y Meta te cobra directamente. Siempre sabes cuánto se ha invertido, sin intermediarios en el pago.' },
       ],
     },
-    showRoi: true,
     process: {
       title: 'De la primera llamada a los primeros contactos',
       steps: [
@@ -187,8 +172,6 @@ export const SERVICES: ServicePage[] = [
         { icon: 'users', title: 'Aviso cuando hace falta una persona', text: 'Una queja, una duda delicada o alguien que pide hablar con el equipo: la IA se aparta y te avisa al instante para que tomes el mando.' },
       ],
     },
-    showAIDemo: true,
-    showRoi: true,
     process: {
       title: 'Cómo dejamos a Nova hablando como tu equipo',
       steps: [
@@ -227,14 +210,13 @@ export const SERVICES: ServicePage[] = [
       title: 'Lo que cambia al pasar a la API oficial',
       items: [
         { icon: 'shield', title: 'API oficial de Meta', text: 'Trabajamos con la WhatsApp Business API oficial, no con aplicaciones de terceros que se saltan las normas y ponen en riesgo tu número.' },
-        { icon: 'phone', title: 'El número es tuyo', text: 'Usamos tu número de siempre o uno nuevo a nombre de tu empresa. Si algún día dejamos de trabajar juntos, el número se queda contigo.' },
+        { icon: 'megaphone', title: 'Anuncios que abren el chat', text: 'Tus campañas de Meta pueden llevar directamente a una conversación con tu número, y cada contacto llega marcado con el anuncio del que viene.' },
         { icon: 'users', title: 'Varios agentes a la vez', text: 'Recepción, comercial y dirección atienden desde la misma bandeja, cada uno desde su ordenador o su móvil, y se reparten las conversaciones.' },
         { icon: 'calendar', title: 'Plantillas aprobadas', text: 'Recordatorios, confirmaciones y seguimientos con mensajes plantilla aprobados por Meta, para escribir a quien te dio permiso sin esperar a que te escriba.' },
         { icon: 'chat', title: 'IA conectada', text: 'Responde en menos de 60 segundos, cualifica y solo te pasa las conversaciones con intención. Puedes tomar el control cuando quieras.' },
         { icon: 'crm', title: 'Todo en CRM Nova', text: 'Cada chat queda unido a la ficha del cliente, con etiquetas, notas y el anuncio del que llegó.' },
       ],
     },
-    showAIDemo: true,
     process: {
       title: 'Cómo migramos tu número sin perder clientes',
       steps: [
