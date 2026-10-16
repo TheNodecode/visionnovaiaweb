@@ -33,7 +33,7 @@ export const OFFER_ITEMS: OfferItem[] = [
   {
     id: 'redes', icon: 'users',
     title: 'Tus redes, gestionadas con ese contenido',
-    outcome: 'Tu perfil publica cada semana con tu cara y tu local. Quien te busca antes de llamar encuentra un negocio vivo, no una cuenta abandonada.',
+    outcome: 'Publicamos con un calendario que acordamos contigo, con tu cara y tu local. Quien te busca antes de llamar encuentra un negocio vivo, no una cuenta abandonada.',
   },
   {
     id: 'ads', icon: 'megaphone',
@@ -43,12 +43,12 @@ export const OFFER_ITEMS: OfferItem[] = [
   {
     id: 'whatsapp', icon: 'chat',
     title: 'WhatsApp con IA que responde en menos de 60 s',
-    outcome: 'Nadie se queda esperando tu respuesta. La IA contesta, pregunta lo que preguntarías tú y separa a quien va en serio de quien solo mira.',
+    outcome: 'Quien te escribe tiene respuesta en menos de un minuto, también de noche. La IA está configurada para preguntar lo que preguntarías tú y separar a quien va en serio de quien solo mira.',
   },
   {
     id: 'voz', icon: 'phone',
     title: 'Agente de voz 24/7',
-    outcome: 'Las llamadas que hoy se pierden a la hora de comer, de noche o con el equipo ocupado se atienden, se filtran y quedan apuntadas.',
+    outcome: 'Las llamadas que hoy se pierden a la hora de comer, de noche o con el equipo ocupado las coge el agente de voz: está configurado para atenderlas, filtrarlas y dejarlas apuntadas en el CRM.',
   },
   {
     id: 'crm', icon: 'crm',
@@ -68,7 +68,7 @@ export const OFFER_ITEMS: OfferItem[] = [
   {
     id: 'aviso', icon: 'bolt',
     title: 'Aviso al instante cuando un cliente necesita a una persona',
-    outcome: 'La IA no improvisa: cuando toca una persona, te avisa y tomas tú la conversación. El control sigue siendo tuyo.',
+    outcome: 'Está configurada para no improvisar: cuando una conversación necesita a una persona, te avisa al momento y tomas tú el control.',
   },
 ];
 
@@ -94,8 +94,8 @@ export interface Week { title: string; text: string; deliverable: string }
 
 export const FIRST_MONTH: Week[] = [
   {
-    title: 'Llamada, auditoría y guiones',
-    text: 'Revisamos tus redes, tus anuncios si ya los tienes y cómo se atiende hoy a quien escribe o llama. Con eso escribimos los guiones de la primera grabación.',
+    title: 'Arranque: auditoría y guiones',
+    text: 'En la reunión de arranque revisamos tus redes, tus anuncios si ya los tienes y cómo se atiende hoy a quien escribe o llama. Con eso escribimos los guiones de la primera grabación.',
     deliverable: 'Guiones aprobados por ti',
   },
   {
@@ -125,7 +125,7 @@ export interface Objection { q: string; short: string; a: string }
 export const OBJECTIONS: Objection[] = [
   {
     q: 'Ya hago publicidad.',
-    short: 'Bien. Entonces ya sabes lo que cuesta cada contacto.',
+    short: 'Perfecto: el problema ya no es traer contactos, es no perderlos.',
     a: 'Lo que casi nadie mide es cuántos se pierden después: el que escribe a las diez de la noche, el que llama con el equipo ocupado, el que pregunta y nadie le vuelve a escribir. Nosotros grabamos el contenido de los anuncios y montamos el filtro que atiende a cada contacto al momento.',
   },
   {
@@ -135,7 +135,7 @@ export const OBJECTIONS: Objection[] = [
   },
   {
     q: 'No tengo tiempo para grabar.',
-    short: 'Te pedimos una jornada al mes, en tu negocio y a la hora que te venga bien.',
+    short: 'Te pedimos un día al mes, el que acordemos contigo, y solo te necesitamos en tus tomas.',
     a: 'Llegamos con los guiones escritos y dirigimos cada toma. Tú solo haces lo que ya haces cada día: explicar tu trabajo. El resto del mes no tienes que pensar en contenido.',
   },
   {
@@ -151,7 +151,7 @@ export const OBJECTIONS: Objection[] = [
   {
     q: '¿Por qué no me dais precio en la web?',
     short: 'Porque no vendemos un paquete de estantería.',
-    a: 'No cuesta lo mismo grabar una clínica que una inmobiliaria con tres oficinas, ni captar en un barrio que en una provincia entera. Preferimos darte un precio real a un «desde» que luego no se cumple: en 20 minutos vemos tu caso y te enviamos una propuesta cerrada.',
+    a: 'No cuesta lo mismo grabar una clínica que una inmobiliaria con tres oficinas, ni captar en un barrio que en una provincia entera. Por eso no ponemos una tarifa de catálogo: en 20 minutos vemos tu caso y después te enviamos una propuesta cerrada, con el precio por escrito.',
   },
 ];
 
@@ -167,7 +167,7 @@ export const AFTER_BOOKING: Step[] = [
     text: 'Qué incluye, cuánto cuesta y qué cuenta como cliente filtrado en tu caso. Todo por escrito, para que decidas con calma.',
   },
   {
-    title: 'Empiezas en la siguiente incorporación',
-    text: 'Si te encaja, reservas tu plaza y arrancas con la siguiente tanda de negocios, por la semana 1: llamada, auditoría y guiones.',
+    title: 'Si te encaja, reservas tu plaza',
+    text: 'Entras en la siguiente incorporación del mes y empezamos por la semana 1: auditoría y guiones.',
   },
 ];

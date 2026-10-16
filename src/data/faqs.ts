@@ -5,7 +5,7 @@ export const GUARANTEE_FAQ: FaqItem = {
   a: 'Los 30 días empiezan a contar el día que arrancan las campañas, no el día que firmamos. Antes de empezar acordamos contigo qué cuenta como cliente filtrado en tu negocio y cuánto se invierte en Ads. Todo eso queda por escrito en el contrato, así que no hay sorpresas para ninguna de las dos partes.',
 };
 
-// Sin «¿notarán que es una IA?» ni «¿cuánto cuesta?»: en la home ya las responde el bloque de objeciones.
+// Sin «¿notarán que es una IA?», «¿cuánto cuesta?» ni «¿y si la IA no sabe responder?»: en la home ya las responden las objeciones y la oferta.
 export const HOME_FAQ: FaqItem[] = [
   {
     q: '¿Qué hacéis exactamente?',
@@ -18,10 +18,6 @@ export const HOME_FAQ: FaqItem[] = [
   {
     q: '¿Quién paga la publicidad de Meta?',
     a: 'La inversión en anuncios la pagas tú, directamente a Meta, con tu propia tarjeta y en tu propia cuenta publicitaria. Nosotros la gestionamos y te contamos cada mes en qué se ha ido cada euro.',
-  },
-  {
-    q: '¿Qué pasa si la IA no sabe responder?',
-    a: 'Está configurada para responder solo con la información que tú apruebas. Si le preguntan algo que no tiene, no lo improvisa: lo deja anotado y te avisa al instante para que tomes tú la conversación o alguien de tu equipo.',
   },
   {
     q: '¿El número de WhatsApp sigue siendo mío?',

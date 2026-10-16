@@ -49,6 +49,13 @@ export const CLIENT_REELS: ClientPiece[] = [
   },
 ];
 
+/** El detrás de cámaras en tamaño de móvil (300/440 px de ancho) para marcos pequeños. */
+export const BTS_PHOTO_SMALL: ClientPiece = {
+  src: '/img/clientes/stiven-detras-de-camaras-440.webp',
+  srcset: '/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w',
+  width: 440, height: 770, label: 'Detrás de cámaras', alt: BTS_PHOTO.alt,
+};
+
 /** Vídeo detrás de cámaras (sección que crece tras el hero). Sin vídeo, se muestra la foto real. */
 export const HERO_BTS_VIDEO: string | undefined = undefined;
 export const HERO_BTS_POSTER = BTS_PHOTO.src;
@@ -76,6 +83,6 @@ export const AUDIO_DEMOS: AudioDemo[] = [
 /** Composición de móviles del hero: material real de CEM Valderas y el detrás de cámaras. */
 export const HERO_PHONES: ClientPiece[] = [
   { ...CLIENT_ADS[1], label: 'Anuncio en Meta' },
-  { src: '/img/clientes/stiven-detras-de-camaras-440.webp', srcset: '/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w', width: 440, height: 770, label: 'Detrás de cámaras', alt: BTS_PHOTO.alt },
+  BTS_PHOTO_SMALL,
   { ...CLIENT_REELS[0], label: 'El doctor a cámara' },
 ];

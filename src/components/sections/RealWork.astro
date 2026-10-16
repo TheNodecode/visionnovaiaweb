@@ -5,7 +5,7 @@
 // Móvil: cabecera → carril de piezas con snap → pasos y CTA. Escritorio: texto a la izquierda, tablero a la derecha.
 import Eyebrow from '../ui/Eyebrow.astro';
 import Button from '../ui/Button.astro';
-import { CLIENT, CLIENT_ADS, CLIENT_REELS, BTS_PHOTO, type ClientPiece } from '../../data/media';
+import { CLIENT, CLIENT_ADS, CLIENT_REELS, BTS_PHOTO_SMALL, type ClientPiece } from '../../data/media';
 import type { Step } from '../../data/offer';
 
 interface Props {
@@ -36,14 +36,10 @@ const {
 } = Astro.props;
 
 type Piece = ClientPiece & { kind: 'phone' | 'photo'; sizes?: string };
-const bts: Piece = {
-  kind: 'photo', label: 'Detrás de cámaras', alt: BTS_PHOTO.alt, width: 440, height: 770,
-  src: '/img/clientes/stiven-detras-de-camaras-440.webp',
-  srcset: '/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w',
-  sizes: '(min-width: 1024px) 180px, 46vw',
-};
+const bts: Piece = { ...BTS_PHOTO_SMALL, kind: 'photo', sizes: '(min-width: 1024px) 180px, 46vw' };
 const phone = (p: ClientPiece): Piece => ({ ...p, kind: 'phone' });
-const all: Piece[] = [phone(CLIENT_ADS[0]), phone(CLIENT_REELS[0]), bts, phone(CLIENT_REELS[1]), phone(CLIENT_ADS[1])];
+// Abre con el detrás de cámaras y los vídeos del doctor; el anuncio en reels no se repite porque ya sale en el hero.
+const all: Piece[] = [bts, phone(CLIENT_REELS[1]), phone(CLIENT_REELS[0]), phone(CLIENT_ADS[0]), phone(CLIENT_REELS[2])];
 const pieces = compact ? [all[0], all[1], all[2]] : all;
 ---
 <section id={id} class:list={['rw relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light', compact && 'rw-compact']} aria-labelledby={`${id}-title`}>
@@ -98,7 +94,7 @@ const pieces = compact ? [all[0], all[1], all[2]] : all;
           <span class="text-center text-[13px] text-muted sm:text-left">Llamada de 20 minutos · sin compromiso</span>
         </div>
       )}
-      <p class="text-[12.5px] leading-relaxed text-muted text-pretty lg:max-w-sm lg:text-right">Los precios que ves en sus anuncios son de la clínica. Sus resultados son suyos: aquí no publicamos cifras de clientes.</p>
+      <p class="text-[12.5px] leading-relaxed text-muted text-pretty lg:max-w-sm lg:text-right">Los precios que ves en sus anuncios son de la clínica. Por respeto a nuestros clientes, no publicamos sus datos.</p>
       </div>
     </div>
   </div>

@@ -4,10 +4,12 @@
 import Eyebrow from '../ui/Eyebrow.astro';
 import { AFTER_BOOKING, type Step } from '../../data/offer';
 
-interface Props { id?: string; steps?: Step[]; titleHtml?: string; tone?: 'dark' | 'light' }
+interface Props { id?: string; steps?: Step[]; eyebrow?: string; titleHtml?: string; lead?: string; tone?: 'dark' | 'light' }
 const {
   id = 'al-reservar',
   steps = AFTER_BOOKING,
+  eyebrow = 'Sin sorpresas',
+  lead,
   titleHtml = 'Qué pasa <span class="text-gold">cuando reservas.</span>',
   tone = 'dark',
 } = Astro.props;
@@ -15,8 +17,9 @@ const {
 <section id={id} class:list={['relative bg-ink pb-2 pt-16 md:pt-24', tone === 'light' && 'section-light pb-16 md:pb-24']} aria-labelledby={`${id}-title`}>
   <div class="container-x">
     <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-      <Eyebrow>Sin sorpresas</Eyebrow>
+      <Eyebrow>{eyebrow}</Eyebrow>
       <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      {lead && <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>}
     </div>
     <ol class="ab-list mt-8 grid gap-3 md:mt-12 md:grid-cols-3 md:gap-4" data-reveal-stagger>
       {steps.map((s, i) => (

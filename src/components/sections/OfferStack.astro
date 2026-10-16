@@ -16,17 +16,21 @@ interface Props {
   lead?: string;
   compact?: boolean;
   tone?: 'dark' | 'light';
-  cta?: string;
+  /** Texto del botón de la ficha; false = ficha sin botón (p. ej. si la página ya cierra con formulario). */
+  cta?: string | false;
+  /** Línea de la ficha bajo plazas/garantía. */
+  cardNote?: string;
 }
 const {
   id = 'oferta',
   items = OFFER_ITEMS,
   eyebrow = 'La oferta',
   titleHtml = 'Lo que incluye <span class="text-gold">NovaScale.</span>',
-  lead = 'Un solo equipo, un solo sistema y una sola cuota al mes. Esto es lo que montamos en tu negocio y lo que te llevas de cada parte.',
+  lead = 'Un solo equipo y un solo sistema. Esto es lo que montamos en tu negocio y lo que te llevas de cada parte.',
   compact = false,
   tone = 'light',
   cta = 'Ver si mi negocio encaja',
+  cardNote = 'Lo único que pones tú: tu negocio delante de la cámara y la inversión en anuncios.',
 } = Astro.props;
 const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
@@ -80,14 +84,14 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
           </div>
         </div>
 
-        <p class="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[13.5px] leading-snug text-cream/85">
-          Lo único que pones tú: tu negocio delante de la cámara y la inversión en anuncios, que pagas directamente a Meta.
-        </p>
+        {cardNote && <p class="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[13.5px] leading-snug text-cream/85">{cardNote}</p>}
 
-        <Button data-open-form size="lg" class="mt-6 w-full">
-          {cta}
-          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
-        </Button>
+        {cta && (
+          <Button data-open-form size="lg" class="mt-6 w-full">
+            {cta}
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          </Button>
+        )}
         <p class="mt-3.5 text-center text-[13px] leading-snug text-muted">{PRICE_NOTE}</p>
       </div>
     </aside>
@@ -95,15 +99,14 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 </section>
 
 <style>
+  /* móvil: sin columna de número, el texto gana ancho y la lista se lee más rápido */
   .offer-row {
-    display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 14px; align-items: start;
-    padding: 18px 18px 18px 16px; border-top: 1px solid rgb(10 10 10 / 0.07);
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: start;
+    padding: 16px 16px 16px 14px; border-top: 1px solid rgb(10 10 10 / 0.07);
   }
   .offer-row:first-child { border-top: 0; }
   .offer:not(.section-light) .offer-row { border-top-color: rgb(255 255 255 / 0.07); }
-  /* móvil: sin columna de número, el texto gana ancho y la lista se lee más rápido */
   .offer-num { display: none; width: 22px; padding-top: 2px; font-size: 18px; line-height: 1; }
-  .offer-row { grid-template-columns: auto minmax(0, 1fr); padding: 16px 16px 16px 14px; }
   .offer-icon {
     display: flex; width: 36px; height: 36px; margin-top: -6px; align-items: center; justify-content: center; border-radius: 12px;
     border: 1px solid rgb(184 134 47 / 0.28); background: rgb(217 178 102 / 0.08);

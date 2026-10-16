@@ -45,7 +45,7 @@ const {
             <div class="glass fm-card">
               <p class="text-[11px] font-medium uppercase tracking-[0.26em] text-gold-400">Semana {i + 1}</p>
               <h3 class="mt-2.5 font-display text-[25px] italic leading-[1.1] text-cream text-balance md:text-[27px]">{w.title}</h3>
-              <p class="mt-2.5 text-[14.5px] leading-relaxed text-muted text-pretty">{w.text}</p>
+              <p class="fm-text mt-2.5 text-[14.5px] leading-relaxed text-muted text-pretty">{w.text}</p>
               <p class="fm-deliv flex items-start gap-2 border-t border-white/10 text-[13.5px] leading-snug text-cream">
                 <svg viewBox="0 0 20 20" class="mt-px h-4 w-4 shrink-0 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>
                 <span>{w.deliverable}</span>
@@ -75,7 +75,7 @@ const {
   }
   .fm-card { height: 100%; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; }
   .fm-deliv { margin-top: auto; padding-top: 14px; }
-  .fm-card > p:nth-child(3) { margin-bottom: 16px; }
+  .fm-text { margin-bottom: 16px; }
   @media (min-width: 1024px) {
     .fm-item { padding-left: 0; padding-top: 52px; }
     .fm-card { padding: 24px; }
