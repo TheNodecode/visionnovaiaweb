@@ -4,7 +4,8 @@ import { SECTOR_SALES } from '../../src/data/sector-sales';
 import { SERVICES } from '../../src/data/services';
 import { SERVICE_SALES } from '../../src/data/service-sales';
 import { CITIES } from '../../src/data/cities';
-import { OFFER_ITEMS, FIRST_MONTH, tailorOffer, tailorList } from '../../src/data/offer';
+import { OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, AFTER_BOOKING, tailorOffer, tailorList } from '../../src/data/offer';
+import { HOME_FAQ } from '../../src/data/faqs';
 
 const text = (o: unknown) => JSON.stringify(o);
 
@@ -61,6 +62,29 @@ describe('honestidad del copy de las landings', () => {
   });
   it('sin cifras ni resultados atribuidos a CEM Valderas', () => {
     const cem = all.match(/[^"]*CEM Valderas[^"]*/g) ?? [];
-    for (const s of cem) expect(s).not.toMatch(/\d+\s?%|pacientes nuevos|resultad/i);
+    expect(cem.length).toBeGreaterThan(0);
+    for (const s of cem) expect(s).not.toMatch(/\d+\s?%|\+\s?\d|pacientes nuevos|resultad|más citas|el doble|x\s?2/i);
+  });
+});
+
+// Toda frase que promete un tiempo de respuesta o atención 24/7 de nuestra IA va matizada
+// («está configurada para…» / «pensado para…»). Los títulos cortos de partidas son nombres de función.
+describe('tiempos de respuesta de la IA, siempre matizados', () => {
+  const CLAIM = /menos de (60 s|60 segundos|un minuto)|24\/7/i;
+  const HEDGE = /configurad|pensad/i;
+  const walk = (v: unknown, key: string, out: { key: string; s: string }[]) => {
+    if (typeof v === 'string') out.push({ key, s: v.replace(/ /g, ' ') });
+    else if (Array.isArray(v)) v.forEach((x) => walk(x, key, out));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, k, out);
+    return out;
+  };
+  const strings = walk([SECTORS, SECTOR_SALES, SERVICES, SERVICE_SALES, CITIES, OFFER_ITEMS, OBJECTIONS, AFTER_BOOKING, FIRST_MONTH, HOME_FAQ], '', []);
+  it('cada frase con «menos de 60 s», «menos de un minuto» o «24/7» lleva «configurad…» o «pensad…»', () => {
+    const bad = strings
+      .filter(({ key, s }) => !(key === 'title' && s.length <= 50))
+      .flatMap(({ s }) => s.split(/(?<=[.!?])\s+/))
+      .filter((x) => CLAIM.test(x) && !HEDGE.test(x));
+    expect(bad).toEqual([]);
+    expect(strings.filter(({ s }) => CLAIM.test(s)).length).toBeGreaterThan(5); // el barrido sí ve las frases
   });
 });

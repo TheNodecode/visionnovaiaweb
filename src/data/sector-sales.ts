@@ -2,10 +2,25 @@
 // primer mes, objeciones y la prueba (trabajo real en dental; «así grabamos» en el resto).
 // Reglas: los anuncios son «Ejemplo de enfoque», la ficha del contacto es «Ejemplo», sin cifras ni resultados.
 import type { SectorSlug } from './sectors';
-import type { AdAngle, Qualify } from './blocks';
+import type { AdAngle, Phase, Qualify, SplitColumn } from './blocks';
 import type { OfferId, OfferItem, Week, Objection, Step } from './offer';
 
+/** Bloques que puede componer una página de sector; `order` decide la secuencia de cada una. */
+export type SectorBlock = 'signature' | 'pains' | 'offer' | 'angles' | 'qualify' | 'demo' | 'proof' | 'firstMonth' | 'roi' | 'guarantee' | 'objections';
+
+export type SectorSignature =
+  | { kind: 'split'; id: string; eyebrow: string; titleHtml: string; lead: string; columns: [SplitColumn, SplitColumn]; joiner?: string; note?: string }
+  | { kind: 'phases'; id: string; eyebrow: string; titleHtml: string; lead: string; phases: Phase[]; note?: string };
+
 export type SectorSales = {
+  /** Secuencia de bloques de la página (cada sector la suya). */
+  order: SectorBlock[];
+  /** Bloque que solo tiene ese sector. */
+  signature?: SectorSignature;
+  /** Titular propio para la demo de la IA. */
+  demo?: { titleHtml: string; lead: string };
+  /** Partida de la oferta que va primero. */
+  offerFirst?: OfferId;
   /** Anunciante genérico en la maqueta de anuncios. */
   brand: string;
   offer: { titleHtml: string; lead: string; patch: Partial<Record<OfferId, Partial<Omit<OfferItem, 'id'>>>> };
@@ -22,6 +37,7 @@ export type SectorSales = {
 export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
   // ───────────────────────────── Clínicas dentales
   'clinicas-dentales': {
+    order: ['pains', 'proof', 'demo', 'offer', 'angles', 'qualify', 'firstMonth', 'roi', 'guarantee', 'objections'],
     brand: 'Tu clínica dental',
     offer: {
       titleHtml: 'NovaScale para <span class="text-gold">clínicas dentales.</span>',
@@ -135,6 +151,28 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
 
   // ───────────────────────────── Medicina estética
   'medicina-estetica': {
+    order: ['pains', 'signature', 'demo', 'qualify', 'angles', 'offer', 'firstMonth', 'proof', 'roi', 'guarantee', 'objections'],
+    signature: {
+      kind: 'split',
+      id: 'tratamiento-explicado',
+      eyebrow: 'El tratamiento, explicado',
+      titleHtml: 'Qué responde la IA <span class="text-gold">y qué pasa a la doctora.</span>',
+      lead: 'En medicina estética la línea está clara: la IA resuelve lo práctico y acerca la valoración; todo lo que tenga que ver con la salud o el caso concreto de cada paciente lo responde una profesional.',
+      joiner: 'o',
+      columns: [
+        {
+          icon: 'chat', label: 'Lo contesta la IA', title: 'Las dudas prácticas',
+          text: 'Con la información que ha aprobado tu clínica, a cualquier hora.',
+          items: ['Cómo es una primera valoración y cuánto dura.', 'Horarios, dirección y cómo llegar.', 'Qué tratamientos ofrece la clínica, en términos generales.', 'Cómo reservar, cambiar o anular una cita.'],
+        },
+        {
+          icon: 'users', label: 'Pasa a la profesional', title: 'Todo lo que es médico',
+          text: 'La IA está configurada para no responder estas preguntas y avisar a tu equipo al momento.',
+          items: ['Si un tratamiento es adecuado para su caso.', 'Contraindicaciones, medicación o embarazo.', 'Molestias o dudas después de un tratamiento.', 'Un precio cerrado sin haber pasado por valoración.'],
+        },
+      ],
+      note: 'Las dos listas se cierran contigo antes de activar la IA, y puedes moverlas cuando quieras.',
+    },
     brand: 'Tu clínica estética',
     offer: {
       titleHtml: 'NovaScale para <span class="text-gold">medicina estética.</span>',
@@ -240,6 +278,27 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
 
   // ───────────────────────────── Inmobiliarias
   inmobiliarias: {
+    order: ['signature', 'pains', 'offer', 'angles', 'qualify', 'demo', 'proof', 'firstMonth', 'roi', 'guarantee', 'objections'],
+    signature: {
+      kind: 'split',
+      id: 'dos-frentes',
+      eyebrow: 'Dos frentes',
+      titleHtml: 'Compradores que deciden <span class="text-gold">y propietarios que venden.</span>',
+      lead: 'Una inmobiliaria vive de los dos lados. Por eso el sistema trabaja ambos a la vez, con contenido, anuncios y preguntas distintas para cada uno.',
+      joiner: 'y',
+      columns: [
+        {
+          icon: 'target', label: 'Captar compradores', title: 'Que lleguen a la visita decididos',
+          text: 'Para quien busca vivienda en tu zona y quiere ver el piso antes de llamar.',
+          items: ['Grabamos recorridos en un solo plano de los inmuebles con más tirón.', 'Anunciamos cada piso a quien busca en ese barrio y en ese rango.', 'La IA pregunta uso, presupuesto, financiación y plazo.', 'Te llega una visita propuesta con esos datos recogidos.'],
+        },
+        {
+          icon: 'users', label: 'Captar propietarios', title: 'Que te elijan para vender',
+          text: 'Para quien se plantea vender y todavía no ha decidido con qué agencia.',
+          items: ['Grabamos a tus agentes contando cómo preparan y venden una vivienda.', 'Anunciamos tu forma de trabajar a propietarios de tu zona.', 'La IA pregunta qué vivienda tienen, dónde y cuándo quieren vender.', 'Te llega un propietario listo para una visita de valoración.'],
+        },
+      ],
+    },
     brand: 'Tu inmobiliaria',
     offer: {
       titleHtml: 'NovaScale para <span class="text-gold">inmobiliarias.</span>',
@@ -255,7 +314,7 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
           title: 'Campañas para compradores y para propietarios',
           outcome: 'Dos frentes con tus vídeos: anuncios de inmuebles para quien busca y anuncios de captación para quien se plantea vender en tu zona.',
         },
-        whatsapp: { outcome: 'Responde al momento a quien escribe por el piso del anuncio, y está configurada para preguntarle para qué busca, en qué plazo y cómo piensa pagar.' },
+        whatsapp: { outcome: 'Está configurada para responder al momento a quien escribe por el piso del anuncio y preguntarle para qué busca, en qué plazo y cómo piensa pagar.' },
         voz: { outcome: 'Las llamadas que entran mientras tus agentes enseñan pisos se atienden y quedan apuntadas, con el inmueble por el que preguntan.' },
         crm: { outcome: 'Cada contacto con el inmueble del que viene, si compra o vende, su plazo y su financiación. Sabes a quién enseñar el piso primero.' },
         aviso: { outcome: 'Si un comprador pide hablar ya con un agente, la IA está configurada para no retenerle y avisar al agente de esa zona al instante.' },
@@ -349,6 +408,37 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
 
   // ───────────────────────────── Reformas y construcción
   reformas: {
+    order: ['demo', 'signature', 'pains', 'offer', 'angles', 'qualify', 'firstMonth', 'proof', 'roi', 'guarantee', 'objections'],
+    demo: {
+      titleHtml: 'Mientras estás en obra, <span class="text-gold">el teléfono se atiende.</span>',
+      lead: 'Escucha al agente de voz en una llamada de prueba para una constructora y mira cómo la IA filtra por WhatsApp una petición de reforma fuera de horario.',
+    },
+    offerFirst: 'voz',
+    signature: {
+      kind: 'phases',
+      id: 'obra-en-fases',
+      eyebrow: 'La obra en fases',
+      titleHtml: 'Antes, durante y después: <span class="text-gold">tres momentos que venden.</span>',
+      lead: 'Cada obra da contenido para semanas si se graba a tiempo. No hace falta esperar al resultado final: el proceso es lo que convence a quien duda.',
+      phases: [
+        {
+          label: 'Antes', title: 'El punto de partida',
+          text: 'El espacio tal y como está y lo que el cliente quiere cambiar. Es lo que reconoce quien vive con una cocina o un baño parecidos.',
+          shots: ['Estado inicial', 'Medición', 'Lo que pide el cliente'],
+        },
+        {
+          label: 'Durante', title: 'El oficio que no se ve',
+          text: 'Instalaciones, impermeabilización, protección de la vivienda y limpieza diaria: lo que separa tu trabajo del presupuesto más barato.',
+          shots: ['Instalaciones', 'Impermeabilización', 'Jefe de obra a cámara'],
+        },
+        {
+          label: 'Después', title: 'El resultado, explicado',
+          text: 'La obra terminada, con el encargado contando cada decisión: materiales, distribución y remates.',
+          shots: ['Recorrido final', 'Detalles y remates', 'Antes y después'],
+        },
+      ],
+      note: 'Siempre con permiso del propietario. Si prefiere no salir, grabamos el espacio y al equipo sin nada que identifique la vivienda.',
+    },
     brand: 'Tu empresa de reformas',
     offer: {
       titleHtml: 'NovaScale para <span class="text-gold">empresas de reformas.</span>',
@@ -366,7 +456,7 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
         },
         whatsapp: { outcome: 'A quien pide presupuesto con una foto y dos líneas, la IA está configurada para preguntarle metros, tipo de trabajo, plazo y presupuesto aproximado antes de que vayas a medir.' },
         voz: {
-          title: 'Agente de voz 24/7 mientras estás en obra',
+          title: 'Agente de voz que atiende mientras estás en obra',
           outcome: 'Con la radial en la mano no se coge el móvil. El agente está configurado para atender, recoger qué necesitan y dejarte la llamada resumida.',
         },
         crm: { outcome: 'Cada petición con su tipo de obra, sus medidas, la población y el plazo. Decides de un vistazo a qué visitas merece la pena ir.' },

@@ -3,27 +3,39 @@
 // Meta Ads → anuncios reales y embudo; sistema IA → filtro, CRM y aviso; WhatsApp API → comparativa
 // y «tu número es tuyo»; diseño web → qué hace cada parte de la web y dónde encaja.
 // Todos cierran con la oferta compacta (el servicio va dentro de NovaScale) y la garantía.
-import type { ServiceSlug } from './services';
 import type { OfferId, OfferItem, Step } from './offer';
 import type { CalendarPost, CompareRow, FunnelStep, Numbered, Point, PostKind, Qualify, ShootSlot, TriageItem } from './blocks';
 
-export interface ServiceSales {
-  /** Oferta compacta: el servicio de la página va primero, con su texto propio. */
-  offer: { titleHtml: string; lead: string; first: OfferId; patch: Partial<Omit<OfferItem, 'id'>>; omit: OfferId };
-  shootDay?: { titleHtml: string; lead: string; note: string; slots: ShootSlot[] };
-  realWork?: { titleHtml: string; lead: string; steps: Step[] };
-  calendar?: { titleHtml: string; lead: string; note: string; posts: CalendarPost[]; kinds: Partial<Record<PostKind, string>> };
-  inbox?: { titleHtml: string; lead: string; bullets: string[]; items: TriageItem[] };
-  adAnatomy?: { titleHtml: string; lead: string; notes: Numbered[] };
-  funnel?: { eyebrow?: string; titleHtml: string; lead: string; note?: string; steps: FunnelStep[] };
-  qualify?: Qualify;
-  handoff?: { titleHtml: string; lead: string; triggers: string[]; alert: { title: string; text: string; context: string } };
-  compare?: { titleHtml: string; lead: string; caption: string; columns: [string, string]; rows: CompareRow[]; note: string };
-  statement?: { eyebrow: string; titleHtml: string; lead: string; points: Point[] };
-  anatomy?: { titleHtml: string; lead: string; blocks: Numbered[] };
+type Offer = { titleHtml: string; lead: string; first: OfferId; patch: Partial<Omit<OfferItem, 'id'>>; omit: OfferId };
+type Funnel = { eyebrow?: string; titleHtml: string; lead: string; note?: string; steps: FunnelStep[] };
+
+/** Bloques de cada servicio, tipados por página: cada slug declara exactamente los que usa. */
+export interface ServiceSalesMap {
+  'creacion-de-contenido': {
+    offer: Offer;
+    shootDay: { titleHtml: string; lead: string; note: string; slots: ShootSlot[] };
+    realWork: { titleHtml: string; lead: string; steps: Step[] };
+  };
+  'gestion-redes-sociales': {
+    offer: Offer;
+    calendar: { titleHtml: string; lead: string; note: string; posts: CalendarPost[]; kinds: Partial<Record<PostKind, string>> };
+    inbox: { titleHtml: string; lead: string; bullets: string[]; items: TriageItem[] };
+  };
+  'publicidad-meta-ads': { offer: Offer; adAnatomy: { titleHtml: string; lead: string; notes: Numbered[] }; funnel: Funnel };
+  'sistema-ia': {
+    offer: Offer;
+    qualify: Qualify;
+    handoff: { titleHtml: string; lead: string; triggers: string[]; alert: { title: string; text: string; context: string } };
+  };
+  'whatsapp-business-api': {
+    offer: Offer;
+    compare: { titleHtml: string; lead: string; caption: string; columns: [string, string]; rows: CompareRow[]; note: string };
+    statement: { eyebrow: string; titleHtml: string; lead: string; points: Point[] };
+  };
+  'diseno-web': { offer: Offer; anatomy: { titleHtml: string; lead: string; blocks: Numbered[] }; funnel: Funnel };
 }
 
-export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
+export const SERVICE_SALES: ServiceSalesMap = {
   // ───────────────────────────── Creación de contenido
   'creacion-de-contenido': {
     offer: {
@@ -49,8 +61,8 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       titleHtml: 'Lo que sale de esas jornadas, <span class="text-gold">en un cliente real.</span>',
       lead: 'Estos vídeos los grabamos en la clínica de CEM Valderas, cliente actual: el doctor a cámara, su consulta de fondo y subtítulos para verlos sin sonido.',
       steps: [
-        { title: 'Un guion por cada duda', text: 'Antes de ir escribimos qué va a contar en cada vídeo, a partir de lo que de verdad le preguntan sus pacientes.' },
-        { title: 'Tres espacios, una jornada', text: 'Recepción, despacho y consulta en el mismo día, para tener variedad de planos sin volver otra vez.' },
+        { title: 'Un guion por cada duda', text: 'Antes de ir escribimos qué va a contar en cada vídeo, a partir de las dudas más habituales de sus pacientes.' },
+        { title: 'Recepción, despacho y consulta', text: 'Grabamos al doctor en recepción, en su despacho y en consulta, para que cada pieza tenga planos distintos.' },
         { title: 'Editado para el móvil', text: 'Formato vertical, arranque directo y subtítulos grandes: cada pieza está pensada para verse con el pulgar, no en una pantalla de cine.' },
       ],
     },
@@ -117,7 +129,7 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       omit: 'redes',
     },
     adAnatomy: {
-      titleHtml: 'Anuncios que ya están en marcha, <span class="text-gold">y por qué están hechos así.</span>',
+      titleHtml: 'Anuncios de un cliente actual, <span class="text-gold">y por qué están hechos así.</span>',
       lead: 'Llevamos los anuncios de CEM Valderas, una clínica dental que es cliente actual. Estas son sus creatividades tal y como las ve un paciente en Instagram.',
       notes: [
         { title: 'El gancho en la primera línea', text: 'Lo primero que se lee es lo que el paciente quiere conseguir, no el nombre de la clínica.' },
@@ -132,7 +144,7 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       steps: [
         { icon: 'megaphone', title: 'Anuncio', text: 'Tus vídeos en Facebook e Instagram, para la gente de tu zona que encaja con tu cliente.' },
         { icon: 'chat', title: 'WhatsApp o llamada', text: 'El anuncio abre una conversación de WhatsApp o una llamada, sin formularios largos de por medio.' },
-        { icon: 'target', title: 'La IA filtra', text: 'Responde en menos de 60 segundos y pregunta necesidad, plazo e intención antes de pasarte a nadie.' },
+        { icon: 'target', title: 'La IA filtra', text: 'Está configurada para responder en menos de un minuto y preguntar necesidad, plazo e intención antes de pasarte el contacto.' },
         { icon: 'crm', title: 'CRM Nova', text: 'El contacto queda registrado con el anuncio del que viene y todo lo que ha contestado.' },
         { icon: 'calendar', title: 'Cita', text: 'Quien está listo sale con día y hora propuestos. Tu equipo confirma y atiende.' },
       ],
@@ -145,7 +157,7 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       titleHtml: 'La IA, <span class="text-gold">con contactos que atender desde el primer día.</span>',
       lead: 'Puedes usar Nova por tu cuenta, pero rinde más dentro de NovaScale: el contenido y los anuncios traen las conversaciones y la IA las convierte en citas filtradas.',
       first: 'whatsapp',
-      patch: { outcome: 'Contesta en menos de 60 segundos, a cualquier hora, con las respuestas que tú apruebas, y está configurada para proponer cita a quien está listo.' },
+      patch: { outcome: 'Está configurada para contestar en menos de un minuto, a cualquier hora, con las respuestas que tú apruebas, y para proponer cita a quien está listo.' },
       omit: 'informe',
     },
     qualify: {
@@ -197,7 +209,7 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       first: 'whatsapp',
       patch: {
         title: 'WhatsApp Business API oficial con IA',
-        outcome: 'Migración de tu número, bandeja compartida para tu equipo y una IA que responde en menos de 60 segundos con tus respuestas aprobadas.',
+        outcome: 'Migración de tu número, bandeja compartida para tu equipo y una IA configurada para responder en menos de un minuto con tus respuestas aprobadas.',
       },
       omit: 'redes',
     },
@@ -208,12 +220,13 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
       columns: ['App de WhatsApp Business', 'WhatsApp Business API oficial'],
       rows: [
         { feature: 'Pensada para', a: 'Un negocio pequeño que contesta desde el móvil.', b: 'Negocios con volumen de mensajes y un equipo que atiende.' },
-        { feature: 'Quién atiende', a: 'El móvil principal y unos pocos dispositivos vinculados.', b: 'Una bandeja compartida para todo el equipo, desde el ordenador o el móvil.' },
+        { feature: 'Quién atiende', a: 'El móvil principal y unos pocos dispositivos vinculados.', b: 'Una bandeja compartida en CRM Nova (la API no trae app propia): todo el equipo atiende desde el ordenador o el móvil.' },
         { feature: 'IA y automatización', a: 'Respuestas rápidas, saludo y mensaje de ausencia.', b: 'Una IA conectada que responde, cualifica y propone cita.' },
         { feature: 'Escribir tú primero', a: 'Listas de difusión, que solo llegan a quien tiene tu número guardado.', b: 'Plantillas aprobadas por Meta para recordatorios y seguimientos a quien te dio permiso.' },
+        { feature: 'Contestar pasadas 24 h', a: 'Puedes escribir libremente cuando quieras.', b: 'Mensaje libre solo en las 24 h siguientes al último mensaje del cliente; después, solo con plantillas aprobadas.' },
         { feature: 'Historial y CRM', a: 'Las conversaciones se quedan en el teléfono.', b: 'Cada conversación se guarda en CRM Nova, unida a la ficha del cliente.' },
-        { feature: 'Coste de Meta', a: 'La app es gratuita.', b: 'Meta cobra algunos mensajes, sobre todo las plantillas que inicias tú.' },
-        { feature: 'Tu número', a: 'Tuyo.', b: 'Tuyo también, registrado a nombre de tu empresa.' },
+        { feature: 'Coste de Meta', a: 'La app es gratuita.', b: 'Meta cobra por cada plantilla entregada (marketing, utilidad o autenticación); contestar dentro de las 24 h a quien te escribe no tiene coste de Meta.' },
+        { feature: 'Tu número', a: 'Tuyo.', b: 'Tuyo también, registrado en la cuenta de Meta de tu empresa. Según cómo se migre, deja de usarse en la app normal o convive con ella; lo vemos antes de empezar.' },
       ],
       note: 'Resumen orientativo de cómo funciona cada opción hoy. Meta actualiza sus condiciones y sus tarifas; antes de empezar te contamos las vigentes.',
     },
@@ -257,7 +270,7 @@ export const SERVICE_SALES: Record<ServiceSlug, ServiceSales> = {
         { icon: 'megaphone', title: 'Anuncio o búsqueda', text: 'La visita llega desde tus campañas de Meta, desde Google o desde tu perfil de Instagram.' },
         { icon: 'globe', title: 'Tu web', text: 'Carga rápido en el móvil y explica en pocos segundos qué haces y por qué fiarse de ti.' },
         { icon: 'chat', title: 'Formulario o WhatsApp', text: 'La persona deja sus datos o escribe por WhatsApp, sin buscar tu teléfono ni esperar.' },
-        { icon: 'target', title: 'La IA contesta', text: 'En menos de 60 segundos le escribe, pregunta lo necesario y le propone una cita.' },
+        { icon: 'target', title: 'La IA contesta', text: 'Está configurada para escribirle en menos de un minuto, preguntar lo necesario y proponerle una cita.' },
         { icon: 'crm', title: 'CRM Nova', text: 'Ves de qué página y de qué campaña llegó cada contacto, y qué páginas convierten mejor.' },
       ],
     },

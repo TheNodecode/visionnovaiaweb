@@ -1,0 +1,24 @@
+---
+// Franja de una línea bajo el hero de servicio: el servicio va dentro de NovaScale y lleva garantía.
+// Enlaza a la oferta (#oferta) para que nadie tenga que bajar media página para encontrarla.
+interface Props { href?: string; text?: string; link?: string }
+const {
+  href = '#oferta',
+  text = 'Dentro de NovaScale: grabación + anuncios + IA + CRM · garantía de 15 clientes filtrados',
+  link = 'Ver la oferta',
+} = Astro.props;
+---
+<div class="relative bg-ink pb-6 md:pb-10">
+  <div class="container-x">
+    <a href={href} class="os group flex min-h-11 flex-col gap-2 rounded-2xl border border-gold-400/30 bg-gold-400/[0.06] px-4 py-3 text-[14px] leading-snug text-cream transition-colors hover:border-gold-400/60 hover:bg-gold-400/[0.1] sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:rounded-full sm:px-5" data-reveal>
+      <span class="flex items-start gap-2.5 sm:items-center">
+        <span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400 sm:mt-0" aria-hidden="true"></span>
+        <span>{text}</span>
+      </span>
+      <span class="inline-flex shrink-0 items-center gap-1.5 pl-4 text-[13px] font-medium text-gold-200 sm:pl-0">
+        {link}
+        <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+      </span>
+    </a>
+  </div>
+</div>

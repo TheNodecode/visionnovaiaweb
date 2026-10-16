@@ -26,6 +26,7 @@ import HandoffAlert from '../components/sections/HandoffAlert.astro';
 import CompareTable from '../components/sections/CompareTable.astro';
 import Statement from '../components/sections/Statement.astro';
 import PageAnatomy from '../components/sections/PageAnatomy.astro';
+import OfferStrip from '../components/sections/OfferStrip.astro';
 import { SERVICES, type ServicePage } from '../data/services';
 import { SERVICE_SALES } from '../data/service-sales';
 import { CITIES, type CityPage } from '../data/cities';
@@ -84,7 +85,7 @@ const heroEyebrow = page.slug === 'whatsapp-business-api' && SITE.metaPartner
   : page.hero.eyebrow;
 
 const audios = AUDIO_DEMOS.map(({ src, label }) => ({ src, label }));
-// Servicio: su partida va primera en la oferta compacta (8 partidas, dos columnas).
+// Servicio: su partida va primera en la oferta compacta (8 partidas).
 const svc = props.kind === 'service' ? SERVICE_SALES[props.page.slug] : undefined;
 const serviceOffer = svc && tailorOffer(OFFER_ITEMS, {
   only: [svc.offer.first, ...OFFER_ITEMS.map((i) => i.id).filter((id): id is OfferId => id !== svc.offer.first)],
@@ -105,66 +106,74 @@ const related = props.kind === 'service'
 <BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
   <PageHero eyebrow={heroEyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
 
-  {/* Cada servicio tiene su propia composición; todos cierran con la oferta compacta, la garantía y su FAQ. */}
-  {sp && svc && slug === 'creacion-de-contenido' && (
-    <>
-      <ShootDay {...svc.shootDay!} />
-      <RealWork tone="dark" titleHtml={svc.realWork!.titleHtml} lead={svc.realWork!.lead} steps={svc.realWork!.steps} cta="Quiero un rodaje así" />
-      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} tone="light" />
-    </>
-  )}
+  {/* Servicios: franja de oferta bajo el hero, el bloque propio del servicio y, justo después, la oferta compacta.
+       Ritmo claro/oscuro alterno; la garantía va al final, lejos de la ficha que ya la enseña. */}
+  {sp && <OfferStrip />}
 
-  {sp && svc && slug === 'gestion-redes-sociales' && (
+  {sp && slug === 'creacion-de-contenido' && (() => { const x = SERVICE_SALES['creacion-de-contenido']; return (
     <>
-      <ContentCalendar {...svc.calendar!} />
+      <ShootDay {...x.shootDay} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <RealWork titleHtml={x.realWork.titleHtml} lead={x.realWork.lead} steps={x.realWork.steps} cta="Quiero un rodaje así" />
       <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
-      <InboxTriage {...svc.inbox!} tone="light" />
-      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
     </>
-  )}
+  ); })()}
 
-  {sp && svc && slug === 'publicidad-meta-ads' && (
+  {sp && slug === 'gestion-redes-sociales' && (() => { const x = SERVICE_SALES['gestion-redes-sociales']; return (
     <>
-      <AdAnatomy {...svc.adAnatomy!} />
-      <FunnelFlow {...svc.funnel!} />
-      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} tone="light" />
-      <RoiCalculator />
-      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
+      <ContentCalendar {...x.calendar} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <InboxTriage {...x.inbox} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
     </>
-  )}
+  ); })()}
 
-  {sp && svc && slug === 'sistema-ia' && (
+  {sp && slug === 'publicidad-meta-ads' && (() => { const x = SERVICE_SALES['publicidad-meta-ads']; return (
+    <>
+      <AdAnatomy {...x.adAnatomy} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <FunnelFlow {...x.funnel} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      <RoiCalculator />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
+    </>
+  ); })()}
+
+  {sp && slug === 'sistema-ia' && (() => { const x = SERVICE_SALES['sistema-ia']; return (
     <>
       <AIDemo scenario="general" audios={audios} />
-      <QualifyQuestions {...svc.qualify!} />
+      <OfferStack compact eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
       <CrmShowcase image={CRM_IMAGE} />
-      <HandoffAlert {...svc.handoff!} />
+      <QualifyQuestions {...x.qualify} />
       <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      <HandoffAlert {...x.handoff} />
       {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
     </>
-  )}
+  ); })()}
 
-  {sp && svc && slug === 'whatsapp-business-api' && (
+  {sp && slug === 'whatsapp-business-api' && (() => { const x = SERVICE_SALES['whatsapp-business-api']; return (
     <>
-      <CompareTable id="app-o-api" {...svc.compare!} />
-      <Statement id="tu-numero" {...svc.statement!} />
-      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} tone="light" />
-      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
+      <CompareTable id="app-o-api" {...x.compare} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <Statement id="tu-numero" {...x.statement} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
     </>
-  )}
+  ); })()}
 
-  {sp && svc && slug === 'diseno-web' && (
+  {sp && slug === 'diseno-web' && (() => { const x = SERVICE_SALES['diseno-web']; return (
     <>
-      <PageAnatomy {...svc.anatomy!} />
-      <FunnelFlow id="la-web-en-el-sistema" {...svc.funnel!} />
-      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} tone="light" />
-      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
+      <PageAnatomy {...x.anatomy} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <FunnelFlow id="la-web-en-el-sistema" {...x.funnel} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
     </>
-  )}
+  ); })()}
 
-  {sp && svc && (
+  {sp && (
     <>
-      <OfferStack compact eyebrow="Dentro de NovaScale" titleHtml={svc.offer.titleHtml} lead={svc.offer.lead} items={serviceOffer} />
       <Guarantee />
       <Faq title="Preguntas sobre este servicio" items={[...sp.faq, GUARANTEE_FAQ]} />
     </>

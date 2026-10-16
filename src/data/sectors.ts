@@ -38,7 +38,7 @@ export const SECTORS: SectorPage[] = [
       lead: 'Elegir clínica es más fácil cuando ya has visto las caras de quien te va a atender. Grabamos a tus doctores y a tu equipo en la propia clínica, convertimos esos vídeos en anuncios para tu zona y dejamos que la IA atienda WhatsApp y teléfono: pregunta qué tratamiento buscan, cuándo quieren empezar y propone una cita.',
       bullets: [
         'Vídeos con tus doctores, grabados en tu clínica',
-        'Consultas de WhatsApp contestadas en menos de 60 s',
+        'WhatsApp configurado para contestar en menos de 60 s',
         'Llamadas perdidas recuperadas por el agente de voz',
       ],
     },
@@ -116,7 +116,7 @@ export const SECTORS: SectorPage[] = [
       lead: 'En estética, el paciente compara durante semanas antes de pedir valoración. Grabamos a tu equipo médico explicando cómo trabaja, convertimos esas piezas en campañas para tu zona y ponemos una IA a responder los mensajes con la información que tú apruebas, para que a valoración lleguen personas que ya te conocen.',
       bullets: [
         'Contenido grabado con tu propio equipo médico',
-        'Respuesta por WhatsApp en menos de 60 s, también de noche',
+        'WhatsApp configurado para responder en menos de 60 s, también de noche',
         'Aviso inmediato cuando hace falta una persona',
       ],
     },
@@ -228,9 +228,8 @@ export const SECTORS: SectorPage[] = [
       'Presentación de cada agente: qué zona cubre y por qué conoce ese mercado.',
     ],
     aiScenario: 'inmobiliaria',
-    // No hay audio demo de inmobiliaria: se muestran demos de otros sectores con su etiqueta real.
-    audioFilter: ['reformas', 'juridico'],
-    audioNote: 'Aún no tenemos audio de inmobiliaria; así suena en otros sectores.',
+    // Sin audio propio de inmobiliaria: la demo enseña solo el chat (sin reproductor).
+    audioFilter: [],
     defaultTicket: 4000,
     faq: [
       {

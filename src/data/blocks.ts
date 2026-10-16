@@ -48,3 +48,8 @@ export interface TriageItem { from: string; text: string; tag: 'Oportunidad' | '
 
 export interface Point { icon: IconName; title: string; text: string }
 export interface Numbered { title: string; text: string }
+
+/** Columna de un bloque enfrentado (dos frentes, o lo que responde la IA frente a lo que pasa a una persona). */
+export interface SplitColumn { icon: IconName; label: string; title: string; text: string; items: string[] }
+/** Fase de una obra como momento de contenido. */
+export interface Phase { label: string; title: string; text: string; shots: string[] }

@@ -109,6 +109,16 @@ input, select, textarea { font-size: 16px; }
 @keyframes intro-up { from { opacity: 0; transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) { [data-intro] { animation: none; } }
 
+/* Revelados al hacer scroll: un único IntersectionObserver (motion.ts) añade .is-in y la animación es CSS.
+   El estado oculto solo existe con html.reveal-ready, que el JS pone después de marcar lo que ya está a la vista:
+   sin JS o con reduced motion todo se ve desde el principio. «backwards»: al terminar no queda ningún estilo
+   de la animación, así que hovers y transforms propios de cada elemento siguen funcionando. */
+.reveal-ready [data-reveal]:not(.is-in),
+.reveal-ready [data-reveal-stagger]:not(.is-in) > * { opacity: 0; }
+.reveal-ready [data-reveal].do-anim { animation: reveal-up 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) var(--rd, 0s) backwards; }
+.reveal-ready [data-reveal-stagger].do-anim > * { --ry: 16px; animation: reveal-up 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) calc(var(--i, 0) * 40ms) backwards; }
+@keyframes reveal-up { from { opacity: 0; transform: translateY(var(--ry, 18px)); } }
+
 /* ── Secciones claras ──────────────────────────────────────────────────────────
    Uso: las secciones aceptan `tone="light"` (o se añade la clase .section-light a la <section>).
    Dentro, los tokens se reasignan: los utilitarios de siempre (bg-ink, text-cream, text-muted,

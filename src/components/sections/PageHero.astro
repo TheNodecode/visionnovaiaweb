@@ -12,13 +12,13 @@ const { eyebrow, title, titleAccent, lead, ctaLabel = 'Ver si mi negocio encaja'
 
   <div class="container-x pb-16 pt-[calc(env(safe-area-inset-top)+150px)] md:pb-24 md:pt-48">
     <div class="max-w-4xl">
-      <div data-reveal><Eyebrow>{eyebrow}</Eyebrow></div>
-      <h1 id="page-title" data-split class="mt-5 font-display text-[42px] italic leading-[1.03] text-cream text-balance md:mt-7 md:text-[76px]">
+      <div data-intro><Eyebrow>{eyebrow}</Eyebrow></div>
+      <h1 id="page-title" data-intro style="--intro-delay: 80ms" class="mt-5 font-display text-[42px] italic leading-[1.03] text-cream text-balance md:mt-7 md:text-[76px]">
         {title}{titleAccent && <> <span class="text-gold">{titleAccent}</span></>}
       </h1>
-      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted text-pretty md:mt-8 md:text-lg" data-reveal data-reveal-delay="0.3">{lead}</p>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted text-pretty md:mt-8 md:text-lg" data-intro style="--intro-delay: 200ms">{lead}</p>
 
-      <div class="mt-9 flex flex-col gap-8 md:mt-11 md:flex-row md:items-center md:gap-10" data-reveal data-reveal-delay="0.45">
+      <div class="mt-9 flex flex-col gap-8 md:mt-11 md:flex-row md:items-center md:gap-10" data-intro style="--intro-delay: 280ms">
         <Button size="lg" data-open-form data-magnetic class="w-full md:w-auto">{ctaLabel}</Button>
         {bullets.length > 0 && (
           <ul class="flex flex-col gap-2.5 text-sm text-cream/80 md:gap-2">

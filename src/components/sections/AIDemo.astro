@@ -2,8 +2,10 @@
 import SectionHeading from '../ui/SectionHeading.astro';
 
 type Scenario = 'dental' | 'estetica' | 'inmobiliaria' | 'reformas' | 'general';
-interface Props { scenario: Scenario; audios: { src: string; label: string }[]; audioNote?: string }
-const { scenario, audios, audioNote } = Astro.props;
+interface Props { scenario: Scenario; audios: { src: string; label: string }[]; audioNote?: string; titleHtml?: string; lead?: string }
+// Sin audios propios del sector no se enseña el reproductor: solo el chat, centrado.
+const { scenario, audios, audioNote, titleHtml, lead } = Astro.props;
+const hasAudio = audios.length > 0;
 
 type Msg = { from: 'c' | 'ia'; text: string; time: string };
 // Guiones originales: la IA pregunta por necesidad, plazo e intención, y agenda.
@@ -55,13 +57,13 @@ const uid = `ai-${scenario}`;
 <section class="relative overflow-hidden bg-ink py-16 md:py-28" data-ai-demo aria-labelledby={`${uid}-title`}>
   <div class="container-x">
     <div data-reveal>
-      <SectionHeading eyebrow="La IA en acción" titleHtml={`<span id="${uid}-title">Contesta en segundos. <span class="text-gold">Filtra antes de que llames.</span></span>`}
-        lead="Así atiende a un contacto que llega de un anuncio fuera de horario, cuando tu equipo ya se ha ido a casa." />
+      <SectionHeading eyebrow="La IA en acción" titleHtml={`<span id="${uid}-title">${titleHtml ?? 'Contesta en segundos. <span class="text-gold">Filtra antes de que llames.</span>'}</span>`}
+        lead={lead ?? 'Así atiende a un contacto que llega de un anuncio fuera de horario, cuando tu equipo ya se ha ido a casa.'} />
     </div>
 
-    <div class="mt-14 grid gap-6 md:mt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+    <div class:list={['mt-14 grid gap-6 md:mt-20 lg:gap-8', hasAudio ? 'lg:grid-cols-[1.05fr_1fr]' : 'mx-auto max-w-2xl']}>
       <!-- Chat de WhatsApp simulado -->
-      <div class="overflow-hidden rounded-[32px] border border-white/10 bg-[#0c1210] shadow-[0_50px_100px_-50px_rgb(0_0_0/1)]" data-reveal>
+      <div class="self-start overflow-hidden rounded-[32px] border border-white/10 bg-[#0c1210] shadow-[0_50px_100px_-50px_rgb(0_0_0/1)]" data-reveal>
         <div class="flex items-center gap-3 border-b border-white/5 bg-white/[0.03] px-5 py-4">
           <span class="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-[12px] font-semibold" aria-hidden="true">IA</span>
           <div class="min-w-0 leading-tight">
@@ -103,7 +105,7 @@ const uid = `ai-${scenario}`;
       </div>
 
       <!-- Reproductor de audio -->
-      <div class="flex flex-col rounded-[32px] border border-white/10 bg-surface p-6 sm:p-8" data-reveal data-audio-player>
+      {hasAudio && <div class="flex flex-col rounded-[32px] border border-white/10 bg-surface p-6 sm:p-8" data-reveal data-audio-player>
         <h3 class="font-display text-[28px] italic leading-[1.1] text-cream text-balance md:text-[34px]">Escucha a la IA atendiendo llamadas de prueba</h3>
 
         <div class="mt-8 flex items-center gap-4 rounded-3xl bg-white/[0.03] p-4 ring-1 ring-white/5">
@@ -132,7 +134,7 @@ const uid = `ai-${scenario}`;
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
     </div>
 
     <p class="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted text-pretty md:mt-14 md:text-base" data-reveal>
@@ -148,7 +150,10 @@ const uid = `ai-${scenario}`;
   .chat-typing i:nth-child(2) { animation-delay: 0.15s; }
   .chat-typing i:nth-child(3) { animation-delay: 0.3s; }
   @keyframes chat-dot { 0%, 80%, 100% { opacity: 0.3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
-  [data-chat].is-playing .chat-msg.is-pending { opacity: 0; transform: translateY(10px); }
+  /* Los mensajes pendientes no ocupan sitio: el chat crece a medida que llegan, sin un panel vacío delante. */
+  [data-chat].is-playing .chat-msg.is-pending { display: none; }
+  [data-chat].is-playing .chat-msg { animation: chat-in 0.45s var(--ease-out-expo) both; }
+  @keyframes chat-in { from { opacity: 0; transform: translateY(10px); } }
   [data-chat].is-playing .chat-msg.is-typing { opacity: 1; transform: none; }
   [data-chat].is-playing .chat-msg.is-typing .chat-bubble { opacity: 0; }
   [data-chat].is-playing .chat-msg.is-typing .chat-typing { opacity: 1; }
@@ -181,12 +186,15 @@ const uid = `ai-${scenario}`;
     let timers: number[] = [];
     const wait = (ms: number) => new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
 
-    async function play() {
+    // first: la primera vez se parte con los dos primeros mensajes ya a la vista (el chat nunca se ve vacío).
+    async function play(first = false) {
       timers.forEach(clearTimeout); timers = [];
       const run = Symbol(); (chat as any).__run = run;
       chat.classList.add('is-playing');
-      msgs.forEach((m) => { m.classList.add('is-pending'); m.classList.remove('is-typing'); });
+      const skip = first ? 2 : 0;
+      msgs.forEach((m, i) => { m.classList.toggle('is-pending', i >= skip); m.classList.remove('is-typing'); });
       for (const [i, m] of msgs.entries()) {
+        if (i < skip) continue;
         // el primer mensaje del cliente aparece casi al instante para que el chat nunca se vea vacío
         await wait(i === 0 ? 120 : m.dataset.from === 'c' ? 900 : 350);
         if ((chat as any).__run !== run) return;
@@ -203,14 +211,15 @@ const uid = `ai-${scenario}`;
 
     root.querySelector('[data-chat-replay]')!.addEventListener('click', () => { if (!reduce) play(); });
     if (!reduce && 'IntersectionObserver' in window) {
-      msgs.forEach((m) => m.classList.add('is-pending'));
+      msgs.forEach((m, i) => m.classList.toggle('is-pending', i >= 2));
       chat.classList.add('is-playing');
-      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.15 });
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); play(true); } }, { rootMargin: '0px 0px -10% 0px' });
       io.observe(chat);
     }
 
     // --- Audio ---
-    const player = root.querySelector<HTMLElement>('[data-audio-player]')!;
+    const player = root.querySelector<HTMLElement>('[data-audio-player]');
+    if (!player) return;
     const audio = root.querySelector<HTMLAudioElement>('[data-audio]')!;
     const toggle = root.querySelector<HTMLButtonElement>('[data-audio-toggle]')!;
     const seek = root.querySelector<HTMLInputElement>('[data-audio-seek]')!;

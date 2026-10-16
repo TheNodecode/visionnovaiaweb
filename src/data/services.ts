@@ -113,7 +113,7 @@ export const SERVICES: ServicePage[] = [
       eyebrow: 'Agencia de Meta Ads',
       title: 'Anuncios en Facebook e Instagram',
       titleAccent: 'que acaban en citas, no en curiosos.',
-      lead: 'Diseñamos la estrategia, montamos los anuncios con tus propios vídeos y los optimizamos cada semana. La diferencia está en lo que ocurre después del clic: la IA responde al contacto en menos de 60 segundos y lo pasa a tu equipo ya filtrado.',
+      lead: 'Diseñamos la estrategia, montamos los anuncios con tus propios vídeos y los optimizamos cada semana. La diferencia está en lo que ocurre después del clic: la IA está configurada para responder al contacto en menos de un minuto y pasarlo a tu equipo ya filtrado.',
       bullets: ['La inversión la pagas tú directamente a Meta', 'Creativos con vídeos de tu negocio', 'Informe mensual de cada euro'],
     },
     features: {
@@ -153,13 +153,13 @@ export const SERVICES: ServicePage[] = [
     keyword: 'chatbot de WhatsApp con IA y agente de voz',
     seoTitle: 'Chatbot de WhatsApp con IA y agente de voz | Visión Nova',
     seoDescription:
-      'WhatsApp con IA que responde en menos de 60 s, agente de voz 24/7 y CRM Nova. Recupera las llamadas perdidas y avisa a tu equipo solo cuando hace falta.',
+      'WhatsApp con IA configurada para responder en menos de 60 s, agente de voz 24/7 y CRM Nova. Recupera llamadas perdidas y avisa a tu equipo cuando hace falta.',
     hero: {
       eyebrow: 'Sistema IA + CRM Nova',
       title: 'Chatbot de WhatsApp con IA y agente de voz',
       titleAccent: 'que atienden mientras tú trabajas.',
-      lead: 'Nova contesta los mensajes en menos de 60 segundos, coge el teléfono a cualquier hora y retoma las llamadas que no pudiste atender. Pregunta lo que preguntarías tú, propone la cita y te avisa al momento si el cliente necesita hablar con una persona.',
-      bullets: ['Respuesta en WhatsApp en menos de 60 s', 'Agente de voz 24/7', 'CRM Nova con cada conversación'],
+      lead: 'Nova está configurada para contestar los mensajes en menos de un minuto, coger el teléfono a cualquier hora y retomar las llamadas que no pudiste atender. Pregunta lo que preguntarías tú, propone la cita y te avisa al momento si el cliente necesita hablar con una persona.',
+      bullets: ['WhatsApp configurado para responder en menos de 60 s', 'Agente de voz pensado para atender 24/7', 'CRM Nova con cada conversación'],
     },
     features: {
       title: 'Seis piezas que trabajan como una sola',
@@ -198,12 +198,12 @@ export const SERVICES: ServicePage[] = [
     keyword: 'WhatsApp Business API oficial',
     seoTitle: 'WhatsApp Business API oficial con IA | Visión Nova',
     seoDescription:
-      'Conectamos tu número a la WhatsApp Business API oficial: varios agentes, plantillas aprobadas e IA que responde en menos de 60 s. El número sigue siendo tuyo.',
+      'Pasamos tu número a la WhatsApp Business API oficial: varios agentes, plantillas aprobadas e IA configurada para responder en menos de 60 s. El número es tuyo.',
     hero: {
       eyebrow: 'WhatsApp Business API oficial',
       title: 'Tu WhatsApp, preparado',
       titleAccent: 'para atender a todo el que escribe.',
-      lead: 'Pasamos tu número de la aplicación a la API oficial de Meta. Tu equipo comparte una misma bandeja desde varios dispositivos, envías plantillas aprobadas y una IA contesta en menos de 60 segundos, con todo registrado en CRM Nova.',
+      lead: 'Pasamos tu número de la aplicación a la API oficial de Meta. Tu equipo comparte una misma bandeja desde varios dispositivos, envías plantillas aprobadas y una IA configurada para contestar en menos de un minuto, con todo registrado en CRM Nova.',
       bullets: ['El número sigue siendo tuyo', 'Varios agentes en la misma bandeja', 'IA conectada desde el primer día'],
     },
     features: {
@@ -213,7 +213,7 @@ export const SERVICES: ServicePage[] = [
         { icon: 'megaphone', title: 'Anuncios que abren el chat', text: 'Tus campañas de Meta pueden llevar directamente a una conversación con tu número, y cada contacto llega marcado con el anuncio del que viene.' },
         { icon: 'users', title: 'Varios agentes a la vez', text: 'Recepción, comercial y dirección atienden desde la misma bandeja, cada uno desde su ordenador o su móvil, y se reparten las conversaciones.' },
         { icon: 'calendar', title: 'Plantillas aprobadas', text: 'Recordatorios, confirmaciones y seguimientos con mensajes plantilla aprobados por Meta, para escribir a quien te dio permiso sin esperar a que te escriba.' },
-        { icon: 'chat', title: 'IA conectada', text: 'Responde en menos de 60 segundos, cualifica y solo te pasa las conversaciones con intención. Puedes tomar el control cuando quieras.' },
+        { icon: 'chat', title: 'IA conectada', text: 'Está configurada para responder en menos de un minuto, cualificar y pasarte solo las conversaciones con intención. Puedes tomar el control cuando quieras.' },
         { icon: 'crm', title: 'Todo en CRM Nova', text: 'Cada chat queda unido a la ficha del cliente, con etiquetas, notas y el anuncio del que llegó.' },
       ],
     },
@@ -229,8 +229,8 @@ export const SERVICES: ServicePage[] = [
     faq: [
       { q: '¿Qué diferencia hay entre la app de WhatsApp Business y la API?', a: 'La app está pensada para un móvil y una persona. La API oficial permite que varias personas atiendan el mismo número, conectar una IA, enviar plantillas aprobadas y guardar cada conversación en un CRM.' },
       { q: '¿Pierdo mis conversaciones al pasar mi número a la API?', a: 'Depende de cómo se haga la migración, así que lo revisamos contigo antes de tocar nada. Sabrás de antemano qué historial se conserva y cómo guardar lo que quieras. Desde ese momento, todo queda registrado en CRM Nova.' },
-      { q: '¿Meta cobra por usar la API?', a: 'Meta factura algunos tipos de mensajes, sobre todo las plantillas que envías tú para iniciar una conversación. Ese importe lo cobra Meta directamente, y te explicamos cómo funciona antes de empezar.' },
-      { q: '¿Puedo seguir contestando yo desde el móvil?', a: 'Sí. Tú y tu equipo entráis a la bandeja compartida desde el móvil o el ordenador. Cuando alguien toma una conversación, la IA deja de responder en ella.' },
+      { q: '¿Meta cobra por usar la API?', a: 'Meta cobra por cada plantilla entregada, sea de marketing, de utilidad o de autenticación. Contestar dentro de las 24 horas a quien te ha escrito no tiene coste de Meta. Ese importe lo cobra Meta directamente, y antes de empezar te contamos las tarifas vigentes.' },
+      { q: '¿Puedo seguir contestando yo desde el móvil?', a: 'Sí, desde la bandeja de CRM Nova en el móvil, o desde el ordenador. Cuando alguien de tu equipo toma una conversación, la IA deja de responder en ella.' },
       { q: '¿Corro riesgo de que me bloqueen el número?', a: 'Usar la API oficial y respetar las normas de Meta es la forma más segura de trabajar con WhatsApp a escala. Los bloqueos suelen venir de herramientas no oficiales y de envíos masivos sin permiso, y no trabajamos con ninguna de las dos cosas.' },
     ],
     related: ['sistema-ia', 'publicidad-meta-ads', 'sectores/clinicas-dentales', 'sectores/reformas'],

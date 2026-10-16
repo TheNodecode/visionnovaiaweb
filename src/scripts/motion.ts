@@ -13,7 +13,6 @@ document.documentElement.classList.add(reduce ? 'motion-off' : 'motion-on');
 // Ritmo del movimiento: corto y ligero para que la página se sienta rápida.
 const EASE = 'power3.out';
 const REVEAL = { y: 18, duration: 0.6 };
-const STAGGER = 0.04;
 
 function initLenis() {
   if (reduce) return;
@@ -40,17 +39,32 @@ function initLenis() {
   (window as any).__lenis = lenis;
 }
 
+// Revelados: un único IntersectionObserver para todo [data-reveal] y [data-reveal-stagger]; la animación es CSS
+// (global.css), así no hay un ScrollTrigger por elemento ni trabajo de GSAP en cada fotograma.
 function reveals() {
-  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
-    gsap.from(el, { ...REVEAL, opacity: 0, ease: EASE, delay: Number(el.dataset.revealDelay || 0) * 0.7,
-      scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+  const els = [...document.querySelectorAll<HTMLElement>('[data-reveal], [data-reveal-stagger]')];
+  const vh = window.innerHeight;
+  // Lecturas primero (un solo cálculo de layout) y escrituras después.
+  const seen = els.map((el) => el.getBoundingClientRect().top < vh);
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('is-in', 'do-anim');
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach((el, k) => {
+    if (seen[k]) { el.classList.add('is-in'); return; } // ya está a la vista: no se oculta ni se repite
+    const d = Number(el.dataset.revealDelay || 0);
+    if (d) el.style.setProperty('--rd', `${d * 0.7}s`);
+    if (el.hasAttribute('data-reveal-stagger')) [...el.children].forEach((c, i) => (c as HTMLElement).style.setProperty('--i', String(i)));
+    io.observe(el);
   });
-  gsap.utils.toArray<HTMLElement>('[data-reveal-stagger]').forEach((el) => {
-    gsap.from(el.children, { ...REVEAL, y: 16, opacity: 0, ease: EASE, stagger: STAGGER,
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
-  });
+  document.documentElement.classList.add('reveal-ready');
+
+  // SplitText solo en titulares h1/h2 que aún no se han visto; el resto entra con el revelado CSS.
   gsap.utils.toArray<HTMLElement>('[data-split]').forEach((el) => {
-    // SplitText solo en titulares h1/h2; el resto (párrafos largos) entra con un revelado simple
+    if (el.getBoundingClientRect().top < vh) return;
     if (!/^H[12]$/.test(el.tagName)) {
       gsap.from(el, { ...REVEAL, opacity: 0, ease: EASE, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
       return;
@@ -140,8 +154,9 @@ function init() {
   reveals();
   counters();
   scrollLinked();
-  refresh();
-  if (document.readyState !== 'complete') window.addEventListener('load', refresh, { once: true });
+  // Un solo refresco: ya, si la página terminó de cargar; si no, al evento load (las imágenes cambian alturas).
+  if (document.readyState === 'complete') refresh();
+  else window.addEventListener('load', refresh, { once: true });
 }
 
 // Los pins (refreshPriority: 1) se recalculan primero y en orden de documento,
@@ -153,4 +168,8 @@ function refresh() {
 
 window.addEventListener('motion:refresh', refresh);
 
-document.fonts?.ready.then(init) ?? init();
+// Después del primer pintado y sin competir con él: en un hueco libre (como mucho 1,5 s), con las fuentes listas.
+const whenIdle = (fn: () => void) =>
+  'requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 200);
+const start = () => whenIdle(init);
+document.fonts ? document.fonts.ready.then(start) : start();

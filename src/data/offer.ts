@@ -43,7 +43,7 @@ export const OFFER_ITEMS: OfferItem[] = [
   {
     id: 'whatsapp', icon: 'chat',
     title: 'WhatsApp con IA que responde en menos de 60 s',
-    outcome: 'Quien te escribe tiene respuesta en menos de un minuto, también de noche. La IA está configurada para preguntar lo que preguntarías tú y separar a quien va en serio de quien solo mira.',
+    outcome: 'Está pensado para responder en menos de un minuto, también de noche. La IA está configurada para preguntar lo que preguntarías tú y separar a quien va en serio de quien solo mira.',
   },
   {
     id: 'voz', icon: 'phone',
@@ -131,7 +131,7 @@ export const OBJECTIONS: Objection[] = [
   {
     q: 'Ya tengo agencia.',
     short: 'La mayoría entrega anuncios y un informe. Lo que pasa con el contacto ya no es cosa suya.',
-    a: 'Nosotros llevamos la cadena entera: grabación, anuncios, respuesta en menos de 60 segundos, filtro y CRM. Por eso nuestra garantía se mide en clientes filtrados y no en clics ni en alcance.',
+    a: 'Nosotros llevamos la cadena entera: grabación, anuncios, una IA configurada para responder en menos de un minuto, filtro y CRM. Por eso nuestra garantía se mide en clientes filtrados y no en clics ni en alcance.',
   },
   {
     q: 'No tengo tiempo para grabar.',

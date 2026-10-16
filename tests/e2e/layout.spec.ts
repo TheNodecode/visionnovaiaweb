@@ -130,9 +130,9 @@ const lightContrastFails = (page: import('@playwright/test').Page) => page.evalu
 // Cada landing tiene su propia composición: bloques que solo ella lleva.
 const LANDING_BLOCKS: Record<string, string[]> = {
   '/sectores/clinicas-dentales': ['#oferta', '#angulos', '#preguntas-ia', '#trabajo-real', '#primer-mes', '#objeciones'],
-  '/sectores/medicina-estetica': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
-  '/sectores/inmobiliarias': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
-  '/sectores/reformas': ['#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/sectores/medicina-estetica': ['#tratamiento-explicado', '#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/sectores/inmobiliarias': ['#dos-frentes', '#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
+  '/sectores/reformas': ['#obra-en-fases', '#oferta', '#angulos', '#preguntas-ia', '#asi-grabamos', '#primer-mes', '#objeciones'],
   '/creacion-de-contenido': ['#jornada', '#trabajo-real', '#oferta'],
   '/gestion-redes-sociales': ['#calendario', '#bandeja', '#oferta'],
   '/publicidad-meta-ads': ['#anuncios-reales', '#embudo', '#oferta'],
@@ -172,5 +172,27 @@ test('las secciones claras de las landings cumplen contraste AA', async ({ page 
   for (const path of ['/sectores/clinicas-dentales', '/sectores/reformas', '/gestion-redes-sociales', '/whatsapp-business-api', '/diseno-web', '/sistema-ia']) {
     await page.goto(path);
     expect(await lightContrastFails(page), path).toEqual([]);
+  }
+});
+
+test('cada sector tiene su propia secuencia de bloques', async ({ page }) => {
+  const seqs: string[] = [];
+  for (const path of ['/sectores/clinicas-dentales', '/sectores/medicina-estetica', '/sectores/inmobiliarias', '/sectores/reformas']) {
+    await page.goto(path);
+    seqs.push((await page.locator('main section[id], body section[id]').evaluateAll((els) => els.map((e) => e.id))).join(','));
+  }
+  expect(new Set(seqs).size).toBe(4);
+  // sin audio propio de inmobiliaria no hay reproductor (ni demos de otros sectores)
+  await page.goto('/sectores/inmobiliarias');
+  await expect(page.locator('[data-audio-player]')).toHaveCount(0);
+  await expect(page.locator('[data-ai-demo] [data-chat]')).toHaveCount(1);
+});
+
+test('servicios: la oferta aparece pronto y la franja bajo el hero lleva a ella', async ({ page }) => {
+  for (const path of ['/creacion-de-contenido', '/gestion-redes-sociales', '/publicidad-meta-ads', '/sistema-ia', '/whatsapp-business-api', '/diseno-web']) {
+    await page.goto(path);
+    const ids = await page.locator('section[id]').evaluateAll((els) => els.map((e) => e.id));
+    expect(ids.indexOf('oferta'), `${path}: ${ids.join(',')}`).toBeLessThanOrEqual(1);
+    await expect(page.locator('a[href="#oferta"]').first(), path).toBeVisible();
   }
 });

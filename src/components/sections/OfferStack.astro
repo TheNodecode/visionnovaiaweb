@@ -116,13 +116,14 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
     .offer-num { display: block; }
     .offer-row { grid-template-columns: auto auto minmax(0, 1fr) auto; padding: 20px 24px; gap: 4px 18px; }
   }
-  /* compacta: dos columnas, sin «Incluido» */
-  @media (min-width: 768px) {
+  /* compacta: sin «Incluido»; dos columnas en tablet (la ficha va debajo) y desde xl.
+     En lg la ficha fija ocupa el lateral y dos columnas quedarían demasiado estrechas. */
+  @media (min-width: 768px) { .offer-list-compact .offer-check { display: none; } }
+  @media (min-width: 768px) and (max-width: 1023px), (min-width: 1280px) {
     .offer-list-compact { display: grid; grid-template-columns: 1fr 1fr; }
     .offer-list-compact .offer-row { grid-template-columns: auto auto minmax(0, 1fr); border-top: 1px solid rgb(128 118 100 / 0.16); }
     .offer-list-compact .offer-row:nth-child(-n+2) { border-top: 0; }
     .offer-list-compact .offer-row:nth-child(even) { border-left: 1px solid rgb(128 118 100 / 0.16); }
-    .offer-list-compact .offer-check { display: none; }
   }
   .offer-card {
     position: relative; overflow: hidden; border-radius: 28px; padding: 26px 22px 22px;
