@@ -108,3 +108,45 @@ input, select, textarea { font-size: 16px; }
 [data-intro] { animation: intro-up 0.6s var(--ease-out-expo) both; animation-delay: var(--intro-delay, 0s); }
 @keyframes intro-up { from { opacity: 0; transform: translateY(18px); } }
 @media (prefers-reduced-motion: reduce) { [data-intro] { animation: none; } }
+
+/* ── Secciones claras ──────────────────────────────────────────────────────────
+   Uso: las secciones aceptan `tone="light"` (o se añade la clase .section-light a la <section>).
+   Dentro, los tokens se reasignan: los utilitarios de siempre (bg-ink, text-cream, text-muted,
+   border-white/10, text-gold-400, .glass, .text-gold…) se pintan solos en crema/tinta, sin
+   duplicar clases. Contraste AA sobre #F4EFE6: tinta 18:1, muted #5e574d 6,2:1, oro texto #85601e 4,9:1.
+   Bordes: la hoja clara lleva esquinas grandes y el fondo tinta asoma por ellas (transición deliberada,
+   sin línea de corte). Dos secciones claras seguidas se funden en una sola hoja.
+   Para un elemento que debe seguir oscuro dentro (un móvil, una captura), añade .tone-dark. */
+.section-light {
+  --color-ink: #f4efe6;
+  --color-surface: #fbf8f2;
+  --color-surface-2: #e9e1d3;
+  --color-cream: #0a0a0a;
+  --color-muted: #5e574d;
+  --color-white: #0a0a0a;
+  --color-gold-200: #7a571a;
+  --color-gold-400: #85601e;
+  --color-gold-600: #a07425;
+  position: relative; isolation: isolate;
+  background: var(--color-ink); color: var(--color-cream);
+  border-radius: clamp(28px, 4vw, 56px);
+}
+.section-light + .section-light { border-top-left-radius: 0; border-top-right-radius: 0; }
+.section-light:has(+ .section-light) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.section-light ::selection { background: rgb(184 134 47 / 0.25); }
+.section-light .glass { background: #fffdf9; border-color: rgb(10 10 10 / 0.08);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.9) inset, 0 24px 48px -32px rgb(60 40 10 / 0.25); }
+.section-light .text-silver { background: none; color: var(--color-cream); }
+.section-light .text-outline-gold { -webkit-text-stroke-color: rgb(133 96 30 / 0.45); }
+/* los botones dorados conservan el oro de marca */
+.section-light .bg-gold { background: linear-gradient(135deg, #f1d9a0, #d9b266 45%, #b8862f); color: #1a1408; }
+.section-light .tone-dark, .tone-dark {
+  --color-ink: #0a0a0a; --color-surface: #121212; --color-surface-2: #1a1a1a; --color-cream: #ece8e1;
+  --color-muted: #a39e96; --color-white: #fff; --color-gold-200: #f1d9a0; --color-gold-400: #d9b266; --color-gold-600: #b8862f;
+}
+
+/* Cinta de logos/sectores en bucle lento (estática con reduced-motion). */
+.marquee { display: flex; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee > * { flex: none; display: flex; animation: marquee 40s linear infinite; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .marquee > * { animation: none; } .marquee > [aria-hidden], .marquee li:nth-child(n+5) { display: none; } .marquee { justify-content: center; flex-wrap: wrap; } }

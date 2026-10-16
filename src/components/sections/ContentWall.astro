@@ -1,13 +1,13 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
 
-interface Props { items: { src?: string; poster: string; label: string; alt?: string }[] }
-const { items } = Astro.props;
+interface Props { items: { src?: string; poster: string; label: string; alt?: string }[]; tone?: 'dark' | 'light' }
+const { items, tone = 'dark' } = Astro.props;
 // Con alt, la pieza es una captura real del cliente (ya trae la interfaz de Instagram y los
 // subtítulos): se muestra tal cual. Sin alt, encuadres distintos del mismo póster.
 const framing = ['object-[30%_60%]', 'object-[60%_70%]', 'object-[50%_40%]', 'object-[70%_50%]', 'object-[40%_80%]'];
 ---
-<section class="relative overflow-hidden bg-ink py-24 md:py-36" aria-labelledby="cw-title">
+<section class:list={['relative overflow-hidden bg-ink py-16 md:py-28', tone === 'light' && 'section-light']} aria-labelledby="cw-title">
   <div class="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[900px] max-w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(closest-side,rgb(217_178_102/0.10),transparent)]" aria-hidden="true"></div>
   <div class="container-x relative">
     <div data-reveal>
@@ -16,10 +16,10 @@ const framing = ['object-[30%_60%]', 'object-[60%_70%]', 'object-[50%_40%]', 'ob
     </div>
   </div>
 
-  <ul class="cw-rail relative mt-14 md:mt-20" aria-label="Ejemplos de piezas de contenido">
+  <ul class="cw-rail relative mt-8 md:mt-10" aria-label="Ejemplos de piezas de contenido">
     {items.map((it, i) => (
       <li class="cw-item" data-parallax={i % 2 === 0 ? '0.1' : '-0.1'}>
-        <div class="cw-phone relative aspect-[9/19] overflow-hidden rounded-[44px] border-[10px] border-surface-2 bg-surface shadow-[0_50px_100px_-40px_rgb(0_0_0/1),0_0_0_1px_rgb(255_255_255/0.06)]">
+        <div class="cw-phone tone-dark relative aspect-[9/19] overflow-hidden rounded-[44px] border-[10px] border-surface-2 bg-surface shadow-[0_50px_100px_-40px_rgb(0_0_0/1),0_0_0_1px_rgb(255_255_255/0.06)]">
           {it.alt
             ? <img class="absolute inset-0 h-full w-full object-cover object-top" src={it.poster} alt={it.alt} loading="lazy" decoding="async" />
             : it.src

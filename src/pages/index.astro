@@ -30,13 +30,13 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'V
   <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} alt={BTS_PHOTO.alt} position="60% 44%" caption="Así trabajamos: vamos a tu negocio y grabamos." />
   <ProblemFilter />
   <SystemActs />
-  <ContentWall items={CONTENT_REELS} />
+  <ContentWall items={CONTENT_REELS} tone="light" />
   <AIDemo scenario="general" audios={AUDIO_DEMOS.map(({ src, label }) => ({ src, label }))} />
   <CrmShowcase image={CRM_IMAGE} />
   <RoiCalculator />
-  <Benefits />
+  <Benefits tone="light" />
   <Guarantee />
-  <ForWho />
+  <ForWho tone="light" />
   <SoftwareNova />
   <Faq items={HOME_FAQ} />
   <LeadForm id="formulario" variant="full" heading="Mira si tu negocio encaja" lead="5 preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos." />

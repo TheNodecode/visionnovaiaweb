@@ -52,7 +52,7 @@ const SCRIPTS: Record<Scenario, { name: string; msgs: Msg[] }> = {
 const script = SCRIPTS[scenario];
 const uid = `ai-${scenario}`;
 ---
-<section class="relative overflow-hidden bg-ink py-24 md:py-36" data-ai-demo aria-labelledby={`${uid}-title`}>
+<section class="relative overflow-hidden bg-ink py-16 md:py-28" data-ai-demo aria-labelledby={`${uid}-title`}>
   <div class="container-x">
     <div data-reveal>
       <SectionHeading eyebrow="La IA en acción" titleHtml={`<span id="${uid}-title">Contesta en segundos. <span class="text-gold">Filtra antes de que llames.</span></span>`}
