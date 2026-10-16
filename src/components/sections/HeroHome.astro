@@ -1,63 +1,75 @@
 ---
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
+import HeroPhones from './HeroPhones.astro';
 import { SITE } from '../../config/site';
 
-const seals = [
-  { icon: 'shield' as const, text: SITE.metaPartner ? 'Meta Tech Provider' : 'WhatsApp Business API oficial' },
-  { icon: 'globe' as const, text: 'Grabamos en toda España' },
-  { icon: 'calendar' as const, text: '3 plazas al mes' },
+// Fila de confianza: lo que hacemos, en fichas compactas.
+const chips = [
+  { icon: 'camera' as const, text: 'Grabamos en tu negocio' },
+  { icon: 'megaphone' as const, text: 'Meta Ads' },
+  { icon: 'spark' as const, text: 'IA que filtra' },
+  { icon: 'crm' as const, text: 'CRM Nova' },
+  { icon: 'chat' as const, text: SITE.metaPartner ? 'Meta Tech Provider' : 'WhatsApp Business API oficial' },
 ];
+const sectors = ['Clínicas dentales', 'Medicina estética', 'Inmobiliarias', 'Reformas'];
 ---
-<section class="hero relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink" aria-labelledby="hero-title">
-  <video data-hero-video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60" muted loop playsinline preload="none"
+<section class="hero relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink" aria-labelledby="hero-title">
+  <video data-hero-video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60 lg:object-[62%_50%]" muted loop playsinline preload="none"
     poster="/video/hero-poster.jpg" src="/video/hero.mp4" aria-hidden="true" tabindex="-1"></video>
   <div class="starfield -z-10" aria-hidden="true"></div>
   <!-- velo para que el texto respire sobre la burbuja, y fundido a ink abajo -->
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_45%,rgb(10_10_10/0.55),transparent_75%)]" aria-hidden="true"></div>
-  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[45%] bg-gradient-to-b from-transparent via-ink/70 to-ink" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgb(10_10_10/0.55),transparent_75%)] lg:bg-[linear-gradient(90deg,rgb(10_10_10/0.78)_0%,rgb(10_10_10/0.35)_48%,transparent_70%)]" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[40%] bg-gradient-to-b from-transparent via-ink/70 to-ink" aria-hidden="true"></div>
   <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-ink/80 to-transparent" aria-hidden="true"></div>
 
-  <div class="container-x relative flex flex-col items-center pb-24 pt-[calc(env(safe-area-inset-top)+128px)] text-center md:pb-28 md:pt-36">
-    <p class="glass inline-flex min-h-9 items-center gap-2.5 whitespace-nowrap rounded-full px-4 text-[10px] font-medium uppercase tracking-[0.08em] text-cream/85 min-[400px]:tracking-[0.14em] sm:text-xs sm:tracking-[0.18em]" data-intro>
-      <span class="relative flex h-2 w-2" aria-hidden="true">
-        <span class="hero-ping absolute inset-0 rounded-full bg-gold-400"></span>
-        <span class="relative h-2 w-2 rounded-full bg-gold-400"></span>
-      </span>
-      Agencia de contenido y captación con IA
-    </p>
+  <div class="container-x relative grid flex-1 items-center gap-12 pb-10 pt-[calc(env(safe-area-inset-top)+124px)] lg:grid-cols-12 lg:gap-x-8 lg:gap-y-7 lg:pb-12 lg:pt-36">
+    <div class="flex flex-col items-center text-center lg:col-span-7 lg:row-start-1 lg:items-start lg:self-end lg:text-left">
+      <p class="glass inline-flex min-h-9 items-center gap-2.5 whitespace-nowrap rounded-full px-4 text-[10px] font-medium uppercase tracking-[0.08em] text-cream/85 min-[400px]:tracking-[0.14em] sm:text-xs sm:tracking-[0.18em]" data-intro>
+        <span class="relative flex h-2 w-2" aria-hidden="true">
+          <span class="hero-ping absolute inset-0 rounded-full bg-gold-400"></span>
+          <span class="relative h-2 w-2 rounded-full bg-gold-400"></span>
+        </span>
+        Agencia de contenido y captación con IA
+      </p>
 
-    <h1 id="hero-title" data-intro style="--intro-delay: 80ms" class="text-silver mt-7 max-w-[11em] font-display text-[44px] italic leading-[1.02] tracking-[-0.01em] text-balance md:mt-8 md:max-w-[14em] md:text-[88px]">
-      Grabamos tu negocio. Lo llenamos de clientes.
-      <span class="text-gold mt-1 block md:mt-2">La IA te deja solo los que van a comprar.</span>
-    </h1>
+      <h1 id="hero-title" data-intro style="--intro-delay: 80ms" class="text-silver mt-6 max-w-[11em] font-display text-[44px] italic leading-[1.02] tracking-[-0.01em] text-balance md:text-[64px] lg:mt-7 lg:max-w-[12.5em] lg:text-[68px] xl:text-[76px]">
+        Grabamos tu negocio. Lo llenamos de clientes.
+        <span class="text-gold mt-1 block">La IA te deja solo los que van a comprar.</span>
+      </h1>
 
-    <p class="mt-6 max-w-xl text-[15px] leading-relaxed text-cream/75 text-pretty md:mt-8 md:text-lg" data-intro style="--intro-delay: 200ms">
-      Contenido, Meta Ads y un CRM con IA que filtra cada contacto. Para negocios de ticket alto, en toda España.
-    </p>
+      <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-cream/75 text-pretty md:mt-6 md:text-lg" data-intro style="--intro-delay: 200ms">
+        Contenido, Meta Ads y un CRM con IA que filtra cada contacto. Para negocios de ticket alto, en toda España.
+      </p>
 
-    <div class="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:justify-center md:mt-11" data-intro style="--intro-delay: 280ms">
-      <Button size="lg" data-open-form data-magnetic class="w-full sm:w-auto">
-        Ver si mi negocio encaja
-        <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
-      </Button>
-      <Button size="lg" variant="glass" href="#sistema" class="w-full sm:w-auto">Ver cómo trabajamos</Button>
+      <div class="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row" data-intro style="--intro-delay: 280ms">
+        <Button size="lg" data-open-form data-magnetic class="w-full sm:w-auto">
+          Ver si mi negocio encaja
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </Button>
+        <Button size="lg" variant="glass" href="#sistema" class="w-full sm:w-auto">Ver cómo trabajamos</Button>
+      </div>
+
     </div>
 
-    <ul class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[12px] tracking-wide text-muted md:mt-14 md:text-[13px]" data-intro style="--intro-delay: 360ms">
-      {seals.map((s, i) => (
-        <li class="flex items-center gap-2">
-          {i > 0 && <span class="mr-4 hidden h-3 w-px bg-white/15 sm:block" aria-hidden="true"></span>}
-          <Icon name={s.icon} size={16} class="text-gold-400" />
-          {s.text}
-        </li>
-      ))}
+    <div class="w-full lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1" data-intro style="--intro-delay: 320ms">
+      <HeroPhones />
+    </div>
+
+    <!-- una sola lista: bajo los móviles en el teléfono, bajo los botones en escritorio -->
+    <ul class="hero-chips -mt-2 flex flex-wrap justify-center gap-2 lg:col-span-7 lg:row-start-2 lg:mt-0 lg:max-w-[620px] lg:justify-start lg:self-start" data-intro style="--intro-delay: 360ms" aria-label="Qué incluye">
+      {chips.map((c) => <li class="glass"><Icon name={c.icon} size={15} class="text-gold-400" />{c.text}</li>)}
     </ul>
   </div>
 
-  <div class="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex" aria-hidden="true">
-    <span class="text-[10px] uppercase tracking-[0.3em] text-muted/70">Desliza</span>
-    <span class="hero-cue relative block h-10 w-px overflow-hidden bg-white/10"></span>
+  <div class="relative border-t border-white/[0.06] py-4">
+    <div class="container-x flex items-center gap-6">
+      <p class="hidden shrink-0 text-[10px] uppercase tracking-[0.28em] text-muted md:block">Sectores con los que trabajamos</p>
+      <div class="marquee hero-sectors min-w-0 flex-1">
+        <ul aria-label="Sectores">{[...sectors, ...sectors].map((t) => <li>{t}</li>)}</ul>
+        <ul aria-hidden="true">{[...sectors, ...sectors].map((t) => <li>{t}</li>)}</ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -76,15 +88,19 @@ const seals = [
 </script>
 
 <style>
+  .hero-chips li { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding-inline: 12px; border-radius: 999px; font-size: 12px; color: rgb(236 232 225 / 0.85); }
+  @media (min-width: 1024px) { .hero-chips li { height: 36px; padding-inline: 14px; gap: 8px; font-size: 12.5px; } }
+  .hero-sectors li { display: flex; align-items: center; gap: 24px; padding-right: 24px; font-family: var(--font-display); font-style: italic; font-size: 19px; color: rgb(236 232 225 / 0.7); white-space: nowrap; }
+  .hero-sectors li::after { content: '✦'; font-style: normal; font-size: 13px; color: var(--color-gold-400); }
+  @media (min-width: 768px) { .hero-sectors li { font-size: 21px; } }
   .hero-ping { animation: hero-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
   @keyframes hero-ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
-  .hero-cue::after {
-    content: ''; position: absolute; inset-inline: 0; top: 0; height: 40%;
-    background: linear-gradient(to bottom, transparent, var(--color-gold-400));
-    animation: hero-cue 2.4s var(--ease-out-expo) infinite;
-  }
-  @keyframes hero-cue { from { transform: translateY(-100%); } to { transform: translateY(250%); } }
   @media (prefers-reduced-motion: reduce) {
-    .hero-ping, .hero-cue::after { animation: none; }
+    .hero-chips li { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding-inline: 12px; border-radius: 999px; font-size: 12px; color: rgb(236 232 225 / 0.85); }
+  @media (min-width: 1024px) { .hero-chips li { height: 36px; padding-inline: 14px; gap: 8px; font-size: 12.5px; } }
+  .hero-sectors li { display: flex; align-items: center; gap: 24px; padding-right: 24px; font-family: var(--font-display); font-style: italic; font-size: 19px; color: rgb(236 232 225 / 0.7); white-space: nowrap; }
+  .hero-sectors li::after { content: '✦'; font-style: normal; font-size: 13px; color: var(--color-gold-400); }
+  @media (min-width: 768px) { .hero-sectors li { font-size: 21px; } }
+  .hero-ping { animation: none; }
   }
 </style>

@@ -238,3 +238,9 @@ for (const [ext, enc] of [['webp', (s) => s.webp({ quality: 82 })], ['jpg', (s) 
   const info = await enc(bts.clone()).toFile(`public/img/clientes/stiven-detras-de-camaras.${ext}`);
   console.log(`bts.${ext}: ${info.width}×${info.height}, ${(info.size / 1024).toFixed(1)} KB`);
 }
+// Variantes pequeñas para el teléfono del hero (marco de 136–220 px CSS; srcset 300w/440w).
+for (const w of [300, 440]) {
+  const info = await sharp(`${C}/stiven-detras-de-camaras.png`).removeAlpha().resize({ width: w }).webp({ quality: 74 })
+    .toFile(`public/img/clientes/stiven-detras-de-camaras-${w}.webp`);
+  console.log(`bts-${w}: ${info.width}×${info.height}, ${(info.size / 1024).toFixed(1)} KB`);
+}

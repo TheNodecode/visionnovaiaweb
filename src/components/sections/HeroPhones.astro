@@ -1,0 +1,76 @@
+---
+// Tres móviles con material real (anuncio de CEM Valderas, detrás de cámaras y el doctor a cámara).
+// Escritorio: composición inclinada y flotante con parallax. Móvil: una tira de tres móviles pequeños.
+// Imágenes lazy, con prioridad baja y en tamaño ajustado: el LCP no depende de ellas.
+import { HERO_PHONES, CLIENT } from '../../data/media';
+---
+<figure class="hp" aria-labelledby="hp-caption">
+  <div class="hp-glow" aria-hidden="true"></div>
+  <ul class="hp-stage">
+    {HERO_PHONES.map((p, i) => (
+      <li class={`hp-slot hp-slot-${i}`} data-parallax={['0.12', '-0.06', '0.2'][i]}>
+        <div class="hp-tilt">
+          <div class="hp-float" style={`--float-delay:${-i * 1.7}s`}>
+            <div class="hp-phone">
+              <img src={p.src} srcset={p.srcset} sizes={p.srcset ? '(min-width: 1024px) 220px, 136px' : undefined} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" fetchpriority="low" />
+            </div>
+            <span class="hp-tag" aria-hidden="true">{p.label}</span>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <figcaption id="hp-caption" class="hp-caption">
+    <span class="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true"><span class="h-1.5 w-1.5 rounded-full bg-gold-400"></span></span>
+    <span>Contenido real de un cliente actual · <span class="text-cream">{CLIENT.name}</span><span class="hidden lg:inline">, {CLIENT.sector.toLowerCase()}</span></span>
+  </figcaption>
+</figure>
+
+<style>
+  .hp { position: relative; margin: 0; }
+  .hp-glow {
+    position: absolute; left: 50%; top: 45%; width: 120%; aspect-ratio: 1; translate: -50% -50%; pointer-events: none;
+    background: radial-gradient(closest-side, rgb(217 178 102 / 0.16), transparent 70%);
+  }
+  .hp-stage { position: relative; display: flex; justify-content: center; align-items: flex-start; list-style: none; margin: 0; padding: 0; }
+  .hp-slot { position: relative; }
+  .hp-slot-0 { width: 27%; max-width: 112px; margin-right: -4%; z-index: 1; }
+  .hp-slot-1 { width: 33%; max-width: 136px; z-index: 2; }
+  .hp-slot-2 { width: 27%; max-width: 112px; margin-left: -4%; z-index: 1; }
+  .hp-slot-0 .hp-tilt { transform: translateY(18px) rotate(-7deg); }
+  .hp-slot-2 .hp-tilt { transform: translateY(18px) rotate(7deg); }
+  .hp-phone {
+    position: relative; aspect-ratio: 9 / 18; overflow: hidden; border-radius: 22px;
+    border: 4px solid #1c1c1c; background: #121212;
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 30px 60px -24px rgb(0 0 0 / 0.9), 0 0 40px -18px rgb(217 178 102 / 0.35);
+  }
+  .hp-phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .hp-tag { display: none; }
+  @keyframes hp-float { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+  .hp-caption {
+    margin-top: 30px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 11.5px; letter-spacing: 0.02em; color: var(--color-muted); text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hp-stage { height: 480px; display: block; }
+    .hp-slot { position: absolute; max-width: none; margin: 0; }
+    .hp-slot-0 { width: 178px; left: 0; top: 70px; }
+    .hp-slot-1 { width: 220px; left: 50%; margin-left: -110px; top: 0; }
+    .hp-slot-2 { width: 178px; right: 0; top: 50px; }
+    .hp-slot-0 .hp-tilt { transform: rotate(-9deg); }
+    .hp-slot-2 .hp-tilt { transform: rotate(8deg); }
+    .hp-phone { border-radius: 34px; border-width: 7px; }
+    /* flotación lenta solo en escritorio (en el móvil la tira queda quieta) */
+    .hp-float { animation: hp-float 6s ease-in-out infinite alternate; animation-delay: var(--float-delay, 0s); }
+    .hp-tag {
+      display: inline-flex; position: absolute; left: 50%; bottom: -14px; translate: -50% 0; white-space: nowrap;
+      padding: 6px 12px; border-radius: 999px; font-size: 11px; color: var(--color-cream);
+      background: rgb(18 18 18 / 0.92); border: 1px solid rgb(217 178 102 / 0.3);
+    }
+    .hp-slot-0 .hp-tag { left: -6px; translate: 0 0; }
+    .hp-slot-2 .hp-tag { left: auto; right: -6px; translate: 0 0; }
+    .hp-caption { margin-top: 10px; font-size: 12.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hp-float { animation: none; } }
+</style>

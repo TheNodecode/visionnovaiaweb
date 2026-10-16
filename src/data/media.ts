@@ -5,7 +5,7 @@
 export const CLIENT = { name: 'CEM Valderas', sector: 'Clínica dental', instagram: 'cemvalderas.clinica' } as const;
 
 export interface Picture { src: string; alt: string; width: number; height: number }
-export interface ClientPiece { src: string; alt: string; label: string; width: number; height: number }
+export interface ClientPiece { src: string; alt: string; label: string; width: number; height: number; srcset?: string }
 
 /** Foto real detrás de cámaras: Stiven encuadrando una toma en casa de un cliente. */
 export const BTS_PHOTO: Picture & { fallback: string } = {
@@ -71,4 +71,11 @@ export const AUDIO_DEMOS: AudioDemo[] = [
   { src: '/audio/demo-juridico.mp3', label: 'Despacho jurídico', sector: 'juridico' },
   { src: '/audio/demo-abogado-laboral.mp3', label: 'Abogado laboralista', sector: 'juridico' },
   { src: '/audio/demo-pizza.mp3', label: 'Pizzería', sector: 'restauracion' },
+];
+
+/** Composición de móviles del hero: material real de CEM Valderas y el detrás de cámaras. */
+export const HERO_PHONES: ClientPiece[] = [
+  { ...CLIENT_ADS[1], label: 'Anuncio en Meta' },
+  { src: '/img/clientes/stiven-detras-de-camaras-440.webp', srcset: '/img/clientes/stiven-detras-de-camaras-300.webp 300w, /img/clientes/stiven-detras-de-camaras-440.webp 440w', width: 440, height: 770, label: 'Detrás de cámaras', alt: BTS_PHOTO.alt },
+  { ...CLIENT_REELS[0], label: 'El doctor a cámara' },
 ];
