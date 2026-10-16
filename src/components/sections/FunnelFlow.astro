@@ -1,0 +1,65 @@
+---
+// Embudo del sistema paso a paso (por defecto: anuncio → WhatsApp/llamada → IA filtra → CRM → cita).
+// Escritorio: fila con un raíl que se rellena al hacer scroll. Móvil: columna con raíl vertical.
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import type { FunnelStep } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  steps: FunnelStep[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  note?: string;
+  tone?: 'dark' | 'light';
+}
+const { id = 'embudo', steps, eyebrow = 'El recorrido', titleHtml, lead, note, tone = 'dark' } = Astro.props;
+---
+<section id={id} class:list={['ff relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[1100px] max-w-[200vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(217_178_102/0.08),transparent)]" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="flex max-w-3xl flex-col gap-4" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <div class="relative mt-10 md:mt-14">
+      <span class="ff-rail ff-rail-y lg:hidden" aria-hidden="true"><span class="ff-fill" data-progress-fill="y"></span></span>
+      <span class="ff-rail ff-rail-x hidden lg:block" aria-hidden="true"><span class="ff-fill" data-progress-fill></span></span>
+      <ol class="ff-list relative grid gap-5 lg:gap-4" style={`--n:${steps.length}`} data-reveal-stagger>
+        {steps.map((s, i) => (
+          <li class="ff-step">
+            <span class="ff-icon" aria-hidden="true"><Icon name={s.icon} size={20} /></span>
+            <div>
+              <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-gold-400">Paso {i + 1}</p>
+              <h3 class="mt-1.5 font-display text-[24px] italic leading-[1.1] text-cream text-balance md:text-[26px]">{s.title}</h3>
+              <p class="mt-2 text-[14.5px] leading-relaxed text-muted text-pretty">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+    {note && <p class="mt-8 max-w-3xl text-[13.5px] leading-relaxed text-muted text-pretty" data-reveal>{note}</p>}
+  </div>
+</section>
+
+<style>
+  .ff-rail { position: absolute; overflow: hidden; border-radius: 2px; background: rgb(255 255 255 / 0.08); }
+  .section-light .ff-rail { background: rgb(10 10 10 / 0.08); }
+  .ff-rail-y { left: 23px; top: 24px; bottom: 24px; width: 2px; }
+  .ff-rail-x { left: 24px; right: 24px; top: 23px; height: 2px; }
+  .ff-fill { position: absolute; inset: 0; background: linear-gradient(180deg, #f1d9a0, #b8862f); }
+  .ff-rail-x .ff-fill { background: linear-gradient(90deg, #f1d9a0, #b8862f); }
+  .ff-step { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; align-items: start; }
+  .ff-icon {
+    position: relative; display: flex; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: 999px;
+    background: var(--color-ink); border: 1px solid rgb(217 178 102 / 0.55); color: var(--color-gold-200);
+    box-shadow: 0 0 0 6px var(--color-ink), 0 0 28px -8px rgb(217 178 102 / 0.6);
+  }
+  @media (min-width: 1024px) {
+    .ff-list { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+    .ff-step { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  }
+</style>

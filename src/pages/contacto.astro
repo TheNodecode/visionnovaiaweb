@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/form/LeadForm.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import Icon from '../components/ui/Icon.astro';
+import type { IconName } from '../components/ui/icon-names';
+import { SITE } from '../config/site';
+
+const path = '/contacto';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contacto · Visión Nova',
+    url: SITE.url + path,
+    about: { '@id': SITE.url + '/#org' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Contacto', item: SITE.url + path },
+    ],
+  },
+];
+
+const channels: { icon: IconName | 'mail'; label: string; value: string; href?: string; external?: boolean }[] = [
+  { icon: 'chat', label: 'WhatsApp', value: SITE.phoneDisplay, href: SITE.whatsapp, external: true },
+  { icon: 'mail', label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: 'globe', label: 'Dónde estamos', value: `${SITE.address.city} · Grabamos en toda España` },
+  { icon: 'calendar', label: 'Horario de respuesta', value: 'Respondemos en menos de 24 h laborables' },
+];
+---
+<BaseLayout
+  title="Contacto: hablemos de tu negocio | Visión Nova"
+  description="Escríbenos por WhatsApp o email, o rellena el formulario y reserva una llamada de 20 minutos. Estamos en Girona y grabamos en toda España. Sin compromiso."
+  path={path}
+  schema={schema}
+>
+  <section class="relative isolate overflow-hidden bg-ink grain" aria-labelledby="contact-title">
+    <div class="starfield -z-10 opacity-60" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -right-[20%] -top-[30%] -z-10 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgb(217_178_102/0.18),transparent)] md:-right-[5%] md:h-[820px] md:w-[820px]" aria-hidden="true"></div>
+    <div class="container-x grid gap-12 pb-8 pt-[calc(env(safe-area-inset-top)+150px)] md:pb-12 md:pt-48 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <div class="lg:col-span-7">
+        <div data-reveal><Eyebrow>Contacto</Eyebrow></div>
+        <h1 id="contact-title" data-split class="mt-5 font-display text-[44px] italic leading-[1.03] text-cream text-balance md:mt-7 md:text-[80px]">
+          Hablemos de <span class="text-gold">tu negocio.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-muted text-pretty md:mt-8 md:text-lg" data-reveal data-reveal-delay="0.3">
+          Rellena el formulario y reserva una llamada de 20 minutos, o escríbenos directamente. Te contesta una persona, no un comercial.
+        </p>
+      </div>
+
+      <ul class="flex flex-col gap-3 lg:col-span-5" aria-label="Formas de contacto" data-reveal-stagger>
+        {channels.map((c) => {
+          const inner = (
+            <>
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold-400/25 text-gold-200">
+                {c.icon === 'mail'
+                  ? <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3z M3 7l9 6 9-6" /></svg>
+                  : <Icon name={c.icon} size={20} />}
+              </span>
+              <span class="flex min-w-0 flex-col">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-muted">{c.label}</span>
+                <span class="mt-1 break-words text-[15px] font-medium text-cream">{c.value}</span>
+              </span>
+            </>
+          );
+          return (
+            <li>
+              {c.href
+                ? <a href={c.href} {...(c.external ? { target: '_blank', rel: 'noopener' } : {})} class="glass flex min-h-16 items-center gap-4 rounded-2xl px-5 py-4 transition-colors duration-300 hover:border-gold-400/30">{inner}</a>
+                : <div class="glass flex min-h-16 items-center gap-4 rounded-2xl px-5 py-4">{inner}</div>}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <LeadForm
+    id="formulario"
+    variant="full"
+    heading="Cuéntanos tu negocio"
+    lead="Cinco preguntas rápidas y tus datos: menos de un minuto. Si encajamos, eliges hueco para una llamada de 20 minutos, sin compromiso."
+  />
+</BaseLayout>

@@ -1,0 +1,158 @@
+---
+// «Trabajo real»: lo que hacemos ahora mismo para un cliente actual (CEM Valderas, clínica dental).
+// Se enseñan sus anuncios y los vídeos del doctor tal y como salen en Instagram, más el detrás de cámaras.
+// Regla: ninguna cifra ni resultado del cliente; los precios de sus creatividades son de la clínica.
+// Móvil: cabecera → carril de piezas con snap → pasos y CTA. Escritorio: texto a la izquierda, tablero a la derecha.
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+import { CLIENT, CLIENT_ADS, CLIENT_REELS, BTS_PHOTO_SMALL, type ClientPiece } from '../../data/media';
+import type { Step } from '../../data/offer';
+
+interface Props {
+  id?: string;
+  tone?: 'dark' | 'light';
+  titleHtml?: string;
+  lead?: string;
+  steps?: Step[];
+  /** Versión pequeña (ciudades): tres piezas y sin pasos. */
+  compact?: boolean;
+  cta?: string | false;
+}
+
+const DEFAULT_STEPS: Step[] = [
+  { title: 'Grabamos al doctor', text: 'Vamos a la clínica y lo grabamos explicando los tratamientos a cámara: en consulta, en recepción y en su despacho.' },
+  { title: 'Escribimos los guiones', text: 'Cada vídeo sale de un guion pensado para las dudas reales de sus pacientes, con subtítulos para verse sin sonido.' },
+  { title: 'Lo convertimos en anuncios de Meta', text: 'Esos vídeos y sus creatividades salen como anuncios en historias y reels, con un botón directo para reservar.' },
+];
+
+const {
+  id = 'trabajo-real',
+  tone = 'light',
+  titleHtml = 'Esto es lo que hacemos, ahora mismo, <span class="text-gold">para una clínica dental.</span>',
+  lead = 'No es una maqueta ni un vídeo de stock. Son los anuncios y los vídeos de un cliente actual, tal y como salen en Instagram.',
+  steps = DEFAULT_STEPS,
+  compact = false,
+  cta = 'Quiero esto en mi negocio',
+} = Astro.props;
+
+type Piece = ClientPiece & { kind: 'phone' | 'photo'; sizes?: string };
+const bts: Piece = { ...BTS_PHOTO_SMALL, kind: 'photo', sizes: '(min-width: 1024px) 180px, 46vw' };
+const phone = (p: ClientPiece): Piece => ({ ...p, kind: 'phone' });
+// Abre con el detrás de cámaras y los vídeos del doctor; el anuncio en reels no se repite porque ya sale en el hero.
+const all: Piece[] = [bts, phone(CLIENT_REELS[1]), phone(CLIENT_REELS[0]), phone(CLIENT_ADS[0]), phone(CLIENT_REELS[2])];
+const pieces = compact ? [all[0], all[1], all[2]] : all;
+---
+<section id={id} class:list={['rw relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light', compact && 'rw-compact']} aria-labelledby={`${id}-title`}>
+  <div class="container-x rw-grid">
+    <div class="rw-head flex flex-col gap-4" data-reveal>
+      <Eyebrow>Trabajo real · Cliente actual</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,5vw,3.4rem)] italic leading-[1.03] text-cream text-balance" set:html={titleHtml} />
+      <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13.5px] text-cream">
+        <span class="inline-flex h-7 items-center gap-2 rounded-full border border-white/10 bg-surface px-3 font-medium">
+          <span class="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true"></span>{CLIENT.name}
+        </span>
+        <span class="text-muted">{CLIENT.sector} · @{CLIENT.instagram}</span>
+      </p>
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-[17px]">{lead}</p>
+    </div>
+
+    <figure class="rw-media" aria-label={`Anuncios y vídeos reales de ${CLIENT.name}`}>
+      <ul class="rw-board">
+        {pieces.map((p, i) => (
+          <li class={`rw-piece rw-piece-${i}`} data-parallax={compact ? undefined : ['0.06', '-0.04', '0.1', '-0.06', '0.04'][i]}>
+            <div class:list={['tone-dark', p.kind === 'phone' ? 'rw-phone' : 'rw-photo']}>
+              <img src={p.src} srcset={p.srcset} sizes={p.sizes} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" />
+              {p.kind === 'photo' && <span class="rw-photo-tag" aria-hidden="true">Así grabamos</span>}
+            </div>
+            <p class="mt-2.5 text-center text-[12.5px] leading-tight text-muted">{p.label}</p>
+          </li>
+        ))}
+      </ul>
+    </figure>
+
+    <div class="rw-body" data-reveal>
+      {!compact && (
+        <ol class="rw-steps">
+          {steps.map((s, i) => (
+            <li class="rw-step flex gap-4">
+              <span class="w-6 shrink-0 font-display text-[22px] italic leading-none text-gold-400" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3 class="text-[16px] font-medium leading-snug text-cream">{s.title}</h3>
+                <p class="mt-1 text-[14.5px] leading-relaxed text-muted text-pretty">{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+      <div class="rw-foot">
+      {cta && (
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+          <Button data-open-form size="lg" class="w-full whitespace-nowrap sm:w-auto">
+            {cta}
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+          </Button>
+          <span class="text-center text-[13px] text-muted sm:text-left">Llamada de 20 minutos · sin compromiso</span>
+        </div>
+      )}
+      <p class="text-[12.5px] leading-relaxed text-muted text-pretty lg:max-w-sm lg:text-right">Los precios que ves en sus anuncios son de la clínica. Por respeto a nuestros clientes, no publicamos sus datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rw-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'head' 'media' 'body'; gap: 28px; }
+  .rw-head { grid-area: head; }
+  .rw-media { grid-area: media; margin: 0; min-width: 0; }
+  .rw-body { grid-area: body; min-width: 0; }
+  .rw-steps { display: flex; flex-direction: column; list-style: none; margin: 0; padding: 0; }
+  .rw-step { padding: 16px 0; border-top: 1px solid rgb(10 10 10 / 0.1); }
+  .rw-step:first-child { border-top: 0; padding-top: 0; }
+  .rw:not(.section-light) .rw-step { border-top-color: rgb(255 255 255 / 0.1); }
+  .rw-foot { display: flex; flex-direction: column; gap: 16px; margin-top: 12px; }
+  @media (min-width: 1024px) {
+    .rw-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+    .rw-step, .rw-step:first-child { padding: 20px 0 0; border-top: 1px solid rgb(10 10 10 / 0.12); }
+    .rw:not(.section-light) .rw-step { border-top-color: rgb(255 255 255 / 0.1); }
+    .rw-foot { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; margin-top: 32px; }
+  }
+
+  /* móvil: carril horizontal a sangre con snap; el desbordamiento vive dentro del carril */
+  .rw-board {
+    display: flex; gap: 12px; list-style: none; margin: 0 -20px; padding: 6px 20px 10px;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 20px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .rw-board::-webkit-scrollbar { display: none; }
+  .rw-piece { flex: 0 0 42%; max-width: 190px; scroll-snap-align: start; }
+  .rw-phone, .rw-photo {
+    position: relative; overflow: hidden; aspect-ratio: 9 / 18.5; background: #121212;
+    box-shadow: 0 26px 50px -26px rgb(40 26 4 / 0.55), 0 0 0 1px rgb(10 10 10 / 0.06);
+  }
+  .rw-phone { border-radius: 24px; border: 5px solid #161616; }
+  .rw-photo { border-radius: 24px; }
+  .rw-phone img, .rw-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .rw-photo img { object-position: 55% 40%; }
+  .rw-photo-tag {
+    position: absolute; left: 10px; bottom: 10px; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 500;
+    color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f);
+  }
+  .rw:not(.section-light) .rw-phone { border-color: #1f1f1f; box-shadow: 0 26px 50px -26px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.07); }
+
+  @media (min-width: 640px) { .rw-piece { flex-basis: 30%; } }
+  @media (min-width: 768px) {
+    .rw-board { margin: 0 -32px; padding-inline: 32px; scroll-padding-inline: 32px; }
+  }
+  @media (min-width: 1024px) {
+    .rw-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: 'head media' 'body body'; column-gap: 56px; row-gap: 40px; align-items: center; }
+    .rw-board { margin: 0; padding: 0 0 40px; overflow: visible; gap: 14px; }
+    .rw-piece { flex: 1 1 0; max-width: 170px; }
+    .rw-piece-0 { margin-top: 48px; }
+    .rw-piece-1 { margin-top: 0; }
+    .rw-piece-2 { margin-top: 72px; }
+    .rw-piece-3 { margin-top: 20px; }
+    .rw-piece-4 { margin-top: 56px; }
+    .rw-phone { border-radius: 26px; border-width: 6px; }
+    .rw-compact .rw-board { justify-content: center; }
+  }
+</style>

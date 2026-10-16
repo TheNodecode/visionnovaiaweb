@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import FeatureGrid from '../components/sections/FeatureGrid.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import type { IconName } from '../components/ui/icon-names';
+import { SITE } from '../config/site';
+
+const path = '/software-nova';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Nova',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    url: SITE.appUrl,
+    description: 'CRM con asistente de IA en WhatsApp y en la web, agenda, recordatorios y panel para negocios.',
+    publisher: { '@id': SITE.url + '/#org' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Software Nova', item: SITE.url + path },
+    ],
+  },
+];
+
+const features: { title: string; text: string; icon: IconName }[] = [
+  { icon: 'crm', title: 'Tus clientes, en un solo sitio', text: 'Ficha de cada cliente, pipeline de ventas, agenda y bandeja de mensajes en el mismo panel. Con sus documentos guardados.' },
+  { icon: 'chat', title: 'Asistente IA en WhatsApp y en tu web', text: 'Está configurado para responder con la información de tu negocio, a cualquier hora, y proponer cita a quien está listo.' },
+  { icon: 'calendar', title: 'Agenda conectada', text: 'Citas y eventos con enlace a Google Calendar, para que tu equipo vea el día de un vistazo.' },
+  { icon: 'bolt', title: 'Recordatorios y seguimiento', text: 'Plantillas de WhatsApp para recordar citas y pagos, y seguimiento de los clientes que se enfrían, según el plan.' },
+  { icon: 'users', title: 'Reparto justo del trabajo', text: 'Los contactos se reparten entre tu equipo, con avisos al móvil y por email para que cada contacto tenga a alguien asignado.' },
+  { icon: 'chart', title: 'Un panel que te pone al día', text: 'Resumen cada mañana, radar de ventas y la opción de preguntarle a Nova lo que necesites saber de tu negocio.' },
+];
+
+interface Plan { name: string; tagline: string; featured?: boolean; items: string[] }
+const plans: Plan[] = [
+  {
+    name: 'Esencial',
+    tagline: 'Para negocios que quieren dejar de perder mensajes',
+    items: [
+      'CRM completo: clientes, pipeline, agenda y bandeja',
+      'Asistente IA en WhatsApp y en tu web (500 respuestas al mes)',
+      'Citas y eventos con enlace a Google Calendar',
+      'Reparto justo de clientes con avisos al móvil y por email',
+      'Pregúntale a Nova, radar de ventas y resumen cada mañana',
+      'Documentos de cada cliente guardados',
+      '1 número de WhatsApp · 3 personas del equipo',
+    ],
+  },
+  {
+    name: 'Profesional',
+    tagline: 'Para negocios con equipo y mucho movimiento',
+    featured: true,
+    items: [
+      'Todo lo de Esencial',
+      'Asistente IA con 2.000 respuestas al mes',
+      'Finanzas: IVA del trimestre en tiempo real y lector de facturas',
+      'Cobros automáticos: Nova recuerda los pagos pendientes',
+      'Seguimiento automático de clientes que se enfrían',
+      'Plantillas de WhatsApp para recordatorios y seguimiento',
+      'Conexión con tus programas (API, webhooks, n8n, MCP)',
+      'Campos y etiquetas a tu medida',
+      '2 números de WhatsApp · 10 personas',
+    ],
+  },
+  {
+    name: 'Empresa',
+    tagline: 'Para varias sedes o equipos comerciales grandes',
+    items: [
+      'Todo lo de Profesional',
+      'Asistente IA con 6.000 respuestas al mes',
+      '5 números de WhatsApp · hasta 50 personas',
+      'Roles de recepción y asesor con permisos por persona',
+      'Exportación para tu gestoría o programa de facturación',
+      'Soporte prioritario por WhatsApp',
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Software Nova: CRM con IA y WhatsApp | Visión Nova"
+  description="Nova es el CRM con asistente de IA en WhatsApp y en tu web: clientes, agenda, recordatorios y un panel diario. Mira los planes Esencial, Profesional y Empresa."
+  path={path}
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Software Nova"
+    title="Tu WhatsApp, tu agenda y tus clientes,"
+    titleAccent="en un solo panel."
+    lead="Nova es el CRM que hemos desarrollado en Visión Nova. Junta tus conversaciones, tus citas y tus clientes, con un asistente de IA que atiende en WhatsApp y en tu web mientras tú trabajas."
+    ctaLabel="Prefiero que me lo montéis"
+    bullets={['WhatsApp Business API oficial', 'Asistente IA en WhatsApp y en tu web', 'Planes para equipos de 3 a 50 personas']}
+  />
+
+  <FeatureGrid eyebrow="Qué hace Nova" title="Lo que necesitas para atender, vender y cobrar." items={features} />
+
+  <section class="relative bg-ink py-16 md:py-24" aria-labelledby="plans-title">
+    <div class="pointer-events-none absolute left-1/2 top-1/3 h-[520px] w-[900px] max-w-full -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(217_178_102/0.08),transparent)]" aria-hidden="true"></div>
+    <div class="container-x relative">
+      <div class="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center" data-reveal>
+        <Eyebrow>Planes</Eyebrow>
+        <h2 id="plans-title" class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.05] text-cream text-balance">
+          Elige el plan según <span class="text-gold">tu equipo.</span>
+        </h2>
+        <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">
+          Los precios y el alta están en la app de Nova. Aquí tienes lo que incluye cada plan.
+        </p>
+      </div>
+
+      <ul class="mt-14 grid items-stretch gap-5 md:mt-20 lg:grid-cols-3" data-reveal-stagger>
+        {plans.map((p) => (
+          <li class:list={[
+            'relative flex flex-col rounded-[32px] p-7 md:p-9',
+            p.featured
+              ? 'border border-gold-400/40 bg-[linear-gradient(180deg,rgb(217_178_102/0.10),rgb(18_18_18/0.7))] shadow-[0_40px_100px_-50px_rgb(217_178_102/0.6)]'
+              : 'glass',
+          ]}>
+            {p.featured && (
+              <span class="absolute right-6 top-6 rounded-full bg-gold px-3 py-1 text-[11px] font-medium uppercase tracking-[0.15em]">Recomendado</span>
+            )}
+            <h3 class="font-display text-[34px] italic leading-none text-cream">{p.name}</h3>
+            <p class="mt-3 max-w-[30ch] text-[15px] leading-snug text-muted text-pretty">{p.tagline}</p>
+            <ul class="mt-7 flex flex-1 flex-col gap-3 border-t border-white/10 pt-7 text-[15px] text-cream/85">
+              {p.items.map((it) => (
+                <li class="flex items-start gap-3">
+                  <svg viewBox="0 0 16 16" class="mt-[4px] h-3.5 w-3.5 shrink-0 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.5 3 3 7-7" /></svg>
+                  <span class="text-pretty">{it}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={SITE.appUrl} rel="noopener"
+              class:list={[
+                'mt-9 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 text-[13px] font-medium transition duration-300 ease-out-expo active:scale-[0.97]',
+                p.featured ? 'bg-gold shadow-[0_8px_30px_-8px_rgb(217_178_102/0.55)] hover:brightness-110' : 'border border-gold-400/40 text-gold-200 hover:bg-gold-400/10',
+              ]}>
+              Ver precio y empezar<span class="sr-only"> con el plan {p.name}</span>
+              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" /></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-8 text-center text-sm text-muted">Las características pueden cambiar; consulta el detalle actualizado en la app.</p>
+    </div>
+  </section>
+
+  <section class="relative bg-ink pb-24 md:pb-36" aria-labelledby="novascale-title">
+    <div class="container-x">
+      <div class="relative mx-auto max-w-5xl overflow-hidden rounded-[40px] border border-gold-400/20 bg-[linear-gradient(180deg,rgb(217_178_102/0.06),rgb(18_18_18/0.6))] px-6 py-14 text-center sm:px-12 md:py-20" data-reveal>
+        <span class="absolute inset-x-16 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/80 to-transparent" aria-hidden="true"></span>
+        <h2 id="novascale-title" class="mx-auto max-w-3xl font-display text-[34px] italic leading-[1.08] text-cream text-balance md:text-[56px]">
+          ¿Prefieres que lo montemos todo por ti? <span class="text-gold">Eso es NovaScale.</span>
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">
+          Grabamos tu contenido, lanzamos tus anuncios en Meta y dejamos Nova configurado y conectado para que cada contacto se atienda y se filtre.
+        </p>
+        <a href="/#sistema" class="mt-9 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-gold px-8 text-sm font-medium shadow-[0_8px_30px_-8px_rgb(217_178_102/0.55)] transition duration-300 ease-out-expo hover:brightness-110 active:scale-[0.97] sm:w-auto">
+          Ver cómo funciona NovaScale
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

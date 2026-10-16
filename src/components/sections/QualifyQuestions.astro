@@ -1,0 +1,93 @@
+---
+// «Lo que la IA pregunta antes de pasarte el contacto»: las preguntas del filtro, cada una con su porqué,
+// y a la derecha la ficha de ejemplo que le llega al negocio. La ficha va rotulada «Ejemplo».
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { Qualify } from '../../data/blocks';
+
+interface Props extends Qualify {
+  id?: string;
+  eyebrow?: string;
+  titleHtml?: string;
+  /** Aviso (p. ej. sanitario) bajo la ficha. */
+  note?: string;
+  tone?: 'dark' | 'light';
+}
+const {
+  id = 'preguntas-ia',
+  eyebrow = 'El filtro',
+  titleHtml = 'Lo que la IA pregunta <span class="text-gold">antes de pasarte el contacto.</span>',
+  lead, questions, card, note,
+  tone = 'light',
+} = Astro.props;
+---
+<section id={id} class:list={['qq relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14 xl:gap-20">
+    <div class="min-w-0">
+      <div class="flex flex-col gap-4" data-reveal>
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+        <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+      </div>
+      <ol class="mt-8 flex flex-col gap-3 md:mt-10" data-reveal-stagger>
+        {questions.map((x, i) => (
+          <li class="qq-item glass rounded-[22px] p-4 md:p-5">
+            <span class="qq-n" aria-hidden="true">{i + 1}</span>
+            <div class="min-w-0">
+              <p class="text-[16px] font-medium leading-snug text-cream text-pretty md:text-[17px]">«{x.q}»</p>
+              <p class="mt-1.5 text-[14px] leading-relaxed text-muted text-pretty"><span class="font-medium text-gold-400">Por qué: </span>{x.why}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <aside class="qq-aside min-w-0" aria-label="Ficha de ejemplo del contacto filtrado">
+      <div class="qq-card tone-dark" data-reveal>
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-[11px] font-medium uppercase tracking-[0.26em] text-gold-400">Lo que te llega a ti</p>
+          <span class="rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted">Ejemplo</span>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 font-display text-[18px] italic text-cream" aria-hidden="true">{card.name.charAt(0)}</span>
+          <div class="min-w-0 leading-tight">
+            <p class="truncate text-[15px] font-medium text-cream">{card.name}</p>
+            <p class="mt-0.5 truncate text-[12.5px] text-muted">{card.source}</p>
+          </div>
+        </div>
+        <dl class="mt-5 grid gap-0 text-[14px]">
+          {card.fields.map((f) => (
+            <div class="qq-field"><dt>{f.k}</dt><dd>{f.v}</dd></div>
+          ))}
+        </dl>
+        <p class="mt-5 flex items-center gap-2 rounded-2xl border border-gold-400/30 bg-gold-400/[0.08] px-4 py-3 text-[13.5px] leading-snug text-gold-200">
+          <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>{card.status}
+        </p>
+      </div>
+      {note && (
+        <p class="mt-4 flex items-start gap-3 text-[13.5px] leading-relaxed text-muted text-pretty" data-reveal>
+          <span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>{note}
+        </p>
+      )}
+    </aside>
+  </div>
+</section>
+
+<style>
+  .qq-item { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .qq-n {
+    display: flex; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 999px;
+    border: 1px solid rgb(184 134 47 / 0.45); color: var(--color-gold-400);
+    font-family: var(--font-display, serif); font-style: italic; font-size: 16px;
+  }
+  .qq-card {
+    position: relative; border-radius: 28px; padding: 24px 22px;
+    background: radial-gradient(120% 60% at 100% 0%, rgb(217 178 102 / 0.14), transparent 60%), #0d0d0d;
+    border: 1px solid rgb(217 178 102 / 0.26); box-shadow: 0 40px 80px -40px rgb(40 26 4 / 0.55);
+    color: var(--color-cream);
+  }
+  .qq-field { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid rgb(255 255 255 / 0.08); }
+  .qq-field dt { color: var(--color-muted); }
+  .qq-field dd { margin: 0; color: var(--color-cream); text-wrap: pretty; }
+  @media (min-width: 768px) { .qq-card { padding: 28px 26px; } }
+  @media (min-width: 1024px) { .qq-aside { position: sticky; top: 96px; align-self: start; margin-top: 8px; } }
+</style>

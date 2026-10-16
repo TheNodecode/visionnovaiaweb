@@ -1,0 +1,49 @@
+---
+// La obra en fases como momentos de contenido: antes, durante y después, con lo que se graba en cada uno
+// y por qué convence. Escritorio: tres columnas unidas por una línea; móvil: columna.
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { Phase } from '../../data/blocks';
+interface Props { id?: string; eyebrow: string; titleHtml: string; lead: string; phases: Phase[]; note?: string; tone?: 'dark' | 'light' }
+const { id = 'obra-en-fases', eyebrow, titleHtml, lead, phases, note, tone = 'light' } = Astro.props;
+---
+<section id={id} class:list={['ps relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x">
+    <div class="grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-16" data-reveal>
+      <div class="flex flex-col gap-4">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      </div>
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <ol class="ps-list mt-8 md:mt-12" data-reveal-stagger>
+      {phases.map((p, i) => (
+        <li class="ps-item">
+          <div class="ps-head">
+            <span class="ps-label">{p.label}</span>
+            <span class="ps-bar" aria-hidden="true"><i style={`width:${((i + 1) / phases.length) * 100}%`}></i></span>
+          </div>
+          <h3 class="mt-4 font-display text-[26px] italic leading-[1.1] text-cream text-balance md:text-[29px]">{p.title}</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-muted text-pretty">{p.text}</p>
+          <p class="mt-4 text-[11px] font-medium uppercase tracking-[0.2em] text-gold-400">Lo que grabamos</p>
+          <ul class="mt-2 flex flex-wrap gap-1.5">
+            {p.shots.map((s) => <li class="rounded-full border border-white/10 px-3 py-1 text-[13px] text-cream/85">{s}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+    {note && <p class="mt-6 max-w-3xl text-[13px] leading-relaxed text-muted text-pretty" data-reveal>{note}</p>}
+  </div>
+</section>
+
+<style>
+  .ps-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .ps-item { border-radius: 26px; padding: 22px; background: #fffdf9; border: 1px solid rgb(10 10 10 / 0.08); }
+  .ps:not(.section-light) .ps-item { background: rgb(255 255 255 / 0.04); border-color: rgb(255 255 255 / 0.08); }
+  .ps-head { display: flex; align-items: center; gap: 14px; }
+  .ps-label { font-family: var(--font-display, serif); font-style: italic; font-size: 34px; line-height: 1; color: var(--color-gold-400); }
+  .ps-bar { flex: 1; height: 4px; border-radius: 4px; background: rgb(10 10 10 / 0.08); overflow: hidden; }
+  .ps:not(.section-light) .ps-bar { background: rgb(255 255 255 / 0.1); }
+  .ps-bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #f1d9a0, #b8862f); }
+  @media (min-width: 900px) { .ps-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .ps-item { padding: 28px; } }
+</style>

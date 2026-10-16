@@ -1,0 +1,68 @@
+---
+// Bandeja de mensajes simulada: qué entra por comentarios y privados y qué hace la IA con cada mensaje.
+// A la izquierda, cómo llevamos la comunidad. Rotulada «Simulación»: no son conversaciones reales.
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { TriageItem } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  items: TriageItem[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  bullets: string[];
+  tone?: 'dark' | 'light';
+}
+const { id = 'bandeja', items, eyebrow = 'Comunidad', titleHtml, lead, bullets, tone = 'dark' } = Astro.props;
+const tagClass = { 'Oportunidad': 't-op', 'Duda': 't-du', 'Comentario': 't-co', 'Para una persona': 't-pe' } as const;
+---
+<section id={id} class:list={['it relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+    <div class="flex flex-col gap-4 lg:col-span-5" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+      <ul class="mt-2 flex flex-col gap-3 border-t border-white/10 pt-5">
+        {bullets.map((b) => (
+          <li class="flex gap-3 text-[14.5px] leading-snug text-cream/85">
+            <span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>{b}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="it-box tone-dark lg:col-span-7" data-reveal>
+      <div class="flex items-center gap-3 border-b border-white/10 px-5 py-4">
+        <span class="text-[13px] font-medium text-cream">Mensajes y comentarios</span>
+        <span class="ml-auto rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted">Simulación</span>
+      </div>
+      <ul class="flex flex-col" aria-label="Mensajes de ejemplo y lo que hace la IA con cada uno">
+        {items.map((m) => (
+          <li class="it-row">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-[13px] font-medium text-cream" aria-hidden="true">{m.from.charAt(0)}</span>
+            <div class="min-w-0 flex-1">
+              <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span class="text-[13.5px] font-medium text-cream">{m.from}</span>
+                <span class={`it-tag ${tagClass[m.tag]}`}>{m.tag}</span>
+              </p>
+              <p class="mt-1 text-[14px] leading-snug text-cream/85 text-pretty">{m.text}</p>
+              <p class="mt-1.5 flex gap-1.5 text-[13px] leading-snug text-muted text-pretty"><span class="text-gold-400" aria-hidden="true">→</span><span><span class="sr-only">Lo que hace la IA: </span>{m.action}</span></p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .it-box { overflow: hidden; border-radius: 28px; border: 1px solid rgb(255 255 255 / 0.1); background: #0f0f0f; box-shadow: 0 50px 100px -50px rgb(0 0 0 / 0.9); }
+  .it-row { display: flex; gap: 14px; padding: 16px 20px; border-top: 1px solid rgb(255 255 255 / 0.06); }
+  .it-row:first-child { border-top: 0; }
+  .it-tag { border-radius: 999px; padding: 2px 9px; font-size: 11px; font-weight: 500; }
+  .t-op { color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  .t-du { color: #ece8e1; background: rgb(255 255 255 / 0.1); }
+  .t-co { color: #a39e96; border: 1px solid rgb(255 255 255 / 0.15); }
+  .t-pe { color: #f1d9a0; border: 1px solid rgb(217 178 102 / 0.5); }
+  @media (min-width: 768px) { .it-row { padding: 18px 24px; } }
+</style>

@@ -1,0 +1,72 @@
+---
+// Tres ganchos de anuncio pensados para un sector, rotulados «Ejemplo de enfoque»: enseñan cómo
+// pensamos los anuncios sin hacerlos pasar por campañas publicadas ni prometer resultados.
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { AdAngle } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  items: AdAngle[];
+  /** Nombre genérico del anunciante en la maqueta («Tu clínica»). */
+  brand: string;
+  eyebrow?: string;
+  titleHtml?: string;
+  lead: string;
+  note?: string;
+  tone?: 'dark' | 'light';
+}
+const {
+  id = 'angulos',
+  items,
+  brand,
+  eyebrow = 'Cómo te anunciaríamos',
+  titleHtml = 'Tres ganchos <span class="text-gold">para empezar.</span>',
+  lead,
+  note = 'Son ejemplos de enfoque, no campañas publicadas: los textos finales se escriben contigo, con tus servicios reales y dentro de las normas de publicidad de Meta.',
+  tone = 'dark',
+} = Astro.props;
+const initials = brand.replace(/^Tu\s+/i, '').slice(0, 2).toUpperCase();
+---
+<section id={id} class:list={['relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="pointer-events-none absolute -left-[10%] top-0 h-[480px] w-[700px] max-w-[160vw] bg-[radial-gradient(closest-side,rgb(217_178_102/0.08),transparent)]" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-16" data-reveal>
+      <div class="flex flex-col gap-4">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      </div>
+      <p class="max-w-xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <ol class="mt-8 grid gap-4 md:mt-12 md:grid-cols-3" data-reveal-stagger>
+      {items.map((a, i) => (
+        <li class="aa-card glass flex flex-col overflow-hidden rounded-[28px]">
+          <div class="flex items-center gap-3 border-b border-white/10 px-5 py-3.5">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold text-[11px] font-semibold" aria-hidden="true">{initials}</span>
+            <span class="min-w-0 leading-tight">
+              <span class="block truncate text-[13px] font-medium text-cream">{brand}</span>
+              <span class="block text-[11px] text-muted">Publicidad</span>
+            </span>
+            <span class="ml-auto shrink-0 rounded-full border border-gold-400/40 px-2.5 py-1 text-[10.5px] font-medium uppercase tracking-[0.14em] text-gold-400">Ejemplo de enfoque {i + 1}</span>
+          </div>
+          <div class="flex flex-1 flex-col px-5 pb-5 pt-5 md:px-6 md:pb-6">
+            <p class="font-display text-[26px] italic leading-[1.12] text-cream text-balance md:text-[28px]">«{a.hook}»</p>
+            <dl class="mt-auto grid gap-2.5 pt-6 text-[14px] leading-snug">
+              <div class="aa-row"><dt>Idea</dt><dd>{a.angle}</dd></div>
+              <div class="aa-row"><dt>Formato</dt><dd>{a.format}</dd></div>
+              <div class="aa-row"><dt>Para</dt><dd>{a.audience}</dd></div>
+            </dl>
+          </div>
+        </li>
+      ))}
+    </ol>
+    {note && <p class="mt-5 max-w-3xl text-[13px] leading-relaxed text-muted text-pretty" data-reveal>{note}</p>}
+  </div>
+</section>
+
+<style>
+  .aa-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; padding-top: 10px; border-top: 1px solid rgb(255 255 255 / 0.08); }
+  .section-light .aa-row { border-top-color: rgb(10 10 10 / 0.08); }
+  .aa-row dt { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-gold-400); padding-top: 2px; }
+  .aa-row dd { margin: 0; color: var(--color-muted); text-wrap: pretty; }
+</style>

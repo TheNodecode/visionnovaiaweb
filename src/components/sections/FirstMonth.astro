@@ -1,0 +1,83 @@
+---
+// «Tu primer mes»: 4 semanas, de la llamada a los primeros clientes filtrados.
+// Escritorio: cuatro columnas unidas por una línea que se rellena con el scroll. Móvil: línea vertical.
+// Las páginas pasan `weeks` (p. ej. tailorList(FIRST_MONTH, [...])) para su variante.
+import Eyebrow from '../ui/Eyebrow.astro';
+import { FIRST_MONTH, type Week } from '../../data/offer';
+
+interface Props {
+  id?: string;
+  weeks?: Week[];
+  eyebrow?: string;
+  titleHtml?: string;
+  lead?: string;
+  note?: string;
+  tone?: 'dark' | 'light';
+}
+const {
+  id = 'primer-mes',
+  weeks = FIRST_MONTH,
+  eyebrow = 'Tu primer mes',
+  titleHtml = 'Del sí a tus primeros clientes filtrados, <span class="text-gold">semana a semana.</span>',
+  lead = 'Sin meses de «estrategia» ni reuniones eternas. Esto es lo que pasa desde el día que empezamos.',
+  note = 'Plazos orientativos: dependen de tu agenda para grabar y de la revisión de los anuncios por parte de Meta.',
+  tone = 'dark',
+} = Astro.props;
+---
+<section id={id} class:list={['fm relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[1000px] max-w-[180vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(217_178_102/0.09),transparent)]" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="flex max-w-3xl flex-col gap-4" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+    </div>
+
+    <div class="relative mt-10 md:mt-14">
+      <!-- raíl: vertical en móvil, horizontal en escritorio -->
+      <span class="fm-rail fm-rail-y lg:hidden" aria-hidden="true"><span class="fm-fill" data-progress-fill="y"></span></span>
+      <span class="fm-rail fm-rail-x hidden lg:block" aria-hidden="true"><span class="fm-fill" data-progress-fill></span></span>
+
+      <ol class="relative grid gap-3 lg:grid-cols-4 lg:gap-4" data-reveal-stagger>
+        {weeks.map((w, i) => (
+          <li class="fm-item">
+            <span class="fm-dot" aria-hidden="true">{i + 1}</span>
+            <div class="glass fm-card">
+              <p class="text-[11px] font-medium uppercase tracking-[0.26em] text-gold-400">Semana {i + 1}</p>
+              <h3 class="mt-2.5 font-display text-[25px] italic leading-[1.1] text-cream text-balance md:text-[27px]">{w.title}</h3>
+              <p class="fm-text mt-2.5 text-[14.5px] leading-relaxed text-muted text-pretty">{w.text}</p>
+              <p class="fm-deliv flex items-start gap-2 border-t border-white/10 text-[13.5px] leading-snug text-cream">
+                <svg viewBox="0 0 20 20" class="mt-px h-4 w-4 shrink-0 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>
+                <span>{w.deliverable}</span>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+    {note && <p class="mt-6 text-[13px] leading-relaxed text-muted" data-reveal>{note}</p>}
+  </div>
+</section>
+
+<style>
+  .fm-rail { position: absolute; background: rgb(255 255 255 / 0.08); border-radius: 2px; overflow: hidden; }
+  .fm-rail-y { left: 15px; top: 16px; bottom: 16px; width: 2px; }
+  .fm-rail-x { left: 16px; right: 16px; top: 15px; height: 2px; }
+  .section-light .fm-rail { background: rgb(10 10 10 / 0.08); }
+  .fm-fill { position: absolute; inset: 0; background: linear-gradient(180deg, #f1d9a0, #b8862f); }
+  .fm-rail-x .fm-fill { background: linear-gradient(90deg, #f1d9a0, #b8862f); }
+  .fm-item { position: relative; padding-left: 46px; }
+  .fm-dot {
+    position: absolute; left: 0; top: 0; display: flex; width: 32px; height: 32px; align-items: center; justify-content: center;
+    border-radius: 999px; background: #0a0a0a; border: 1px solid rgb(217 178 102 / 0.55); color: #f1d9a0;
+    font-family: var(--font-display, serif); font-style: italic; font-size: 16px;
+    box-shadow: 0 0 0 5px var(--color-ink), 0 0 24px -6px rgb(217 178 102 / 0.6);
+  }
+  .fm-card { height: 100%; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; }
+  .fm-deliv { margin-top: auto; padding-top: 14px; }
+  .fm-text { margin-bottom: 16px; }
+  @media (min-width: 1024px) {
+    .fm-item { padding-left: 0; padding-top: 52px; }
+    .fm-card { padding: 24px; }
+  }
+</style>

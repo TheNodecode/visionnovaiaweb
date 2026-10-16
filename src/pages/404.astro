@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import { SERVICES_NAV } from '../data/nav';
+---
+<BaseLayout
+  title="Página no encontrada | Visión Nova"
+  description="La página que buscas no existe o ha cambiado de dirección. Vuelve al inicio o elige uno de nuestros servicios."
+  path="/404"
+  noindex
+>
+  <section class="container-x flex min-h-[70svh] flex-col items-center justify-center gap-6 py-32 text-center">
+    <Eyebrow>404</Eyebrow>
+    <h1 class="font-display text-[clamp(2.5rem,7vw,4.5rem)] italic leading-[1.05] text-cream text-balance">Esta página no existe.</h1>
+    <p class="max-w-xl text-base leading-relaxed text-muted text-pretty">
+      Puede que el enlace esté mal escrito o que la página haya cambiado de dirección. Desde aquí puedes volver al inicio o ir directamente a lo que buscabas.
+    </p>
+    <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+      <Button href="/">Volver al inicio</Button>
+      <Button href="/contacto" variant="glass">Hablar con nosotros</Button>
+    </div>
+    <nav class="mt-10 w-full max-w-3xl" aria-labelledby="nf-services">
+      <h2 id="nf-services" class="text-[11px] uppercase tracking-[0.25em] text-muted">Nuestros servicios</h2>
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {SERVICES_NAV.map((s) => (
+          <li>
+            <a href={s.href} class="glass flex min-h-12 items-center justify-center rounded-2xl px-5 py-3 text-[15px] text-cream transition-colors duration-300 hover:border-gold-400/30 hover:text-gold-200">{s.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </section>
+</BaseLayout>

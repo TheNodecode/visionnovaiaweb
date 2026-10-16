@@ -1,0 +1,128 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LeadForm from '../../components/form/LeadForm.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import FeatureGrid from '../../components/sections/FeatureGrid.astro';
+import OfferStack from '../../components/sections/OfferStack.astro';
+import AdAngles from '../../components/sections/AdAngles.astro';
+import QualifyQuestions from '../../components/sections/QualifyQuestions.astro';
+import AIDemo from '../../components/sections/AIDemo.astro';
+import RealWork from '../../components/sections/RealWork.astro';
+import BehindScenes from '../../components/sections/BehindScenes.astro';
+import FirstMonth from '../../components/sections/FirstMonth.astro';
+import RoiCalculator from '../../components/sections/RoiCalculator.astro';
+import Guarantee from '../../components/sections/Guarantee.astro';
+import Objections from '../../components/sections/Objections.astro';
+import Faq from '../../components/sections/Faq.astro';
+import AfterBooking from '../../components/sections/AfterBooking.astro';
+import RelatedLinks from '../../components/sections/RelatedLinks.astro';
+import SplitCompare from '../../components/sections/SplitCompare.astro';
+import PhaseStrip from '../../components/sections/PhaseStrip.astro';
+import type { IconName } from '../../components/ui/icon-names';
+import { SECTORS, type SectorPage } from '../../data/sectors';
+import { SECTOR_SALES } from '../../data/sector-sales';
+import { OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, tailorOffer, tailorList, type OfferId } from '../../data/offer';
+import { GUARANTEE_FAQ } from '../../data/faqs';
+import { AUDIO_DEMOS } from '../../data/media';
+import { SERVICES_NAV, SECTORS_NAV } from '../../data/nav';
+import { SITE } from '../../config/site';
+
+export const getStaticPaths = (() =>
+  SECTORS.map((page) => ({ params: { slug: page.slug }, props: { page } }))) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: SectorPage };
+const path = `/sectores/${page.slug}`;
+const url = SITE.url + path;
+const label = SECTORS_NAV.find((s) => s.href === path)?.label ?? page.name;
+const name = page.hero.eyebrow;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    serviceType: page.keyword,
+    description: page.seoDescription,
+    url,
+    provider: { '@id': SITE.url + '/#org' },
+    areaServed: { '@type': 'Country', name: 'España' },
+    audience: { '@type': 'BusinessAudience', name: label },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name, item: url },
+    ],
+  },
+];
+
+// Cada dolor trae su icono en sectors.ts; si falta, se usa uno por posición.
+const FALLBACK_ICONS: IconName[] = ['phone', 'target', 'users', 'camera'];
+const pains = page.pains.map((p, i) => ({ ...p, icon: p.icon ?? FALLBACK_ICONS[i % FALLBACK_ICONS.length] }));
+
+const sales = SECTOR_SALES[page.slug];
+const first = sales.offerFirst;
+const offerItems = tailorOffer(OFFER_ITEMS, {
+  patch: sales.offer.patch,
+  // p. ej. reformas abre la oferta con el agente de voz «mientras estás en obra»
+  only: first ? [first, ...OFFER_ITEMS.map((i) => i.id).filter((id): id is OfferId => id !== first)] : undefined,
+});
+const sig = sales.signature;
+const weeks = tailorList(FIRST_MONTH, sales.firstMonth.weeks);
+// Cuatro objeciones del sector + las dos que valen para todos: la garantía y el precio.
+const objections = [...sales.objections, ...OBJECTIONS.slice(4)];
+
+const audios = AUDIO_DEMOS.filter((a) => page.audioFilter.includes(a.sector)).map(({ src, label }) => ({ src, label }));
+
+const SERVICE_LABELS = new Map<string, string>(SERVICES_NAV.map((l) => [l.href.slice(1), l.label]));
+const related = [
+  ...page.related.map((slug) => ({ href: `/${slug}`, label: SERVICE_LABELS.get(slug) ?? slug, kind: 'Servicio' })),
+  ...SECTORS_NAV.filter((s) => s.href !== path).map((s) => ({ href: s.href, label: s.label, kind: 'Sector' })),
+];
+---
+<BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
+  {/* Cada sector compone su propia secuencia (sales.order en sector-sales.ts), alternando hojas claras y oscuras;
+       objeciones y FAQ forman siempre una sola hoja clara al final. */}
+  <PageHero eyebrow={page.hero.eyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
+
+  {sales.order.map((block) => (
+    <>
+      {block === 'signature' && sig?.kind === 'split' && (
+        <SplitCompare id={sig.id} eyebrow={sig.eyebrow} titleHtml={sig.titleHtml} lead={sig.lead} columns={sig.columns} joiner={sig.joiner} note={sig.note} />
+      )}
+      {block === 'signature' && sig?.kind === 'phases' && (
+        <PhaseStrip id={sig.id} eyebrow={sig.eyebrow} titleHtml={sig.titleHtml} lead={sig.lead} phases={sig.phases} note={sig.note} />
+      )}
+      {block === 'pains' && <FeatureGrid id="problema" eyebrow="El problema" title={`Lo que vemos en ${page.name}`} items={pains} />}
+      {block === 'offer' && <OfferStack eyebrow={`La oferta para ${page.name}`} titleHtml={sales.offer.titleHtml} lead={sales.offer.lead} items={offerItems} />}
+      {block === 'angles' && <AdAngles brand={sales.brand} lead={sales.angles.lead} note={sales.angles.note} items={sales.angles.items} />}
+      {block === 'qualify' && <QualifyQuestions lead={sales.qualify.lead} questions={sales.qualify.questions} card={sales.qualify.card} note={sales.qualify.note ?? page.complianceNote} />}
+      {block === 'demo' && <AIDemo scenario={page.aiScenario} audios={audios} audioNote={page.audioNote} titleHtml={sales.demo?.titleHtml} lead={sales.demo?.lead} />}
+      {block === 'proof' && (sales.proof.kind === 'real'
+        ? <RealWork titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} steps={sales.proof.steps} />
+        : <BehindScenes titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} ideas={page.contentIdeas} />)}
+      {block === 'firstMonth' && <FirstMonth weeks={weeks} lead={sales.firstMonth.lead} />}
+      {block === 'roi' && <RoiCalculator defaultTicket={page.defaultTicket} />}
+      {block === 'guarantee' && <Guarantee />}
+      {block === 'objections' && (
+        <>
+          <Objections items={objections} eyebrow={`Dudas de ${page.name}`} lead={`Las que más oímos cuando hablamos con una ${page.business}, respondidas sin rodeos.`} />
+          <Faq title={`Dudas frecuentes de ${page.name}`} items={[...page.faq, GUARANTEE_FAQ]} />
+        </>
+      )}
+    </>
+  ))}
+
+  <RelatedLinks title="Servicios que usamos aquí y otros sectores" items={related} />
+
+  <AfterBooking />
+  <LeadForm
+    id="formulario"
+    variant="compact"
+    heading={`¿Tienes una ${page.business}? Mira si encaja`}
+    lead="Unas preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos."
+  />
+</BaseLayout>

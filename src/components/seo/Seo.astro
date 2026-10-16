@@ -1,0 +1,20 @@
+---
+import { SITE } from '../../config/site';
+interface Props { title: string; description: string; path: string; ogImage?: string; noindex?: boolean }
+const { title, description, path, ogImage = '/brand/og-default.jpg', noindex = false } = Astro.props;
+const canonical = new URL(path === '/' ? '/' : path.replace(/\/$/, ''), SITE.url).href;
+const og = new URL(ogImage, SITE.url).href;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+{!noindex && <link rel="canonical" href={canonical} />}
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={og} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0a0a0a" />

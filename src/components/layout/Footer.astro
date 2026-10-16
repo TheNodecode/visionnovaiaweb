@@ -1,0 +1,49 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../../config/site';
+import { FOOTER_LINKS } from '../../data/nav';
+
+const cols = [
+  { title: 'Servicios', links: FOOTER_LINKS.services },
+  { title: 'Sectores', links: FOOTER_LINKS.sectors },
+  { title: 'Ciudades', links: FOOTER_LINKS.cities },
+  { title: 'Empresa', links: FOOTER_LINKS.company },
+];
+const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-cream';
+---
+<footer class="cv-auto relative mt-24 overflow-hidden border-t border-white/10 bg-ink" style="padding-bottom: env(safe-area-inset-bottom)">
+  <!-- Marca de agua: la estrella real, muy tenue y cortada por el borde del pie (sin texto escrito) -->
+  <img src="/brand/logo-star.webp" alt="" aria-hidden="true" width="440" height="512" loading="lazy" decoding="async"
+    class="pointer-events-none absolute -bottom-[18%] -right-[8%] w-[clamp(300px,44vw,640px)] select-none opacity-[0.05]" />
+  <div class="container-x relative pb-6 pt-16">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
+      <div class="flex flex-col items-start gap-5">
+        <Logo variant="full" eager={false} class="-ml-1" />
+        <ul class="flex flex-col text-sm text-muted">
+          <li><a href={SITE.whatsapp} target="_blank" rel="noopener" class={linkCls}>WhatsApp {SITE.phoneDisplay}</a></li>
+          <li><a href={`mailto:${SITE.email}`} class={linkCls + ' break-all'}>{SITE.email}</a></li>
+          <li class="flex min-h-11 items-center">Girona · Grabamos en toda España</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+        {cols.map((c) => (
+          <nav aria-label={c.title}>
+            <h3 class="mb-2 text-[11px] uppercase tracking-[0.25em] text-gold-400">{c.title}</h3>
+            <ul class="flex flex-col">
+              {c.links.map((l) => <li><a href={l.href} class={linkCls}>{l.label}</a></li>)}
+            </ul>
+          </nav>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} Visión Nova</p>
+      <ul class="flex flex-wrap gap-x-5">
+        {FOOTER_LINKS.legal.map((l) => <li><a href={l.href} class="inline-flex min-h-11 items-center transition-colors hover:text-cream">{l.label}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+</footer>

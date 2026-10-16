@@ -1,0 +1,51 @@
+---
+import LegalPage from '../components/legal/LegalPage.astro';
+import { SITE } from '../config/site';
+---
+<LegalPage
+  title="Política de cookies"
+  seoTitle="Política de cookies | Visión Nova"
+  description="Qué cookies y qué almacenamiento del navegador usa la web de Visión Nova, qué servicios de terceros intervienen y cómo puedes bloquearlos o borrarlos."
+  path="/politica-cookies"
+  updated="15 de octubre de 2026"
+>
+  <h2>1. ¿Qué son las cookies?</h2>
+  <p>
+    Las cookies son pequeños archivos de texto que una web guarda en tu dispositivo para recordar información sobre tu visita,
+    como tus preferencias o datos de navegación. Hay tecnologías parecidas, como el almacenamiento del navegador, que cumplen
+    una función similar.
+  </p>
+
+  <h2>2. Qué usamos en esta web</h2>
+  <p>Esta web usa sobre todo elementos técnicos necesarios para funcionar y los de los servicios de terceros que integramos:</p>
+  <ul>
+    <li><strong>Almacenamiento de sesión del navegador</strong>: guarda temporalmente las respuestas del formulario para que no las pierdas si recargas la página. Se borra al cerrar la pestaña.</li>
+    <li><strong>Calendly</strong>: se carga automáticamente en el último paso, después de enviar el formulario, para que elijas tu llamada.</li>
+  </ul>
+  <p>
+    Las tipografías y los estilos se sirven desde nuestro propio servidor, sin cookies de terceros. Ahora mismo no usamos
+    cookies propias de analítica ni de publicidad.
+  </p>
+
+  <h2>3. Cookies técnicas</h2>
+  <p>Son imprescindibles para que la web funcione correctamente y, según la normativa vigente (LSSI-CE), no requieren tu consentimiento.</p>
+
+  <h2>4. Cookies de terceros</h2>
+  <p>
+    Al usar el calendario de Calendly integrado en la web, este servicio puede instalar sus propias cookies según su política de
+    privacidad. Te recomendamos consultarla para más información.
+  </p>
+
+  <h2>5. Cómo gestionar o desactivar las cookies</h2>
+  <p>Puedes permitir, bloquear o borrar las cookies y el almacenamiento de tu navegador desde su configuración:</p>
+  <ul>
+    <li><a href="https://support.google.com/chrome/answer/95647" rel="noopener" target="_blank">Google Chrome</a></li>
+    <li><a href="https://support.mozilla.org/es/kb/Borrar%20cookies" rel="noopener" target="_blank">Mozilla Firefox</a></li>
+    <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" rel="noopener" target="_blank">Safari</a></li>
+    <li><a href="https://support.microsoft.com/es-es/microsoft-edge" rel="noopener" target="_blank">Microsoft Edge</a></li>
+  </ul>
+  <p>Ten en cuenta que, si desactivas ciertas cookies, algunas funciones de la web pueden dejar de funcionar bien, como el calendario de reservas.</p>
+
+  <h2>6. Más información</h2>
+  <p>Si tienes cualquier duda sobre esta política, escríbenos a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. También puedes consultar nuestra <a href="/politica-privacidad">política de privacidad</a>.</p>
+</LegalPage>

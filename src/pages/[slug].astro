@@ -1,0 +1,222 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/form/LeadForm.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import FeatureGrid from '../components/sections/FeatureGrid.astro';
+import AIDemo from '../components/sections/AIDemo.astro';
+import RoiCalculator from '../components/sections/RoiCalculator.astro';
+import ProcessSteps from '../components/sections/ProcessSteps.astro';
+import Guarantee from '../components/sections/Guarantee.astro';
+import Faq from '../components/sections/Faq.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import RelatedLinks from '../components/sections/RelatedLinks.astro';
+import OfferStack from '../components/sections/OfferStack.astro';
+import FirstMonth from '../components/sections/FirstMonth.astro';
+import RealWork from '../components/sections/RealWork.astro';
+import AfterBooking from '../components/sections/AfterBooking.astro';
+import ShootDay from '../components/sections/ShootDay.astro';
+import ContentCalendar from '../components/sections/ContentCalendar.astro';
+import InboxTriage from '../components/sections/InboxTriage.astro';
+import AdAnatomy from '../components/sections/AdAnatomy.astro';
+import FunnelFlow from '../components/sections/FunnelFlow.astro';
+import QualifyQuestions from '../components/sections/QualifyQuestions.astro';
+import CrmShowcase from '../components/sections/CrmShowcase.astro';
+import HandoffAlert from '../components/sections/HandoffAlert.astro';
+import CompareTable from '../components/sections/CompareTable.astro';
+import Statement from '../components/sections/Statement.astro';
+import PageAnatomy from '../components/sections/PageAnatomy.astro';
+import OfferStrip from '../components/sections/OfferStrip.astro';
+import { SERVICES, type ServicePage } from '../data/services';
+import { SERVICE_SALES } from '../data/service-sales';
+import { CITIES, type CityPage } from '../data/cities';
+import { GUARANTEE_FAQ } from '../data/faqs';
+import { AUDIO_DEMOS, CRM_IMAGE } from '../data/media';
+import { OFFER_ITEMS, FIRST_MONTH, tailorOffer, tailorList, type OfferId } from '../data/offer';
+import { SERVICES_NAV, SECTORS_NAV } from '../data/nav';
+import { SITE } from '../config/site';
+
+type PageProps = { kind: 'service'; page: ServicePage } | { kind: 'city'; page: CityPage };
+
+export const getStaticPaths = (() => [
+  ...SERVICES.map((page) => ({ params: { slug: page.slug }, props: { kind: 'service' as const, page } })),
+  ...CITIES.map((page) => ({ params: { slug: page.slug }, props: { kind: 'city' as const, page } })),
+]) satisfies GetStaticPaths;
+
+const props = Astro.props as PageProps;
+const { page } = props;
+const path = `/${page.slug}`;
+const url = SITE.url + path;
+
+// Etiquetas legibles para el enlazado interno (servicios y sectores)
+const LABELS = new Map<string, string>([...SERVICES_NAV, ...SECTORS_NAV].map((l) => [l.href.slice(1), l.label]));
+const link = (slug: string) => ({ href: `/${slug}`, label: LABELS.get(slug) ?? slug, sector: slug.startsWith('sectores/') });
+
+const name = props.kind === 'service'
+  ? LABELS.get(page.slug) ?? page.hero.eyebrow
+  : `Agencia de marketing en ${props.page.city}`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    serviceType: props.kind === 'service' ? props.page.keyword : 'Agencia de marketing',
+    description: page.seoDescription,
+    url,
+    provider: { '@id': SITE.url + '/#org' },
+    areaServed: props.kind === 'service'
+      ? { '@type': 'Country', name: 'España' }
+      : { '@type': 'City', name: props.page.city },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name, item: url },
+    ],
+  },
+];
+
+// El sello de partner solo aparece cuando Meta apruebe la verificación (SITE.metaPartner)
+const heroEyebrow = page.slug === 'whatsapp-business-api' && SITE.metaPartner
+  ? 'Meta Tech Provider · WhatsApp Business API oficial'
+  : page.hero.eyebrow;
+
+const audios = AUDIO_DEMOS.map(({ src, label }) => ({ src, label }));
+// Servicio: su partida va primera en la oferta compacta (8 partidas).
+const svc = props.kind === 'service' ? SERVICE_SALES[props.page.slug] : undefined;
+const serviceOffer = svc && tailorOffer(OFFER_ITEMS, {
+  only: [svc.offer.first, ...OFFER_ITEMS.map((i) => i.id).filter((id): id is OfferId => id !== svc.offer.first)],
+  omit: [svc.offer.omit],
+  patch: { [svc.offer.first]: svc.offer.patch },
+});
+// Ciudad: la jornada y las campañas, contadas desde allí; la semana 2 incluye el viaje.
+const city = props.kind === 'city' ? props.page : undefined;
+const cityOffer = city && tailorOffer(OFFER_ITEMS, { patch: { grabacion: { outcome: city.sales.grabacion }, ads: { outcome: city.sales.ads } } });
+const cityWeeks = city && tailorList(FIRST_MONTH, [undefined, city.sales.week2]);
+const slug = props.kind === 'service' ? props.page.slug : undefined;
+const sp = props.kind === 'service' ? props.page : undefined;
+
+const related = props.kind === 'service'
+  ? props.page.related.map(link)
+  : [...props.page.sectorsHighlight.map((s) => link(`sectores/${s}`)), ...SERVICES_NAV.map((s) => link(s.href.slice(1)))];
+---
+<BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
+  <PageHero eyebrow={heroEyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
+
+  {/* Servicios: franja de oferta bajo el hero, el bloque propio del servicio y, justo después, la oferta compacta.
+       Ritmo claro/oscuro alterno; la garantía va al final, lejos de la ficha que ya la enseña. */}
+  {sp && <OfferStrip />}
+
+  {sp && slug === 'creacion-de-contenido' && (() => { const x = SERVICE_SALES['creacion-de-contenido']; return (
+    <>
+      <ShootDay {...x.shootDay} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <RealWork titleHtml={x.realWork.titleHtml} lead={x.realWork.lead} steps={x.realWork.steps} cta="Quiero un rodaje así" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+    </>
+  ); })()}
+
+  {sp && slug === 'gestion-redes-sociales' && (() => { const x = SERVICE_SALES['gestion-redes-sociales']; return (
+    <>
+      <ContentCalendar {...x.calendar} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <InboxTriage {...x.inbox} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
+    </>
+  ); })()}
+
+  {sp && slug === 'publicidad-meta-ads' && (() => { const x = SERVICE_SALES['publicidad-meta-ads']; return (
+    <>
+      <AdAnatomy {...x.adAnatomy} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <FunnelFlow {...x.funnel} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      <RoiCalculator />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
+    </>
+  ); })()}
+
+  {sp && slug === 'sistema-ia' && (() => { const x = SERVICE_SALES['sistema-ia']; return (
+    <>
+      <AIDemo scenario="general" audios={audios} />
+      <OfferStack compact eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <CrmShowcase image={CRM_IMAGE} />
+      <QualifyQuestions {...x.qualify} />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      <HandoffAlert {...x.handoff} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} />}
+    </>
+  ); })()}
+
+  {sp && slug === 'whatsapp-business-api' && (() => { const x = SERVICE_SALES['whatsapp-business-api']; return (
+    <>
+      <CompareTable id="app-o-api" {...x.compare} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <Statement id="tu-numero" {...x.statement} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
+    </>
+  ); })()}
+
+  {sp && slug === 'diseno-web' && (() => { const x = SERVICE_SALES['diseno-web']; return (
+    <>
+      <PageAnatomy {...x.anatomy} />
+      <OfferStack compact tone="dark" eyebrow="Dentro de NovaScale" titleHtml={x.offer.titleHtml} lead={x.offer.lead} items={serviceOffer} />
+      <FunnelFlow id="la-web-en-el-sistema" {...x.funnel} tone="light" />
+      <FeatureGrid id="que-incluye" eyebrow="Qué incluye" title={sp.features.title} items={sp.features.items} />
+      {sp.process && <ProcessSteps id="proceso" title={sp.process.title} steps={sp.process.steps} tone="light" />}
+    </>
+  ); })()}
+
+  {sp && (
+    <>
+      <Guarantee />
+      <Faq title="Preguntas sobre este servicio" items={[...sp.faq, GUARANTEE_FAQ]} />
+    </>
+  )}
+
+  {city && (
+    <>
+      <section class="relative bg-ink py-16 md:py-24" aria-labelledby="local-title">
+        <div class="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-5">
+            <div data-reveal><Eyebrow>{`Marketing en ${city.city}`}</Eyebrow></div>
+            <h2 id="local-title" data-split class="mt-5 font-display text-[40px] italic leading-[1.04] text-cream text-balance md:text-[60px]">{city.localAngle.title}</h2>
+            <p class="mt-8 inline-flex items-center gap-3 rounded-full border border-gold-400/30 bg-gold-400/[0.07] px-4 py-2.5 text-sm text-gold-200" data-reveal>
+              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" aria-hidden="true"></span>
+              Grabamos en {city.city} y en toda España.
+            </p>
+          </div>
+          <div class="flex flex-col gap-6 lg:col-span-7 lg:pt-3" data-reveal-stagger>
+            {city.localAngle.paragraphs.map((p) => (
+              <p class="text-base leading-relaxed text-cream/80 text-pretty md:text-lg">{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+      <OfferStack eyebrow={`La oferta en ${city.city}`} titleHtml={city.sales.offerTitleHtml} lead={city.sales.offerLead} items={cityOffer} />
+      <FirstMonth weeks={cityWeeks} note={city.sales.note} />
+      <RealWork compact titleHtml={city.sales.proofTitleHtml} lead={city.sales.proofLead} />
+    </>
+  )}
+
+  <RelatedLinks
+    eyebrow={props.kind === 'city' ? `Para negocios de ${props.page.city}` : 'Sigue explorando'}
+    title={props.kind === 'city' ? 'Sectores donde más encaja y todos los servicios' : 'Servicios y sectores relacionados'}
+    items={related.map((r) => ({ href: r.href, label: r.label, kind: r.sector ? 'Sector' : 'Servicio' }))}
+  />
+
+  {props.kind === 'city' && <Faq title={`Dudas de negocios de ${props.page.city}`} items={props.page.faq} />}
+
+  <AfterBooking />
+  <LeadForm
+    id="formulario"
+    variant="compact"
+    heading={props.kind === 'city' ? `¿Tu negocio está en ${props.page.city}? Mira si encaja` : 'Mira si tu negocio encaja'}
+    lead="Unas preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos."
+  />
+</BaseLayout>

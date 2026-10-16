@@ -1,0 +1,83 @@
+---
+// Qué hace cada parte de la web dentro del sistema: maqueta de móvil numerada y la explicación de cada número.
+import Eyebrow from '../ui/Eyebrow.astro';
+import type { Numbered } from '../../data/blocks';
+
+interface Props {
+  id?: string;
+  blocks: Numbered[];
+  eyebrow?: string;
+  titleHtml: string;
+  lead: string;
+  tone?: 'dark' | 'light';
+}
+const { id = 'anatomia', blocks, eyebrow = 'Qué hace la web', titleHtml, lead, tone = 'light' } = Astro.props;
+// Alturas de cada bloque de la maqueta, en el mismo orden que `blocks`.
+const shapes = ['pa-hero', 'pa-proof', 'pa-offer', 'pa-form', 'pa-wa'];
+---
+<section id={id} class:list={['pa relative bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+    <div class="flex flex-col gap-4 lg:col-span-7 lg:order-2" data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+      <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+      <ol class="mt-3 flex flex-col" data-reveal-stagger>
+        {blocks.map((b, i) => (
+          <li class="pa-item">
+            <span class="pa-n" aria-hidden="true">{i + 1}</span>
+            <div class="min-w-0">
+              <h3 class="text-[16.5px] font-medium leading-snug text-cream">{b.title}</h3>
+              <p class="mt-1 text-[14.5px] leading-relaxed text-muted text-pretty">{b.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="lg:col-span-5 lg:order-1" data-reveal aria-hidden="true">
+      <div class="pa-phone tone-dark">
+        <div class="pa-bar"><span></span><span class="pa-url">tunegocio.com</span></div>
+        <div class="pa-screen">
+          {blocks.map((_, i) => (
+            <div class={`pa-block ${shapes[i] ?? 'pa-proof'}`}>
+              <span class="pa-badge">{i + 1}</span>
+              {i === 0 && (<><i class="pa-line w-[70%]"></i><i class="pa-line w-[45%]"></i><i class="pa-btn"></i></>)}
+              {i === 1 && (<div class="pa-thumbs"><i></i><i></i><i></i></div>)}
+              {i === 2 && (<><i class="pa-line w-[60%]"></i><i class="pa-line w-[80%] opacity-60"></i><i class="pa-line w-[50%] opacity-60"></i></>)}
+              {i === 3 && (<><i class="pa-field"></i><i class="pa-field"></i><i class="pa-btn w-full"></i></>)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pa-item { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-top: 1px solid rgb(255 255 255 / 0.1); }
+  .section-light .pa-item { border-top-color: rgb(10 10 10 / 0.1); }
+  .pa-item:first-child { border-top: 0; }
+  .pa-n, .pa-badge {
+    display: flex; width: 30px; height: 30px; align-items: center; justify-content: center; border-radius: 999px;
+    font-family: var(--font-display, serif); font-style: italic; font-size: 16px;
+  }
+  .pa-n { border: 1px solid rgb(184 134 47 / 0.5); color: var(--color-gold-400); }
+  .pa-phone {
+    position: relative; width: min(100%, 300px); margin-inline: auto; border-radius: 42px; border: 8px solid #1a1a1a; background: #0d0d0d; overflow: hidden;
+    box-shadow: 0 50px 100px -40px rgb(40 26 4 / 0.6), 0 0 0 1px rgb(10 10 10 / 0.08);
+  }
+  .pa-bar { display: flex; align-items: center; gap: 8px; padding: 14px 16px 10px; }
+  .pa-bar span:first-child { width: 8px; height: 8px; border-radius: 999px; background: rgb(217 178 102 / 0.7); }
+  .pa-url { flex: 1; border-radius: 999px; background: rgb(255 255 255 / 0.07); padding: 4px 10px; font-size: 10.5px; color: #a39e96; }
+  .pa-screen { display: flex; flex-direction: column; gap: 8px; padding: 6px 12px 16px; }
+  .pa-block { position: relative; display: flex; flex-direction: column; gap: 7px; padding: 14px 14px 14px 48px; border-radius: 16px; background: rgb(255 255 255 / 0.05); border: 1px solid rgb(255 255 255 / 0.06); }
+  .pa-badge { position: absolute; left: 10px; top: 10px; width: 26px; height: 26px; font-size: 14px; color: #1a1408; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  .pa-hero { min-height: 120px; background: radial-gradient(100% 90% at 100% 0%, rgb(217 178 102 / 0.22), transparent 65%), rgb(255 255 255 / 0.05); }
+  .pa-line { display: block; height: 7px; border-radius: 4px; background: rgb(255 255 255 / 0.22); }
+  .pa-btn { display: block; height: 22px; width: 52%; margin-top: 4px; border-radius: 999px; background: linear-gradient(135deg, #f1d9a0, #d9b266 50%, #b8862f); }
+  .pa-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .pa-thumbs i { display: block; aspect-ratio: 9 / 14; border-radius: 8px; background: rgb(255 255 255 / 0.12); }
+  .pa-field { display: block; height: 18px; border-radius: 8px; background: rgb(255 255 255 / 0.1); }
+  .pa-wa { min-height: 44px; flex-direction: row; align-items: center; justify-content: flex-end; }
+  .pa-wa::after { content: ''; width: 34px; height: 34px; border-radius: 999px; background: #25d366; box-shadow: 0 6px 18px -4px rgb(37 211 102 / 0.6); }
+</style>

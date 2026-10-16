@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/form/LeadForm.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import Icon from '../components/ui/Icon.astro';
+import type { IconName } from '../components/ui/icon-names';
+import { SITE } from '../config/site';
+
+const path = '/nosotros';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Nosotros · Visión Nova',
+    url: SITE.url + path,
+    about: { '@id': SITE.url + '/#org' },
+    mainEntity: {
+      '@type': 'Person',
+      name: SITE.founder,
+      jobTitle: 'Fundador de Visión Nova',
+      image: SITE.url + '/img/fundador.jpg',
+      worksFor: { '@id': SITE.url + '/#org' },
+      address: { '@type': 'PostalAddress', addressLocality: SITE.address.city, addressCountry: SITE.address.country },
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Nosotros', item: SITE.url + path },
+    ],
+  },
+];
+
+const how: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'users',
+    title: 'Pocas cuentas, llevadas a mano',
+    text: 'Preferimos llevar bien unos pocos negocios que mal muchos. Cada cuenta la seguimos de cerca, desde la grabación hasta la última llamada.',
+  },
+  {
+    icon: 'calendar',
+    title: '3 plazas al mes',
+    text: 'Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.',
+  },
+  {
+    icon: 'chat',
+    title: 'Hablas con quien lo monta',
+    text: 'En la primera llamada no hay comerciales: hablas conmigo o con quien va a montar tu sistema, y te decimos claro si encaja.',
+  },
+];
+---
+<BaseLayout
+  title="Nosotros: quién está detrás de Visión Nova"
+  description="Soy Stiven González, fundador de Visión Nova. Juntamos grabación, anuncios en Meta y nuestro propio CRM con IA para que cada contacto se atienda y se filtre."
+  path={path}
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Nosotros"
+    title="Una sola mano para el vídeo, los anuncios"
+    titleAccent="y lo que pasa después."
+    lead="Visión Nova junta producción audiovisual, publicidad y tecnología propia en un mismo equipo, para que nadie se lave las manos cuando un contacto se pierde."
+  />
+
+  <section class="relative overflow-x-clip bg-ink py-16 md:py-24" aria-labelledby="founder-title">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+      <figure class="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:sticky lg:top-32" data-reveal>
+        <div class="pointer-events-none absolute -inset-6 -z-10 rounded-[48px] bg-[radial-gradient(closest-side,rgb(217_178_102/0.16),transparent)]" aria-hidden="true"></div>
+        <img src="/img/fundador.jpg" alt={`${SITE.founder}, fundador de Visión Nova`} width="900" height="1243"
+          class="aspect-[900/1243] w-full rounded-[32px] object-cover ring-1 ring-white/10" loading="lazy" decoding="async" />
+        <figcaption class="mt-4 flex items-center justify-between gap-4 text-sm">
+          <span class="font-display text-xl italic text-cream">{SITE.founder}</span>
+          <span class="text-muted">Fundador · {SITE.address.city}</span>
+        </figcaption>
+      </figure>
+
+      <div class="lg:col-span-7">
+        <div data-reveal><Eyebrow>Quién soy</Eyebrow></div>
+        <h2 id="founder-title" data-split class="mt-5 font-display text-[38px] italic leading-[1.05] text-cream text-balance md:text-[56px]">
+          Soy Stiven González, y monté Visión Nova para que <span class="text-gold">el trabajo no se quede a medias.</span>
+        </h2>
+        <div class="mt-8 flex flex-col gap-5 text-base leading-relaxed text-cream/80 text-pretty md:text-lg" data-reveal-stagger>
+          <p>
+            Un buen vídeo trae atención. Un buen anuncio trae contactos. Pero si nadie contesta a esos contactos a tiempo, o se
+            contesta a todos igual, el dinero se queda por el camino. Cuando cada parte la lleva un proveedor distinto, nadie
+            responde del resultado completo.
+          </p>
+          <p>
+            Por eso en Visión Nova hacemos las tres cosas juntas: vamos a tu negocio y grabamos contenido con tu equipo, lanzamos
+            los anuncios en Meta y conectamos cada contacto a un sistema que lo atiende y lo filtra. Estamos en {SITE.address.city} y grabamos
+            en toda España.
+          </p>
+          <p>
+            La tecnología es nuestra. La hemos desarrollado nosotros, así que podemos ajustarla a cómo trabaja cada negocio en vez
+            de adaptar tu negocio a un programa genérico.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative bg-ink py-16 md:py-24" aria-labelledby="how-title">
+    <div class="container-x">
+      <div data-reveal><Eyebrow>Cómo trabajamos</Eyebrow></div>
+      <h2 id="how-title" class="mt-5 max-w-3xl font-display text-[36px] italic leading-[1.05] text-cream text-balance md:text-[52px]" data-reveal>
+        Pocas cuentas, mucha atención a cada una.
+      </h2>
+      <ul class="mt-12 grid gap-4 md:mt-16 md:grid-cols-3 md:gap-5" data-reveal-stagger>
+        {how.map((h) => (
+          <li class="glass rounded-[28px] p-7 md:p-8">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/25 text-gold-200">
+              <Icon name={h.icon} size={20} />
+            </span>
+            <h3 class="mt-8 font-display text-[26px] italic leading-[1.1] text-cream text-balance">{h.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-muted text-pretty">{h.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="relative bg-ink py-16 md:py-24" aria-labelledby="nova-title">
+    <div class="container-x">
+      <div class="glass relative overflow-hidden rounded-[32px] p-7 sm:p-10 md:p-14" data-reveal>
+        <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(closest-side,rgb(217_178_102/0.16),transparent)]" aria-hidden="true"></div>
+        <div class="relative grid gap-8 md:grid-cols-12 md:items-end md:gap-12">
+          <div class="md:col-span-8">
+            <Eyebrow>Qué es Nova</Eyebrow>
+            <h2 id="nova-title" class="mt-5 font-display text-[34px] italic leading-[1.05] text-cream text-balance md:text-[48px]">
+              Nova es el sistema que <span class="text-gold">atiende y filtra</span> cada contacto.
+            </h2>
+            <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">
+              Es nuestro CRM con un asistente de IA conectado a WhatsApp y a tu web. Está configurado para responder con la
+              información que tú le das, proponer cita y avisar a tu equipo cuando un contacto merece una llamada. Todo queda
+              en un panel donde ves cada conversación y cada cliente.
+            </p>
+          </div>
+          <div class="md:col-span-4 md:text-right">
+            <a href="/software-nova" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gold-400/40 px-7 text-[13px] font-medium text-gold-200 transition duration-300 ease-out-expo hover:bg-gold-400/10 active:scale-[0.97]">
+              Conocer Nova
+              <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <LeadForm
+    id="formulario"
+    variant="full"
+    heading="¿Hablamos de tu negocio?"
+    lead="Unas preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos con nosotros."
+  />
+</BaseLayout>
