@@ -1,6 +1,7 @@
 ---
 import Icon from '../ui/Icon.astro';
 import Button from '../ui/Button.astro';
+import { SCARCITY_TEXT } from '../../data/offer';
 
 interface Props { tone?: 'dark' | 'light' }
 const { tone = 'dark' } = Astro.props;
@@ -28,7 +29,7 @@ const { tone = 'dark' } = Astro.props;
           <span class="font-display text-[56px] italic leading-none text-gold-200">3</span>
           <span class="text-[11px] font-medium uppercase tracking-[0.24em] text-cream/80">plazas al mes</span>
         </p>
-        <p class="text-[15px] leading-relaxed text-muted text-pretty">Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.</p>
+        <p class="text-[15px] leading-relaxed text-muted text-pretty">{SCARCITY_TEXT}</p>
         <Button data-open-form class="w-full sm:w-auto sm:self-start">
           Reservar mi plaza
           <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>

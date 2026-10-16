@@ -131,7 +131,9 @@ input, select, textarea { font-size: 16px; }
   background: var(--color-ink); color: var(--color-cream);
   border-radius: clamp(28px, 4vw, 56px);
 }
-.section-light + .section-light { border-top-left-radius: 0; border-top-right-radius: 0; }
+.section-light + .section-light { border-top-left-radius: 0; border-top-right-radius: 0;
+  /* hoja fundida: el aire ya lo pone el padding inferior de la anterior */
+  padding-top: clamp(8px, 2vw, 24px); }
 .section-light:has(+ .section-light) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 .section-light ::selection { background: rgb(184 134 47 / 0.25); }
 .section-light .glass { background: #fffdf9; border-color: rgb(10 10 10 / 0.08);

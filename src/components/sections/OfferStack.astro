@@ -1,0 +1,133 @@
+---
+// «Lo que incluye NovaScale»: la oferta completa partida a partida, cada una con lo que te llevas.
+// Escritorio: lista a la izquierda y ficha fija (sticky) a la derecha con garantía, plazas y CTA.
+// Móvil: la ficha va después de la lista. `compact` = rejilla de dos columnas sin etiquetas (páginas de servicio).
+import Eyebrow from '../ui/Eyebrow.astro';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import { OFFER_ITEMS, GUARANTEE_TEXT, SCARCITY_TEXT, PRICE_NOTE, type OfferItem } from '../../data/offer';
+
+interface Props {
+  id?: string;
+  items?: OfferItem[];
+  eyebrow?: string;
+  /** HTML permitido para resaltar en oro con <span class="text-gold">. */
+  titleHtml?: string;
+  lead?: string;
+  compact?: boolean;
+  tone?: 'dark' | 'light';
+  cta?: string;
+}
+const {
+  id = 'oferta',
+  items = OFFER_ITEMS,
+  eyebrow = 'La oferta',
+  titleHtml = 'Lo que incluye <span class="text-gold">NovaScale.</span>',
+  lead = 'Un solo equipo, un solo sistema y una sola cuota al mes. Esto es lo que montamos en tu negocio y lo que te llevas de cada parte.',
+  compact = false,
+  tone = 'light',
+  cta = 'Ver si mi negocio encaja',
+} = Astro.props;
+const pad = (n: number) => String(n + 1).padStart(2, '0');
+---
+<section id={id} class:list={['offer relative scroll-mt-20 bg-ink py-16 md:py-24', tone === 'light' && 'section-light']} aria-labelledby={`${id}-title`}>
+  <div class="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-12 xl:gap-16">
+    <div class="min-w-0">
+      <div class="flex flex-col gap-4" data-reveal>
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={`${id}-title`} class="font-display text-[clamp(2.25rem,6vw,4rem)] italic leading-[1.02] text-cream text-balance" set:html={titleHtml} />
+        <p class="max-w-2xl text-base leading-relaxed text-muted text-pretty md:text-lg">{lead}</p>
+      </div>
+
+      <ol class:list={['offer-list glass mt-8 overflow-hidden rounded-[28px] md:mt-10', compact && 'offer-list-compact']} data-reveal-stagger>
+        {items.map((it, i) => (
+          <li class="offer-row">
+            <span class="offer-num font-display italic text-gold-400" aria-hidden="true">{pad(i)}</span>
+            <span class="offer-icon text-gold-200" aria-hidden="true"><Icon name={it.icon} size={20} /></span>
+            <div class="min-w-0">
+              <h3 class="text-[16px] font-medium leading-snug text-cream md:text-[17px]">{it.title}</h3>
+              <p class="mt-1.5 text-[14.5px] leading-relaxed text-muted text-pretty md:text-[15px]">{it.outcome}</p>
+              {!compact && it.tags && (
+                <ul class="mt-2.5 flex flex-wrap gap-1.5" aria-label="Qué incluye">
+                  {it.tags.map((t) => <li class="rounded-full border border-white/10 px-2.5 py-0.5 text-[12px] text-cream/80">{t}</li>)}
+                </ul>
+              )}
+            </div>
+            <span class="offer-check hidden text-gold-400 sm:flex" aria-hidden="true">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>
+              Incluido
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <aside class="offer-aside" aria-label="Tu plaza en NovaScale">
+      <div class="offer-card tone-dark" data-reveal>
+        <span class="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/70 to-transparent" aria-hidden="true"></span>
+        <p class="text-[11px] font-medium uppercase tracking-[0.28em] text-gold-400">Tu plaza en NovaScale</p>
+
+        <div class="mt-5 flex gap-3.5">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gold-400/40 bg-gold-400/10 text-gold-200"><Icon name="shield" size={20} /></span>
+          <p class="font-display text-[22px] italic leading-[1.18] text-cream text-pretty">{GUARANTEE_TEXT}</p>
+        </div>
+
+        <div class="mt-5 flex gap-3.5 border-t border-white/10 pt-5">
+          <span class="w-10 shrink-0 text-center font-display text-[44px] italic leading-[0.9] text-gold-200" aria-hidden="true">3</span>
+          <div>
+            <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-cream">3 plazas al mes</p>
+            <p class="mt-1.5 text-[14px] leading-relaxed text-muted text-pretty">{SCARCITY_TEXT}</p>
+          </div>
+        </div>
+
+        <p class="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[13.5px] leading-snug text-cream/85">
+          Lo único que pones tú: tu negocio delante de la cámara y la inversión en anuncios, que pagas directamente a Meta.
+        </p>
+
+        <Button data-open-form size="lg" class="mt-6 w-full">
+          {cta}
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </Button>
+        <p class="mt-3.5 text-center text-[13px] leading-snug text-muted">{PRICE_NOTE}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .offer-row {
+    display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 14px; align-items: start;
+    padding: 18px 18px 18px 16px; border-top: 1px solid rgb(10 10 10 / 0.07);
+  }
+  .offer-row:first-child { border-top: 0; }
+  .offer:not(.section-light) .offer-row { border-top-color: rgb(255 255 255 / 0.07); }
+  /* móvil: sin columna de número, el texto gana ancho y la lista se lee más rápido */
+  .offer-num { display: none; width: 22px; padding-top: 2px; font-size: 18px; line-height: 1; }
+  .offer-row { grid-template-columns: auto minmax(0, 1fr); padding: 16px 16px 16px 14px; }
+  .offer-icon {
+    display: flex; width: 36px; height: 36px; margin-top: -6px; align-items: center; justify-content: center; border-radius: 12px;
+    border: 1px solid rgb(184 134 47 / 0.28); background: rgb(217 178 102 / 0.08);
+  }
+  .offer-check { align-items: center; gap: 6px; font-size: 12px; font-weight: 500; white-space: nowrap; padding-top: 2px; }
+  @media (min-width: 640px) {
+    .offer-num { display: block; }
+    .offer-row { grid-template-columns: auto auto minmax(0, 1fr) auto; padding: 20px 24px; gap: 4px 18px; }
+  }
+  /* compacta: dos columnas, sin «Incluido» */
+  @media (min-width: 768px) {
+    .offer-list-compact { display: grid; grid-template-columns: 1fr 1fr; }
+    .offer-list-compact .offer-row { grid-template-columns: auto auto minmax(0, 1fr); border-top: 1px solid rgb(128 118 100 / 0.16); }
+    .offer-list-compact .offer-row:nth-child(-n+2) { border-top: 0; }
+    .offer-list-compact .offer-row:nth-child(even) { border-left: 1px solid rgb(128 118 100 / 0.16); }
+    .offer-list-compact .offer-check { display: none; }
+  }
+  .offer-card {
+    position: relative; overflow: hidden; border-radius: 28px; padding: 26px 22px 22px;
+    background: radial-gradient(120% 60% at 100% 0%, rgb(217 178 102 / 0.16), transparent 60%), #0d0d0d;
+    border: 1px solid rgb(217 178 102 / 0.28);
+    box-shadow: 0 40px 80px -40px rgb(40 26 4 / 0.55), 0 0 0 1px rgb(0 0 0 / 0.04);
+  }
+  @media (min-width: 768px) { .offer-card { padding: 30px 28px 26px; } }
+  /* sticky aquí y no con utilidades: el position: relative de arriba (sin capa) ganaría a lg:sticky */
+  @media (min-width: 1024px) { .offer-card { position: sticky; top: 96px; } }
+</style>

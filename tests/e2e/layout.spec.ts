@@ -83,3 +83,45 @@ test('las secciones claras de la home cumplen contraste AA', async ({ page }) =>
   });
   expect(fails).toEqual([]);
 });
+
+test('home: la oferta está completa y cada CTA lleva al formulario', async ({ browser }) => {
+  for (const [w, h] of [[1440, 900], [390, 844]]) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
+    const page = await ctx.newPage();
+    await page.goto('/');
+    // orden: prueba real justo tras el hero; al reservar justo antes del formulario
+    const ids = await page.locator('main > section, body > section, section[id], section[aria-labelledby]').evaluateAll((els) => els.map((e) => e.id).filter(Boolean));
+    expect(ids.indexOf('trabajo-real')).toBeLessThan(ids.indexOf('oferta'));
+    expect(ids.indexOf('oferta')).toBeLessThan(ids.indexOf('primer-mes'));
+    expect(ids.indexOf('objeciones')).toBeLessThan(ids.indexOf('al-reservar'));
+    expect(ids.indexOf('al-reservar')).toBe(ids.indexOf('formulario') - 1);
+    await expect(page.locator('#oferta .offer-row')).toHaveCount(9);
+    await expect(page.locator('#primer-mes .fm-item')).toHaveCount(4);
+    await expect(page.locator('#objeciones li')).toHaveCount(6);
+    await expect(page.locator('#al-reservar .ab-step')).toHaveCount(3);
+    await expect(page.locator('#oferta')).toContainText('Si en 30 días el sistema no te entrega al menos 15 clientes filtrados, el segundo mes va por nuestra cuenta.');
+    await expect(page.locator('#oferta')).toContainText('Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.');
+    for (const sec of ['#trabajo-real', '#oferta', '#objeciones']) {
+      const cta = page.locator(`${sec} [data-open-form]`).first();
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await cta.scrollIntoViewIfNeeded();
+      await cta.click();
+      await expect.poll(() => page.locator('#formulario').evaluate((e) => Math.abs(e.getBoundingClientRect().top) < 200)).toBe(true);
+    }
+    await ctx.close();
+  }
+});
+
+test('home escritorio: la ficha de la oferta se queda fija mientras bajas la lista', async ({ browser }) => {
+  // sin animaciones: el revelado (translateY) movería la ficha unos píxeles durante la medida
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  await page.goto('/');
+  const list = page.locator('#oferta .offer-list');
+  await list.evaluate((e) => window.scrollTo(0, e.getBoundingClientRect().top + scrollY + 500));
+  await page.waitForTimeout(300);
+  const top = await page.locator('#oferta .offer-card').evaluate((e) => e.getBoundingClientRect().top);
+  expect(top).toBeGreaterThanOrEqual(90);
+  expect(top).toBeLessThanOrEqual(100);
+  await ctx.close();
+});

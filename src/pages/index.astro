@@ -2,19 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/form/LeadForm.astro';
 import HeroHome from '../components/sections/HeroHome.astro';
-import ScaleVideo from '../components/sections/ScaleVideo.astro';
+import RealWork from '../components/sections/RealWork.astro';
 import ProblemFilter from '../components/sections/ProblemFilter.astro';
 import SystemActs from '../components/sections/SystemActs.astro';
-import ContentWall from '../components/sections/ContentWall.astro';
+import OfferStack from '../components/sections/OfferStack.astro';
+import FirstMonth from '../components/sections/FirstMonth.astro';
 import AIDemo from '../components/sections/AIDemo.astro';
 import CrmShowcase from '../components/sections/CrmShowcase.astro';
 import RoiCalculator from '../components/sections/RoiCalculator.astro';
-import Benefits from '../components/sections/Benefits.astro';
 import Guarantee from '../components/sections/Guarantee.astro';
+import Objections from '../components/sections/Objections.astro';
 import ForWho from '../components/sections/ForWho.astro';
-import SoftwareNova from '../components/sections/SoftwareNova.astro';
+import AfterBooking from '../components/sections/AfterBooking.astro';
 import Faq from '../components/sections/Faq.astro';
-import { HERO_BTS_VIDEO, HERO_BTS_POSTER, BTS_PHOTO, CONTENT_REELS, CRM_IMAGE, AUDIO_DEMOS } from '../data/media';
+import SoftwareNova from '../components/sections/SoftwareNova.astro';
+import { CRM_IMAGE, AUDIO_DEMOS } from '../data/media';
 import { HOME_FAQ } from '../data/faqs';
 import { SITE } from '../config/site';
 
@@ -26,18 +28,23 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'V
   path="/"
   schema={schema}
 >
+  {/* Ritmo: oscuro → hoja clara (prueba real) → oscuro (problema y sistema) → clara (oferta) → oscuro
+       (primer mes, IA, CRM, ROI, garantía) → clara (objeciones + para quién) → oscuro (al reservar + formulario)
+       → clara (FAQ + software, una sola hoja) → pie. */}
   <HeroHome />
-  <ScaleVideo src={HERO_BTS_VIDEO} poster={HERO_BTS_POSTER} alt={BTS_PHOTO.alt} position="60% 44%" caption="Así trabajamos: vamos a tu negocio y grabamos." />
+  <RealWork />
   <ProblemFilter />
   <SystemActs />
-  <ContentWall items={CONTENT_REELS} tone="light" />
+  <OfferStack />
+  <FirstMonth />
   <AIDemo scenario="general" audios={AUDIO_DEMOS.map(({ src, label }) => ({ src, label }))} />
   <CrmShowcase image={CRM_IMAGE} />
   <RoiCalculator />
-  <Benefits tone="light" />
   <Guarantee />
+  <Objections />
   <ForWho tone="light" />
-  <SoftwareNova />
-  <Faq items={HOME_FAQ} />
+  <AfterBooking />
   <LeadForm id="formulario" variant="full" heading="Mira si tu negocio encaja" lead="5 preguntas rápidas. Si encajamos, eliges hueco para una llamada de 20 minutos." />
+  <Faq items={HOME_FAQ} />
+  <SoftwareNova tone="light" compact />
 </BaseLayout>

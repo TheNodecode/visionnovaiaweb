@@ -9,8 +9,8 @@ export default defineConfig({
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
-    // Las hojas de estilo pequeñas de componentes (formulario, FAQ) van en línea: una petición
+    // Las hojas de estilo de componentes de cada página (≤ 20 KB; la de la home ronda 14 KB) van en línea: una petición
     // menos que bloquee el primer pintado. El resto de recursos sigue el límite por defecto (4 KB).
-    build: { assetsInlineLimit: (file, content) => (file.endsWith('.css') ? content.length < 8192 : undefined) },
+    build: { assetsInlineLimit: (file, content) => (file.endsWith('.css') ? content.length < 20480 : undefined) },
   },
 });
