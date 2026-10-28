@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/build-markdown.mjs",
     "preview": "astro preview",
     "assets": "node scripts/prepare-assets.mjs",
-    "test": "astro build && vitest run",
-    "test:e2e": "playwright test"
+    "test": "npm run build && vitest run",
+    "test:e2e": "playwright test",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -25,6 +26,8 @@
     "jsdom": "^29.1.1",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^7.0.2",
     "vitest": "^5.0.4"
   }

@@ -17,6 +17,8 @@ export const CITIES_NAV = [
   { href: '/agencia-marketing-barcelona', label: 'Barcelona' },
   { href: '/agencia-marketing-valencia', label: 'Valencia' },
   { href: '/agencia-marketing-malaga', label: 'Málaga' },
+  { href: '/agencia-marketing-tarragona', label: 'Tarragona' },
+  { href: '/agencia-marketing-el-vendrell', label: 'El Vendrell' },
 ] as const;
 export const COMPANY_NAV = [
   { href: '/nosotros', label: 'Nosotros' },

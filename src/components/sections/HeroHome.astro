@@ -15,8 +15,12 @@ const chips = [
 const sectors = ['Clínicas dentales', 'Medicina estética', 'Inmobiliarias', 'Reformas'];
 ---
 <section class="hero relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink" aria-labelledby="hero-title">
-  <video data-hero-video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60 lg:object-[62%_50%]" muted loop playsinline preload="none"
-    poster="/video/hero-poster.jpg" src="/video/hero.mp4" aria-hidden="true" tabindex="-1"></video>
+  <!-- Imagen de portada = elemento LCP: llega desde el HTML con prioridad alta (WebP 640/1280/1920) y el vídeo la sustituye con un fundido -->
+  <img data-hero-poster src="/video/hero-poster-1280.webp" srcset="/video/hero-poster-640.webp 640w, /video/hero-poster-1280.webp 1280w, /video/hero-poster-1920.webp 1920w"
+    sizes="100vw" width="1920" height="1080" fetchpriority="high" decoding="async" alt="" aria-hidden="true"
+    class="absolute inset-0 -z-20 h-full w-full object-cover opacity-60 transition-opacity duration-700 lg:object-[62%_50%]" />
+  <video data-hero-video class="absolute inset-0 -z-20 h-full w-full object-cover opacity-0 transition-opacity duration-700 lg:object-[62%_50%]" muted loop playsinline preload="none"
+    src="/video/hero.mp4" aria-hidden="true" tabindex="-1"></video>
   <div class="starfield -z-10" aria-hidden="true"></div>
   <!-- velo para que el texto respire sobre la burbuja, y fundido a ink abajo -->
   <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgb(10_10_10/0.55),transparent_75%)] lg:bg-[linear-gradient(90deg,rgb(10_10_10/0.78)_0%,rgb(10_10_10/0.35)_48%,transparent_70%)]" aria-hidden="true"></div>
@@ -66,7 +70,7 @@ const sectors = ['Clínicas dentales', 'Medicina estética', 'Inmobiliarias', 'R
     <div class="container-x flex items-center gap-6">
       <p class="hidden shrink-0 text-[10px] uppercase tracking-[0.28em] text-muted md:block">Sectores con los que trabajamos</p>
       <div class="marquee hero-sectors min-w-0 flex-1">
-        <ul aria-label="Sectores">{[...sectors, ...sectors].map((t) => <li>{t}</li>)}</ul>
+        <ul aria-label="Sectores">{[...sectors, ...sectors].map((t, i) => <li aria-hidden={i >= sectors.length ? 'true' : undefined}>{t}</li>)}</ul>
         <ul aria-hidden="true">{[...sectors, ...sectors].map((t) => <li>{t}</li>)}</ul>
       </div>
     </div>
@@ -79,6 +83,11 @@ const sectors = ['Clínicas dentales', 'Medicina estética', 'Inmobiliarias', 'R
   if (v && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     v.preload = 'auto';
     v.autoplay = true;
+    // al arrancar el vídeo, se funde con la imagen de portada (sin sumar opacidades)
+    v.addEventListener('playing', () => {
+      v.classList.remove('opacity-0'); v.classList.add('opacity-60');
+      document.querySelector('[data-hero-poster]')?.classList.replace('opacity-60', 'opacity-0');
+    }, { once: true });
     v.play().catch(() => {});
     // fuera de pantalla se pausa: no decodifica fotogramas mientras se lee el resto de la página
     if ('IntersectionObserver' in window) {
@@ -95,12 +104,5 @@ const sectors = ['Clínicas dentales', 'Medicina estética', 'Inmobiliarias', 'R
   @media (min-width: 768px) { .hero-sectors li { font-size: 21px; } }
   .hero-ping { animation: hero-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
   @keyframes hero-ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-chips li { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding-inline: 12px; border-radius: 999px; font-size: 12px; color: rgb(236 232 225 / 0.85); }
-  @media (min-width: 1024px) { .hero-chips li { height: 36px; padding-inline: 14px; gap: 8px; font-size: 12.5px; } }
-  .hero-sectors li { display: flex; align-items: center; gap: 24px; padding-right: 24px; font-family: var(--font-display); font-style: italic; font-size: 19px; color: rgb(236 232 225 / 0.7); white-space: nowrap; }
-  .hero-sectors li::after { content: '✦'; font-style: normal; font-size: 13px; color: var(--color-gold-400); }
-  @media (min-width: 768px) { .hero-sectors li { font-size: 21px; } }
-  .hero-ping { animation: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .hero-ping { animation: none; } }
 </style>

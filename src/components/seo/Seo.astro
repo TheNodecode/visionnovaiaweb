@@ -4,6 +4,7 @@ interface Props { title: string; description: string; path: string; ogImage?: st
 const { title, description, path, ogImage = '/brand/og-default.jpg', noindex = false } = Astro.props;
 const canonical = new URL(path === '/' ? '/' : path.replace(/\/$/, ''), SITE.url).href;
 const og = new URL(ogImage, SITE.url).href;
+const mdPath = path === '/' ? '/md/index.md' : `/md${path.replace(/\/$/, '')}.md`;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
@@ -17,4 +18,5 @@ const og = new URL(ogImage, SITE.url).href;
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={og} />
 <meta name="twitter:card" content="summary_large_image" />
+{!noindex && <link rel="alternate" type="text/markdown" href={mdPath} title="Versión en Markdown para agentes" />}
 <meta name="theme-color" content="#0a0a0a" />

@@ -26,6 +26,7 @@ const schema = [
 ];
 
 const channels: { icon: IconName | 'mail'; label: string; value: string; href?: string; external?: boolean }[] = [
+  { icon: 'phone', label: 'Teléfono', value: SITE.phoneDisplay, href: `tel:${SITE.phoneE164}` },
   { icon: 'chat', label: 'WhatsApp', value: SITE.phoneDisplay, href: SITE.whatsapp, external: true },
   { icon: 'mail', label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
   { icon: 'globe', label: 'Dónde estamos', value: `${SITE.address.city} · Grabamos en toda España` },

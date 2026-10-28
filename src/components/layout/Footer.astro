@@ -20,6 +20,7 @@ const linkCls = 'inline-flex min-h-11 items-center text-sm text-muted transition
       <div class="flex flex-col items-start gap-5">
         <Logo variant="full" eager={false} class="-ml-1" />
         <ul class="flex flex-col text-sm text-muted">
+          <li><a href={`tel:${SITE.phoneE164}`} class={linkCls}>Llamar {SITE.phoneDisplay}</a></li>
           <li><a href={SITE.whatsapp} target="_blank" rel="noopener" class={linkCls}>WhatsApp {SITE.phoneDisplay}</a></li>
           <li><a href={`mailto:${SITE.email}`} class={linkCls + ' break-all'}>{SITE.email}</a></li>
           <li class="flex min-h-11 items-center">Girona · Grabamos en toda España</li>

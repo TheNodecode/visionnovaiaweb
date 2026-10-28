@@ -2,14 +2,108 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/:path*", "has": [{ "type": "host", "value": "visionnovaia.com" }], "destination": "https://www.visionnovaia.com/:path*", "permanent": true },
-    { "source": "/agente-voz", "destination": "/sistema-ia", "permanent": true },
-    { "source": "/chatbot-ia", "destination": "/sistema-ia", "permanent": true },
-    { "source": "/sectores", "destination": "/#sistema", "permanent": true },
-    { "source": "/servicios", "destination": "/#sistema", "permanent": true },
-    { "source": "/casos-de-uso", "destination": "/trabajos", "permanent": true },
-    { "source": "/quienes-somos", "destination": "/nosotros", "permanent": true },
-    { "source": "/blog-:slug", "destination": "/blog/:slug", "permanent": true },
-    { "source": "/index", "destination": "/", "permanent": true }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "visionnovaia.com"
+        }
+      ],
+      "destination": "https://www.visionnovaia.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/agente-voz",
+      "destination": "/sistema-ia",
+      "permanent": true
+    },
+    {
+      "source": "/chatbot-ia",
+      "destination": "/sistema-ia",
+      "permanent": true
+    },
+    {
+      "source": "/sectores",
+      "destination": "/#sistema",
+      "permanent": true
+    },
+    {
+      "source": "/servicios",
+      "destination": "/#sistema",
+      "permanent": true
+    },
+    {
+      "source": "/casos-de-uso",
+      "destination": "/trabajos",
+      "permanent": true
+    },
+    {
+      "source": "/quienes-somos",
+      "destination": "/nosotros",
+      "permanent": true
+    },
+    {
+      "source": "/blog-:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "destination": "/md/index.md"
+    },
+    {
+      "source": "/((?!md/|_astro/)[^.]+)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "destination": "/md/$1.md"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Vary",
+          "value": "Accept"
+        }
+      ]
+    },
+    {
+      "source": "/md/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        }
+      ]
+    }
   ]
 }

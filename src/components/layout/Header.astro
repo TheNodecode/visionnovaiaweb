@@ -1,4 +1,5 @@
 ---
+import { SITE } from '../../config/site';
 import Logo from './Logo.astro';
 import { NAV, SERVICES_NAV, SECTORS_NAV, COMPANY_NAV } from '../../data/nav';
 
@@ -83,6 +84,9 @@ const linkCls = 'inline-flex min-h-11 items-center shrink-0 whitespace-nowrap px
     <a href="/contacto#formulario" data-open-form data-menu-link
       class="m-item bg-gold mt-8 flex min-h-14 items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[0.2em]" style="--i:3">
       Reservar plaza
+    </a>
+    <a href={`tel:${SITE.phoneE164}`} data-menu-link class="m-item mt-3 flex min-h-12 items-center justify-center rounded-full border border-white/15 text-sm text-cream/90" style="--i:4">
+      Llamar {SITE.phoneDisplay}
     </a>
   </div>
 </div>

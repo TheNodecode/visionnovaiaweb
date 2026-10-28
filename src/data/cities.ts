@@ -2,7 +2,9 @@ export type CitySlug =
   | 'agencia-marketing-madrid'
   | 'agencia-marketing-barcelona'
   | 'agencia-marketing-valencia'
-  | 'agencia-marketing-malaga';
+  | 'agencia-marketing-malaga'
+  | 'agencia-marketing-tarragona'
+  | 'agencia-marketing-el-vendrell';
 
 export type CityPage = {
   slug: CitySlug;
@@ -181,6 +183,84 @@ export type CityPage = {
       { q: 'Muchos de mis clientes escriben en inglés. ¿La IA puede atenderlos?', a: 'Lo configuramos según tu clientela. Si te escriben en inglés, preparamos a la IA con tu información aprobada en ese idioma y lo probamos contigo antes de activarlo; si una conversación necesita a una persona, te avisa al instante.' },
       { q: '¿Qué pasa con los compradores que contactan desde otro país?', a: 'Les atendemos igual de rápido: la IA responde aunque en España sea de noche, recoge sus datos y sus fechas de viaje y te los deja ordenados en CRM Nova para que prepares la visita.' },
       { q: '¿Vale la pena si mi negocio es de temporada?', a: 'Sí, siempre que lo planifiquemos. Concentramos la grabación y la inversión en los meses que importan y la IA sigue atendiendo durante todo el año, para que no pierdas los contactos que llegan fuera de temporada.' },
+    ],
+  },
+  {
+    slug: 'agencia-marketing-tarragona',
+    city: 'Tarragona',
+    seoTitle: 'Agencia de marketing en Tarragona | Visión Nova',
+    seoDescription:
+      'Agencia de marketing en Tarragona: grabamos vídeo en tu negocio, gestionamos tus redes y tus anuncios en Meta y una IA filtra cada contacto antes de pasártelo.',
+    hero: {
+      eyebrow: 'Agencia de marketing en Tarragona',
+      title: 'Marketing en Tarragona con vídeo',
+      titleAccent: 'grabado en tu negocio, no en un banco de imágenes.',
+      lead: 'Tarragona vive del servicio de cercanía, de la costa y de un turismo que cambia con las estaciones. Vamos a tu negocio, grabamos el contenido del mes, lo convertimos en anuncios para tu zona y dejamos una IA atendiendo los mensajes para que hables solo con quien quiere comprar.',
+      bullets: ['Rodaje en tu local de Tarragona o del Camp', 'Anuncios por municipio, de Salou a Reus', 'IA que pregunta antes de pasarte cada contacto'],
+    },
+    localAngle: {
+      title: 'Lo que pide una clientela como la de Tarragona',
+      paragraphs: [
+        'La demanda en Tarragona se reparte entre la ciudad, el Camp y la costa, y casi nadie decide un servicio sin mirar antes el perfil del negocio. Cuando buscan «clínica» o «reforma» cerca de casa, comparan caras, local y comentarios. Un vídeo real del equipo trabajando pesa más que cualquier foto retocada.',
+        'Hay negocios con mucha vida de barrio y otros que dependen de residentes y visitantes que llegan con otras fechas. Ajustamos los anuncios a cada caso: más cerca de casa para el cliente habitual, más amplio para quien viene de fuera, siempre con una IA configurada para filtrar antes de que nadie pierda una mañana al teléfono.',
+        'Nos desplazamos hasta Tarragona siguiendo la AP-7, así que planificamos la jornada de grabación con antelación y la aprovechamos entera: recepción, equipo, servicio y todos los planos que alimentarán el mes.',
+      ],
+    },
+    sales: {
+      offerTitleHtml: 'NovaScale <span class="text-gold">en Tarragona.</span>',
+      offerLead: 'Lo mismo que montamos en cualquier ciudad, afinado para el Camp de Tarragona: rodaje en tu negocio, anuncios por municipio y una IA que atiende y filtra antes de que el cliente se vaya a probar con otro.',
+      grabacion: 'Una jornada al mes en tu negocio de Tarragona, con los guiones escritos y el plan de rodaje cerrado contigo para aprovechar cada hora.',
+      ads: 'Campañas para Tarragona ciudad, el Camp y la costa cercana, con la zona ajustada a de dónde vienen de verdad tus clientes.',
+      week2: { title: 'Viajamos a Tarragona a grabar', text: 'Cerramos contigo la fecha con antelación, viajamos desde Girona y grabamos en tu negocio con los guiones ya aprobados.' },
+      note: 'Plazos orientativos: dependen de la fecha que fijemos para ir a Tarragona y de la revisión de los anuncios por parte de Meta.',
+      proofTitleHtml: 'Trabajo real, <span class="text-gold">con un cliente de hoy.</span>',
+      proofLead: 'Vídeos y anuncios de CEM Valderas, clínica dental y cliente actual. Es el estilo de contenido que prepararíamos en tu negocio de Tarragona.',
+    },
+    sectorsHighlight: ['clinicas-dentales', 'inmobiliarias', 'reformas'],
+    faq: [
+      { q: '¿Grabáis solo en Tarragona ciudad?', a: 'No. Rodamos en tu negocio esté donde esté: Tarragona, Reus, Salou, Cambrils, Valls o cualquier punto del Camp y de la costa.' },
+      { q: '¿Qué ventaja tiene contratar una agencia que no es de aquí?', a: 'Que vamos a grabar a tu local con el equipo ya preparado, y que el resto del trabajo (anuncios, redes, atención con IA y CRM) se hace a distancia sin que tengas que desplazarte. Lo que necesitas de nosotros presencialmente es el día de rodaje.' },
+      { q: 'Mi negocio sube y baja con el turismo. ¿Sirve igualmente?', a: 'Sí, siempre que lo planifiquemos contigo. Concentramos la inversión en las semanas que más te importan y dejamos que la IA atienda el resto del año, para no perder los contactos que llegan fuera de temporada.' },
+      { q: '¿Puedo ver cómo trabajáis antes de decidir?', a: 'En la llamada de 20 minutos te enseñamos material real de un cliente actual, cómo se ve el CRM Nova y cómo preguntaría la IA a un contacto de tu sector. Si no encajamos, te lo decimos nosotros.' },
+    ],
+  },
+  {
+    slug: 'agencia-marketing-el-vendrell',
+    city: 'El Vendrell',
+    seoTitle: 'Agencia de marketing en El Vendrell | Visión Nova',
+    seoDescription:
+      'Agencia de marketing para negocios de El Vendrell y el Baix Penedès: vídeo grabado en tu local, redes, anuncios en Meta y una IA que filtra cada contacto.',
+    hero: {
+      eyebrow: 'Agencia de marketing en El Vendrell',
+      title: 'Marketing en El Vendrell y el Baix Penedès',
+      titleAccent: 'para negocios que viven de la gente de aquí.',
+      lead: 'El Vendrell queda entre Barcelona y Tarragona, con la costa a un paso y una clientela que mezcla vecinos, residentes de segunda vivienda y visitantes. Grabamos contenido real en tu negocio, lo movemos con anuncios en tu zona y dejamos a una IA preguntando antes de que el contacto llegue a ti.',
+      bullets: ['Contenido grabado en tu negocio del Baix Penedès', 'Anuncios cerca de ti: Calafell, Coma-ruga, Sant Vicenç', 'IA que filtra los contactos antes de tu llamada'],
+    },
+    localAngle: {
+      title: 'El Vendrell, a medio camino de todo',
+      paragraphs: [
+        'Estar entre Barcelona y Tarragona, con la AP-7 y la estación de Sant Vicenç de Calders cerca, hace que tu clientela pueda venir de varios municipios. Eso es una oportunidad, pero también significa que a un cliente le basta una tarde de Instagram para comparar tu negocio con otro de la comarca.',
+        'Muchos negocios de la zona dependen de gente que reside aquí todo el año y de quienes llegan en verano o fines de semana a las poblaciones de la costa. Nos adaptamos a ese ritmo: el anuncio y la atención no pueden ser los mismos en febrero que en agosto.',
+        'En una comarca donde casi todos se conocen, lo que distingue a un negocio es enseñar a su equipo de verdad y contestar rápido a quien escribe. Eso es lo que montamos contigo.',
+      ],
+    },
+    sales: {
+      offerTitleHtml: 'NovaScale <span class="text-gold">en El Vendrell.</span>',
+      offerLead: 'Para negocios del Baix Penedès y la costa: rodaje en tu local, anuncios para la comarca y una IA que atiende cada mensaje y separa a quien va en serio del que solo curiosea.',
+      grabacion: 'Una jornada al mes en tu negocio de El Vendrell o de cualquier pueblo del Baix Penedès, con guiones y plan de rodaje acordados antes.',
+      ads: 'Anuncios para El Vendrell, Calafell, Cunit, Coma-ruga y los municipios de los que de verdad salen tus clientes, no para toda la provincia.',
+      week2: { title: 'Viajamos al Baix Penedès a grabar', text: 'Fijamos contigo la fecha con antelación, viajamos desde Girona y grabamos en tu local con los guiones ya aprobados.' },
+      note: 'Plazos orientativos: dependen de la fecha de rodaje en El Vendrell y de la revisión de los anuncios por parte de Meta.',
+      proofTitleHtml: 'Así se ve el trabajo, <span class="text-gold">no un catálogo.</span>',
+      proofLead: 'Anuncios y vídeos de CEM Valderas, clínica dental y cliente actual. Es el tipo de material que grabaríamos en tu negocio de El Vendrell.',
+    },
+    sectorsHighlight: ['inmobiliarias', 'reformas', 'clinicas-dentales'],
+    faq: [
+      { q: '¿Trabajáis con negocios de El Vendrell y de pueblos cercanos?', a: 'Sí. Grabamos en El Vendrell, Calafell, Cunit, Coma-ruga, Albinyana y cualquier municipio del Baix Penedès o de la costa, además de Tarragona y Barcelona.' },
+      { q: '¿Qué tipo de negocios encajan mejor?', a: 'Clínicas dentales y estéticas, inmobiliarias y empresas de reformas que ya facturan, tienen equipo y quieren crecer sin contratar más personal. Si tu caso es otro, en la llamada te decimos con claridad si podemos ayudarte.' },
+      { q: '¿Cómo funciona si mi negocio vive del verano y los fines de semana?', a: 'Lo planificamos con calendario: reforzamos contenido y anuncios en los meses fuertes y dejamos la atención con IA y el CRM funcionando el resto del año para que no se pierda ningún contacto.' },
+      { q: '¿Tengo que desplazarme a vuestras oficinas?', a: 'No. Vamos nosotros a grabar a tu negocio y el resto del trabajo se coordina a distancia: llamadas, aprobación de guiones, informes y CRM Nova.' },
     ],
   },
 ];

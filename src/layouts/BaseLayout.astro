@@ -10,15 +10,19 @@ import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
 // Fuentes críticas (latín): se precargan para que el cambio de fuente no desplace el contenido (CLS).
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import serifItalicLatin from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
-interface Props { title: string; description: string; path: string; ogImage?: string; schema?: object[]; noindex?: boolean }
-const { schema = [], ...seo } = Astro.props;
+interface Props { title: string; description: string; path: string; ogImage?: string; schema?: object[]; noindex?: boolean; preloadImage?: { href: string; srcset?: string; sizes?: string } }
+const { schema = [], preloadImage, ...seo } = Astro.props;
 const org = {
   '@context': 'https://schema.org', '@type': 'ProfessionalService', '@id': SITE.url + '/#org',
   name: SITE.name, url: SITE.url, email: SITE.email, telephone: SITE.phoneE164,
   logo: SITE.url + '/brand/logo-icon.webp', image: SITE.url + '/brand/og-default.jpg',
   founder: { '@type': 'Person', name: SITE.founder },
   address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, postalCode: SITE.address.postalCode, addressCountry: SITE.address.country },
-  areaServed: { '@type': 'Country', name: 'España' },
+  areaServed: [
+    { '@type': 'Country', name: 'España' },
+    ...['Barcelona', 'El Vendrell', 'Tarragona', 'Girona'].map((name) => ({ '@type': 'City', name })),
+  ],
+  contactPoint: [{ '@type': 'ContactPoint', telephone: SITE.phoneE164, contactType: 'customer service', areaServed: 'ES', availableLanguage: ['es'] }],
   sameAs: [SITE.whatsapp],
 };
 ---
@@ -27,6 +31,7 @@ const org = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage.href} imagesrcset={preloadImage.srcset} imagesizes={preloadImage.sizes} fetchpriority="high" />}
     <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={serifItalicLatin} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
