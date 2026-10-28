@@ -54,30 +54,6 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*text/markdown.*"
-        }
-      ],
-      "destination": "/md/index.md"
-    },
-    {
-      "source": "/((?!md/|_astro/)[^.]+)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*text/markdown.*"
-        }
-      ],
-      "destination": "/md/$1.md"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

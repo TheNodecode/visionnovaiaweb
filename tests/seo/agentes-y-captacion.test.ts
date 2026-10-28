@@ -22,11 +22,11 @@ describe.skipIf(!hasDist)('versión Markdown para agentes', () => {
     expect(html('index.html')).toContain('rel="alternate" type="text/markdown" href="/md/index.md"');
     expect(html('agencia-marketing-tarragona.html')).toContain('href="/md/agencia-marketing-tarragona.md"');
   });
-  it('vercel.json reescribe por cabecera Accept y añade Vary: Accept', () => {
+  it('el middleware de Vercel sirve el Markdown cuando el agente lo pide y vercel.json añade Vary: Accept', () => {
+    const mw = readFileSync('middleware.ts', 'utf8');
+    expect(mw).toMatch(/text\/markdown/);
+    expect(mw).toContain("'/md/index.md'");
     const v = JSON.parse(readFileSync('vercel.json', 'utf8'));
-    const rw = v.rewrites.filter((r: any) => r.has?.some((h: any) => h.key === 'accept' && /text\/markdown/.test(h.value)));
-    expect(rw.length).toBeGreaterThanOrEqual(2);
-    expect(rw[0].destination).toBe('/md/index.md');
     const vary = v.headers.find((h: any) => h.source === '/(.*)');
     expect(vary.headers).toContainEqual({ key: 'Vary', value: 'Accept' });
     const md = v.headers.find((h: any) => h.source === '/md/(.*)');
