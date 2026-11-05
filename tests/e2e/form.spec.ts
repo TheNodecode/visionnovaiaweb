@@ -55,7 +55,7 @@ test('un perfil no cualificado ve la oferta del software Nova', async ({ page })
   await form.getByLabel(/negocio|empresa/i).first().fill('Pelu Ana');
   await form.getByLabel(/privacidad/i).check();
   await form.getByRole('button', { name: /ver huecos/i }).click();
-  await expect(form.getByRole('link', { name: /ver planes de nova/i })).toBeVisible();
+  await expect(form.getByRole('link', { name: /ver planes de n.va/i })).toBeVisible();
 });
 
 test('muestra errores en línea y no envía con datos inválidos', async ({ page }) => {

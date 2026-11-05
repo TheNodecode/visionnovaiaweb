@@ -73,7 +73,7 @@ export type CityPage = {
     city: 'Barcelona',
     seoTitle: 'Agencia de marketing en Barcelona | Visión Nova',
     seoDescription:
-      'Agencia de marketing en Barcelona que graba el contenido en tu negocio, gestiona tus redes y anuncios en Meta y filtra cada contacto con IA. Base en Girona.',
+      'Agencia de marketing en Barcelona que graba el contenido en tu negocio, gestiona tus redes y anuncios en Meta y filtra cada contacto con IA.',
     hero: {
       eyebrow: 'Agencia de marketing en Barcelona',
       title: 'Marketing en Barcelona con contenido',
@@ -118,7 +118,7 @@ export type CityPage = {
       title: 'Marketing en Valencia para negocios',
       titleAccent: 'que quieren crecer sin contratar más.',
       lead: 'Valencia se ha convertido en una ciudad muy buscada para vivir, y eso trae clientes nuevos que todavía no conocen a nadie. Llegamos a tu negocio a grabar, ponemos tus vídeos delante de esa gente con anuncios en Meta y la IA atiende los mensajes mientras tu equipo sigue con su trabajo.',
-      bullets: ['Grabación en la ciudad o en l’Horta', 'Anuncios para quien acaba de llegar', 'Cada contacto filtrado en CRM Nova'],
+      bullets: ['Grabación en la ciudad o en l’Horta', 'Anuncios para quien acaba de llegar', 'Cada contacto filtrado en NØVA'],
     },
     localAngle: {
       title: 'Lo que vemos en el mercado de Valencia',
@@ -181,7 +181,7 @@ export type CityPage = {
     faq: [
       { q: '¿Grabáis también en Marbella, Estepona o el resto de la costa?', a: 'Sí. Rodamos en Málaga capital y en cualquier municipio de la Costa del Sol, desde la Axarquía hasta Manilva.' },
       { q: 'Muchos de mis clientes escriben en inglés. ¿La IA puede atenderlos?', a: 'Lo configuramos según tu clientela. Si te escriben en inglés, preparamos a la IA con tu información aprobada en ese idioma y lo probamos contigo antes de activarlo; si una conversación necesita a una persona, te avisa al instante.' },
-      { q: '¿Qué pasa con los compradores que contactan desde otro país?', a: 'Les atendemos igual de rápido: la IA responde aunque en España sea de noche, recoge sus datos y sus fechas de viaje y te los deja ordenados en CRM Nova para que prepares la visita.' },
+      { q: '¿Qué pasa con los compradores que contactan desde otro país?', a: 'Les atendemos igual de rápido: la IA responde aunque en España sea de noche, recoge sus datos y sus fechas de viaje y te los deja ordenados en NØVA para que prepares la visita.' },
       { q: '¿Vale la pena si mi negocio es de temporada?', a: 'Sí, siempre que lo planifiquemos. Concentramos la grabación y la inversión en los meses que importan y la IA sigue atendiendo durante todo el año, para que no pierdas los contactos que llegan fuera de temporada.' },
     ],
   },
@@ -190,7 +190,7 @@ export type CityPage = {
     city: 'Tarragona',
     seoTitle: 'Agencia de marketing en Tarragona | Visión Nova',
     seoDescription:
-      'Agencia de marketing en Tarragona: grabamos vídeo en tu negocio, gestionamos tus redes y tus anuncios en Meta y una IA filtra cada contacto antes de pasártelo.',
+      'Agencia de marketing en Tarragona: grabamos vídeo en tu negocio, gestionamos tus redes y anuncios en Meta y una IA filtra cada contacto antes de pasártelo.',
     hero: {
       eyebrow: 'Agencia de marketing en Tarragona',
       title: 'Marketing en Tarragona con vídeo',
@@ -221,7 +221,7 @@ export type CityPage = {
       { q: '¿Grabáis solo en Tarragona ciudad?', a: 'No. Rodamos en tu negocio esté donde esté: Tarragona, Reus, Salou, Cambrils, Valls o cualquier punto del Camp y de la costa.' },
       { q: '¿Qué ventaja tiene contratar una agencia que no es de aquí?', a: 'Que vamos a grabar a tu local con el equipo ya preparado, y que el resto del trabajo (anuncios, redes, atención con IA y CRM) se hace a distancia sin que tengas que desplazarte. Lo que necesitas de nosotros presencialmente es el día de rodaje.' },
       { q: 'Mi negocio sube y baja con el turismo. ¿Sirve igualmente?', a: 'Sí, siempre que lo planifiquemos contigo. Concentramos la inversión en las semanas que más te importan y dejamos que la IA atienda el resto del año, para no perder los contactos que llegan fuera de temporada.' },
-      { q: '¿Puedo ver cómo trabajáis antes de decidir?', a: 'En la llamada de 20 minutos te enseñamos material real de un cliente actual, cómo se ve el CRM Nova y cómo preguntaría la IA a un contacto de tu sector. Si no encajamos, te lo decimos nosotros.' },
+      { q: '¿Puedo ver cómo trabajáis antes de decidir?', a: 'En la llamada de 20 minutos te enseñamos material real de un cliente actual, cómo se ve el NØVA y cómo preguntaría la IA a un contacto de tu sector. Si no encajamos, te lo decimos nosotros.' },
     ],
   },
   {
@@ -260,7 +260,7 @@ export type CityPage = {
       { q: '¿Trabajáis con negocios de El Vendrell y de pueblos cercanos?', a: 'Sí. Grabamos en El Vendrell, Calafell, Cunit, Coma-ruga, Albinyana y cualquier municipio del Baix Penedès o de la costa, además de Tarragona y Barcelona.' },
       { q: '¿Qué tipo de negocios encajan mejor?', a: 'Clínicas dentales y estéticas, inmobiliarias y empresas de reformas que ya facturan, tienen equipo y quieren crecer sin contratar más personal. Si tu caso es otro, en la llamada te decimos con claridad si podemos ayudarte.' },
       { q: '¿Cómo funciona si mi negocio vive del verano y los fines de semana?', a: 'Lo planificamos con calendario: reforzamos contenido y anuncios en los meses fuertes y dejamos la atención con IA y el CRM funcionando el resto del año para que no se pierda ningún contacto.' },
-      { q: '¿Tengo que desplazarme a vuestras oficinas?', a: 'No. Vamos nosotros a grabar a tu negocio y el resto del trabajo se coordina a distancia: llamadas, aprobación de guiones, informes y CRM Nova.' },
+      { q: '¿Tengo que desplazarme a vuestras oficinas?', a: 'No. Vamos nosotros a grabar a tu negocio y el resto del trabajo se coordina a distancia: llamadas, aprobación de guiones, informes y NØVA.' },
     ],
   },
 ];

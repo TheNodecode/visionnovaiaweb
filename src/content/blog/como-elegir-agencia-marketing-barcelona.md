@@ -1,6 +1,6 @@
 ---
-title: "Cómo elegir una agencia de marketing en Barcelona: 10 preguntas"
-description: "Diez preguntas para hacer antes de contratar una agencia de marketing en Barcelona: entregables, contenido propio, medición, permanencia y atención a los contactos."
+title: "Cómo elegir agencia de marketing en Barcelona: 10 preguntas"
+description: "Diez preguntas antes de contratar una agencia de marketing en Barcelona: entregables, contenido propio, medición, permanencia y atención a contactos."
 date: 2026-10-28
 tags: ["Barcelona", "Agencia de marketing"]
 readTime: 7

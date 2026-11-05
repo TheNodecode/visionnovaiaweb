@@ -1,6 +1,6 @@
 ---
 import { SERVICES, SECTORS, TICKETS, ADS } from '../../lib/lead';
-import { SITE } from '../../config/site';
+import { SITE, appLink } from '../../config/site';
 import Eyebrow from '../ui/Eyebrow.astro';
 
 interface Props { id?: string; variant?: 'full' | 'compact'; heading?: string; lead?: string; class?: string }
@@ -190,10 +190,10 @@ const wa = `${SITE.whatsapp}?text=${encodeURIComponent('Hola, acabo de rellenar 
         <div class="lf-step" data-step="software" hidden>
           <h3 class="lf-title" tabindex="-1" data-lf-title>Gracias, <span data-lf-name></span>.</h3>
           <p class="mt-4 max-w-xl text-base leading-relaxed text-muted text-pretty">
-            Por lo que nos cuentas, ahora mismo te encaja mejor nuestro software Nova: CRM con IA y WhatsApp desde 59 €/mes, sin agencia.
+            Por lo que nos cuentas, ahora mismo te encaja mejor nuestro software NØVA: CRM con IA y WhatsApp desde 59 €/mes, sin agencia.
           </p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href={SITE.appUrl} target="_blank" rel="noopener" class="lf-next bg-gold sm:w-auto">Ver planes de Nova <span aria-hidden="true">→</span></a>
+            <a href={appLink('formulario-no-cualificado')} target="_blank" rel="noopener" class="lf-next bg-gold sm:w-auto">Ver planes de NØVA <span aria-hidden="true">→</span></a>
             <button type="button" data-lf-goto="6" class="inline-flex min-h-12 items-center justify-center px-4 text-sm text-cream underline-offset-4 hover:text-gold-200 hover:underline">Prefiero hablar igualmente</button>
           </div>
         </div>

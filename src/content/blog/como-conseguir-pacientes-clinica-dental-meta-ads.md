@@ -1,5 +1,5 @@
 ---
-title: "Cómo conseguir pacientes para una clínica dental con Meta Ads"
+title: "Captar pacientes dentales con Meta Ads: guía paso a paso"
 description: "Guía paso a paso para captar pacientes en una clínica dental con anuncios en Instagram y Facebook: oferta, creatividades, zona, seguimiento y qué medir."
 date: 2026-10-28
 tags: ["Clínicas dentales", "Meta Ads"]
@@ -45,7 +45,7 @@ Este es el punto donde más contactos se pierden. Si alguien escribe por WhatsAp
 | Citas a las que acuden | La asistencia, no solo la reserva |
 | Coste por cita | Para decidir si la campaña compensa |
 
-Si registras cada paso en un CRM, puedes ver dónde se atasca el proceso. [Nova](https://app.visionnovaia.com) está pensado para eso.
+Si registras cada paso en un CRM, puedes ver dónde se atasca el proceso. [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=como-conseguir-pacientes-clinica-dental-meta-ads) está pensado para eso.
 
 ## 7. Cuida la normativa de publicidad sanitaria
 

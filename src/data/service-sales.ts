@@ -107,11 +107,11 @@ export const SERVICE_SALES: ServiceSalesMap = {
       bullets: [
         'Respuesta a comentarios con el tono de tu marca, sin dejar preguntas colgadas.',
         'Mensajes privados atendidos al momento con la información que tú apruebas.',
-        'Las oportunidades entran en CRM Nova con la conversación completa.',
+        'Las oportunidades entran en NØVA con la conversación completa.',
         'Las quejas y los temas delicados pasan siempre a una persona de tu equipo.',
       ],
       items: [
-        { from: 'Carla', text: '¿Cuánto cuesta y tenéis hueco esta semana?', tag: 'Oportunidad', action: 'Responde con lo aprobado, pide sus datos y la manda a CRM Nova como posible cliente.' },
+        { from: 'Carla', text: '¿Cuánto cuesta y tenéis hueco esta semana?', tag: 'Oportunidad', action: 'Responde con lo aprobado, pide sus datos y la manda a NØVA como posible cliente.' },
         { from: 'Diego', text: '¿Abrís los sábados por la mañana?', tag: 'Duda', action: 'Contesta con tu horario al momento, sin que nadie del equipo tenga que intervenir.' },
         { from: 'Nuria', text: '¡Qué bien quedó! Enhorabuena al equipo.', tag: 'Comentario', action: 'Agradecemos el comentario con el tono de tu marca.' },
         { from: 'Raúl', text: 'Tuve un problema con mi última cita y nadie me ha llamado.', tag: 'Para una persona', action: 'Está configurada para no responder en automático: te avisa al instante para que lo lleve alguien de tu equipo.' },
@@ -140,12 +140,12 @@ export const SERVICE_SALES: ServiceSalesMap = {
     funnel: {
       titleHtml: 'Del anuncio a la cita, <span class="text-gold">sin que nadie se pierda por el camino.</span>',
       lead: 'La mayoría de campañas se miden hasta el clic. Nosotros seguimos a cada contacto hasta que tiene una cita en tu agenda, porque ahí es donde se gana o se pierde lo invertido.',
-      note: 'Así se ve qué campañas traen clientes y cuáles solo traen clics: cada cita queda unida en CRM Nova al anuncio del que salió.',
+      note: 'Así se ve qué campañas traen clientes y cuáles solo traen clics: cada cita queda unida en NØVA al anuncio del que salió.',
       steps: [
         { icon: 'megaphone', title: 'Anuncio', text: 'Tus vídeos en Facebook e Instagram, para la gente de tu zona que encaja con tu cliente.' },
         { icon: 'chat', title: 'WhatsApp o llamada', text: 'El anuncio abre una conversación de WhatsApp o una llamada, sin formularios largos de por medio.' },
         { icon: 'target', title: 'La IA filtra', text: 'Está configurada para responder en menos de un minuto y preguntar necesidad, plazo e intención antes de pasarte el contacto.' },
-        { icon: 'crm', title: 'CRM Nova', text: 'El contacto queda registrado con el anuncio del que viene y todo lo que ha contestado.' },
+        { icon: 'crm', title: 'NØVA', text: 'El contacto queda registrado con el anuncio del que viene y todo lo que ha contestado.' },
         { icon: 'calendar', title: 'Cita', text: 'Quien está listo sale con día y hora propuestos. Tu equipo confirma y atiende.' },
       ],
     },
@@ -155,7 +155,7 @@ export const SERVICE_SALES: ServiceSalesMap = {
   'sistema-ia': {
     offer: {
       titleHtml: 'La IA, <span class="text-gold">con contactos que atender desde el primer día.</span>',
-      lead: 'Puedes usar Nova por tu cuenta, pero rinde más dentro de NovaScale: el contenido y los anuncios traen las conversaciones y la IA las convierte en citas filtradas.',
+      lead: 'Puedes usar NØVA por tu cuenta, pero rinde más dentro de NovaScale: el contenido y los anuncios traen las conversaciones y la IA las convierte en citas filtradas.',
       first: 'whatsapp',
       patch: { outcome: 'Está configurada para contestar en menos de un minuto, a cualquier hora, con las respuestas que tú apruebas, y para proponer cita a quien está listo.' },
       omit: 'informe',
@@ -184,7 +184,7 @@ export const SERVICE_SALES: ServiceSalesMap = {
     },
     handoff: {
       titleHtml: 'Cuándo la IA se aparta <span class="text-gold">y te pasa el mando.</span>',
-      lead: 'Nova no intenta resolverlo todo. Está configurada para reconocer las conversaciones que necesitan a una persona y, en esos casos, deja de responder y te avisa al momento con todo el contexto.',
+      lead: 'NØVA no intenta resolverlo todo. Está configurada para reconocer las conversaciones que necesitan a una persona y, en esos casos, deja de responder y te avisa al momento con todo el contexto.',
       triggers: [
         'El cliente pide hablar con alguien del equipo.',
         'Llega una queja o un cliente molesto.',
@@ -220,11 +220,11 @@ export const SERVICE_SALES: ServiceSalesMap = {
       columns: ['App de WhatsApp Business', 'WhatsApp Business API oficial'],
       rows: [
         { feature: 'Pensada para', a: 'Un negocio pequeño que contesta desde el móvil.', b: 'Negocios con volumen de mensajes y un equipo que atiende.' },
-        { feature: 'Quién atiende', a: 'El móvil principal y unos pocos dispositivos vinculados.', b: 'Una bandeja compartida en CRM Nova (la API no trae app propia): todo el equipo atiende desde el ordenador o el móvil.' },
+        { feature: 'Quién atiende', a: 'El móvil principal y unos pocos dispositivos vinculados.', b: 'Una bandeja compartida en NØVA (la API no trae app propia): todo el equipo atiende desde el ordenador o el móvil.' },
         { feature: 'IA y automatización', a: 'Respuestas rápidas, saludo y mensaje de ausencia.', b: 'Una IA conectada que responde, cualifica y propone cita.' },
         { feature: 'Escribir tú primero', a: 'Listas de difusión, que solo llegan a quien tiene tu número guardado.', b: 'Plantillas aprobadas por Meta para recordatorios y seguimientos a quien te dio permiso.' },
         { feature: 'Contestar pasadas 24 h', a: 'Puedes escribir libremente cuando quieras.', b: 'Mensaje libre solo en las 24 h siguientes al último mensaje del cliente; después, solo con plantillas aprobadas.' },
-        { feature: 'Historial y CRM', a: 'Las conversaciones se quedan en el teléfono.', b: 'Cada conversación se guarda en CRM Nova, unida a la ficha del cliente.' },
+        { feature: 'Historial y CRM', a: 'Las conversaciones se quedan en el teléfono.', b: 'Cada conversación se guarda en NØVA, unida a la ficha del cliente.' },
         { feature: 'Coste de Meta', a: 'La app es gratuita.', b: 'Meta cobra por cada plantilla entregada (marketing, utilidad o autenticación); contestar dentro de las 24 h a quien te escribe no tiene coste de Meta.' },
         { feature: 'Tu número', a: 'Tuyo.', b: 'Tuyo también, registrado en la cuenta de Meta de tu empresa. Según cómo se migre, deja de usarse en la app normal o convive con ella; lo vemos antes de empezar.' },
       ],
@@ -248,7 +248,7 @@ export const SERVICE_SALES: ServiceSalesMap = {
       titleHtml: 'La web, <span class="text-gold">incluida en el montaje.</span>',
       lead: 'No hacemos webs sueltas. La tuya se construye al montar NovaScale, porque es donde aterrizan tus anuncios y tu contenido, y se ajusta mes a mes con lo que aprendemos de las campañas.',
       first: 'web',
-      patch: { outcome: 'Diseñada para el móvil, con tu contenido real y con cada formulario y botón de WhatsApp conectado a CRM Nova.' },
+      patch: { outcome: 'Diseñada para el móvil, con tu contenido real y con cada formulario y botón de WhatsApp conectado a NØVA.' },
       omit: 'voz',
     },
     anatomy: {
@@ -258,7 +258,7 @@ export const SERVICE_SALES: ServiceSalesMap = {
         { title: 'Lo que haces, en una frase', text: 'Arriba del todo, qué ofreces, para quién y un botón para dar el siguiente paso. Con un vídeo de tu negocio, no una foto de banco.' },
         { title: 'Prueba de que eres real', text: 'Tu equipo, tu local y tu trabajo, grabados en la jornada mensual. Es lo que convence a quien todavía no te conoce.' },
         { title: 'Tus servicios, sin rodeos', text: 'Qué incluye cada servicio y las dudas que más te repiten, resueltas antes de que tengan que llamarte.' },
-        { title: 'Un formulario corto', text: 'Pocas preguntas y bien elegidas. Cada envío entra en CRM Nova y la IA escribe a esa persona al momento.' },
+        { title: 'Un formulario corto', text: 'Pocas preguntas y bien elegidas. Cada envío entra en NØVA y la IA escribe a esa persona al momento.' },
         { title: 'WhatsApp siempre a mano', text: 'Un botón visible en el móvil que abre la conversación con tu número, ya conectado al filtro de la IA.' },
       ],
     },
@@ -271,7 +271,7 @@ export const SERVICE_SALES: ServiceSalesMap = {
         { icon: 'globe', title: 'Tu web', text: 'Carga rápido en el móvil y explica en pocos segundos qué haces y por qué fiarse de ti.' },
         { icon: 'chat', title: 'Formulario o WhatsApp', text: 'La persona deja sus datos o escribe por WhatsApp, sin buscar tu teléfono ni esperar.' },
         { icon: 'target', title: 'La IA contesta', text: 'Está configurada para escribirle en menos de un minuto, preguntar lo necesario y proponerle una cita.' },
-        { icon: 'crm', title: 'CRM Nova', text: 'Ves de qué página y de qué campaña llegó cada contacto, y qué páginas convierten mejor.' },
+        { icon: 'crm', title: 'NØVA', text: 'Ves de qué página y de qué campaña llegó cada contacto, y qué páginas convierten mejor.' },
       ],
     },
   },

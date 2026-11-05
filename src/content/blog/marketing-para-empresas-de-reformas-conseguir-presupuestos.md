@@ -1,5 +1,5 @@
 ---
-title: "Marketing para empresas de reformas: cómo conseguir presupuestos"
+title: "Marketing para reformas: cómo conseguir presupuestos"
 description: "Cómo conseguir solicitudes de presupuesto cualificadas para una empresa de reformas: vídeo de obras, anuncios locales, preguntas de filtro y seguimiento."
 date: 2026-10-28
 tags: ["Reformas", "Captación"]

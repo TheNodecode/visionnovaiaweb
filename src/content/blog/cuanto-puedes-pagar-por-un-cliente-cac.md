@@ -1,5 +1,5 @@
 ---
-title: "Cuánto puedes pagar por un cliente (CAC) antes de lanzar anuncios"
+title: "Cuánto puedes pagar por un cliente (CAC) en anuncios"
 description: "Cómo calcular el coste de captación de cliente (CAC) y cuánto puedes pagar por cada uno según tu ticket medio y tu margen, con un ejemplo paso a paso."
 date: 2026-10-28
 tags: ["Meta Ads", "Rentabilidad"]

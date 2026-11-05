@@ -2,6 +2,7 @@
 title: "Qué es un CRM con IA y cómo saber si tu negocio lo necesita"
 description: "Qué es un CRM con inteligencia artificial, qué hace de más respecto a un CRM normal, qué señales indican que lo necesitas y qué mirar antes de elegir uno."
 date: 2026-10-28
+updated: 2026-11-05
 tags: ["CRM", "Inteligencia artificial"]
 readTime: 7
 related: ["/sistema-ia", "/whatsapp-business-api"]
@@ -48,9 +49,19 @@ La IA es útil cuando está bien configurada: con información tuya aprobada y c
 
 Una persona escribe por WhatsApp desde un anuncio. La IA le pregunta qué tratamiento le interesa y cuándo le vendría bien una cita. Si encaja, propone horas disponibles. Si pregunta algo clínico, pasa la conversación al equipo. Todo queda en una ficha del CRM y recepción solo se ocupa de quien está listo para venir.
 
-## Nova, el CRM que desarrollamos
+## NØVA, el CRM con WhatsApp oficial e IA de Visión Nova
 
-En Visión Nova usamos y ofrecemos [Nova](https://app.visionnovaia.com): CRM con asistente de IA para WhatsApp y web, agenda, recordatorios y un panel para ver las conversaciones y los resultados. Si solo quieres el software, mira la [página del software Nova](/software-nova). Si prefieres que lo montemos todo por ti junto con el contenido y los anuncios, es parte de [NovaScale](/sistema-ia).
+[NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=que-es-un-crm-con-ia) es nuestro software para negocios de servicios. Incluye:
+
+- **Ficha por contacto** con origen, etapa, notas, tareas, documentos y etiquetas, y un pipeline por etapas según el sector.
+- **Bandeja compartida de WhatsApp** con la API oficial, varios números y la IA en pausa cuando entra una persona del equipo.
+- **Asistente de IA** en WhatsApp y en el chat de la web: atiende, califica, propone horas libres de la agenda real y reserva sin dobles reservas; cancela o cambia citas y apunta a lista de espera.
+- **Agenda** por profesional y sala, con recordatorios por email y con plantilla de WhatsApp, y seguimiento de quien no viene.
+- **Automatizaciones y plantillas** de WhatsApp aprobadas por Meta, campañas de email con baja de un clic e importación desde Excel o CSV.
+
+Lo que no es: no es software de historia clínica (sin odontograma, radiografías ni facturación sanitaria) y no garantiza resultados. Tiene prueba de 3 días y sin permanencia. Sectores preparados: clínica y salud, belleza, inmobiliaria, reformas, educación, restaurante, agencia de viajes y migración, servicios profesionales y tienda.
+
+Más información en la [página del software NØVA](/software-nova). Si prefieres que montemos todo junto con el contenido y los anuncios, es parte de [NovaScale](/sistema-ia).
 
 ## Preguntas frecuentes
 

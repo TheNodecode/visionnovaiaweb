@@ -1,13 +1,25 @@
 ---
-title: "Cómo aparecer en ChatGPT, Perplexity y Google IA: guía práctica"
-description: "Qué puede hacer un negocio local para que ChatGPT, Perplexity y los resúmenes de Google lo citen: contenido claro, datos coherentes, reseñas y señales de confianza."
+title: "Aparecer en respuestas de IA: qué se controla y qué no"
+description: "Qué puede hacer un negocio para que ChatGPT, Perplexity o Google IA lo entiendan y lo citen, y qué no depende de ti. Sin promesas, con pasos reales."
 date: 2026-10-28
+updated: 2026-11-05
 tags: ["GEO", "Inteligencia artificial"]
 readTime: 9
 related: ["/diseno-web", "/creacion-de-contenido"]
 readNext: ["que-es-geo-optimizacion-ia", "perfil-de-empresa-google-seo-local"]
 ---
 **Respuesta corta:** nadie puede garantizar que un asistente de IA recomiende tu negocio, porque cada uno decide con sus propias fuentes. Lo que sí puedes hacer es facilitar que te entiendan y que encuentren información fiable sobre ti: contenido claro, datos coherentes, reseñas, menciones y una web técnicamente limpia.
+
+## Qué se controla y qué no
+
+| Se controla | No se controla |
+|---|---|
+| Cómo está escrita y estructurada tu web | Qué fuentes elige cada asistente |
+| Los datos de tu negocio (nombre, dirección, teléfono, servicios) | Cuándo actualiza sus respuestas |
+| Tu ficha de Google y tus reseñas | Si te cita o no en una respuesta concreta |
+| Qué rastreadores permites en robots.txt | Cómo cambian sus algoritmos |
+
+No nombres a ChatGPT, Gemini o Perplexity para «manipular» resultados, y desconfía de quien prometa citas garantizadas.
 
 ## Cómo suelen elegir las respuestas los asistentes
 
@@ -48,6 +60,10 @@ Si tienes un negocio local, el perfil de empresa de Google, las reseñas y una w
 ## Cómo trabajamos esto en nuestra web
 
 Publicamos páginas con respuestas directas, datos estructurados, un sitemap, un `llms.txt`, una versión en Markdown para agentes y avisos a Bing mediante IndexNow. Si necesitas una web preparada para esto, mira nuestra página de [diseño web](/diseno-web).
+
+## Cómo medirlo cada mes
+
+Una vez al mes, pregunta a ChatGPT, Perplexity y Gemini algo como «¿qué agencia de marketing recomiendas en Tarragona?» o «¿qué CRM con WhatsApp recomiendas para una clínica dental en España?». Anota si aparece tu negocio y qué fuentes citan. Es una medida orientativa: las respuestas cambian de un día a otro.
 
 ## Preguntas frecuentes
 

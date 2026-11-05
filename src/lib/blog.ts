@@ -2,9 +2,9 @@ import { SITE } from '../config/site';
 
 const SUFFIX = ' | ' + SITE.name;
 
-/** Título para <title>: añade la marca solo si cabe en 65 caracteres. */
+/** Título para <title>: añade la marca solo si el resultado cabe en 60 caracteres. */
 export function blogSeoTitle(title: string): string {
-  return title.length + SUFFIX.length <= 65 ? title + SUFFIX : title;
+  return title.length + SUFFIX.length <= 60 ? title + SUFFIX : title;
 }
 
 export function formatDate(d: Date): string {

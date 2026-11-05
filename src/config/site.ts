@@ -14,3 +14,13 @@ export const SITE = {
   appUrl: 'https://app.visionnovaia.com',
   metaPartner: false, // poner a true cuando Meta apruebe la verificación
 } as const;
+
+/** Enlace a la app de NØVA con el origen para medir altas: ?sector=…&utm_source=visionnovaia&utm_medium=…&utm_campaign=… */
+export function appLink(campaign: string, opts: { path?: string; sector?: string; medium?: string } = {}): string {
+  const u = new URL(opts.path ?? '/', SITE.appUrl);
+  if (opts.sector) u.searchParams.set('sector', opts.sector);
+  u.searchParams.set('utm_source', 'visionnovaia');
+  u.searchParams.set('utm_medium', opts.medium ?? 'web');
+  u.searchParams.set('utm_campaign', campaign);
+  return u.toString();
+}

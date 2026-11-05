@@ -1,5 +1,5 @@
 ---
-title: "¿Cuánto cuesta una agencia de marketing digital? Cómo comparar"
+title: "Precio de una agencia de marketing digital: cómo comparar"
 description: "De qué depende el precio de una agencia de marketing digital, qué modelos de cobro existen, qué debe incluir una propuesta y cómo comparar presupuestos."
 date: 2026-10-28
 tags: ["Agencia de marketing", "Presupuesto"]
@@ -62,7 +62,7 @@ Ese último punto se olvida con frecuencia. Si la agencia solo se compromete a �
 
 No publicamos una tarifa de catálogo, porque no cuesta lo mismo grabar una clínica que una inmobiliaria con tres oficinas. Después de una llamada de 20 minutos en la que vemos tu caso, te enviamos una propuesta cerrada con el precio por escrito. Incluye la grabación en tu negocio, las redes, las campañas de Meta Ads y un sistema que atiende y filtra los contactos. Puedes ver cómo funciona en [NovaScale](/#sistema) y en nuestra [página de publicidad en Meta Ads](/publicidad-meta-ads).
 
-Si solo buscas la parte de software (CRM con IA y WhatsApp), puedes mirar los planes de [Nova](https://app.visionnovaia.com) sin pasar por una agencia.
+Si solo buscas la parte de software (CRM con IA y WhatsApp), puedes mirar los planes de [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=cuanto-cuesta-una-agencia-de-marketing-digital) sin pasar por una agencia.
 
 ## Preguntas frecuentes
 

@@ -48,7 +48,7 @@ Una IA conectada a la API puede responder con la información que apruebes, hace
 
 ## Cómo trabajamos en Visión Nova
 
-Conectamos la API oficial con [CRM Nova](https://app.visionnovaia.com), de modo que todo el equipo atiende desde una misma bandeja y cada conversación queda guardada. Antes de activar nada, vemos contigo cómo se conecta tu número y qué plantillas te conviene preparar.
+Conectamos la API oficial con [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=whatsapp-business-api-oficial-vs-app), de modo que todo el equipo atiende desde una misma bandeja y cada conversación queda guardada. Antes de activar nada, vemos contigo cómo se conecta tu número y qué plantillas te conviene preparar.
 
 ## Preguntas frecuentes
 

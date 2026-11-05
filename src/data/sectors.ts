@@ -82,7 +82,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿La IA da citas directamente?',
-        a: 'Propone huecos al paciente y deja la cita registrada en CRM Nova. Cómo encaja con el programa de gestión que ya usa tu clínica lo vemos en la llamada, porque cada software funciona de una manera.',
+        a: 'Propone huecos al paciente y deja la cita registrada en NØVA. Cómo encaja con el programa de gestión que ya usa tu clínica lo vemos en la llamada, porque cada software funciona de una manera.',
       },
       {
         q: '¿Qué pasa si un paciente escribe por un dolor o una urgencia?',
@@ -172,7 +172,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Cuánto tarda en notarse en la agenda?',
-        a: 'Depende de tu zona, del tratamiento que impulsemos y de la inversión en anuncios, así que no te vamos a dar una fecha. Lo que sí ves desde el primer día es cada conversación y cada valoración en CRM Nova, y cada mes recibes un informe con lo que ha pasado.',
+        a: 'Depende de tu zona, del tratamiento que impulsemos y de la inversión en anuncios, así que no te vamos a dar una fecha. Lo que sí ves desde el primer día es cada conversación y cada valoración en NØVA, y cada mes recibes un informe con lo que ha pasado.',
       },
     ],
     related: ['creacion-de-contenido', 'gestion-redes-sociales', 'publicidad-meta-ads', 'sistema-ia'],
@@ -250,7 +250,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿Y si un comprador quiere hablar ya con una persona?',
-        a: 'La IA no retiene a nadie que pida un agente. Lo anota, le confirma que le llamarán y al agente le llega un aviso inmediato; la conversación queda guardada en CRM Nova para que no tenga que volver a preguntar nada.',
+        a: 'La IA no retiene a nadie que pida un agente. Lo anota, le confirma que le llamarán y al agente le llega un aviso inmediato; la conversación queda guardada en NØVA para que no tenga que volver a preguntar nada.',
       },
     ],
     related: ['creacion-de-contenido', 'publicidad-meta-ads', 'sistema-ia', 'diseno-web'],
@@ -315,7 +315,7 @@ export const SECTORS: SectorPage[] = [
       },
       {
         q: '¿La IA da precios de reformas?',
-        a: 'Solo si tú quieres y con los rangos que nos facilites. Lo que solemos proponer es que recoja medidas, tipo de trabajo y plazo, y te lo deje ordenado en CRM Nova para que decidas si merece la visita.',
+        a: 'Solo si tú quieres y con los rangos que nos facilites. Lo que solemos proponer es que recoja medidas, tipo de trabajo y plazo, y te lo deje ordenado en NØVA para que decidas si merece la visita.',
       },
       {
         q: '¿Funciona para obra nueva o solo para reformas?',

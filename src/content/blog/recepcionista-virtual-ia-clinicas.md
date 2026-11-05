@@ -1,39 +1,75 @@
 ---
-title: "Recepcionista virtual con IA para clínicas en Barcelona y Málaga"
-description: "Cómo una recepcionista virtual con IA agenda, confirma y recuerda citas en clínicas dentales y estéticas de Barcelona y Málaga, sin ampliar personal."
+title: "Recepcionista virtual para clínicas: qué hace y qué no"
+description: "Qué puede hacer una recepcionista virtual con IA en una clínica dental o estética, qué no debe hacer y cómo combinarla con WhatsApp y una agenda real."
 date: 2026-07-22
+updated: 2026-11-05
 tags: ["Clínicas", "Recepcionista virtual"]
-readTime: 6
+readTime: 7
 related: ["/sistema-ia", "/whatsapp-business-api"]
-readNext: ["agente-voz-ia-malaga", "agente-voz-ia-como-funciona"]
+readNext: ["whatsapp-clinicas-organizar-recepcion", "como-captar-pacientes-sin-perderlos-en-whatsapp"]
 ---
-En una clínica dental o estética, el teléfono suena constantemente mientras el equipo está atendiendo a un paciente en el sillón. Cada llamada perdida es, con frecuencia, un paciente que llama a la clínica de al lado. Una **recepcionista virtual con inteligencia artificial** ayuda a evitarlo atendiendo las llamadas al momento, también cuando entran varias a la vez.
+Una **recepcionista virtual con IA** atiende los primeros mensajes de una clínica: responde dudas frecuentes con la información que tú apruebas, propone horas libres de la agenda y avisa a una persona cuando hace falta. No diagnostica, no da consejo clínico y no sustituye a tu equipo de recepción: le quita el trabajo repetitivo.
 
-## Qué hace exactamente en el día a día
+## Qué hace y qué no hace
 
-- **Agenda citas nuevas** directamente en el calendario de la clínica, respetando huecos y duración de cada tratamiento.
-- **Confirma y reorganiza citas existentes** cuando un paciente llama para cambiar el horario.
-- **Envía recordatorios automáticos** por voz o WhatsApp el día antes, para reducir las ausencias sin previo aviso.
-- **Responde preguntas frecuentes** sobre horarios, ubicación, si aceptan una mutua concreta o precio orientativo de una primera visita.
+| Tarea | Recepcionista virtual | Tu equipo |
+|---|---|---|
+| Responder dudas frecuentes (horarios, ubicación, cómo es la primera visita) | Sí, solo con la información que has aprobado | Mantiene esa información al día |
+| Proponer horas libres | Sí, sobre la agenda real | Revisa los casos especiales |
+| Reservar, cancelar o cambiar citas | Sí | Gestiona las excepciones |
+| Apuntar a lista de espera | Sí | Llama cuando surge un hueco |
+| Recordar la cita | Sí, por email y con plantilla de WhatsApp | Confirma las citas delicadas |
+| Reprogramar a quien no vino | Envía un mensaje de reprogramación | Cierra la nueva cita si hace falta |
+| Consultas clínicas, urgencias o presupuestos complejos | No: avisa a una persona | Sí |
 
-## El impacto en las citas perdidas
+## Por dónde atiende
 
-Las citas perdidas por pacientes que no se presentan (no-shows) son una de las mayores fugas de ingresos en clínicas dentales y estéticas. Automatizar los recordatorios con confirmación activa —donde el paciente confirma o cancela por voz o WhatsApp— es una de las formas más habituales de reducir estas ausencias, porque da margen para reasignar el hueco a tiempo.
+- **WhatsApp y chat de tu web.** Con [NØVA](https://app.visionnovaia.com/empezar?sector=clinica&utm_source=visionnovaia&utm_medium=blog&utm_campaign=recepcionista-virtual-ia-clinicas), nuestro software, un asistente de IA atiende por WhatsApp y por el chat de la web, califica el contacto y propone horas de la agenda sin dobles reservas.
+- **Teléfono.** Para las llamadas, Visión Nova ofrece un [agente de voz con IA](/sistema-ia) como servicio aparte.
 
-## En Barcelona, en Málaga o en cualquier ciudad
+## Lo que una recepcionista virtual no debe hacer
 
-El sistema se conecta a tu número de teléfono actual y a tu calendario online, por lo que la implementación es igual de sencilla en una clínica de Barcelona que en una de Málaga. Normalmente no hace falta cambiar de software de gestión ni de operador telefónico; cómo encaja con el programa que ya usa tu clínica lo revisamos contigo antes de empezar.
+- **Diagnosticar o recomendar tratamientos.** Eso es del profesional.
+- **Dar precios cerrados de tratamientos complejos** sin que los haya valorado el equipo.
+- **Seguir contestando cuando entra una persona.** Lo correcto es que la IA se pause y la conversación pase al equipo (en NØVA, la IA se pausa cuando entra una persona del equipo en la bandeja de WhatsApp).
+- **Improvisar fuera de la información que has aprobado.**
+
+## Datos de salud: lo que debes revisar
+
+Los datos de salud son una categoría especial en el RGPD (artículo 9). Antes de poner una IA a conversar con pacientes, revisa con tu delegado de protección de datos o tu asesor: la base legal del tratamiento, la información que das al paciente, el contrato con el proveedor y qué datos conviene no pedir por WhatsApp. Tienes más detalle en [esta guía de NØVA sobre RGPD y WhatsApp en clínicas dentales](https://app.visionnovaia.com/blog/rgpd-whatsapp-clinica-dental-datos-de-salud?utm_source=visionnovaia&utm_medium=blog&utm_campaign=recepcionista-virtual-ia-clinicas).
+
+## Cómo ponerla en marcha en cinco pasos
+
+1. **Escribe las respuestas aprobadas:** horarios, ubicación, tratamientos que ofreces, cómo es la primera visita, formas de pago.
+2. **Conecta la agenda** por profesional y sala para que solo proponga horas reales.
+3. **Define cuándo pasa a una persona:** urgencias, dudas clínicas, quejas.
+4. **Activa los recordatorios** y el mensaje de reprogramación para quien no viene.
+5. **Revisa conversaciones cada semana** y ajusta lo que no responda bien.
+
+## Una limitación que conviene saber
+
+NØVA no es un software de historia clínica: no tiene odontograma, radiografías ni facturación sanitaria. Funciona junto al programa de gestión que ya uses. Y no garantiza resultados: ordena y atiende tus contactos, pero las citas dependen de tu oferta y de tu equipo.
+
+Si quieres verlo con tu clínica, puedes [probar NØVA 3 días](https://app.visionnovaia.com/clinicas-dentales?utm_source=visionnovaia&utm_medium=blog&utm_campaign=recepcionista-virtual-ia-clinicas), sin permanencia.
 
 ## Preguntas frecuentes
 
-### ¿Qué hace una recepcionista virtual con IA?
+### ¿Qué hace una recepcionista virtual con IA en una clínica?
+Responde dudas frecuentes, propone horas de la agenda real, reserva, cancela o cambia citas, apunta a lista de espera y envía recordatorios. Cuando la conversación lo requiere, avisa a una persona del equipo.
 
-Contesta llamadas, agenda y confirma citas, y envía recordatorios automáticos, sin intervención humana en lo rutinario.
+### ¿Puede dar consejo clínico o diagnosticar?
+No. Debe limitarse a la información que apruebas y derivar a tu equipo cualquier consulta clínica o urgencia.
 
-### ¿Reduce las citas perdidas?
+### ¿Funciona por teléfono o solo por WhatsApp?
+Con NØVA atiende por WhatsApp y por el chat de la web. Para llamadas, Visión Nova ofrece un agente de voz con IA como servicio independiente.
 
-Los recordatorios automáticos con confirmación activa ayudan a reducir los no-shows, porque el paciente confirma o cancela con tiempo.
+### ¿Sustituye a mi recepcionista?
+No. Se ocupa de lo repetitivo para que tu equipo dedique su tiempo a los pacientes que están en la clínica y a las conversaciones que requieren criterio.
 
-### ¿Funciona igual en Málaga que en Barcelona?
+### ¿Cumple el RGPD?
+Depende de cómo se configure y de cómo trates los datos. Los datos de salud tienen protección reforzada: revisa la base legal, la información al paciente y el contrato con el proveedor.
 
-Sí, todo el sistema es remoto y se adapta al calendario y protocolo de cada clínica, sin importar la ciudad.
+## Fuentes
+
+- [Reglamento (UE) 2016/679 (RGPD), EUR-Lex](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Agencia Española de Protección de Datos (AEPD)](https://www.aepd.es/)

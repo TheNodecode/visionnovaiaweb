@@ -1,39 +1,62 @@
 ---
-title: "Agente de voz con IA en Málaga: precios y casos de uso"
-description: "Agente de voz con inteligencia artificial en Málaga: cómo funciona, qué rangos de precio hay en el mercado y qué negocios pueden aprovecharlo."
+title: "Agente de voz con IA en Málaga: precio, usos y límites"
+description: "Cómo funciona un agente de voz con IA en Málaga, de qué depende su precio, qué negocios lo usan y qué límites tiene. Con preguntas para contratarlo."
 date: 2026-07-22
+updated: 2026-11-05
 tags: ["Agente de voz", "Málaga"]
-readTime: 6
+readTime: 7
 related: ["/sistema-ia", "/whatsapp-business-api"]
-readNext: ["agente-voz-ia-como-funciona", "cuanto-cuesta-chatbot-ia-barcelona"]
+readNext: ["agente-voz-ia-como-funciona", "chatbot-vs-agente-voz-ia"]
 ---
-Cada vez más negocios en Málaga —clínicas, despachos, inmobiliarias y restaurantes— pierden clientes simplemente porque nadie contesta el teléfono a tiempo. Un **agente de voz con inteligencia artificial** ataca exactamente ese problema: atiende las llamadas al momento, también cuando entran varias a la vez, sin necesidad de contratar personal adicional.
+Un **agente de voz con IA** atiende las llamadas de tu negocio en Málaga: responde dudas, recoge datos y agenda, o pasa la llamada a una persona cuando hace falta. Su precio depende del volumen de llamadas, de la integración con tu agenda y del mantenimiento. No existe una tarifa única: pide una propuesta que diga exactamente qué incluye.
 
-## ¿Cuánto cuesta un agente de voz IA en Málaga?
+## Para qué se usa en Málaga
 
-Como referencia general del mercado, el rango habitual es de **150 € a 400 € al mes** según el volumen de llamadas, más un coste variable de aproximadamente **0,75 € por llamada gestionada**. Son cifras orientativas del sector, no una tarifa de Visión Nova. Como comparación general, un empleado a tiempo parcial supone un coste mensual fijo, y la diferencia puede resultar relevante, sobre todo en negocios que reciben llamadas fuera de horario o los fines de semana.
+| Negocio | Qué puede hacer | Cuándo pasa a una persona |
+|---|---|---|
+| Clínica dental o estética | Pedir el motivo de la llamada, proponer una cita, recoger los datos | Dudas clínicas, urgencias |
+| Despacho profesional | Recoger el asunto y los datos para que el profesional devuelva la llamada | Consultas que requieren criterio |
+| Inmobiliaria | Atender consultas sobre inmuebles y agendar visitas | Negociaciones, ofertas |
+| Restaurante | Tomar reservas en horas punta | Grupos grandes o peticiones especiales |
 
-## ¿Se implementa igual en Málaga que en Barcelona?
+## De qué depende el precio
 
-Sí. Todo el sistema funciona en la nube: se conecta a tu número de teléfono actual, a tu calendario y, si lo necesitas, a tu CRM. Normalmente no hace falta una visita presencial ni cambiar de operador telefónico (lo comprobamos contigo antes de empezar), por lo que da igual si tu negocio está en el centro de Málaga, en la Costa del Sol o en cualquier otra provincia de España.
+- **Volumen de llamadas** que atiende cada mes.
+- **Integración** con tu agenda, tu CRM o tu número actual.
+- **Personalización** del tono y de las preguntas que hace.
+- **Mantenimiento:** revisar llamadas y ajustar lo que no funcione.
+- **Idiomas** que necesites cubrir (se decide y se prueba antes de activarlo).
 
-## Casos de uso en negocios malagueños
+No publicamos cifras de mercado porque no tenemos una fuente oficial y fechada que las respalde. Compara propuestas con los mismos conceptos.
 
-- **Clínicas dentales y estéticas** — agenda, confirma y recuerda citas sin que la recepción tenga que parar de atender en mostrador.
-- **Despachos de abogados** — filtra y cualifica la primera llamada antes de pasarla a un profesional.
-- **Inmobiliarias** — atiende consultas sobre pisos disponibles y agenda visitas al momento.
-- **Restaurantes** — gestiona reservas en horas punta sin dejar llamadas sin contestar por estar ocupados en sala.
+## Límites que conviene conocer
+
+- Una llamada con mucho ruido o acentos marcados puede ser más difícil de entender.
+- No debe dar consejo clínico, jurídico ni cerrar presupuestos complejos.
+- Funciona mejor con preguntas repetitivas que con situaciones nuevas.
+- Conviene revisar al principio las llamadas para ajustar el comportamiento.
+
+## Cómo encaja con WhatsApp
+
+Muchas personas prefieren escribir antes que llamar. Para WhatsApp, [NØVA](https://app.visionnovaia.com/?utm_source=visionnovaia&utm_medium=blog&utm_campaign=agente-voz-ia-malaga), nuestro software, ofrece un asistente de IA en WhatsApp y en el chat de la web, con bandeja compartida. El agente de voz, en cambio, es un servicio de Visión Nova que se contrata aparte: lo explicamos en [sistema IA](/sistema-ia).
+
+## ¿Hace falta estar en Barcelona para contratarlo?
+
+No. El sistema funciona en remoto y se conecta a tu número y a tu agenda, así que da igual si tu negocio está en el centro de Málaga, en la Costa del Sol o en cualquier otra provincia. Lo que revisamos contigo antes de empezar es cómo encaja con tu operador y tu forma de atender hoy.
 
 ## Preguntas frecuentes
 
 ### ¿Cuánto cuesta un agente de voz con IA en Málaga?
+Depende del volumen de llamadas, la integración y el mantenimiento. Pide una propuesta que detalle qué incluye y cómo se factura.
 
-Como referencia de mercado, entre 150 € y 400 € al mes según volumen, más aproximadamente 0,75 € por llamada gestionada.
+### ¿Puede atender varias llamadas a la vez?
+Está pensado para atender llamadas sin que se acumulen. Lo comprobamos con tu volumen real antes de activarlo.
 
-### ¿Necesito estar en Barcelona para contratarlo?
+### ¿Habla con voz natural?
+La voz suena natural, pero conviene decir al llamante que habla con un asistente y probar el tono antes de activarlo.
 
-No, todo el proceso es remoto y funciona igual en cualquier ciudad de España, incluida Málaga.
+### ¿Qué pasa si no sabe responder?
+Debe pasar la llamada a una persona o dejar el recado con los datos, según lo que hayas definido.
 
-### ¿Qué sectores lo usan más en Málaga?
-
-Clínicas, despachos profesionales, inmobiliarias y restaurantes, por el volumen de llamadas repetitivas que reciben.
+### ¿Sirve igual en cualquier ciudad?
+Sí, el sistema es remoto. Lo que cambia es la información y el calendario de cada negocio.

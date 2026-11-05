@@ -1,13 +1,22 @@
 ---
-title: "20 ideas de vídeos para clínicas dentales que generan confianza"
-description: "20 ideas de vídeo para redes y anuncios de una clínica dental: desde explicar tratamientos hasta enseñar al equipo. Con consejos de grabación y de normativa."
+title: "20 ideas de vídeos para clínicas dentales que dan confianza"
+description: "20 ideas de vídeo para redes y anuncios de clínicas dentales: tratamientos, equipo y dudas frecuentes. Con consejos de grabación y de normativa."
 date: 2026-10-28
+updated: 2026-11-05
 tags: ["Clínicas dentales", "Contenido"]
 readTime: 7
 related: ["/creacion-de-contenido", "/gestion-redes-sociales"]
 readNext: ["como-conseguir-pacientes-clinica-dental-meta-ads", "jornada-de-grabacion-contenido-negocio-local"]
 ---
-**Idea central:** la gente elige clínica mirando caras, no listas de tratamientos. Estos 20 vídeos están pensados para que un paciente que no te conoce vea quién eres antes de pedir cita. Todos se pueden grabar en una sola jornada.
+Estas 20 ideas de vídeo sirven para que un paciente que no te conoce vea quién eres antes de pedir cita: quitar el miedo, explicar tratamientos, presentar al equipo y animar a reservar. Se pueden grabar en una sola jornada y reutilizar como anuncios.
+
+| Objetivo | Ideas | Formato recomendado |
+|---|---|---|
+| Quitar el miedo | 1 a 5 | Recorrido o respuesta a cámara, con subtítulos |
+| Explicar tratamientos | 6 a 10 | El doctor con un modelo de boca, un mensaje por vídeo |
+| Generar cercanía | 11 a 14 | El equipo en su día a día |
+| Animar a pedir cita | 15 a 18 | Cierre con una llamada a la acción clara |
+| Reforzar la confianza | 19 y 20 | Tecnología o testimonios con consentimiento por escrito |
 
 ## Para quitar el miedo
 
@@ -60,6 +69,10 @@ La publicidad de centros sanitarios tiene reglas propias, que cambian según la 
 
 Con un guion previo y un orden de planos, una sola mañana de grabación puede dar material para varias semanas. Lo contamos en [cómo preparar una jornada de grabación](/blog/jornada-de-grabacion-contenido-negocio-local). Si prefieres que lo hagamos nosotros, mira nuestra página de [creación de contenido](/creacion-de-contenido) o la del [sector dental](/sectores/clinicas-dentales).
 
+## Cuando el vídeo funciona, llegan mensajes
+
+Un buen vídeo trae mensajes por WhatsApp a cualquier hora, y ahí se pierden muchas citas. Con [NØVA](https://app.visionnovaia.com/empezar?sector=clinica&utm_source=visionnovaia&utm_medium=blog&utm_campaign=ideas-de-videos-para-clinicas-dentales), nuestro software, un asistente de IA atiende por WhatsApp y por el chat de la web, propone horas libres de la agenda y deja cada contacto en una ficha con su origen. Tienes el detalle en nuestra guía de [recepción con WhatsApp](/blog/whatsapp-clinicas-organizar-recepcion).
+
 ## Preguntas frecuentes
 
 ### ¿Cuántos vídeos hay que publicar?
@@ -70,3 +83,9 @@ Ayuda mucho que lo haga el doctor o el equipo. La gente conecta con personas, pe
 
 ### ¿Sirven también como anuncios?
 Sí. Los vídeos que funcionan en redes pueden reutilizarse como creatividades de campañas en Meta.
+
+### ¿Qué hago con los mensajes que llegan después de un vídeo?
+Define quién contesta, en cuánto tiempo y qué preguntas se hacen para saber si encaja. Puedes automatizar la primera atención y dejar que tu equipo se ocupe de quien está listo para pedir cita.
+
+### ¿Cuánto debe durar un vídeo?
+Lo que necesite para decir una sola idea con claridad. Si se hace largo, conviene dividirlo en dos.

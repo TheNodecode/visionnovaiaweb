@@ -1,5 +1,5 @@
 ---
-title: "Meta Ads para inmobiliarias: captar compradores y propietarios"
+title: "Meta Ads para inmobiliarias: compradores y propietarios"
 description: "Cómo usar Meta Ads en una inmobiliaria para captar dos públicos distintos, compradores y propietarios, con vídeo, segmentación local y seguimiento rápido."
 date: 2026-10-28
 tags: ["Inmobiliarias", "Meta Ads"]

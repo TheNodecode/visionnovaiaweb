@@ -1,6 +1,6 @@
 ---
-title: "Jornada de grabación para tu negocio: cómo prepararla paso a paso"
-description: "Cómo preparar una jornada de grabación de contenido en tu negocio: guion, orden de planos, qué llevar, cómo aprovechar el día y cómo reutilizar el material."
+title: "Jornada de grabación para tu negocio: cómo prepararla"
+description: "Cómo preparar una jornada de grabación en tu negocio: guion, orden de planos, qué llevar, cómo aprovechar el día y cómo reutilizar el material."
 date: 2026-10-28
 tags: ["Contenido", "Vídeo"]
 readTime: 8

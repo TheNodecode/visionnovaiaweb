@@ -64,7 +64,7 @@ export interface Reel { src?: string; poster: string; label: string; alt?: strin
 /** Piezas del muro de contenido: el material real del cliente. */
 export const CONTENT_REELS: Reel[] = CLIENT_REELS.map((r) => ({ poster: r.src, label: r.label, alt: r.alt }));
 
-/** Captura real de CRM Nova. Sin imagen, se dibuja un panel de ejemplo en HTML. */
+/** Captura real de NØVA. Sin imagen, se dibuja un panel de ejemplo en HTML. */
 export const CRM_IMAGE: string | undefined = undefined;
 
 export interface AudioDemo { src: string; label: string; sector: string }

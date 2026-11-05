@@ -14,9 +14,18 @@ export async function getStaticPaths() {
 
 const { post, all } = Astro.props;
 const { Content } = await render(post);
-const { title, description, date, related, readNext, readTime } = post.data;
+const { title, description, date, updated, related, readNext, readTime } = post.data;
 const path = `/blog/${post.id}`;
 const iso = date.toISOString().slice(0, 10);
+const isoUpdated = (updated ?? date).toISOString().slice(0, 10);
+
+// FAQPage solo con las preguntas que el lector ve: se extraen de la sección «Preguntas frecuentes» (### pregunta + respuesta).
+const faqSection = (post.body ?? '').split(/^## Preguntas frecuentes\s*$/m)[1]?.split(/^## /m)[0] ?? '';
+const plain = (s: string) => s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*_`]/g, '').replace(/\s+/g, ' ').trim();
+const faqs = faqSection.split(/^### /m).slice(1).map((b) => {
+  const [q, ...a] = b.split(/\r?\n/);
+  return { q: plain(q), a: plain(a.join(' ')) };
+}).filter((f) => f.q && f.a);
 
 const services = SERVICES_NAV.filter((s) => related.includes(s.href));
 const next = readNext.map((id) => all.find((p) => p.id === id)).filter((p) => p !== undefined);
@@ -28,7 +37,7 @@ const schema = [
     headline: title,
     description,
     datePublished: iso,
-    dateModified: iso,
+    dateModified: isoUpdated,
     inLanguage: 'es-ES',
     mainEntityOfPage: SITE.url + path,
     author: { '@id': SITE.url + '/#org' },
@@ -44,6 +53,9 @@ const schema = [
       { '@type': 'ListItem', position: 3, name: title, item: SITE.url + path },
     ],
   },
+  ...(faqs.length >= 2
+    ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]
+    : []),
 ];
 ---
 <BaseLayout title={blogSeoTitle(title)} description={description} path={path} schema={schema}>
@@ -57,7 +69,7 @@ const schema = [
         <div class="mt-6"><Eyebrow>Blog</Eyebrow></div>
         <h1 class="mt-5 font-display text-[40px] italic leading-[1.05] text-cream text-balance md:text-[60px]">{title}</h1>
         <p class="mt-5 text-sm text-muted">
-          <time datetime={iso}>{formatDate(date)}</time>{readTime && <> · {readTime} min de lectura</>}
+          <time datetime={iso}>{formatDate(date)}</time>{updated && <> · actualizado el <time datetime={isoUpdated}>{formatDate(updated)}</time></>}{readTime && <> · {readTime} min de lectura</>}
         </p>
         <div class="post-body mt-10 md:mt-14">
           <Content />

@@ -52,7 +52,7 @@ export const OFFER_ITEMS: OfferItem[] = [
   },
   {
     id: 'crm', icon: 'crm',
-    title: 'CRM Nova con todo en tiempo real',
+    title: 'NØVA con cada contacto en su ficha',
     outcome: 'Cada contacto en una sola pantalla: de qué anuncio viene, qué ha preguntado y en qué punto está. Se acabaron las libretas y los chats perdidos.',
   },
   {
@@ -105,7 +105,7 @@ export const FIRST_MONTH: Week[] = [
   },
   {
     title: 'Lanzamos anuncios, activamos la IA y el CRM',
-    text: 'Las campañas salen con tus vídeos. El WhatsApp con IA y el agente de voz empiezan a atender, y cada contacto entra en CRM Nova.',
+    text: 'Las campañas salen con tus vídeos. El WhatsApp con IA y el agente de voz empiezan a atender, y cada contacto entra en NØVA.',
     deliverable: 'Desde aquí cuentan los 30 días de la garantía',
   },
   {

@@ -1,6 +1,6 @@
 ---
 title: "Cómo filtrar contactos: qué es un cliente cualificado"
-description: "Qué significa que un contacto esté cualificado, qué preguntas hacer para saberlo, cómo medirlo y cómo automatizar el filtro sin perder a nadie por el camino."
+description: "Qué es un contacto cualificado, qué preguntas hacer para saberlo, cómo medirlo y cómo automatizar el filtro sin perder a nadie por el camino."
 date: 2026-10-28
 tags: ["Captación", "Cualificación"]
 readTime: 8
@@ -62,7 +62,7 @@ Una IA bien configurada puede atender el primer mensaje, hacer las preguntas y d
 
 ## Cómo lo hacemos en Visión Nova
 
-Nuestro sistema combina anuncios, WhatsApp con IA, agente de voz y [CRM Nova](https://app.visionnovaia.com) para que tu equipo reciba contactos ya filtrados. Lo contamos en la página de [sistema IA + CRM](/sistema-ia) y en el [método NovaScale](/#sistema).
+Nuestro sistema combina anuncios, WhatsApp con IA, agente de voz y [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=como-filtrar-contactos-cliente-cualificado) para que tu equipo reciba contactos ya filtrados. Lo contamos en la página de [sistema IA + CRM](/sistema-ia) y en el [método NovaScale](/#sistema).
 
 ## Preguntas frecuentes
 

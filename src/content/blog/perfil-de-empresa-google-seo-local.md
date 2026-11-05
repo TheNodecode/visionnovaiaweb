@@ -1,6 +1,6 @@
 ---
-title: "Perfil de empresa de Google: cómo optimizarlo para el SEO local"
-description: "Cómo crear y optimizar el perfil de empresa de Google (Google Business Profile) para aparecer en el mapa: categorías, datos, reseñas, fotos y errores comunes."
+title: "Perfil de empresa de Google: guía de SEO local"
+description: "Cómo crear y optimizar el perfil de empresa de Google para aparecer en el mapa: categorías, datos, reseñas, fotos y fallos comunes."
 date: 2026-10-28
 tags: ["SEO local", "Google"]
 readTime: 8

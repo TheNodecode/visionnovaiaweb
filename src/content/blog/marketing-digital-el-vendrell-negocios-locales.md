@@ -1,6 +1,6 @@
 ---
-title: "Marketing digital en El Vendrell y el Baix Penedès: guía local"
-description: "Qué pueden hacer los negocios de El Vendrell y el Baix Penedès para que los encuentren online: perfil de Google, vídeo local, anuncios por zona y atención rápida."
+title: "Marketing digital en El Vendrell y el Baix Penedès"
+description: "Qué pueden hacer los negocios de El Vendrell y el Baix Penedès para que los encuentren online: ficha de Google, vídeo local y anuncios por zona."
 date: 2026-10-28
 tags: ["El Vendrell", "SEO local"]
 readTime: 7
@@ -40,7 +40,7 @@ Creer que con una página de Instagram basta. Instagram ayuda a mostrar quién e
 
 ## Cómo lo hacemos
 
-En [Visión Nova](/agencia-marketing-el-vendrell) vamos a grabar a tu negocio del Baix Penedès, trabajamos tus redes y tus anuncios con zona y dejamos un sistema que atiende y filtra los contactos. Si solo necesitas un CRM con asistente de IA, puedes mirar [Nova](https://app.visionnovaia.com).
+En [Visión Nova](/agencia-marketing-el-vendrell) vamos a grabar a tu negocio del Baix Penedès, trabajamos tus redes y tus anuncios con zona y dejamos un sistema que atiende y filtra los contactos. Si solo necesitas un CRM con asistente de IA, puedes mirar [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=marketing-digital-el-vendrell-negocios-locales).
 
 ## Preguntas frecuentes
 

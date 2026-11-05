@@ -243,7 +243,7 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
       weeks: [
         { text: 'Revisamos tu perfil, qué contesta hoy recepción cuando le preguntan precios y qué tratamientos quieres impulsar esta temporada, y de ahí salen los guiones.' },
         { title: 'Grabación con tu equipo médico', text: 'Grabamos a la doctora y al equipo en consulta y en cabina, sin pacientes salvo que haya un consentimiento firmado.' },
-        { text: 'Salen los anuncios de valoración. La IA atiende Instagram y WhatsApp con las respuestas aprobadas, y cada consulta entra en CRM Nova.' },
+        { text: 'Salen los anuncios de valoración. La IA atiende Instagram y WhatsApp con las respuestas aprobadas, y cada consulta entra en NØVA.' },
         { text: 'Tu equipo empieza a confirmar valoraciones de personas que ya han contado qué quieren tratar y para cuándo. Primer informe por tratamiento.' },
       ],
     },
@@ -266,7 +266,7 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
       {
         q: 'La gente escribe y luego no viene.',
         short: 'Por eso la conversación acaba en una valoración propuesta.',
-        a: 'La IA está configurada para no quedarse en la respuesta: pregunta lo necesario, propone día y hora y deja la cita registrada. En CRM Nova ves quién ha confirmado y a quién toca recordárselo.',
+        a: 'La IA está configurada para no quedarse en la respuesta: pregunta lo necesario, propone día y hora y deja la cita registrada. En NØVA ves quién ha confirmado y a quién toca recordárselo.',
       },
     ],
     proof: {
@@ -373,7 +373,7 @@ export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
       weeks: [
         { text: 'Revisamos tu cartera, qué inmuebles tienen más tirón, cómo te llegan hoy los contactos de los portales y cómo se reparten entre tus agentes.' },
         { title: 'Grabación de inmuebles y agentes', text: 'En una jornada recorremos los pisos elegidos y grabamos a tus agentes presentando su zona, con las visitas ordenadas para no perder horas en desplazamientos.' },
-        { text: 'Salen las campañas de compradores y de propietarios. La IA atiende cada mensaje con los datos del inmueble y cada contacto entra en CRM Nova con su origen.' },
+        { text: 'Salen las campañas de compradores y de propietarios. La IA atiende cada mensaje con los datos del inmueble y cada contacto entra en NØVA con su origen.' },
         { text: 'Tus agentes llaman a compradores que ya han contado plazo y financiación, y a propietarios que han dicho qué quieren vender. Primer informe por campaña.' },
       ],
     },

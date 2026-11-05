@@ -9,7 +9,7 @@ export const GUARANTEE_FAQ: FaqItem = {
 export const HOME_FAQ: FaqItem[] = [
   {
     q: '¿Qué hacéis exactamente?',
-    a: 'Montamos el sistema completo para que te lleguen clientes: grabamos el contenido de tu negocio, lo publicamos en tus redes, lanzamos campañas de Meta Ads con esos mismos vídeos y conectamos un WhatsApp y un agente de voz con IA que atienden y filtran cada contacto. Tú ves todo en CRM Nova y tu equipo solo habla con quien está listo para comprar.',
+    a: 'Montamos el sistema completo para que te lleguen clientes: grabamos el contenido de tu negocio, lo publicamos en tus redes, lanzamos campañas de Meta Ads con esos mismos vídeos y conectamos un WhatsApp y un agente de voz con IA que atienden y filtran cada contacto. Tú ves todo en NØVA y tu equipo solo habla con quien está listo para comprar.',
   },
   {
     q: '¿Venís de verdad a grabar a mi negocio? ¿Y si estoy fuera de Madrid o Barcelona?',

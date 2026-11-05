@@ -23,7 +23,7 @@ export const CITIES_NAV = [
 export const COMPANY_NAV = [
   { href: '/nosotros', label: 'Nosotros' },
   { href: '/trabajos', label: 'Trabajos' },
-  { href: '/software-nova', label: 'Software Nova' },
+  { href: '/software-nova', label: 'Software NØVA' },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;

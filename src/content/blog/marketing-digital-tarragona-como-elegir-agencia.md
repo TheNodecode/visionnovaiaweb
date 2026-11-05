@@ -45,7 +45,7 @@ Una agencia de tu ciudad puede conocer mejor el mercado y verse en persona con m
 
 ## Cómo lo hacemos
 
-En nuestra página de [agencia de marketing en Tarragona](/agencia-marketing-tarragona) explicamos cómo trabajamos con negocios de la zona: grabación en tu local, anuncios por municipio y un sistema que atiende y filtra los contactos con IA y [CRM Nova](https://app.visionnovaia.com).
+En nuestra página de [agencia de marketing en Tarragona](/agencia-marketing-tarragona) explicamos cómo trabajamos con negocios de la zona: grabación en tu local, anuncios por municipio y un sistema que atiende y filtra los contactos con IA y [NØVA](https://app.visionnovaia.com/empezar?utm_source=visionnovaia&utm_medium=blog&utm_campaign=marketing-digital-tarragona-como-elegir-agencia).
 
 ## Preguntas frecuentes
 

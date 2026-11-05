@@ -26,7 +26,7 @@ import { OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, tailorOffer, tailorList, type Off
 import { GUARANTEE_FAQ } from '../../data/faqs';
 import { AUDIO_DEMOS } from '../../data/media';
 import { SERVICES_NAV, SECTORS_NAV } from '../../data/nav';
-import { SITE } from '../../config/site';
+import { SITE, appLink } from '../../config/site';
 
 export const getStaticPaths = (() =>
   SECTORS.map((page) => ({ params: { slug: page.slug }, props: { page } }))) satisfies GetStaticPaths;
@@ -81,6 +81,10 @@ const SERVICE_LABELS = new Map<string, string>(SERVICES_NAV.map((l) => [l.href.s
 const related = [
   ...page.related.map((slug) => ({ href: `/${slug}`, label: SERVICE_LABELS.get(slug) ?? slug, kind: 'Servicio' })),
   ...SECTORS_NAV.filter((s) => s.href !== path).map((s) => ({ href: s.href, label: s.label, kind: 'Sector' })),
+  // Intención distinta: aquí, captación y marketing para clínicas; en la app, el software (CRM, WhatsApp, agenda).
+  ...(page.slug === 'clinicas-dentales'
+    ? [{ href: appLink('sector-clinicas-dentales', { path: '/clinicas-dentales', sector: 'clinica' }), label: 'NØVA: CRM para clínicas dentales', kind: 'Software' }]
+    : []),
 ];
 ---
 <BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
