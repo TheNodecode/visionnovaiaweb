@@ -4,8 +4,8 @@
 // Reglas: sin precios de NovaScale, sin cifras de clientes y la IA siempre «está configurada para…».
 import type { IconName } from '../components/ui/icon-names';
 
-/** Texto exacto de la garantía (no se parafrasea en ningún sitio). */
-export const GUARANTEE_TEXT = 'Si en 30 días el sistema no te entrega al menos 15 clientes filtrados, el segundo mes va por nuestra cuenta.';
+/** Nota de resultados: no se garantizan clientes, citas ni resultados publicitarios. */
+export const RESULTS_NOTE = 'No garantizamos clientes, citas ni resultados de los anuncios: dependen de tu negocio, tu oferta y tu inversión. Lo que montamos y medimos contigo cada mes es la cadena completa: grabación, anuncios, respuesta rápida y CRM.';
 /** Texto exacto de la escasez real. */
 export const SCARCITY_TEXT = 'Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.';
 export const PRICE_NOTE = 'Precio: propuesta a medida tras una llamada de 20 minutos.';
@@ -106,7 +106,7 @@ export const FIRST_MONTH: Week[] = [
   {
     title: 'Lanzamos anuncios, activamos la IA y el CRM',
     text: 'Las campañas salen con tus vídeos. El WhatsApp con IA y el agente de voz empiezan a atender, y cada contacto entra en NØVA.',
-    deliverable: 'Desde aquí cuentan los 30 días de la garantía',
+    deliverable: 'Desde aquí empieza a medirse el sistema',
   },
   {
     title: 'Primeros clientes filtrados y primer informe',
@@ -131,7 +131,7 @@ export const OBJECTIONS: Objection[] = [
   {
     q: 'Ya tengo agencia.',
     short: 'La mayoría entrega anuncios y un informe. Lo que pasa con el contacto ya no es cosa suya.',
-    a: 'Nosotros llevamos la cadena entera: grabación, anuncios, una IA configurada para responder en menos de un minuto, filtro y CRM. Por eso nuestra garantía se mide en clientes filtrados y no en clics ni en alcance.',
+    a: 'Nosotros llevamos la cadena entera: grabación, anuncios, una IA configurada para responder en menos de un minuto, filtro y CRM. Por eso lo medimos en contactos atendidos y filtrados, y no solo en clics ni en alcance.',
   },
   {
     q: 'No tengo tiempo para grabar.',
@@ -145,8 +145,8 @@ export const OBJECTIONS: Objection[] = [
   },
   {
     q: '¿Y si no funciona?',
-    short: 'Entonces el riesgo es nuestro, y está por escrito.',
-    a: `${GUARANTEE_TEXT} Los 30 días cuentan desde que arrancan las campañas, y antes de empezar acordamos contigo qué cuenta como cliente filtrado en tu negocio.`,
+    short: 'Nadie puede prometer resultados de anuncios; lo que sí hacemos es medirlo contigo.',
+    a: `${RESULTS_NOTE} Cada mes recibes un informe claro de qué se ha hecho, cuánto se ha invertido y qué ha salido de ahí.`,
   },
   {
     q: '¿Por qué no me dais precio en la web?',

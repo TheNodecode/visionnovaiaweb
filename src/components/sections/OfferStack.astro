@@ -1,11 +1,11 @@
 ---
 // «Lo que incluye NovaScale»: la oferta completa partida a partida, cada una con lo que te llevas.
-// Escritorio: lista a la izquierda y ficha fija (sticky) a la derecha con garantía, plazas y CTA.
+// Escritorio: lista a la izquierda y ficha fija (sticky) a la derecha con plazas y CTA.
 // Móvil: la ficha va después de la lista. `compact` = rejilla de dos columnas sin etiquetas (páginas de servicio).
 import Eyebrow from '../ui/Eyebrow.astro';
 import Icon from '../ui/Icon.astro';
 import Button from '../ui/Button.astro';
-import { OFFER_ITEMS, GUARANTEE_TEXT, SCARCITY_TEXT, PRICE_NOTE, type OfferItem } from '../../data/offer';
+import { OFFER_ITEMS, SCARCITY_TEXT, PRICE_NOTE, type OfferItem } from '../../data/offer';
 
 interface Props {
   id?: string;
@@ -18,7 +18,7 @@ interface Props {
   tone?: 'dark' | 'light';
   /** Texto del botón de la ficha; false = ficha sin botón (p. ej. si la página ya cierra con formulario). */
   cta?: string | false;
-  /** Línea de la ficha bajo plazas/garantía. */
+  /** Línea de la ficha bajo las plazas. */
   cardNote?: string;
 }
 const {
@@ -70,13 +70,7 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
       <div class="offer-card tone-dark" data-reveal>
         <span class="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/70 to-transparent" aria-hidden="true"></span>
         <p class="text-[11px] font-medium uppercase tracking-[0.28em] text-gold-400">Tu plaza en NovaScale</p>
-
-        <div class="mt-5 flex gap-3.5">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gold-400/40 bg-gold-400/10 text-gold-200"><Icon name="shield" size={20} /></span>
-          <p class="font-display text-[22px] italic leading-[1.18] text-cream text-pretty">{GUARANTEE_TEXT}</p>
-        </div>
-
-        <div class="mt-5 flex gap-3.5 border-t border-white/10 pt-5">
+<div class="mt-5 flex gap-3.5 border-t border-white/10 pt-5">
           <span class="w-10 shrink-0 text-center font-display text-[44px] italic leading-[0.9] text-gold-200" aria-hidden="true">3</span>
           <div>
             <p class="text-[11px] font-medium uppercase tracking-[0.22em] text-cream">3 plazas al mes</p>

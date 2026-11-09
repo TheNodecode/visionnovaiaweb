@@ -1,8 +1,8 @@
 export interface FaqItem { q: string; a: string }
 
 export const GUARANTEE_FAQ: FaqItem = {
-  q: '¿Cómo funciona la garantía?',
-  a: 'Los 30 días empiezan a contar el día que arrancan las campañas, no el día que firmamos. Antes de empezar acordamos contigo qué cuenta como cliente filtrado en tu negocio y cuánto se invierte en Ads. Todo eso queda por escrito en el contrato, así que no hay sorpresas para ninguna de las dos partes.',
+  q: '¿Garantizáis resultados?',
+  a: 'No. No garantizamos clientes, citas ni resultados de los anuncios: dependen de tu negocio, tu oferta y tu inversión. Lo que hacemos es montar y mantener la cadena (grabación, anuncios, respuesta rápida y CRM) y medirla contigo cada mes, con un informe claro de qué se ha hecho, cuánto se ha invertido y qué ha salido de ahí.',
 };
 
 // Sin «¿notarán que es una IA?», «¿cuánto cuesta?» ni «¿y si la IA no sabe responder?»: en la home ya las responden las objeciones y la oferta.

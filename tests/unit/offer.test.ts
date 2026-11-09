@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
-  OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, AFTER_BOOKING, GUARANTEE_TEXT, SCARCITY_TEXT, PRICE_NOTE,
+  OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, AFTER_BOOKING, RESULTS_NOTE, SCARCITY_TEXT, PRICE_NOTE,
   tailorOffer, tailorList,
 } from '../../src/data/offer';
 
@@ -34,10 +34,11 @@ describe('tailorList', () => {
 
 describe('copy de la oferta', () => {
   const all = JSON.stringify({ OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, AFTER_BOOKING, PRICE_NOTE });
-  it('garantía y escasez con el texto exacto', () => {
-    expect(GUARANTEE_TEXT).toBe('Si en 30 días el sistema no te entrega al menos 15 clientes filtrados, el segundo mes va por nuestra cuenta.');
+  it('sin garantía de resultados y con la escasez exacta', () => {
+    expect(RESULTS_NOTE).toContain('No garantizamos clientes, citas ni resultados');
+    expect(JSON.stringify({ OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, AFTER_BOOKING })).not.toMatch(/15 clientes filtrados|segundo mes va por nuestra cuenta|garantía de/i);
     expect(SCARCITY_TEXT).toBe('Solo incorporamos 3 negocios nuevos al mes, porque cada implantación la montamos a mano.');
-    expect(OBJECTIONS.find((o) => o.q.includes('no funciona'))?.a).toContain(GUARANTEE_TEXT);
+    expect(OBJECTIONS.find((o) => o.q.includes('no funciona'))?.a).toContain(RESULTS_NOTE);
   });
   it('sin precios, sin «bono» y sin «error»', () => {
     expect(all).not.toMatch(/€|\beuros?\b/i);
