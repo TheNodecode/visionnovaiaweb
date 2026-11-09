@@ -9,6 +9,7 @@ import AdAngles from '../../components/sections/AdAngles.astro';
 import QualifyQuestions from '../../components/sections/QualifyQuestions.astro';
 import AIDemo from '../../components/sections/AIDemo.astro';
 import RealWork from '../../components/sections/RealWork.astro';
+import ProofGallery from '../../components/sections/ProofGallery.astro';
 import BehindScenes from '../../components/sections/BehindScenes.astro';
 import FirstMonth from '../../components/sections/FirstMonth.astro';
 import RoiCalculator from '../../components/sections/RoiCalculator.astro';
@@ -24,7 +25,7 @@ import { SECTORS, type SectorPage } from '../../data/sectors';
 import { SECTOR_SALES } from '../../data/sector-sales';
 import { OFFER_ITEMS, FIRST_MONTH, OBJECTIONS, tailorOffer, tailorList, type OfferId } from '../../data/offer';
 import { GUARANTEE_FAQ } from '../../data/faqs';
-import { AUDIO_DEMOS } from '../../data/media';
+import { AUDIO_DEMOS, CEM_CLIPS } from '../../data/media';
 import { SERVICES_NAV, SECTORS_NAV } from '../../data/nav';
 import { SITE, appLink } from '../../config/site';
 
@@ -90,7 +91,8 @@ const related = [
 <BaseLayout title={page.seoTitle} description={page.seoDescription} path={path} schema={schema}>
   {/* Cada sector compone su propia secuencia (sales.order en sector-sales.ts), alternando hojas claras y oscuras;
        objeciones y FAQ forman siempre una sola hoja clara al final. */}
-  <PageHero eyebrow={page.hero.eyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets} />
+  <PageHero eyebrow={page.hero.eyebrow} title={page.hero.title} titleAccent={page.hero.titleAccent} lead={page.hero.lead} bullets={page.hero.bullets}
+    visual={page.slug === 'clinicas-dentales' ? { ...CEM_CLIPS.hueso, label: 'Anuncio real de CEM Valderas, cliente actual' } : undefined} />
 
   {sales.order.map((block) => (
     <>
@@ -106,8 +108,9 @@ const related = [
       {block === 'qualify' && <QualifyQuestions lead={sales.qualify.lead} questions={sales.qualify.questions} card={sales.qualify.card} note={sales.qualify.note ?? page.complianceNote} />}
       {block === 'demo' && <AIDemo scenario={page.aiScenario} audios={audios} audioNote={page.audioNote} titleHtml={sales.demo?.titleHtml} lead={sales.demo?.lead} />}
       {block === 'proof' && (sales.proof.kind === 'real'
-        ? <RealWork titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} steps={sales.proof.steps} />
+        ? <RealWork set="dental" titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} steps={sales.proof.steps} />
         : <BehindScenes titleHtml={sales.proof.titleHtml} lead={sales.proof.lead} ideas={page.contentIdeas} />)}
+      {block === 'gallery' && <ProofGallery />}
       {block === 'firstMonth' && <FirstMonth weeks={weeks} lead={sales.firstMonth.lead} />}
       {block === 'roi' && <RoiCalculator defaultTicket={page.defaultTicket} />}
       {block === 'guarantee' && <Guarantee />}

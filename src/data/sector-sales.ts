@@ -6,7 +6,7 @@ import type { AdAngle, Phase, Qualify, SplitColumn } from './blocks';
 import type { OfferId, OfferItem, Week, Objection, Step } from './offer';
 
 /** Bloques que puede componer una página de sector; `order` decide la secuencia de cada una. */
-export type SectorBlock = 'signature' | 'pains' | 'offer' | 'angles' | 'qualify' | 'demo' | 'proof' | 'firstMonth' | 'roi' | 'guarantee' | 'objections';
+export type SectorBlock = 'signature' | 'pains' | 'offer' | 'angles' | 'qualify' | 'demo' | 'proof' | 'gallery' | 'firstMonth' | 'roi' | 'guarantee' | 'objections';
 
 export type SectorSignature =
   | { kind: 'split'; id: string; eyebrow: string; titleHtml: string; lead: string; columns: [SplitColumn, SplitColumn]; joiner?: string; note?: string }
@@ -37,7 +37,7 @@ export type SectorSales = {
 export const SECTOR_SALES: Record<SectorSlug, SectorSales> = {
   // ───────────────────────────── Clínicas dentales
   'clinicas-dentales': {
-    order: ['pains', 'proof', 'demo', 'offer', 'angles', 'qualify', 'firstMonth', 'roi', 'guarantee', 'objections'],
+    order: ['pains', 'proof', 'gallery', 'demo', 'offer', 'angles', 'qualify', 'firstMonth', 'roi', 'guarantee', 'objections'],
     brand: 'Tu clínica dental',
     offer: {
       titleHtml: 'NovaScale para <span class="text-gold">clínicas dentales.</span>',

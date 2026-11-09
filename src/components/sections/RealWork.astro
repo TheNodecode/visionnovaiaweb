@@ -5,7 +5,7 @@
 // Móvil: cabecera → carril de piezas con snap → pasos y CTA. Escritorio: texto a la izquierda, tablero a la derecha.
 import Eyebrow from '../ui/Eyebrow.astro';
 import Button from '../ui/Button.astro';
-import { CLIENT, CLIENT_ADS, CLIENT_REELS, BTS_PHOTO_SMALL, type ClientPiece } from '../../data/media';
+import { CLIENT, CEM_CLIPS, CEM_CLINIC, type ClientPiece } from '../../data/media';
 import type { Step } from '../../data/offer';
 
 interface Props {
@@ -17,6 +17,8 @@ interface Props {
   /** Versión pequeña (ciudades): tres piezas y sin pasos. */
   compact?: boolean;
   cta?: string | false;
+  /** Qué piezas se enseñan: así la home y la landing dental no repiten el mismo material. */
+  set?: 'home' | 'dental';
 }
 
 const DEFAULT_STEPS: Step[] = [
@@ -29,18 +31,23 @@ const {
   id = 'trabajo-real',
   tone = 'light',
   titleHtml = 'Esto es lo que hacemos, ahora mismo, <span class="text-gold">para una clínica dental.</span>',
-  lead = 'No es una maqueta ni un vídeo de stock. Son los anuncios y los vídeos de un cliente actual, tal y como salen en Instagram.',
+  lead = 'No es una maqueta ni material de stock: son los vídeos, los anuncios y la clínica de un cliente actual.',
   steps = DEFAULT_STEPS,
   compact = false,
   cta = 'Quiero esto en mi negocio',
+  set = 'home',
 } = Astro.props;
 
-type Piece = ClientPiece & { kind: 'phone' | 'photo'; sizes?: string };
-const bts: Piece = { ...BTS_PHOTO_SMALL, kind: 'photo', sizes: '(min-width: 1024px) 180px, 46vw' };
+type Piece = ClientPiece & { kind: 'phone' | 'photo'; sizes?: string; tag?: string };
 const phone = (p: ClientPiece): Piece => ({ ...p, kind: 'phone' });
-// Abre con el detrás de cámaras y los vídeos del doctor; el anuncio en reels no se repite porque ya sale en el hero.
-const all: Piece[] = [bts, phone(CLIENT_REELS[1]), phone(CLIENT_REELS[0]), phone(CLIENT_ADS[0]), phone(CLIENT_REELS[2])];
-const pieces = compact ? [all[0], all[1], all[2]] : all;
+// La portada ya enseña el anuncio de «motion graphics» y al doctor en su despacho; aquí, piezas distintas.
+const waiting: Piece = { ...CEM_CLINIC[3], kind: 'photo', tag: 'Donde grabamos', sizes: '(min-width: 1024px) 180px, 46vw' };
+const SETS: Record<'home' | 'dental', Piece[]> = {
+  home: [waiting, phone(CEM_CLIPS.emocional), phone(CEM_CLIPS.premium), phone(CEM_CLIPS.escaner), phone(CEM_CLIPS.padres)],
+  dental: [phone(CEM_CLIPS.despacho), phone(CEM_CLIPS.escaner), phone(CEM_CLIPS.padres), phone(CEM_CLIPS.premium), phone(CEM_CLIPS.emocional)],
+};
+const all = SETS[set];
+const pieces = compact ? all.slice(0, 3) : all;
 ---
 <section id={id} class:list={['rw relative overflow-hidden bg-ink py-16 md:py-24', tone === 'light' && 'section-light', compact && 'rw-compact']} aria-labelledby={`${id}-title`}>
   <div class="container-x rw-grid">
@@ -61,8 +68,10 @@ const pieces = compact ? [all[0], all[1], all[2]] : all;
         {pieces.map((p, i) => (
           <li class={`rw-piece rw-piece-${i}`} data-parallax={compact ? undefined : ['0.06', '-0.04', '0.1', '-0.06', '0.04'][i]}>
             <div class:list={['tone-dark', p.kind === 'phone' ? 'rw-phone' : 'rw-photo']}>
-              <img src={p.src} srcset={p.srcset} sizes={p.sizes} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" />
-              {p.kind === 'photo' && <span class="rw-photo-tag" aria-hidden="true">Así grabamos</span>}
+              {p.video
+                ? <video data-inview-video src={p.video} poster={p.src} muted loop playsinline preload="none" aria-label={p.alt}></video>
+                : <img src={p.src} srcset={p.srcset} sizes={p.sizes} alt={p.alt} width={p.width} height={p.height} loading="lazy" decoding="async" />}
+              {p.kind === 'photo' && <span class="rw-photo-tag" aria-hidden="true">{p.tag ?? 'Así grabamos'}</span>}
             </div>
             <p class="mt-2.5 text-center text-[12.5px] leading-tight text-muted">{p.label}</p>
           </li>
@@ -131,7 +140,7 @@ const pieces = compact ? [all[0], all[1], all[2]] : all;
   }
   .rw-phone { border-radius: 24px; border: 5px solid #161616; }
   .rw-photo { border-radius: 24px; }
-  .rw-phone img, .rw-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .rw-phone video, .rw-phone img, .rw-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
   .rw-photo img { object-position: 55% 40%; }
   .rw-photo-tag {
     position: absolute; left: 10px; bottom: 10px; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 500;
@@ -146,7 +155,7 @@ const pieces = compact ? [all[0], all[1], all[2]] : all;
   @media (min-width: 1024px) {
     .rw-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: 'head media' 'body body'; column-gap: 56px; row-gap: 40px; align-items: center; }
     .rw-board { margin: 0; padding: 0 0 40px; overflow: visible; gap: 14px; }
-    .rw-piece { flex: 1 1 0; max-width: 170px; }
+    .rw-piece { flex: 1 1 0; max-width: 190px; }
     .rw-piece-0 { margin-top: 48px; }
     .rw-piece-1 { margin-top: 0; }
     .rw-piece-2 { margin-top: 72px; }
@@ -156,3 +165,5 @@ const pieces = compact ? [all[0], all[1], all[2]] : all;
     .rw-compact .rw-board { justify-content: center; }
   }
 </style>
+
+<script>import '../../scripts/inview-video.ts';</script>
