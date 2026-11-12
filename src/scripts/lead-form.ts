@@ -1,5 +1,8 @@
 import { readAttribution } from '../lib/attribution';
-import { buildPayload, isQualified, submitLead, validateContact, type LeadInput } from '../lib/lead';
+import { buildPayload, isQualified, submitLead, validateContact, startOutboxSync, type LeadInput } from '../lib/lead';
+
+// Reenvía a Nova los leads que no pudieron enviarse (sin conexión, Nova caída…).
+startOutboxSync();
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 'software';
 type Data = Partial<LeadInput>;

@@ -79,15 +79,78 @@ async function post(fetchImpl: typeof fetch, url: string, body: unknown, timeout
   }
 }
 
+// Cola local: si Nova no responde, el lead se guarda en el navegador y se reenvía solo
+// (al volver la conexión, al cargar otra página o con reintentos mientras la pestaña siga abierta).
+const OUTBOX_KEY = 'vn-lead-outbox';
+const OUTBOX_MAX = 20;
+const OUTBOX_TTL = 14 * 24 * 3600 * 1000;
+type Queued = { payload: Record<string, unknown>; at: number };
+
+function readOutbox(): Queued[] {
+  try {
+    const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(OUTBOX_KEY) : null;
+    const list = raw ? (JSON.parse(raw) as Queued[]) : [];
+    return Array.isArray(list) ? list.filter((q) => q && q.payload && Date.now() - q.at < OUTBOX_TTL) : [];
+  } catch { return []; }
+}
+function writeOutbox(list: Queued[]) {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    if (list.length) localStorage.setItem(OUTBOX_KEY, JSON.stringify(list.slice(-OUTBOX_MAX)));
+    else localStorage.removeItem(OUTBOX_KEY);
+  } catch { /* sin almacenamiento: no hay cola, pero el envío directo ya se intentó */ }
+}
+
+export function pendingLeads(): number { return readOutbox().length; }
+
+/** Reenvía a Nova los leads que se quedaron sin enviar. Devuelve cuántos siguen pendientes. */
+let flushing = false;
+export async function flushOutbox(opts: { fetchImpl?: typeof fetch; timeoutMs?: number; novaUrl?: string } = {}): Promise<number> {
+  if (flushing) return pendingLeads();
+  const list = readOutbox();
+  if (!list.length) return 0;
+  flushing = true;
+  try {
+    const f = opts.fetchImpl ?? fetch.bind(globalThis);
+    const left: Queued[] = [];
+    for (const q of list) {
+      const ok = await post(f, opts.novaUrl ?? SITE.novaEndpoint, q.payload, opts.timeoutMs ?? 8000);
+      if (!ok) left.push(q);
+    }
+    writeOutbox(left);
+    return left.length;
+  } finally { flushing = false; }
+}
+
+/** Intenta vaciar la cola ahora, cuando vuelve la conexión y con espera creciente mientras haya pendientes. */
+export function startOutboxSync(): void {
+  if (typeof window === 'undefined') return;
+  let delay = 15000;
+  const tick = async () => {
+    const n = await flushOutbox();
+    if (n > 0) { delay = Math.min(delay * 2, 300000); setTimeout(tick, delay); } else delay = 15000;
+  };
+  window.addEventListener('online', () => { void tick(); });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && pendingLeads()) void tick(); });
+  if (pendingLeads()) void tick();
+}
+
 export async function submitLead(
   payload: Record<string, unknown>,
   opts: { fetchImpl?: typeof fetch; timeoutMs?: number; novaUrl?: string; emailUrl?: string } = {},
 ): Promise<{ nova: boolean; email: boolean }> {
   const f = opts.fetchImpl ?? fetch.bind(globalThis);
   const t = opts.timeoutMs ?? 5000;
-  const [nova, email] = await Promise.all([
-    post(f, opts.novaUrl ?? SITE.novaEndpoint, payload, t),
+  const novaUrl = opts.novaUrl ?? SITE.novaEndpoint;
+  const [nova0, email] = await Promise.all([
+    post(f, novaUrl, payload, t),
     post(f, opts.emailUrl ?? SITE.formsubmitEndpoint, { ...payload, _subject: `Nuevo lead web — ${payload.empresa ?? ''}`, _template: 'table' }, t),
   ]);
+  let nova = nova0;
+  if (!nova) nova = await post(f, novaUrl, payload, t); // un segundo intento antes de rendirse
+  if (!nova) {
+    writeOutbox([...readOutbox(), { payload, at: Date.now() }]);
+    if (typeof window !== 'undefined') setTimeout(() => { void flushOutbox({ fetchImpl: opts.fetchImpl, novaUrl }); }, 15000);
+  }
   return { nova, email };
 }

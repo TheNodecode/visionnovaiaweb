@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { isValidEmail, normalizePhone, validateContact, isQualified, buildPayload, submitLead, TICKETS, ADS } from '../../src/lib/lead';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { isValidEmail, normalizePhone, validateContact, isQualified, buildPayload, submitLead, flushOutbox, pendingLeads, TICKETS, ADS } from '../../src/lib/lead';
 
 const base = {
   servicio: ['todo el sistema'], sector: 'Clínica dental', ticket_medio: TICKETS[3], publicidad_actual: ADS[0],
@@ -79,6 +79,48 @@ describe('submitLead', () => {
   it('trata un HTTP 500 como fallo', async () => {
     const f = vi.fn().mockResolvedValue(new Response('', { status: 500 }));
     await expect(submitLead({}, { fetchImpl: f })).resolves.toEqual({ nova: false, email: false });
+  });
+});
+
+describe('cola de leads sin enviar', () => {
+  const store = new Map<string, string>();
+  beforeEach(() => {
+    store.clear();
+    (globalThis as any).localStorage = {
+      getItem: (k: string) => store.get(k) ?? null,
+      setItem: (k: string, v: string) => void store.set(k, v),
+      removeItem: (k: string) => void store.delete(k),
+    };
+  });
+  afterEach(() => { delete (globalThis as any).localStorage; });
+
+  it('reintenta una vez y no guarda nada si el segundo intento funciona', async () => {
+    const f = vi.fn().mockRejectedValueOnce(new TypeError('red')).mockResolvedValueOnce(new Response('{}')).mockResolvedValue(new Response('{}'));
+    const r = await submitLead({ nombre: 'A' }, { fetchImpl: f, novaUrl: 'https://nova/x', emailUrl: 'https://mail/y' });
+    expect(r.nova).toBe(true);
+    expect(pendingLeads()).toBe(0);
+  });
+  it('guarda el lead si Nova sigue caída y lo reenvía después sin duplicar', async () => {
+    const down = vi.fn().mockRejectedValue(new TypeError('sin red'));
+    const r = await submitLead({ nombre: 'Laura', email: 'l@x.es' }, { fetchImpl: down, novaUrl: 'https://nova/x', emailUrl: 'https://mail/y' });
+    expect(r.nova).toBe(false);
+    expect(pendingLeads()).toBe(1);
+    const up = vi.fn().mockResolvedValue(new Response('{}', { status: 201 }));
+    expect(await flushOutbox({ fetchImpl: up, novaUrl: 'https://nova/x' })).toBe(0);
+    expect(JSON.parse(up.mock.calls[0][1].body)).toEqual({ nombre: 'Laura', email: 'l@x.es' });
+    expect(pendingLeads()).toBe(0);
+    expect(await flushOutbox({ fetchImpl: up, novaUrl: 'https://nova/x' })).toBe(0);
+    expect(up).toHaveBeenCalledTimes(1);
+  });
+  it('si el reenvío falla, el lead se conserva', async () => {
+    store.set('vn-lead-outbox', JSON.stringify([{ payload: { nombre: 'B' }, at: Date.now() }]));
+    const down = vi.fn().mockResolvedValue(new Response('', { status: 503 }));
+    expect(await flushOutbox({ fetchImpl: down, novaUrl: 'https://nova/x' })).toBe(1);
+    expect(pendingLeads()).toBe(1);
+  });
+  it('descarta leads de más de 14 días', () => {
+    store.set('vn-lead-outbox', JSON.stringify([{ payload: { nombre: 'viejo' }, at: Date.now() - 15 * 24 * 3600 * 1000 }]));
+    expect(pendingLeads()).toBe(0);
   });
 });
 

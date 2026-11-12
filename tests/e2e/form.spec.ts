@@ -84,3 +84,22 @@ test('los inputs no provocan zoom en iOS (font-size >= 16px)', async ({ page }) 
     (els) => els.filter((e) => (e as HTMLElement).offsetParent).map((e) => parseFloat(getComputedStyle(e).fontSize)));
   for (const s of sizes) expect(s).toBeGreaterThanOrEqual(16);
 });
+
+test('si Nova está caída el lead se guarda y se reenvía solo cuando vuelve', async ({ page }) => {
+  let up = false;
+  const bodies: any[] = [];
+  await page.route('https://app.visionnovaia.com/api/conectar/**', async (r) => {
+    if (!up) return r.abort('failed');
+    bodies.push(r.request().postDataJSON());
+    await r.fulfill({ status: 201, body: '{"ok":true}' });
+  });
+  const form = await fillToContact(page);
+  await form.getByRole('button', { name: /ver huecos/i }).click();
+  await expect(form.getByText(/elige el hueco/i)).toBeVisible({ timeout: 15000 });
+  expect(await page.evaluate(() => localStorage.getItem('vn-lead-outbox'))).toContain('laura@clinica.es');
+  up = true;
+  await page.evaluate(() => window.dispatchEvent(new Event('online')));
+  await expect.poll(() => bodies.length, { timeout: 10000 }).toBe(1);
+  expect(bodies[0]).toMatchObject({ nombre: 'Laura Martín', email: 'laura@clinica.es', origen: 'Web' });
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('vn-lead-outbox'))).toBeNull();
+});
